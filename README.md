@@ -49,3 +49,8 @@ targets followed by three hand synergies (`open_close`, `pinch`, `spread`). It d
 both subsystems in the same MuJoCo step loop and writes aligned observations, bounded
 actions, monotonic timestamps, and simulation timestamps to
 `outputs/combined/combined_control_recording.npz`.
+
+## License
+
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE).
+Third-party components retain their respective upstream licenses.
