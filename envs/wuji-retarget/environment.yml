@@ -1,0 +1,13 @@
+name: wuji-retarget
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - pin==3.8.0
+      - cmeel-urdfdom==4.0.1
+      - cmeel-tinyxml2==10.0.0
+      - mujoco==3.12.0
+      - wuji-retargeting==2026.8.17
+  # Full resolved environment: requirements.lock.txt. The two cmeel ABI pins are
+  # required because unconstrained latest urdfdom/tinyxml2 break Pinocchio 3.8.

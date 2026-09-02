@@ -1,0 +1,15 @@
+{
+  "arm_model": "vendor/openarm_mujoco/v2/openarm_bimanual.xml",
+  "hand_model": "vendor/wuji-retargeting/wuji_retargeting/wuji-description/hand/body/mjcf/left.xml",
+  "arm_side": "left",
+  "hand_side": "left",
+  "mount": {
+    "parent_site": "left_ee_control_point",
+    "xyz_m": [0.0, 0.0, -0.02],
+    "rpy_rad": [3.141592653589793, 0.0, 0.0],
+    "status": "simulation_initial_guess_requires_real_tool_transform_measurement"
+  },
+  "control_hz": 30,
+  "remove_stock_gripper": true
+}
+

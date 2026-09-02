@@ -1,0 +1,12 @@
+.venvs/
+__pycache__/
+*.py[cod]
+outputs/*
+!outputs/.gitkeep
+!outputs/combined/
+outputs/combined/*
+!outputs/combined/combined_smoke.png
+!outputs/combined/combined_report.json
+!outputs/combined/combined_control_report.json
+vendor/
+MUJOCO_LOG.TXT

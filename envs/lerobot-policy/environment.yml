@@ -1,0 +1,8 @@
+name: lerobot-policy
+channels: [conda-forge, pytorch, nvidia]
+dependencies:
+  - python=3.11
+  - pip
+  # CUDA/PyTorch pins must be selected against the WSL driver after WSL is enabled.
+  # LeRobot is installed from a recorded official commit with the async extra.
+

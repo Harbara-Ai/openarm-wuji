@@ -1,0 +1,29 @@
+{
+  "arm": {
+    "model_path": null,
+    "joint_names": [],
+    "control_hz": 30,
+    "position_min": [],
+    "position_max": [],
+    "max_velocity": []
+  },
+  "hand": {
+    "variant": "unknown_until_official_model_is_inspected",
+    "side": "right",
+    "joint_names": [],
+    "position_min": [],
+    "position_max": [],
+    "max_velocity": []
+  },
+  "mount": {
+    "parent_frame": null,
+    "xyz_m": [0.0, 0.0, 0.0],
+    "rpy_rad": [0.0, 0.0, 0.0]
+  },
+  "network": {
+    "host": "127.0.0.1",
+    "port": 8080,
+    "request_timeout_s": 0.25
+  }
+}
+

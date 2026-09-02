@@ -1,0 +1,14 @@
+{
+  "samples": 30,
+  "action_shape": [
+    10
+  ],
+  "arm_position_delta_max": 0.07649572045822317,
+  "hand_position_delta_max": 1.3047824711622351,
+  "final_synergy": [
+    1.0,
+    0.5,
+    0.2
+  ],
+  "finite": true
+}
