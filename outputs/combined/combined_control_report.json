@@ -1,14 +1,26 @@
 {
-  "samples": 30,
+  "samples": 90,
+  "expected_duration_s": 3.0,
+  "simulation_duration_s": 2.999999999999891,
   "action_shape": [
     10
   ],
-  "arm_position_delta_max": 0.07649572045822317,
-  "hand_position_delta_max": 1.3047824711622351,
-  "final_synergy": [
-    1.0,
-    0.5,
-    0.2
+  "front_rgb_shape": [
+    240,
+    320,
+    3
   ],
-  "finite": true
+  "wrist_rgb_shape": [
+    240,
+    320,
+    3
+  ],
+  "arm_position_delta_max": 0.07574332246608764,
+  "hand_position_delta_max": 1.0880923674381757,
+  "finite": true,
+  "replay": {
+    "samples": 90,
+    "max_arm_position_error": 0.0,
+    "max_hand_position_error": 0.0
+  }
 }

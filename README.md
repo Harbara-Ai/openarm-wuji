@@ -46,9 +46,14 @@ The evidence-backed status audit and next seven days are in `docs/status_and_7_d
 
 The combined-control smoke exposes one stable policy action vector: 7 left-arm joint
 targets followed by three hand synergies (`open_close`, `pinch`, `spread`). It drives
-both subsystems in the same MuJoCo step loop and writes aligned observations, bounded
-actions, monotonic timestamps, and simulation timestamps to
-`outputs/combined/combined_control_recording.npz`.
+both subsystems in the same MuJoCo step loop. Each observation contains front and wrist
+RGB (`uint8`, HWC), arm and hand positions/velocities, the 20-D bounded hand target, the
+3-D synergy command, the actual bounded 10-D policy action, contiguous frame index,
+high-resolution host timestamp, and simulation timestamp. The smoke writes a 90-frame
+episode to `outputs/combined/combined_control_recording.npz`, replays it from a clean
+reset, and rejects state error above `1e-4`.
+
+![OpenArm + Wuji front and wrist camera demo](outputs/combined/combined_control_demo.gif)
 
 ## License
 

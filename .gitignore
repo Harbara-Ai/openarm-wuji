@@ -8,5 +8,6 @@ outputs/combined/*
 !outputs/combined/combined_smoke.png
 !outputs/combined/combined_report.json
 !outputs/combined/combined_control_report.json
+!outputs/combined/combined_control_demo.gif
 vendor/
 MUJOCO_LOG.TXT
