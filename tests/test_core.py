@@ -11,10 +11,18 @@ from openarm_wuji.simulation.mujoco_backend import MujocoOpenArmWuji
 
 class CoreTests(unittest.TestCase):
     def test_mock_state_and_velocity_limit(self):
-        robot = MockOpenArmWuji(control_hz=10)
+        root = Path(__file__).resolve().parents[1]
+        robot = MockOpenArmWuji(
+            root / "configs/wuji_hand_left_synergies.json", control_hz=10,
+            image_height=16, image_width=20,
+        )
         robot.connect()
-        robot.send_action(np.ones(27))
-        np.testing.assert_allclose(robot.get_observation()["joint_position"], 0.2)
+        sent = robot.send_action(np.ones(10))
+        observation = robot.get_observation()
+        np.testing.assert_allclose(observation["arm_joint_position"], 0.2)
+        self.assertEqual(observation["hand_joint_position"].shape, (20,))
+        self.assertEqual(observation["front_rgb"].shape, (16, 20, 3))
+        self.assertEqual(sent.shape, (10,))
 
     def test_nan_enters_safe_failure(self):
         safety = ActionSafety([-1], [1], [1])

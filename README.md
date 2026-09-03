@@ -37,6 +37,8 @@ Run the dependency-free smoke test from PowerShell:
 ./scripts/run_wuji_retarget_wsl.ps1 -WslPython /path/to/wuji-retarget/bin/python -WujiSource /path/to/wuji-retargeting
 ./scripts/run_combined_smoke.ps1
 ./scripts/run_combined_control_smoke.ps1
+./scripts/setup_lerobot_policy.ps1
+./scripts/run_lerobot_contract_smoke.ps1
 # GUI (interactive; close the MuJoCo window to exit)
 ./scripts/run_openarm_gui.ps1
 ```
@@ -54,6 +56,14 @@ episode to `outputs/combined/combined_control_recording.npz`, replays it from a 
 reset, and rejects state error above `1e-4`.
 
 ![OpenArm + Wuji front and wrist camera demo](outputs/combined/combined_control_demo.gif)
+
+## LeRobot plugin contract
+
+The installable package `lerobot_robot_openarm_wuji` registers
+`openarm_wuji_follower` without modifying LeRobot. The policy-visible contract is two
+same-size RGB cameras, 27-D measured position state, and a 10-D action consisting of
+seven arm targets plus three hand synergies. Backend timestamps and diagnostic fields
+are deliberately excluded from the first ACT input. See `docs/lerobot_integration.md`.
 
 ## License
 

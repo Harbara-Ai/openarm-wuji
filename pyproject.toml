@@ -3,12 +3,15 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "openarm-wuji-learning"
+name = "lerobot_robot_openarm_wuji"
 version = "0.1.0"
 description = "Hardware-agnostic OpenArm + Wuji simulation, data, and policy bridge"
 requires-python = ">=3.10,<3.13"
 dependencies = ["numpy>=1.26,<3"]
 
+[project.optional-dependencies]
+lerobot = ["lerobot>=0.6.2,<0.7"]
+sim = ["mujoco==3.12.0", "imageio==2.37.0", "pillow>=12,<13"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
-

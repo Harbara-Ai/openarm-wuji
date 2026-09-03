@@ -1,6 +1,7 @@
 .venvs/
 __pycache__/
 *.py[cod]
+*.egg-info/
 outputs/*
 !outputs/.gitkeep
 !outputs/combined/

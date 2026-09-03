@@ -29,6 +29,7 @@
 
 ### 第 3 天——LeRobot 兼容组合层
 
+- 状态：已于 2026-09-03 完成 Mock 与 MuJoCo adapter 契约；数据集写入将在任务场景建立后验收。
 - 检查已固定版本中的 LeRobot `Robot`、`openarm_follower` 和 `bi_openarm_follower` 接口。
 - 使用组合设计实现独立插件 `lerobot_robot_openarm_wuji` 的基本结构，支持 Mock 和 MuJoCo 后端，并保持 RealBackend 不执行任何未经确认的硬件操作。
 - 验收标准：配置发现与导入测试通过，`connect`、`get_observation`、`send_action` 和 `disconnect` 接口契约测试通过。
@@ -59,4 +60,4 @@
 
 ## 当前检查点后的最高优先级
 
-下一步是检查固定版本的 LeRobot 接口并实现兼容组合层，同时保持真实硬件后端为明确的空实现。相机与确定性回放已经为 LeRobotDataset 和 ACT 建立了最小可信数据基础。
+下一步是建立 Reach–Grasp–Lift 任务场景和脚本专家，同时保持真实硬件后端为明确的空实现。LeRobot adapter 已提供 27 维观测状态、双相机和 10 维动作契约。

@@ -112,7 +112,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
             "sent_action": self._last_sent_action.copy(),
         }
 
-    def send_action(self, action: Sequence[float]) -> None:
+    def send_action(self, action: Sequence[float]) -> np.ndarray:
         import mujoco
         self._require_connected()
         action = np.asarray(action, dtype=float)
@@ -139,6 +139,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         observation = self.get_observation()
         self.records.append({key: value.copy() if isinstance(value, np.ndarray) else value
                              for key, value in observation.items()})
+        return self._last_sent_action.copy()
 
     def save_recording(self, path: str | Path) -> None:
         if not self.records:
