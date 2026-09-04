@@ -3,6 +3,7 @@
   "robot_config": "configs/openarm_v2_wuji_left.json",
   "arm_model": "vendor/openarm_mujoco/v2/pedestal/openarm_pedestal.xml",
   "arm_side": "left",
+  "task_mount_rpy_rad": [3.141592653589793, 0.0, 3.141592653589793],
   "scene": {
     "grasp_site_name": "wuji_grasp_center",
     "grasp_site_offset_m": [0.0, 0.0, 0.13],
@@ -23,7 +24,7 @@
     "settle_physics_steps": 250
   },
   "reach": {
-    "pregrasp_offset_m": [0.0, 0.0, 0.12],
+    "pregrasp_offset_m": [-0.1, 0.0, 0.05],
     "position_tolerance_m": 0.012,
     "hold_frames": 5,
     "max_steps": 120,
@@ -33,5 +34,46 @@
     "ik_max_iterations": 100,
     "ik_solve_tolerance_m": 0.00001,
     "gravity_compensation_offset_m": [0.0, 0.0, 0.034]
+  },
+  "grasp": {
+    "target_offset_m": [0.0, 0.0, 0.035],
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.034],
+    "ik_max_iterations": 150,
+    "ik_solve_tolerance_m": 0.00001,
+    "approach_max_steps": 45,
+    "max_action_step_rad": 0.02,
+    "approach_settle_frames": 5,
+    "max_approach_cube_displacement_m": 0.025,
+    "close_synergy_step": 0.03,
+    "max_close_steps": 55,
+    "min_synergy_for_success": 0.7,
+    "min_finger_groups": 2,
+    "min_normal_force_n": 0.1,
+    "contact_hold_frames": 8
+  },
+  "lift": {
+    "grasp_center_delta_m": [0.0, 0.0, 0.12],
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.034],
+    "ik_max_iterations": 150,
+    "ik_solve_tolerance_m": 0.00001,
+    "max_steps": 120,
+    "max_action_step_rad": 0.015,
+    "hold_synergy": 0.93,
+    "success_height_m": 0.08,
+    "success_hold_frames": 15,
+    "min_finger_groups": 2,
+    "min_normal_force_n": 0.1,
+    "contact_loss_frames": 5,
+    "drop_height_margin_m": 0.025
+  },
+  "external_baseline": {
+    "name": "CD-WM Grasp Dataset rigid lift-success criterion",
+    "source_url": "https://huggingface.co/datasets/BWangCN/cdwm-grasp-dataset",
+    "lift_duration_s": 0.5,
+    "gripper_lift_m": 0.05,
+    "min_object_lift_m": 0.025,
+    "stability_anchor_margin_frames": 2,
+    "max_relative_translation_drift_m": 0.008,
+    "max_relative_rotation_drift_deg": 6.0
   }
 }

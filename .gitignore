@@ -16,5 +16,10 @@ outputs/reach_grasp_lift/*
 !outputs/reach_grasp_lift/scene_smoke.png
 !outputs/reach_grasp_lift/reach_report.json
 !outputs/reach_grasp_lift/reach_demo.gif
+!outputs/reach_grasp_lift/grasp_report.json
+!outputs/reach_grasp_lift/grasp_demo.gif
+!outputs/reach_grasp_lift/lift_report.json
+!outputs/reach_grasp_lift/lift_demo.gif
+!outputs/reach_grasp_lift/episode_report.json
 vendor/
 MUJOCO_LOG.TXT

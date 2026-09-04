@@ -115,6 +115,16 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         self._require_connected()
         return self._hand_actuator_ids.copy()
 
+    @property
+    def latest_record(self) -> dict[str, np.ndarray | float | int]:
+        self._require_connected()
+        if not self.records:
+            raise RuntimeError("no post-action observation is available")
+        return {
+            key: value.copy() if isinstance(value, np.ndarray) else value
+            for key, value in self.records[-1].items()
+        }
+
     def synchronize_after_reset(self, hand_target: Sequence[float] | None = None) -> None:
         """Synchronize controller bookkeeping after a task resets MuJoCo state."""
         self._require_connected()

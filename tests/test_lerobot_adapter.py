@@ -40,6 +40,17 @@ class LeRobotAdapterTests(unittest.TestCase):
             self.assertEqual(set(observation), set(robot.observation_features))
             self.assertNotIn("timestamp", observation)
             self.assertNotIn("sim_time", observation)
+            for telemetry_key in (
+                "cube_position_m",
+                "cube_quaternion_wxyz",
+                "grasp_center_position_m",
+                "grasp_center_quaternion_wxyz",
+                "object_relative_position_m",
+                "object_relative_quaternion_wxyz",
+                "contacts",
+                "contact_resultant_force_world_n",
+            ):
+                self.assertNotIn(telemetry_key, observation)
             action = dict.fromkeys(robot.action_features, 0.5)
             action["hand.open_close"] = 2.0
             sent = robot.send_action(action)

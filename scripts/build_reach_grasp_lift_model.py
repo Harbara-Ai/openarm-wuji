@@ -64,7 +64,9 @@ def main():
     mount_site = require_element(arm.site(robot["mount"]["parent_site"]), "mount site")
     frame = arm.attach(hand, prefix="wuji_", site=mount_site)
     frame.pos = robot["mount"]["xyz_m"]
-    frame.quat = euler_xyz_to_quat(robot["mount"]["rpy_rad"])
+    frame.quat = euler_xyz_to_quat(
+        task.get("task_mount_rpy_rad", robot["mount"]["rpy_rad"])
+    )
 
     scene = task["scene"]
     palm = require_element(arm.body("wuji_left_palm_link"), "Wuji palm")
@@ -73,6 +75,7 @@ def main():
         pos=scene["grasp_site_offset_m"],
         size=[0.008],
         rgba=[0.1, 0.9, 0.2, 1.0],
+        group=4,
     )
     world = arm.worldbody
     world.add_light(name="task_key_light", pos=[0, 0, 2], dir=[0, 0, -1])

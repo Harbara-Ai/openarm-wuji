@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "failure_reason": null,
+  "seed": 7,
+  "reach": {
+    "success": true,
+    "failure_reason": null,
+    "seed": 7,
+    "steps": 12,
+    "hold_frames": 5,
+    "initial_error_m": 0.0432790604051321,
+    "final_error_m": 0.009207302686363326,
+    "minimum_error_m": 0.005732802057050402,
+    "ik_residual_m": 1.4929001214267865e-06,
+    "cube_position_m": [
+      0.4862547733302333,
+      0.16986069004847876,
+      0.4348922445732058
+    ],
+    "target_position_m": [
+      0.3862547733302333,
+      0.16986069004847876,
+      0.4848922445732058
+    ],
+    "final_grasp_center_m": [
+      0.3819262278628973,
+      0.17032712704493677,
+      0.49300523128734836
+    ]
+  },
+  "approach_steps": 31,
+  "close_steps": 31,
+  "final_synergy": 0.9300000000000006,
+  "contact_hold_frames": 8,
+  "max_contact_groups": 5,
+  "final_contact_groups": [
+    "finger1",
+    "finger2",
+    "finger3",
+    "finger4",
+    "finger5"
+  ],
+  "final_normal_forces_n": {
+    "finger1": 0.6771827939703193,
+    "finger2": 0.7733059135368542,
+    "finger3": 1.0988754606633055,
+    "finger4": 1.8449656182446477,
+    "finger5": 0.8493194767381332
+  },
+  "peak_normal_forces_n": {
+    "finger2": 0.8737944221564552,
+    "finger3": 1.6114180978725903,
+    "finger4": 2.0389044930979563,
+    "finger5": 0.9470755011705431,
+    "finger1": 0.6781253586637532
+  },
+  "approach_cube_displacement_m": 0.00017812754545870073,
+  "total_cube_displacement_m": 0.017316182107637867,
+  "final_cube_position_m": [
+    0.469217900071997,
+    0.17295822909364106,
+    0.43487315972673984
+  ]
+}

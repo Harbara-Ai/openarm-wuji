@@ -1,6 +1,6 @@
 # 真实进度审计与未来七天执行计划
 
-审计日期：2026-09-03（Asia/Singapore）
+审计日期：2026-09-04（Asia/Singapore）
 
 ## 基于实际证据的当前进度
 
@@ -10,7 +10,7 @@
 - 统一控制：`MujocoOpenArmWuji` 当前接收 10 维动作，包括 7 维机械臂关节目标和 `open_close`、`pinch`、`spread` 三维手部协同动作。接口会执行执行器范围、关节范围和速度限制，在同一个仿真循环中推进机械臂与灵巧手，并记录对齐后的状态、动作和时间戳。
 - 自动化证据：组合模型构建、90 帧双相机控制冒烟测试、压缩记录文件、确定性回放、Reach 场景构建与 seeded reset、运行报告、动画以及核心/任务测试均已通过；独立 LeRobot 环境中的 2 项 adapter 契约测试也已通过。
 - LeRobot 插件：`openarm_wuji_follower` 已支持 Mock 和 MuJoCo，策略可见输入为 27 维实测位置与两路等尺寸 RGB，输出为 10 维动作；后端时间戳不进入 policy observation。
-- 尚未完成：Grasp 与 Lift 脚本状态、接触/成功判定器、LeRobotDataset 写入、真实硬件通信协议以及任何学习策略。
+- 尚未完成：30-seed 鲁棒性评测、LeRobotDataset 写入、真实硬件通信协议以及任何学习策略。
 
 ## 未来七天安排
 
@@ -37,13 +37,14 @@
 
 ### 第 4 天——Reach–Grasp–Lift 任务场景
 
-- 状态：已于 2026-09-03 完成场景、确定性 reset、固定前置相机和 Reach-only 专家；Grasp、Lift 及完整失败标签待完成。
+- 状态：已于 2026-09-04 完成场景、确定性 reset、固定双相机、无碰撞 Reach、基于 MuJoCo 接触力的 power-grasp，以及带 `slip`/`drop`/`lift_timeout` 标签的 Lift。seed 7 基准通过，5-seed pilot 为 3/5，因此尚不声明随机化鲁棒。
 - 添加桌面、随机位置方块、固定前视相机、腕部相机、碰撞分组和显式随机种子。
 - 在开始学习之前，加入脚本化的接近、抓取和抬升控制，以验证场景物理行为。
 - 验收标准：场景可确定性重置，能够检查接触，并输出机器可读的成功或失败标签。
 
 ### 第 5 天——Episode 数据格式与记录器
 
+- 状态：已于 2026-09-04 完成 schema v2 完整状态机因果记录、世界/相对 SE(3)、逐接触点 world wrench、字段校验和 seeded replay。seed 7 共 102 个 transition、838 个接触点；物理字段零误差重放，图像最大差异为 2/255。其高度任务成功但相对掌心最大漂移 53.4 mm/106.0°，因此标记为 `settled_after_slip`，不再算稳定抓取。8 mm/6°仅为 CD-WM 外部对照，并非 Wuji 最终阈值。
 - 定义稳定的 observation/action 字段、任务文本、episode 编号、时间戳、经过安全限制后实际发送的动作以及任务结果。
 - 增加保存、加载、可视化和回放测试，并记录各字段单位和坐标系定义。
 - 验收标准：多个脚本化 episode 可以完成保存和重新加载，且不存在维度或时间对齐漂移。
@@ -62,4 +63,4 @@
 
 ## 当前检查点后的最高优先级
 
-下一步是在已通过的 Reach-only 基线上实现 Grasp 状态：下降到抓取位、闭合一种明确的手部协同动作、检查手指—物块接触并区分 `grasp_empty`。随后再实现 Lift 与连续帧成功判定。真实硬件后端继续保持明确的空实现。
+下一步是用 schema v2 recorder 运行 30 个固定 seed，按 `rigid_success`、`settled_after_slip`、`persistent_slip`、`drop`、`never_lift`、`approach_push` 自动汇总连续 SE(3) 指标。随后仅转换满足明确筛选条件的 demonstration 到 LeRobotDataset，并通过 100-step DataLoader 冒烟测试；真实硬件后端继续保持明确的空实现。
