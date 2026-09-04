@@ -37,7 +37,8 @@ class OpenArmWujiFollower(Robot):
             self.backend = MockOpenArmWuji(**common)
         elif config.backend == "mujoco":
             self.backend = MujocoOpenArmWuji(
-                config.model_path, arm_side=config.arm_side, **common
+                config.model_path, arm_side=config.arm_side,
+                front_camera=config.front_camera, **common
             )
         else:
             self.backend = RealOpenArmWuji()

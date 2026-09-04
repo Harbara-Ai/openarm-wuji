@@ -17,6 +17,7 @@ class OpenArmWujiFollowerConfig(RobotConfig):
     control_hz: float = 30.0
     image_height: int = 240
     image_width: int = 320
+    front_camera: str | None = None
 
     def __post_init__(self) -> None:
         super().__post_init__()

@@ -10,6 +10,7 @@ ACT, and a fail-safe asynchronous policy bridge.
 - OpenArm v2 headless smoke: passed on native Windows with MuJoCo 3.12.0; `outputs/openarm/` is generated locally.
 - Wuji Hand full prerecorded retargeting: passed under WSL2 Ubuntu 22.04; 2751 frames of 21×3 keypoints converted to finite 20-D trajectories.
 - Combined OpenArm v2 + left Wuji Hand model: compiled and stable; 20-DoF hand synergies are config-driven and safety limited.
+- Reach–Grasp–Lift scene: deterministic table/cube reset and fixed task camera are ready; the Reach-only Jacobian expert reaches a randomized pre-grasp target within 12 mm. Grasp and Lift are the next milestone.
 - Real robot protocol: intentionally unimplemented until the customized arm specification arrives.
 
 ![OpenArm v2 left arm with Wuji Hand](outputs/combined/combined_smoke.png)
@@ -39,6 +40,7 @@ Run the dependency-free smoke test from PowerShell:
 ./scripts/run_combined_control_smoke.ps1
 ./scripts/setup_lerobot_policy.ps1
 ./scripts/run_lerobot_contract_smoke.ps1
+./scripts/run_reach_only_smoke.ps1
 # GUI (interactive; close the MuJoCo window to exit)
 ./scripts/run_openarm_gui.ps1
 ```
@@ -64,6 +66,18 @@ The installable package `lerobot_robot_openarm_wuji` registers
 same-size RGB cameras, 27-D measured position state, and a 10-D action consisting of
 seven arm targets plus three hand synergies. Backend timestamps and diagnostic fields
 are deliberately excluded from the first ACT input. See `docs/lerobot_integration.md`.
+
+## Reach–Grasp–Lift task
+
+`run_reach_only_smoke.ps1` rebuilds a task model from the pinned official assets,
+resets a free cube with an explicit seed, solves position-only damped least-squares IK,
+and drives the first `Reach` phase using the same 10-D robot action contract. The seed-7
+reference reaches the pre-grasp point in 24 control frames with 8.9 mm final error.
+This is not yet an ACT training dataset: Grasp, Lift, outcome labels, and correct
+`observation_t -> action_t -> observation_t+1` episode recording come next. See
+`docs/reach_grasp_lift.md`.
+
+![Reach-only scripted expert](outputs/reach_grasp_lift/reach_demo.gif)
 
 ## License
 

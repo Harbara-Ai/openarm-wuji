@@ -10,5 +10,11 @@ outputs/combined/*
 !outputs/combined/combined_report.json
 !outputs/combined/combined_control_report.json
 !outputs/combined/combined_control_demo.gif
+!outputs/reach_grasp_lift/
+outputs/reach_grasp_lift/*
+!outputs/reach_grasp_lift/model_report.json
+!outputs/reach_grasp_lift/scene_smoke.png
+!outputs/reach_grasp_lift/reach_report.json
+!outputs/reach_grasp_lift/reach_demo.gif
 vendor/
 MUJOCO_LOG.TXT

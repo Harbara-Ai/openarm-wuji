@@ -19,7 +19,8 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
 
     def __init__(self, model_path: str | Path, synergy_config: str | Path, *,
                  arm_side: str = "left", control_hz: float = 30.0,
-                 image_height: int = 240, image_width: int = 320):
+                 image_height: int = 240, image_width: int = 320,
+                 front_camera: str | None = None):
         if control_hz <= 0:
             raise ValueError("control_hz must be positive")
         if image_height <= 0 or image_width <= 0:
@@ -31,6 +32,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         self.control_dt = 1.0 / self.control_hz
         self.image_height = image_height
         self.image_width = image_width
+        self.front_camera = front_camera
         self._model = self._data = self._renderer = self._front_camera = None
         self._arm_actuator_ids = self._arm_qpos_ids = self._arm_qvel_ids = None
         self._hand_actuator_ids = self._hand_qpos_ids = self._hand_qvel_ids = None
@@ -72,14 +74,61 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         if key >= 0:
             mujoco.mj_resetDataKeyframe(self._model, self._data, key)
         self._renderer = mujoco.Renderer(self._model, height=self.image_height, width=self.image_width)
-        self._front_camera = mujoco.MjvCamera()
-        self._front_camera.lookat[:] = self._model.stat.center
-        self._front_camera.distance = self._model.stat.extent * 1.2
-        self._front_camera.azimuth = 145
-        self._front_camera.elevation = -20
+        if self.front_camera is None:
+            self._front_camera = mujoco.MjvCamera()
+            self._front_camera.lookat[:] = self._model.stat.center
+            self._front_camera.distance = self._model.stat.extent * 1.2
+            self._front_camera.azimuth = 145
+            self._front_camera.elevation = -20
+        else:
+            self._ids(mujoco, mujoco.mjtObj.mjOBJ_CAMERA, [self.front_camera])
+            self._front_camera = self.front_camera
         self._last_synergy.fill(0.0)
         self._last_sent_action.fill(0.0)
         self._hand_target = self.mapper.open_pose.copy()
+        self._frame_index = 0
+        self._control_start_time = float(self._data.time)
+        self.records.clear()
+
+    @property
+    def model(self):
+        self._require_connected()
+        return self._model
+
+    @property
+    def data(self):
+        self._require_connected()
+        return self._data
+
+    @property
+    def arm_qpos_ids(self) -> np.ndarray:
+        self._require_connected()
+        return self._arm_qpos_ids.copy()
+
+    @property
+    def hand_qpos_ids(self) -> np.ndarray:
+        self._require_connected()
+        return self._hand_qpos_ids.copy()
+
+    @property
+    def hand_actuator_ids(self) -> np.ndarray:
+        self._require_connected()
+        return self._hand_actuator_ids.copy()
+
+    def synchronize_after_reset(self, hand_target: Sequence[float] | None = None) -> None:
+        """Synchronize controller bookkeeping after a task resets MuJoCo state."""
+        self._require_connected()
+        if hand_target is None:
+            hand_target = self.mapper.open_pose
+        hand_target = np.asarray(hand_target, dtype=float)
+        if hand_target.shape != (20,) or not np.isfinite(hand_target).all():
+            raise ValueError("hand_target must be finite and 20-D")
+        self._hand_target = hand_target.copy()
+        self._last_synergy.fill(0.0)
+        self._last_sent_action = np.concatenate([
+            self._data.qpos[self._arm_qpos_ids].copy(),
+            np.zeros(self.SYNERGY_DOF),
+        ])
         self._frame_index = 0
         self._control_start_time = float(self._data.time)
         self.records.clear()

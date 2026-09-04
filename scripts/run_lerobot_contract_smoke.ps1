@@ -5,3 +5,4 @@ if (-not (Test-Path $python)) {
     throw 'LeRobot environment missing: .venvs/lerobot-policy'
 }
 & $python -m unittest discover -s (Join-Path $projectRoot 'tests') -p 'test_lerobot_adapter.py' -v
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

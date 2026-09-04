@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "robot_config": "configs/openarm_v2_wuji_left.json",
+  "arm_model": "vendor/openarm_mujoco/v2/pedestal/openarm_pedestal.xml",
+  "arm_side": "left",
+  "scene": {
+    "grasp_site_name": "wuji_grasp_center",
+    "grasp_site_offset_m": [0.0, 0.0, 0.13],
+    "table_center_m": [0.47, 0.0, 0.36],
+    "table_half_size_m": [0.41, 0.55, 0.04],
+    "cube_name": "task_cube",
+    "cube_joint_name": "task_cube_freejoint",
+    "cube_half_size_m": [0.035, 0.035, 0.035],
+    "cube_mass_kg": 0.12,
+    "front_camera_name": "task_front",
+    "front_camera_position_m": [1.05, -0.55, 0.9],
+    "front_camera_xyaxes": [0.6897, 0.7241, 0.0, -0.3322, 0.3164, 0.8883]
+  },
+  "reset": {
+    "home_arm_joint_position_rad": [0.0, 0.0, 0.0, 1.570796, 0.0, 0.0, 0.0],
+    "cube_nominal_position_m": [0.48, 0.15, 0.435],
+    "cube_xy_noise_m": [0.025, 0.025],
+    "settle_physics_steps": 250
+  },
+  "reach": {
+    "pregrasp_offset_m": [0.0, 0.0, 0.12],
+    "position_tolerance_m": 0.012,
+    "hold_frames": 5,
+    "max_steps": 120,
+    "ik_damping": 0.03,
+    "max_joint_step_rad": 0.06,
+    "max_action_step_rad": 0.06,
+    "ik_max_iterations": 100,
+    "ik_solve_tolerance_m": 0.00001,
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.034]
+  }
+}
