@@ -20,6 +20,7 @@ def main():
     parser.add_argument("--synergies", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=7)
+    parser.add_argument("--expected-outcome")
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     robot = MujocoOpenArmWuji(
@@ -66,7 +67,12 @@ def main():
                 args.output / "lift_demo.gif", frames[::2], duration=0.066, loop=0
             )
         print(json.dumps(result.to_dict(), indent=2))
-        if not result.task_success:
+        outcome_matches = (
+            result.outcome == args.expected_outcome
+            if args.expected_outcome is not None
+            else result.task_success
+        )
+        if not outcome_matches:
             raise SystemExit(1)
     finally:
         robot.disconnect()

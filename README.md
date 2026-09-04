@@ -44,6 +44,7 @@ Run the dependency-free smoke test from PowerShell:
 ./scripts/run_grasp_smoke.ps1
 ./scripts/run_lift_smoke.ps1
 ./scripts/run_episode_recording_smoke.ps1
+./scripts/run_grasp_settle_experiment.ps1
 # GUI (interactive; close the MuJoCo window to exit)
 ./scripts/run_openarm_gui.ps1
 ```
@@ -82,6 +83,9 @@ actions from the same seeded reset. This intermediate NPZ is not yet an ACT trai
 dataset. See `docs/reach_grasp_lift.md` and `docs/episode_recording.md`.
 
 ![Complete Reach–Grasp–Lift expert](outputs/reach_grasp_lift/lift_demo.gif)
+
+The frozen-synergy experimental branch and its negative seed-7 result are documented in
+`docs/grasp_settle_experiment.md`.
 
 ## License
 

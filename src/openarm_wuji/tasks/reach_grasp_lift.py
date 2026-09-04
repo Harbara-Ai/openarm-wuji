@@ -11,7 +11,7 @@ from ..simulation.mujoco_backend import MujocoOpenArmWuji
 from .ik import DampedLeastSquaresIK
 from .metrics import FingerContactMonitor
 from .outcomes import evaluate_lift_outcome
-from .se3 import relative_pose
+from .se3 import pose_drift, relative_pose
 
 if TYPE_CHECKING:
     from ..dataset.episode_recorder import CausalEpisodeRecorder
@@ -44,7 +44,14 @@ class GraspResult:
     reach: ReachResult
     approach_steps: int
     close_steps: int
+    settle_steps: int
     final_synergy: float
+    synergy_frozen: bool
+    settle_stable: bool
+    settle_window_frames: int
+    settle_max_translation_drift_m: float | None
+    settle_max_rotation_drift_deg: float | None
+    regrasp_required: bool
     contact_hold_frames: int
     max_contact_groups: int
     final_contact_groups: list[str]
@@ -438,41 +445,112 @@ class ReachGraspLiftTask:
             )
 
         synergy = 0.0
-        contact_hold = 0
+        synergy_frozen = False
         max_contact_groups = 0
         final_contacts: dict[str, float] = {}
         peak_forces: dict[str, float] = {}
         close_steps = 0
-        success = False
+        min_contact_groups = int(grasp["min_finger_groups"])
+        min_normal_force = float(grasp["min_normal_force_n"])
+        minimum_synergy = float(grasp["min_synergy_for_success"])
+        max_close_steps = int(grasp["max_close_steps"])
         for close_steps in range(1, int(grasp["max_close_steps"]) + 1):
             synergy = min(1.0, synergy + float(grasp["close_synergy_step"]))
             self._send_action(
                 np.r_[self.arm_command, [synergy, 0.0, 0.0]],
                 phase="grasp_close",
             )
-            final_contacts = self.contact_monitor.sample(
-                float(grasp["min_normal_force_n"])
-            )
+            final_contacts = self.contact_monitor.sample(min_normal_force)
             max_contact_groups = max(max_contact_groups, len(final_contacts))
             for finger, force in final_contacts.items():
                 peak_forces[finger] = max(peak_forces.get(finger, 0.0), force)
-            enough_contacts = len(final_contacts) >= int(grasp["min_finger_groups"])
-            enough_closure = synergy >= float(grasp["min_synergy_for_success"])
-            contact_hold = contact_hold + 1 if enough_contacts and enough_closure else 0
-            if contact_hold >= int(grasp["contact_hold_frames"]):
-                success = True
+            enough_contacts = len(final_contacts) >= min_contact_groups
+            enough_closure = synergy >= minimum_synergy
+            if enough_contacts and enough_closure:
+                synergy_frozen = True
                 break
 
+        settle_window_frames = int(grasp["contact_hold_frames"])
+        settle_steps = 0
+        settle_stable = False
+        settle_max_translation: float | None = None
+        settle_max_rotation: float | None = None
+        settle_samples: list[dict] = []
+        if synergy_frozen:
+            settle_budget = max(0, max_close_steps - close_steps)
+            for settle_steps in range(1, settle_budget + 1):
+                self._send_action(
+                    np.r_[self.arm_command, [synergy, 0.0, 0.0]],
+                    phase="grasp_settle",
+                )
+                telemetry = self._phase_samples["grasp_settle"][-1]
+                settle_samples.append(telemetry)
+                final_contacts = {
+                    finger: force
+                    for finger, force in telemetry["finger_normal_forces_n"].items()
+                    if force >= min_normal_force
+                }
+                max_contact_groups = max(max_contact_groups, len(final_contacts))
+                for finger, force in final_contacts.items():
+                    peak_forces[finger] = max(peak_forces.get(finger, 0.0), force)
+                window = settle_samples[-settle_window_frames:]
+                anchor = window[0]
+                translation_drifts = []
+                rotation_drifts = []
+                contacts_sustained = True
+                for sample in window:
+                    translation, rotation = pose_drift(
+                        anchor["object_relative_position_m"],
+                        anchor["object_relative_quaternion_wxyz"],
+                        sample["object_relative_position_m"],
+                        sample["object_relative_quaternion_wxyz"],
+                    )
+                    translation_drifts.append(translation)
+                    rotation_drifts.append(rotation)
+                    active_fingers = sum(
+                        force >= min_normal_force
+                        for force in sample["finger_normal_forces_n"].values()
+                    )
+                    contacts_sustained = (
+                        contacts_sustained and active_fingers >= min_contact_groups
+                    )
+                settle_max_translation = max(translation_drifts)
+                settle_max_rotation = max(rotation_drifts)
+                if len(settle_samples) < settle_window_frames:
+                    continue
+                baseline = self.config["external_baseline"]
+                settle_stable = (
+                    contacts_sustained
+                    and settle_max_translation
+                    < float(baseline["max_relative_translation_drift_m"])
+                    and settle_max_rotation
+                    < float(baseline["max_relative_rotation_drift_deg"])
+                )
+                if settle_stable:
+                    break
+
         final_cube = self._object_position()
+        failure_reason = None
+        if not synergy_frozen:
+            failure_reason = "grasp_empty"
+        elif not settle_stable:
+            failure_reason = "grasp_unstable"
         return GraspResult(
-            success=success,
-            failure_reason=None if success else "grasp_empty",
+            success=settle_stable,
+            failure_reason=failure_reason,
             seed=seed,
             reach=reach_result,
             approach_steps=approach_steps,
             close_steps=close_steps,
+            settle_steps=settle_steps,
             final_synergy=synergy,
-            contact_hold_frames=contact_hold,
+            synergy_frozen=synergy_frozen,
+            settle_stable=settle_stable,
+            settle_window_frames=settle_window_frames,
+            settle_max_translation_drift_m=settle_max_translation,
+            settle_max_rotation_drift_deg=settle_max_rotation,
+            regrasp_required=bool(synergy_frozen and not settle_stable),
+            contact_hold_frames=settle_window_frames if settle_stable else 0,
             max_contact_groups=max_contact_groups,
             final_contact_groups=sorted(final_contacts),
             final_normal_forces_n=final_contacts,
@@ -495,7 +573,14 @@ class ReachGraspLiftTask:
             reach=reach,
             approach_steps=approach_steps,
             close_steps=0,
+            settle_steps=0,
             final_synergy=0.0,
+            synergy_frozen=False,
+            settle_stable=False,
+            settle_window_frames=int(self.config["grasp"]["contact_hold_frames"]),
+            settle_max_translation_drift_m=None,
+            settle_max_rotation_drift_deg=None,
+            regrasp_required=False,
             contact_hold_frames=0,
             max_contact_groups=0,
             final_contact_groups=[],

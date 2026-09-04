@@ -71,6 +71,15 @@ class ReachTaskTests(unittest.TestCase):
             self.assertGreaterEqual(result.contact_hold_frames, 8)
             self.assertGreaterEqual(len(result.final_contact_groups), 2)
             self.assertLess(result.approach_cube_displacement_m, 0.025)
+            self.assertTrue(result.synergy_frozen)
+            self.assertAlmostEqual(result.final_synergy, 0.72, places=12)
+            self.assertEqual(result.close_steps, 24)
+            self.assertEqual(result.settle_steps, result.settle_window_frames)
+            self.assertEqual(len(task._phase_samples["grasp_close"]), 24)
+            self.assertEqual(len(task._phase_samples["grasp_settle"]), 8)
+            self.assertTrue(result.settle_stable)
+            self.assertLess(result.settle_max_translation_drift_m, 0.008)
+            self.assertLess(result.settle_max_rotation_drift_deg, 6.0)
         finally:
             robot.disconnect()
 
@@ -87,21 +96,19 @@ class ReachTaskTests(unittest.TestCase):
         finally:
             robot.disconnect()
 
-    def test_lift_raises_cube_with_sustained_contact(self):
+    def test_frozen_minimum_synergy_seed7_drops_during_lift(self):
         robot = self.make_robot()
         robot.connect()
         try:
             result = ReachGraspLiftTask(
                 robot, copy.deepcopy(self.config)
             ).run_lift(7)
-            self.assertTrue(result.task_success, result.to_dict())
+            self.assertFalse(result.task_success, result.to_dict())
             self.assertFalse(result.grasp_stable, result.to_dict())
             self.assertFalse(result.success, result.to_dict())
-            self.assertEqual(result.outcome, "settled_after_slip")
-            self.assertGreaterEqual(result.peak_height_m, 0.08)
-            self.assertGreaterEqual(result.height_hold_frames, 15)
-            self.assertGreaterEqual(len(result.final_contact_groups), 2)
-            self.assertEqual(result.max_contact_loss_frames, 0)
+            self.assertEqual(result.outcome, "drop")
+            self.assertGreaterEqual(result.peak_height_m, 0.025)
+            self.assertLess(result.final_height_m, 0.025)
             self.assertGreater(result.max_relative_translation_drift_m, 0.008)
             self.assertGreater(result.max_relative_rotation_drift_deg, 6.0)
         finally:
@@ -118,15 +125,30 @@ class ReachTaskTests(unittest.TestCase):
             self.assertEqual(
                 diagnostics["role"], "evaluation_only_not_policy_observation"
             )
-            self.assertGreater(diagnostics["final_contact_count"], 0)
+            self.assertGreater(diagnostics["peak_resultant_force_magnitude_n"], 0)
             self.assertEqual(len(diagnostics["final_resultant_force_world_n"]), 3)
             self.assertEqual(
                 len(diagnostics["final_resultant_moment_about_cube_world_nm"]), 3
             )
-            contact = diagnostics["final_contacts"][0]
-            self.assertIn(contact["finger"], {f"finger{i}" for i in range(1, 6)})
-            self.assertEqual(len(contact["position_world_m"]), 3)
-            self.assertEqual(len(contact["force_on_cube_world_n"]), 3)
+        finally:
+            robot.disconnect()
+
+    def test_unstable_settle_rejects_lift_and_requests_regrasp(self):
+        robot = self.make_robot()
+        robot.connect()
+        try:
+            config = copy.deepcopy(self.config)
+            config["external_baseline"]["max_relative_translation_drift_m"] = 0.0
+            config["external_baseline"]["max_relative_rotation_drift_deg"] = 0.0
+            task = ReachGraspLiftTask(robot, config)
+            result = task.run_lift(7)
+            self.assertFalse(result.grasp.success)
+            self.assertTrue(result.grasp.synergy_frozen)
+            self.assertFalse(result.grasp.settle_stable)
+            self.assertTrue(result.grasp.regrasp_required)
+            self.assertEqual(result.grasp.failure_reason, "grasp_unstable")
+            self.assertEqual(result.steps, 0)
+            self.assertNotIn("lift", task._phase_samples)
         finally:
             robot.disconnect()
 
@@ -141,8 +163,9 @@ class ReachTaskTests(unittest.TestCase):
                 robot, copy.deepcopy(self.config), recorder=recorder
             )
             result = task.run_lift(7)
-            self.assertTrue(result.task_success, result.to_dict())
+            self.assertFalse(result.task_success, result.to_dict())
             self.assertFalse(result.grasp_stable, result.to_dict())
+            self.assertEqual(result.outcome, "drop")
             recorder.finish(result.to_dict())
             with TemporaryDirectory() as temporary_directory:
                 episode_path = Path(temporary_directory) / "episode.npz"
@@ -151,7 +174,7 @@ class ReachTaskTests(unittest.TestCase):
                 self.assertGreater(validation["samples"], 0)
                 self.assertEqual(
                     validation["phases"],
-                    ["approach", "grasp_close", "lift", "reach"],
+                    ["approach", "grasp_close", "grasp_settle", "lift", "reach"],
                 )
                 with np.load(episode_path, allow_pickle=False) as episode:
                     samples = validation["samples"]

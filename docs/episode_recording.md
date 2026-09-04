@@ -9,9 +9,10 @@ without changing its control behavior. Every row has one unambiguous meaning:
 observation_t -> bounded action_t actually returned by send_action -> observation_t+1
 ```
 
-The state machine sends all four phases through the same recording hook: `reach`,
-`approach`, `grasp_close`, and `lift`. Reset creates frame 0; the first action creates
-frame 1. Adjacent rows must share the same boundary frame and 27-D measured state.
+The state machine sends every phase through the same recording hook: `reach`,
+`approach`, `grasp_close`, optional `grasp_settle`, and `lift`. Reset creates frame 0;
+the first action creates frame 1. Adjacent rows must share the same boundary frame and
+27-D measured state.
 
 Run the reference recording and deterministic replay from PowerShell:
 

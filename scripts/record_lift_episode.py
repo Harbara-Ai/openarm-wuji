@@ -29,6 +29,7 @@ def main() -> None:
     parser.add_argument("--synergies", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=7)
+    parser.add_argument("--expected-outcome")
     parser.add_argument("--image-height", type=int, default=240)
     parser.add_argument("--image-width", type=int, default=320)
     args = parser.parse_args()
@@ -102,12 +103,19 @@ def main() -> None:
         replay["max_front_pixel_error"] <= 2
         and replay["max_wrist_pixel_error"] <= 2
     )
+    outcome_matches = (
+        result.outcome == args.expected_outcome
+        if args.expected_outcome is not None
+        else result.task_success
+    )
     report = {
         "episode_file": episode_path.name,
         "evaluation_summary": {
             "task_success": result.task_success,
             "grasp_stable": result.grasp_stable,
             "outcome": result.outcome,
+            "expected_outcome": args.expected_outcome,
+            "outcome_matches": outcome_matches,
             "max_relative_translation_drift_m": (
                 result.max_relative_translation_drift_m
             ),
@@ -134,7 +142,7 @@ def main() -> None:
     report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps(report, indent=2))
 
-    if not result.task_success or not state_replay_is_exact or not image_replay_is_stable:
+    if not outcome_matches or not state_replay_is_exact or not image_replay_is_stable:
         raise SystemExit(1)
 
 

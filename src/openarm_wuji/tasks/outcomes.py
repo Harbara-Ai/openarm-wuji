@@ -49,13 +49,15 @@ def evaluate_lift_outcome(*, task_success: bool, approach_push: bool,
     max_translation, max_rotation = _drift_metrics(lift_samples, margin)
     translation_limit = float(baseline["max_relative_translation_drift_m"])
     rotation_limit = float(baseline["max_relative_rotation_drift_deg"])
-    grasp_stable = (
-        max_translation < translation_limit and max_rotation < rotation_limit
+    pose_stable = (
+        len(lift_samples) > margin
+        and max_translation < translation_limit
+        and max_rotation < rotation_limit
     )
 
     final_window = lift_samples[-min(success_hold_frames, len(lift_samples)):]
     final_translation, final_rotation = _drift_metrics(final_window, 0)
-    final_window_stable = (
+    final_window_pose_stable = (
         final_translation < translation_limit and final_rotation < rotation_limit
     )
     establishment_translation, establishment_rotation = pose_drift(
@@ -81,6 +83,8 @@ def evaluate_lift_outcome(*, task_success: bool, approach_push: bool,
     protocol_gripper_lift = float(baseline["gripper_lift_m"])
     external_protocol_reached = gripper_lift_in_window >= protocol_gripper_lift
     external_object_lifted = final_height >= minimum_lift
+    grasp_stable = bool(pose_stable and external_object_lifted)
+    final_window_stable = bool(final_window_pose_stable and external_object_lifted)
 
     if approach_push:
         outcome = "approach_push"
