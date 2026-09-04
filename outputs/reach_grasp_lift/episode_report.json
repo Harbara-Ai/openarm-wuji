@@ -1,22 +1,22 @@
 {
   "episode_file": "reach_grasp_lift_seed0007.npz",
   "evaluation_summary": {
-    "task_success": false,
+    "task_success": true,
     "grasp_stable": false,
-    "outcome": "drop",
-    "expected_outcome": "drop",
+    "outcome": "settled_after_slip",
+    "expected_outcome": "settled_after_slip",
     "outcome_matches": true,
-    "max_relative_translation_drift_m": 0.08215231423088308,
-    "max_relative_rotation_drift_deg": 73.26125650683791,
+    "max_relative_translation_drift_m": 0.05082700309235045,
+    "max_relative_rotation_drift_deg": 36.5593540550547,
     "establishment_translation_m": 0.023439243548065525,
     "establishment_rotation_deg": 2.0243403938308515
   },
   "result": {
     "success": false,
-    "failure_reason": "drop",
-    "task_success": false,
+    "failure_reason": "settled_after_slip",
+    "task_success": true,
     "grasp_stable": false,
-    "outcome": "drop",
+    "outcome": "settled_after_slip",
     "seed": 7,
     "grasp": {
       "success": true,
@@ -89,30 +89,42 @@
         0.4368283374549209
       ]
     },
-    "steps": 10,
-    "height_hold_frames": 0,
-    "contact_loss_frames": 2,
-    "max_contact_loss_frames": 2,
+    "steps": 46,
+    "height_hold_frames": 15,
+    "contact_loss_frames": 0,
+    "max_contact_loss_frames": 1,
     "max_contact_groups": 5,
-    "final_contact_groups": [],
-    "final_normal_forces_n": {},
-    "target_height_m": 0.08,
-    "peak_height_m": 0.07372250393573226,
-    "final_height_m": 0.014952802907081786,
-    "final_cube_position_m": [
-      0.500365780637647,
-      0.12349564200138761,
-      0.4498450474802876
+    "final_contact_groups": [
+      "finger1",
+      "finger2",
+      "finger3",
+      "finger4",
+      "finger5"
     ],
-    "max_relative_translation_drift_m": 0.08215231423088308,
-    "max_relative_rotation_drift_deg": 73.26125650683791,
-    "final_window_translation_drift_m": 0.0901836420323988,
-    "final_window_rotation_drift_deg": 71.37403313183101,
+    "final_normal_forces_n": {
+      "finger1": 1.1209932948988486,
+      "finger2": 2.4888728815524583,
+      "finger3": 1.096781059414948,
+      "finger4": 2.412251377787934,
+      "finger5": 0.7207234897361681
+    },
+    "target_height_m": 0.08,
+    "peak_height_m": 0.09631229864553364,
+    "final_height_m": 0.0934753503698304,
+    "final_cube_position_m": [
+      0.4503774070826194,
+      0.16528651520575383,
+      0.5283675949430362
+    ],
+    "max_relative_translation_drift_m": 0.05082700309235045,
+    "max_relative_rotation_drift_deg": 36.5593540550547,
+    "final_window_translation_drift_m": 0.0005960790943391784,
+    "final_window_rotation_drift_deg": 0.8214188875595337,
     "establishment_translation_m": 0.023439243548065525,
     "establishment_rotation_deg": 2.0243403938308515,
-    "gripper_lift_within_baseline_window_m": 0.08712187190799997,
+    "gripper_lift_within_baseline_window_m": 0.05011515533558769,
     "external_lift_protocol_reached": true,
-    "external_object_lifted": false,
+    "external_object_lifted": true,
     "external_baseline": {
       "name": "CD-WM Grasp Dataset rigid lift-success criterion",
       "source_url": "https://huggingface.co/datasets/BWangCN/cdwm-grasp-dataset",
@@ -126,28 +138,586 @@
     },
     "contact_diagnostics": {
       "role": "evaluation_only_not_policy_observation",
-      "final_contact_count": 0,
-      "final_contact_fingers": [],
+      "final_contact_count": 19,
+      "final_contact_fingers": [
+        "finger1",
+        "finger2",
+        "finger3",
+        "finger4",
+        "finger5"
+      ],
       "final_resultant_force_world_n": [
-        0.0,
-        0.0,
-        0.0
+        0.0173806336761263,
+        -0.0005167248966866378,
+        1.1847660884487776
       ],
-      "final_resultant_force_magnitude_n": 0.0,
+      "final_resultant_force_magnitude_n": 1.1848936820532967,
       "final_resultant_moment_about_cube_world_nm": [
-        0.0,
-        0.0,
-        0.0
+        7.968432083076474e-06,
+        -0.0001401426376785161,
+        1.456695627290519e-05
       ],
-      "final_resultant_moment_magnitude_nm": 0.0,
-      "peak_resultant_force_magnitude_n": 59.71922223857602,
-      "peak_resultant_moment_magnitude_nm": 1.4455090450474057,
-      "final_contacts": []
+      "final_resultant_moment_magnitude_nm": 0.00014112282246472814,
+      "peak_resultant_force_magnitude_n": 37.0701707404664,
+      "peak_resultant_moment_magnitude_nm": 1.5396023303086208,
+      "final_contacts": [
+        {
+          "finger": "finger1",
+          "position_world_m": [
+            0.4517888678005494,
+            0.13144587414182213,
+            0.5455702425244371
+          ],
+          "normal_on_cube_world": [
+            0.038064710966533084,
+            0.9988431810290123,
+            -0.029383285910163714
+          ],
+          "force_on_cube_world_n": [
+            0.7509471976467459,
+            0.8109857811738629,
+            0.23352626571736423
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.02185378112420272,
+            0.012588666842692633,
+            0.026557209146455558
+          ],
+          "normal_force_n": 0.8317704364334445
+        },
+        {
+          "finger": "finger1",
+          "position_world_m": [
+            0.451238887165926,
+            0.13148831277431555,
+            0.5465908968458404
+          ],
+          "normal_on_cube_world": [
+            0.03806471096656974,
+            0.9988431810290125,
+            -0.02938328591010692
+          ],
+          "force_on_cube_world_n": [
+            0.7425327212443876,
+            0.8674199468327144,
+            0.22364166476509453
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.023365941825481434,
+            0.013338735111954571,
+            0.025843536232643752
+          ],
+          "normal_force_n": 0.8881094654225882
+        },
+        {
+          "finger": "finger1",
+          "position_world_m": [
+            0.45064371829949107,
+            0.131453878488477,
+            0.5458002904513276
+          ],
+          "normal_on_cube_world": [
+            0.038064710966554144,
+            0.998843181029012,
+            -0.029383285910139684
+          ],
+          "force_on_cube_world_n": [
+            0.8436705927105226,
+            1.096788138646872,
+            0.22598342829650622
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.02676558889181709,
+            0.014647270630239807,
+            0.028835687656078163
+          ],
+          "normal_force_n": 1.1209932948988486
+        },
+        {
+          "finger": "finger2",
+          "position_world_m": [
+            0.46943394566185304,
+            0.13130580560638683,
+            0.525979813559124
+          ],
+          "normal_on_cube_world": [
+            -0.07476728681417484,
+            0.9906820863865106,
+            -0.11383697349858525
+          ],
+          "force_on_cube_world_n": [
+            -0.027682314831614263,
+            2.3925616104058975,
+            0.7664351725630134
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.020331096952414397,
+            -0.014539502118410116,
+            0.044653277930561966
+          ],
+          "normal_force_n": 2.28508899915044
+        },
+        {
+          "finger": "finger2",
+          "position_world_m": [
+            0.46941073306760694,
+            0.13139068359216113,
+            0.5269930111554597
+          ],
+          "normal_on_cube_world": [
+            -0.07476728681415726,
+            0.9906820863865222,
+            -0.11383697349849377
+          ],
+          "force_on_cube_world_n": [
+            -0.03458646342054378,
+            2.597454355610765,
+            0.7639394488063791
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.022323944273529347,
+            -0.014492766570036016,
+            0.048265858541252975
+          ],
+          "normal_force_n": 2.4888728815524583
+        },
+        {
+          "finger": "finger2",
+          "position_world_m": [
+            0.4689906611548958,
+            0.13131941317790846,
+            0.5264437188075972
+          ],
+          "normal_on_cube_world": [
+            -0.07476728681414826,
+            0.9906820863865244,
+            -0.11383697349848242
+          ],
+          "force_on_cube_world_n": [
+            -0.027760801125786133,
+            2.439310691241887,
+            0.7692696141963031
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.02143692784652563,
+            -0.014265202436331247,
+            0.044460555693091056
+          ],
+          "normal_force_n": 2.3310856800399766
+        },
+        {
+          "finger": "finger3",
+          "position_world_m": [
+            0.48628056482934356,
+            0.17568526181964753,
+            0.555703203502488
+          ],
+          "normal_on_cube_world": [
+            -0.9929242437386218,
+            -0.07770691721166609,
+            0.08979466138666295
+          ],
+          "force_on_cube_world_n": [
+            -0.2559003195256807,
+            -0.1977776825718922,
+            0.25822913756480553
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.008091632682441476,
+            -0.0162664324255824,
+            -0.004439800754998193
+          ],
+          "normal_force_n": 0.29264592321123906
+        },
+        {
+          "finger": "finger3",
+          "position_world_m": [
+            0.4863995081645772,
+            0.17480069567365147,
+            0.5566664137063133
+          ],
+          "normal_on_cube_world": [
+            -0.9929242437386342,
+            -0.07770691721169005,
+            0.08979466138650549
+          ],
+          "force_on_cube_world_n": [
+            -0.17496174135616605,
+            -0.12710388056664998,
+            0.182217463765177
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.005330539514929342,
+            -0.011515066507792698,
+            -0.002913931251440762
+          ],
+          "normal_force_n": 0.19996276090124473
+        },
+        {
+          "finger": "finger3",
+          "position_world_m": [
+            0.48634794548967253,
+            0.1743146292701732,
+            0.5555218309323751
+          ],
+          "normal_on_cube_world": [
+            -0.992924243738616,
+            -0.07770691721160097,
+            0.08979466138678412
+          ],
+          "force_on_cube_world_n": [
+            -0.20657893233958452,
+            -0.1548556934499907,
+            0.21191008162993746
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.006118136432589257,
+            -0.013232012809286167,
+            -0.0037052245043259946
+          ],
+          "normal_force_n": 0.2361789827406821
+        },
+        {
+          "finger": "finger3",
+          "position_world_m": [
+            0.4857901436974573,
+            0.17586762502270586,
+            0.5495253389826136
+          ],
+          "normal_on_cube_world": [
+            -0.9977991523114752,
+            -0.027432189115812543,
+            0.06036825860347532
+          ],
+          "force_on_cube_world_n": [
+            -1.0506428094804767,
+            -0.546631126990806,
+            0.5541863730197855
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.017429388340917885,
+            -0.04185448770329236,
+            -0.008240737180093478
+          ],
+          "normal_force_n": 1.096781059414948
+        },
+        {
+          "finger": "finger3",
+          "position_world_m": [
+            0.4857775928673074,
+            0.1765707243962753,
+            0.5497199842935894
+          ],
+          "normal_on_cube_world": [
+            -0.9977991523114739,
+            -0.027432189115802256,
+            0.06036825860350154
+          ],
+          "force_on_cube_world_n": [
+            -1.0173997859981525,
+            -0.5341616390433386,
+            0.5289298982869775
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.01737418291237451,
+            -0.040448133022237126,
+            -0.007428869245592676
+          ],
+          "normal_force_n": 1.0617444440143868
+        },
+        {
+          "finger": "finger3",
+          "position_world_m": [
+            0.4858636061494555,
+            0.17615845778887523,
+            0.5510379862393175
+          ],
+          "normal_on_cube_world": [
+            -0.9977991523114804,
+            -0.027432189115804518,
+            0.06036825860339202
+          ],
+          "force_on_cube_world_n": [
+            -0.98280970955072,
+            -0.49520851870707705,
+            0.5302836988860069
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.016991784819395204,
+            -0.04109843358586644,
+            -0.006888017342062704
+          ],
+          "normal_force_n": 1.0262436522776444
+        },
+        {
+          "finger": "finger4",
+          "position_world_m": [
+            0.47299052845762046,
+            0.20286062473612043,
+            0.5600342274748317
+          ],
+          "normal_on_cube_world": [
+            -0.009469514969503162,
+            -0.7349913066144701,
+            -0.6780104036719469
+          ],
+          "force_on_cube_world_n": [
+            0.5158424629162016,
+            -0.7372536747025527,
+            -1.4127742260509268
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.029737392311794827,
+            0.04828222876662645,
+            -0.03605392803224179
+          ],
+          "normal_force_n": 1.4948658870535696
+        },
+        {
+          "finger": "finger4",
+          "position_world_m": [
+            0.4732231608256427,
+            0.20286923237754126,
+            0.5600224019939397
+          ],
+          "normal_on_cube_world": [
+            -0.009469514969439064,
+            -0.7349913066145541,
+            -0.6780104036718568
+          ],
+          "force_on_cube_world_n": [
+            0.5166318583616103,
+            -0.7415035523253819,
+            -1.4153446524295483
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            -0.029720345896442003,
+            0.04868849718369682,
+            -0.03635663657074199
+          ],
+          "normal_force_n": 1.4997248107950834
+        },
+        {
+          "finger": "finger4",
+          "position_world_m": [
+            0.4755975080714411,
+            0.20271062499561443,
+            0.5600687272181645
+          ],
+          "normal_on_cube_world": [
+            0.06706871148078754,
+            -0.9950991373017186,
+            -0.07266013268417688
+          ],
+          "force_on_cube_world_n": [
+            0.7447650934099945,
+            -2.3247959318093376,
+            -0.6729758763802729
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.04851314026338492,
+            0.040582416305439746,
+            -0.08650375880206466
+          ],
+          "normal_force_n": 2.412251377787934
+        },
+        {
+          "finger": "finger4",
+          "position_world_m": [
+            0.47582861960614753,
+            0.20272326913234734,
+            0.56005758246303
+          ],
+          "normal_on_cube_world": [
+            0.06706871148080383,
+            -0.9950991373017167,
+            -0.07266013268418756
+          ],
+          "force_on_cube_world_n": [
+            0.7414076283636011,
+            -2.299262895362475,
+            -0.6745148885284151
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.04761196455755959,
+            0.04066242026829125,
+            -0.08627492353968036
+          ],
+          "normal_force_n": 2.3867301192193664
+        },
+        {
+          "finger": "finger5",
+          "position_world_m": [
+            0.4393986842582815,
+            0.20034252508817135,
+            0.5400647406087753
+          ],
+          "normal_on_cube_world": [
+            0.01840949572074578,
+            -0.9995687572032292,
+            0.022877720395616235
+          ],
+          "force_on_cube_world_n": [
+            -0.3576938890708327,
+            -0.6912255810452359,
+            0.028122998659700194
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.009071246428308933,
+            -0.003875242916932176,
+            0.02012809457353505
+          ],
+          "normal_force_n": 0.6849859209723027
+        },
+        {
+          "finger": "finger5",
+          "position_world_m": [
+            0.4386967295480613,
+            0.20030851588782878,
+            0.5397315788601372
+          ],
+          "normal_on_cube_world": [
+            0.018409495720734234,
+            -0.9995687572032274,
+            0.022877720395699835
+          ],
+          "force_on_cube_world_n": [
+            -0.3580137714219151,
+            -0.6286847861398628,
+            0.048534729024396525
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.008844147111616239,
+            -0.003501544221578194,
+            0.01988182280471289
+          ],
+          "normal_force_n": 0.622933181321545
+        },
+        {
+          "finger": "finger5",
+          "position_world_m": [
+            0.4392079234913244,
+            0.20036024336426791,
+            0.5406629033002256
+          ],
+          "normal_on_cube_world": [
+            0.0184094957208408,
+            -0.9995687572032266,
+            0.022877720395647467
+          ],
+          "force_on_cube_world_n": [
+            -0.3443863828554656,
+            -0.7265722860940862,
+            0.035165756656494476
+          ],
+          "contact_torque_on_cube_world_nm": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "moment_about_cube_center_world_nm": [
+            0.010166824490773167,
+            -0.003841553429274844,
+            0.020194351601184143
+          ],
+          "normal_force_n": 0.7207234897361681
+        }
+      ]
     }
   },
   "validation": {
-    "samples": 85,
-    "duration_s": 2.833999999999854,
+    "samples": 121,
+    "duration_s": 4.033999999999723,
     "phases": [
       "approach",
       "grasp_close",
@@ -159,13 +729,13 @@
       "approach": 31,
       "grasp_close": 24,
       "grasp_settle": 8,
-      "lift": 10,
+      "lift": 46,
       "reach": 12
     },
-    "contact_points": 568
+    "contact_points": 1317
   },
   "replay": {
-    "samples": 85,
+    "samples": 121,
     "max_action_error": 0.0,
     "max_state_error": 0.0,
     "max_cube_position_error": 0.0,
@@ -186,9 +756,9 @@
     "max_wrist_pixel_error": 2
   },
   "checks": {
-    "task_success": false,
+    "task_success": true,
     "grasp_stable": false,
-    "outcome": "drop",
+    "outcome": "settled_after_slip",
     "state_replay_exact": true,
     "image_max_abs_error_threshold": 2,
     "image_replay_stable": true

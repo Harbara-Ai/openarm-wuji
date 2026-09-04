@@ -13,9 +13,9 @@ Run the complete seed-7 experiment with:
 ```
 
 The command rebuilds the model, regenerates the annotated GIF and reports, records the
-schema-v2 episode, and requires deterministic replay. `drop` is the expected seed-7
-outcome for this branch, so an honest task failure does not masquerade as an
-infrastructure-test failure.
+schema-v2 episode, and requires deterministic replay. `settled_after_slip` is the
+expected seed-7 outcome for this branch, so height success does not masquerade as a
+stable grasp.
 
 ## State machine
 
@@ -43,17 +43,28 @@ The experiment freezes at synergy `0.72` on closing frame 24. Eight subsequent s
 frames pass at `1.20 mm` translation drift and `0.58°` rotation drift. Compared with the
 checkpoint, pre-lift cube displacement falls from about `17.5 mm` to `5.9 mm`.
 
-The lower frozen grasp does not survive the unchanged aggressive Lift. The cube peaks at
-`73.7 mm`, then finishes at `15.0 mm`; Lift drift reaches `82.2 mm` and `73.3°`.
-The exclusive result is therefore:
+The first version retained the old aggressive joint-space Lift: the gripper moved about
+`87 mm` in its first 0.5 seconds, the cube peaked at `73.7 mm`, and then dropped. The
+controlled follow-up replaces that jump with cubic Cartesian waypoints whose published
+endpoint is the CD-WM external protocol's `50 mm / 0.5 s`. A measured Lift-only gravity
+compensation calibration of `29.77 mm` gives `50.12 mm` actual gripper travel for seed 7.
+It is controller-specific calibration, not a new success threshold.
+
+With the paced Lift, the cube peaks at `96.3 mm` and finishes at `93.5 mm`, so it no
+longer drops. Relative object-in-palm motion still reaches `50.8 mm` and `36.6°` before
+the final window settles to `0.60 mm` and `0.82°`. The exclusive result is therefore:
 
 ```text
-task_success = false
+task_success = true
 grasp_stable = false
-outcome = drop
+outcome = settled_after_slip
 ```
 
-This is a useful negative result: freeze-and-settle fixes the pre-lift establishment
-condition but is not sufficient under the current joint-space Lift dynamics. The next
-controlled experiment should keep this gate and replace only Lift with orientation-held
-Cartesian waypoints at the external 50 mm / 0.5 s reference speed.
+Wuji's mapping identifies `finger1` as the thumb. At the last pre-Lift settle frame,
+its mean cube-local contact lies near the `x=-35 mm, y=-35 mm` edge rather than centered
+on a face opposing the other four fingers. The other fingers span the `y=-35 mm`,
+`x=+35 mm`, and `y=+35 mm` faces. This non-opposed, edge-heavy contact layout is a
+plausible source of the measured lateral force and torque when table support disappears.
+It is evidence of a grasp-geometry problem, not proof that the thumb alone causes all
+slip. The next controlled experiment should keep the paced Lift and change only the
+pregrasp pose/hand synergy to place the thumb and finger contacts on opposing faces.

@@ -17,6 +17,44 @@ if TYPE_CHECKING:
     from ..dataset.episode_recorder import CausalEpisodeRecorder
 
 
+def paced_lift_waypoint(*, start_position: np.ndarray,
+                        total_delta: np.ndarray, step: int,
+                        control_hz: float, baseline: dict) -> np.ndarray:
+    """Return a lift waypoint paced by the external lift protocol.
+
+    The CD-WM protocol moves the gripper 50 mm in 0.5 s. We use that
+    published displacement and duration to define the command trajectory;
+    tracking error remains a measured result rather than a success threshold.
+    """
+    start = np.asarray(start_position, dtype=float)
+    delta = np.asarray(total_delta, dtype=float)
+    distance = float(np.linalg.norm(delta))
+    if start.shape != (3,) or delta.shape != (3,):
+        raise ValueError("lift positions must be 3-D")
+    if distance == 0.0:
+        return start.copy()
+    protocol_steps = max(
+        1,
+        int(round(float(baseline["lift_duration_s"]) * control_hz)),
+    )
+    protocol_distance = float(baseline["gripper_lift_m"])
+    clamped_step = max(step, 0)
+    if clamped_step <= protocol_steps:
+        progress = clamped_step / protocol_steps
+        # Cubic smoothstep reaches the published 50 mm endpoint with zero
+        # endpoint velocity, avoiding the impulse produced by a linear ramp.
+        smooth_progress = progress * progress * (3.0 - 2.0 * progress)
+        commanded_distance = protocol_distance * smooth_progress
+    else:
+        distance_per_step = protocol_distance / protocol_steps
+        commanded_distance = (
+            protocol_distance
+            + (clamped_step - protocol_steps) * distance_per_step
+        )
+    commanded_distance = min(commanded_distance, distance)
+    return start + delta * (commanded_distance / distance)
+
+
 @dataclass(frozen=True)
 class ReachResult:
     success: bool
@@ -603,9 +641,9 @@ class ReachGraspLiftTask:
             )
 
         lift = self.config["lift"]
-        lift_target = self.ik.position + np.asarray(
-            lift["grasp_center_delta_m"], dtype=float
-        )
+        lift_start_position = self.ik.position
+        lift_delta = np.asarray(lift["grasp_center_delta_m"], dtype=float)
+        lift_target = lift_start_position + lift_delta
         lift_goal, lift_residual = self._solve_arm_goal(
             lift_target, phase_config=lift
         )
@@ -636,6 +674,18 @@ class ReachGraspLiftTask:
         crossed_minimum_lift = False
 
         for steps in range(1, int(lift["max_steps"]) + 1):
+            waypoint = paced_lift_waypoint(
+                start_position=lift_start_position,
+                total_delta=lift_delta,
+                step=steps,
+                control_hz=self.robot.control_hz,
+                baseline=self.config["external_baseline"],
+            )
+            lift_goal, lift_residual = self._solve_arm_goal(
+                waypoint, phase_config=lift
+            )
+            if lift_residual > float(lift["ik_solve_tolerance_m"]):
+                break
             max_step = float(lift["max_action_step_rad"])
             self.arm_command += np.clip(
                 lift_goal - self.arm_command, -max_step, max_step

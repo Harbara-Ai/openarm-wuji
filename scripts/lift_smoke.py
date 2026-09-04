@@ -57,8 +57,12 @@ def main():
                 f"phase={transition['phase']}  height={telemetry['cube_height_m'] * 1000:.1f} mm",
                 f"task_success={result.task_success}  grasp_stable={result.grasp_stable}",
                 f"outcome={result.outcome}",
+                (
+                    "gripper@0.5s="
+                    f"{result.gripper_lift_within_baseline_window_m * 1000:.1f} mm"
+                ),
             ]
-            draw.rectangle((0, 0, 395, 39), fill=(0, 0, 0))
+            draw.rectangle((0, 0, 395, 51), fill=(0, 0, 0))
             for line_index, line in enumerate(lines):
                 draw.text((5, 3 + 12 * line_index), line, fill=(255, 255, 255))
             frames.append(np.asarray(image))

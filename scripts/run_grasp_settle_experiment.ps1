@@ -16,7 +16,7 @@ if (-not $?) { throw 'Reach-Grasp-Lift model build failed' }
     --synergies $synergies `
     --output $output `
     --seed 7 `
-    --expected-outcome drop
+    --expected-outcome settled_after_slip
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 & $python (Join-Path $PSScriptRoot 'record_lift_episode.py') `
@@ -25,5 +25,5 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     --synergies $synergies `
     --output $output `
     --seed 7 `
-    --expected-outcome drop
+    --expected-outcome settled_after_slip
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

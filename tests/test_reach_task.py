@@ -9,6 +9,7 @@ import numpy as np
 from openarm_wuji.dataset import CausalEpisodeRecorder, replay_causal_episode
 from openarm_wuji.simulation.mujoco_backend import MujocoOpenArmWuji
 from openarm_wuji.tasks import ReachGraspLiftTask
+from openarm_wuji.tasks.reach_grasp_lift import paced_lift_waypoint
 
 
 class ReachTaskTests(unittest.TestCase):
@@ -30,6 +31,27 @@ class ReachTaskTests(unittest.TestCase):
             image_width=64,
             front_camera=self.config["scene"]["front_camera_name"],
         )
+
+    def test_lift_waypoints_follow_external_50mm_in_half_second_protocol(self):
+        start = np.array([0.4, 0.2, 0.5])
+        delta = np.array([0.0, 0.0, 0.12])
+        baseline = self.config["external_baseline"]
+        halfway = paced_lift_waypoint(
+            start_position=start,
+            total_delta=delta,
+            step=15,
+            control_hz=30,
+            baseline=baseline,
+        )
+        final = paced_lift_waypoint(
+            start_position=start,
+            total_delta=delta,
+            step=120,
+            control_hz=30,
+            baseline=baseline,
+        )
+        np.testing.assert_allclose(halfway - start, [0.0, 0.0, 0.05])
+        np.testing.assert_allclose(final - start, delta)
 
     def test_reset_is_seeded_and_reach_converges(self):
         robot = self.make_robot()
@@ -96,19 +118,24 @@ class ReachTaskTests(unittest.TestCase):
         finally:
             robot.disconnect()
 
-    def test_frozen_minimum_synergy_seed7_drops_during_lift(self):
+    def test_paced_lift_seed7_reaches_height_but_slips(self):
         robot = self.make_robot()
         robot.connect()
         try:
             result = ReachGraspLiftTask(
                 robot, copy.deepcopy(self.config)
             ).run_lift(7)
-            self.assertFalse(result.task_success, result.to_dict())
+            self.assertTrue(result.task_success, result.to_dict())
             self.assertFalse(result.grasp_stable, result.to_dict())
             self.assertFalse(result.success, result.to_dict())
-            self.assertEqual(result.outcome, "drop")
-            self.assertGreaterEqual(result.peak_height_m, 0.025)
-            self.assertLess(result.final_height_m, 0.025)
+            self.assertEqual(result.outcome, "settled_after_slip")
+            self.assertGreaterEqual(result.peak_height_m, 0.08)
+            self.assertGreaterEqual(result.final_height_m, 0.025)
+            self.assertAlmostEqual(
+                result.gripper_lift_within_baseline_window_m,
+                self.config["external_baseline"]["gripper_lift_m"],
+                delta=0.001,
+            )
             self.assertGreater(result.max_relative_translation_drift_m, 0.008)
             self.assertGreater(result.max_relative_rotation_drift_deg, 6.0)
         finally:
@@ -163,9 +190,9 @@ class ReachTaskTests(unittest.TestCase):
                 robot, copy.deepcopy(self.config), recorder=recorder
             )
             result = task.run_lift(7)
-            self.assertFalse(result.task_success, result.to_dict())
+            self.assertTrue(result.task_success, result.to_dict())
             self.assertFalse(result.grasp_stable, result.to_dict())
-            self.assertEqual(result.outcome, "drop")
+            self.assertEqual(result.outcome, "settled_after_slip")
             recorder.finish(result.to_dict())
             with TemporaryDirectory() as temporary_directory:
                 episode_path = Path(temporary_directory) / "episode.npz"

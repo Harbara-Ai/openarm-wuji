@@ -84,7 +84,7 @@ dataset. See `docs/reach_grasp_lift.md` and `docs/episode_recording.md`.
 
 ![Complete Reach–Grasp–Lift expert](outputs/reach_grasp_lift/lift_demo.gif)
 
-The frozen-synergy experimental branch and its negative seed-7 result are documented in
+The frozen-synergy and paced-Lift experimental branch and its seed-7 slip diagnosis are documented in
 `docs/grasp_settle_experiment.md`.
 
 ## License
