@@ -17,42 +17,107 @@ if TYPE_CHECKING:
     from ..dataset.episode_recorder import CausalEpisodeRecorder
 
 
-def paced_lift_waypoint(*, start_position: np.ndarray,
-                        total_delta: np.ndarray, step: int,
-                        control_hz: float, baseline: dict) -> np.ndarray:
-    """Return a lift waypoint paced by the external lift protocol.
+def _minimum_jerk(progress: float) -> float:
+    progress = float(np.clip(progress, 0.0, 1.0))
+    return progress ** 3 * (
+        10.0 - 15.0 * progress + 6.0 * progress ** 2
+    )
 
-    The CD-WM protocol moves the gripper 50 mm in 0.5 s. We use that
-    published displacement and duration to define the command trajectory;
-    tracking error remains a measured result rather than a success threshold.
+
+def _segment_peak_kinematics(distance_m: float,
+                             duration_s: float) -> tuple[float, float, float]:
+    """Analytic velocity, acceleration, and jerk peaks of minimum jerk."""
+    return (
+        1.875 * distance_m / duration_s,
+        (10.0 / np.sqrt(3.0)) * distance_m / duration_s ** 2,
+        60.0 * distance_m / duration_s ** 3,
+    )
+
+
+def s_curve_lift_waypoint(*, start_position: np.ndarray,
+                          total_delta: np.ndarray, step: int,
+                          control_hz: float, baseline: dict,
+                          limits: dict) -> np.ndarray:
+    """Return a bounded minimum-jerk lift waypoint.
+
+    Segment one covers the published CD-WM 50 mm / 0.5 s motion. Any remaining
+    distance uses the same mean speed in a second minimum-jerk segment. The
+    analytic peaks are checked against explicit Cartesian limits before use.
     """
     start = np.asarray(start_position, dtype=float)
     delta = np.asarray(total_delta, dtype=float)
-    distance = float(np.linalg.norm(delta))
     if start.shape != (3,) or delta.shape != (3,):
         raise ValueError("lift positions must be 3-D")
+    if not np.all(np.isfinite(np.r_[start, delta, control_hz])) or control_hz <= 0:
+        raise ValueError("lift positions and control frequency must be finite and valid")
+    distance = float(np.linalg.norm(delta))
     if distance == 0.0:
         return start.copy()
-    protocol_steps = max(
-        1,
-        int(round(float(baseline["lift_duration_s"]) * control_hz)),
-    )
-    protocol_distance = float(baseline["gripper_lift_m"])
-    clamped_step = max(step, 0)
-    if clamped_step <= protocol_steps:
-        progress = clamped_step / protocol_steps
-        # Cubic smoothstep reaches the published 50 mm endpoint with zero
-        # endpoint velocity, avoiding the impulse produced by a linear ramp.
-        smooth_progress = progress * progress * (3.0 - 2.0 * progress)
-        commanded_distance = protocol_distance * smooth_progress
-    else:
-        distance_per_step = protocol_distance / protocol_steps
-        commanded_distance = (
-            protocol_distance
-            + (clamped_step - protocol_steps) * distance_per_step
+    protocol_duration = float(baseline["lift_duration_s"])
+    protocol_distance = min(float(baseline["gripper_lift_m"]), distance)
+    if (not np.isfinite(protocol_duration + protocol_distance)
+            or protocol_duration <= 0.0 or protocol_distance <= 0.0):
+        raise ValueError("external lift protocol must have positive distance/time")
+    remaining_distance = distance - protocol_distance
+    nominal_speed = protocol_distance / protocol_duration
+    remaining_duration = remaining_distance / nominal_speed
+    segments = [(protocol_distance, protocol_duration)]
+    if remaining_distance > 0.0:
+        segments.append((remaining_distance, remaining_duration))
+    peaks = [_segment_peak_kinematics(*segment) for segment in segments]
+    planned_peaks = np.max(np.asarray(peaks), axis=0)
+    configured_limits = np.asarray([
+        limits["max_velocity_m_s"],
+        limits["max_acceleration_m_s2"],
+        limits["max_jerk_m_s3"],
+    ], dtype=float)
+    if not np.all(np.isfinite(configured_limits)) or np.any(configured_limits <= 0):
+        raise ValueError("Cartesian limits must be positive and finite")
+    if np.any(planned_peaks > configured_limits + 1e-12):
+        raise ValueError(
+            "minimum-jerk lift exceeds configured velocity/acceleration/jerk limits"
         )
+
+    elapsed = max(step, 0) / control_hz
+    if elapsed <= protocol_duration:
+        commanded_distance = protocol_distance * _minimum_jerk(
+            elapsed / protocol_duration
+        )
+    else:
+        commanded_distance = protocol_distance
+        if remaining_distance > 0.0:
+            commanded_distance += remaining_distance * _minimum_jerk(
+                (elapsed - protocol_duration) / remaining_duration
+            )
     commanded_distance = min(commanded_distance, distance)
     return start + delta * (commanded_distance / distance)
+
+
+def _linear_slope(values: list[float]) -> float:
+    if len(values) < 2:
+        return 0.0
+    x = np.arange(len(values), dtype=float)
+    x -= np.mean(x)
+    return float(np.dot(x, np.asarray(values) - np.mean(values)) / np.dot(x, x))
+
+
+def preload_wrench_trends(samples: list[dict]) -> tuple[float, float, bool]:
+    """Return per-frame resultant wrench slopes and a non-divergence flag."""
+    force = [
+        float(np.linalg.norm(sample["contact_resultant_force_world_n"]))
+        for sample in samples
+    ]
+    moment = [
+        float(np.linalg.norm(
+            sample["contact_resultant_moment_about_cube_world_nm"]
+        ))
+        for sample in samples
+    ]
+    force_slope = _linear_slope(force)
+    moment_slope = _linear_slope(moment)
+    return force_slope, moment_slope, bool(
+        len(samples) >= 2 and force_slope <= 0.0 and moment_slope <= 0.0
+    )
 
 
 @dataclass(frozen=True)
@@ -82,6 +147,14 @@ class GraspResult:
     reach: ReachResult
     approach_steps: int
     close_steps: int
+    frozen_synergy: float
+    preload_steps: int
+    preload_settle_steps: int
+    preload_target_synergy: float
+    preload_reached: bool
+    preload_wrench_stable: bool
+    preload_force_slope_n_per_frame: float | None
+    preload_moment_slope_nm_per_frame: float | None
     settle_steps: int
     final_synergy: float
     synergy_frozen: bool
@@ -134,6 +207,7 @@ class LiftResult:
     external_object_lifted: bool
     external_baseline: dict
     contact_diagnostics: dict
+    trajectory_diagnostics: dict
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -148,6 +222,25 @@ class ReachGraspLiftTask:
 
         self.robot = robot
         self.config = config
+        grasp = config["grasp"]
+        target = float(grasp["preload_target_synergy"])
+        increment = float(grasp["preload_synergy_step"])
+        if not np.isfinite(target) or not 0.0 <= target <= 1.0:
+            raise ValueError("preload target must be in [0, 1]")
+        if not np.isfinite(increment) or increment <= 0.0:
+            raise ValueError("preload synergy step must be positive and finite")
+        if (int(grasp["contact_hold_frames"]) < 2
+                or int(grasp["preload_max_steps"]) < 1
+                or int(grasp["preload_settle_max_steps"]) < 1):
+            raise ValueError("preload budgets must be positive and window >= 2")
+        # Reject infeasible trajectories before resetting or moving the robot.
+        s_curve_lift_waypoint(
+            start_position=np.zeros(3),
+            total_delta=np.asarray(config["lift"]["grasp_center_delta_m"]),
+            step=0, control_hz=robot.control_hz,
+            baseline=config["external_baseline"],
+            limits=config["lift"]["s_curve_limits"],
+        )
         self.recorder = recorder
         self.model = robot.model
         self.data = robot.data
@@ -491,7 +584,6 @@ class ReachGraspLiftTask:
         min_contact_groups = int(grasp["min_finger_groups"])
         min_normal_force = float(grasp["min_normal_force_n"])
         minimum_synergy = float(grasp["min_synergy_for_success"])
-        max_close_steps = int(grasp["max_close_steps"])
         for close_steps in range(1, int(grasp["max_close_steps"]) + 1):
             synergy = min(1.0, synergy + float(grasp["close_synergy_step"]))
             self._send_action(
@@ -508,20 +600,48 @@ class ReachGraspLiftTask:
                 synergy_frozen = True
                 break
 
+        frozen_synergy = synergy if synergy_frozen else 0.0
+        # A later first contact may freeze above the configured target. Never
+        # reopen the grasp at the transition into preload.
+        preload_target = max(frozen_synergy, float(grasp["preload_target_synergy"]))
+        preload_steps = 0
+        preload_reached = False
+        if synergy_frozen:
+            for preload_steps in range(1, int(grasp["preload_max_steps"]) + 1):
+                synergy = min(
+                    preload_target,
+                    synergy + float(grasp["preload_synergy_step"]),
+                )
+                self._send_action(
+                    np.r_[self.arm_command, [synergy, 0.0, 0.0]],
+                    phase="preload",
+                )
+                final_contacts = self.contact_monitor.sample(min_normal_force)
+                max_contact_groups = max(max_contact_groups, len(final_contacts))
+                for finger, force in final_contacts.items():
+                    peak_forces[finger] = max(peak_forces.get(finger, 0.0), force)
+                if synergy >= preload_target:
+                    preload_reached = True
+                    break
+
         settle_window_frames = int(grasp["contact_hold_frames"])
-        settle_steps = 0
+        preload_settle_steps = 0
         settle_stable = False
         settle_max_translation: float | None = None
         settle_max_rotation: float | None = None
+        preload_wrench_stable = False
+        preload_force_slope: float | None = None
+        preload_moment_slope: float | None = None
         settle_samples: list[dict] = []
-        if synergy_frozen:
-            settle_budget = max(0, max_close_steps - close_steps)
-            for settle_steps in range(1, settle_budget + 1):
+        if preload_reached:
+            for preload_settle_steps in range(
+                1, int(grasp["preload_settle_max_steps"]) + 1
+            ):
                 self._send_action(
                     np.r_[self.arm_command, [synergy, 0.0, 0.0]],
-                    phase="grasp_settle",
+                    phase="preload_settle",
                 )
-                telemetry = self._phase_samples["grasp_settle"][-1]
+                telemetry = self._phase_samples["preload_settle"][-1]
                 settle_samples.append(telemetry)
                 final_contacts = {
                     finger: force
@@ -556,9 +676,13 @@ class ReachGraspLiftTask:
                 settle_max_rotation = max(rotation_drifts)
                 if len(settle_samples) < settle_window_frames:
                     continue
+                preload_force_slope, preload_moment_slope, preload_wrench_stable = (
+                    preload_wrench_trends(window)
+                )
                 baseline = self.config["external_baseline"]
                 settle_stable = (
                     contacts_sustained
+                    and preload_wrench_stable
                     and settle_max_translation
                     < float(baseline["max_relative_translation_drift_m"])
                     and settle_max_rotation
@@ -571,8 +695,10 @@ class ReachGraspLiftTask:
         failure_reason = None
         if not synergy_frozen:
             failure_reason = "grasp_empty"
+        elif not preload_reached:
+            failure_reason = "preload_timeout"
         elif not settle_stable:
-            failure_reason = "grasp_unstable"
+            failure_reason = "preload_unstable"
         return GraspResult(
             success=settle_stable,
             failure_reason=failure_reason,
@@ -580,7 +706,15 @@ class ReachGraspLiftTask:
             reach=reach_result,
             approach_steps=approach_steps,
             close_steps=close_steps,
-            settle_steps=settle_steps,
+            frozen_synergy=frozen_synergy,
+            preload_steps=preload_steps,
+            preload_settle_steps=preload_settle_steps,
+            preload_target_synergy=preload_target,
+            preload_reached=preload_reached,
+            preload_wrench_stable=preload_wrench_stable,
+            preload_force_slope_n_per_frame=preload_force_slope,
+            preload_moment_slope_nm_per_frame=preload_moment_slope,
+            settle_steps=preload_settle_steps,
             final_synergy=synergy,
             synergy_frozen=synergy_frozen,
             settle_stable=settle_stable,
@@ -611,6 +745,16 @@ class ReachGraspLiftTask:
             reach=reach,
             approach_steps=approach_steps,
             close_steps=0,
+            frozen_synergy=0.0,
+            preload_steps=0,
+            preload_settle_steps=0,
+            preload_target_synergy=float(
+                self.config["grasp"]["preload_target_synergy"]
+            ),
+            preload_reached=False,
+            preload_wrench_stable=False,
+            preload_force_slope_n_per_frame=None,
+            preload_moment_slope_nm_per_frame=None,
             settle_steps=0,
             final_synergy=0.0,
             synergy_frozen=False,
@@ -657,9 +801,7 @@ class ReachGraspLiftTask:
         success_height = float(lift["success_height_m"])
         required_height_hold = int(lift["success_hold_frames"])
         required_contact_groups = int(lift["min_finger_groups"])
-        hold_synergy = max(
-            grasp_result.final_synergy, float(lift["hold_synergy"])
-        )
+        hold_synergy = grasp_result.final_synergy
         height_hold = 0
         contact_loss = 0
         max_contact_loss = 0
@@ -674,17 +816,19 @@ class ReachGraspLiftTask:
         crossed_minimum_lift = False
 
         for steps in range(1, int(lift["max_steps"]) + 1):
-            waypoint = paced_lift_waypoint(
+            waypoint = s_curve_lift_waypoint(
                 start_position=lift_start_position,
                 total_delta=lift_delta,
                 step=steps,
                 control_hz=self.robot.control_hz,
                 baseline=self.config["external_baseline"],
+                limits=lift["s_curve_limits"],
             )
             lift_goal, lift_residual = self._solve_arm_goal(
                 waypoint, phase_config=lift
             )
             if lift_residual > float(lift["ik_solve_tolerance_m"]):
+                steps -= 1  # Count only actions actually sent to the robot.
                 break
             max_step = float(lift["max_action_step_rad"])
             self.arm_command += np.clip(
@@ -692,7 +836,7 @@ class ReachGraspLiftTask:
             )
             self._send_action(
                 np.r_[self.arm_command, [hold_synergy, 0.0, 0.0]],
-                phase="lift",
+                phase="lift_s_curve",
             )
             height = float(self._object_position()[2] - self.initial_cube_position[2])
             peak_height = max(peak_height, height)
@@ -761,8 +905,8 @@ class ReachGraspLiftTask:
                               peak_height: float, final_height: float,
                               final_cube: np.ndarray) -> LiftResult:
         current = self._transition_telemetry or self.task_telemetry()
-        lift_start = self._phase_start_telemetry.get("lift", current)
-        lift_samples = [lift_start, *self._phase_samples.get("lift", [])]
+        lift_start = self._phase_start_telemetry.get("lift_s_curve", current)
+        lift_samples = [lift_start, *self._phase_samples.get("lift_s_curve", [])]
         grasp_close_start = self._phase_start_telemetry.get(
             "grasp_close", lift_start
         )
@@ -823,7 +967,41 @@ class ReachGraspLiftTask:
             external_object_lifted=bool(evaluation["external_object_lifted"]),
             external_baseline=evaluation["external_baseline"],
             contact_diagnostics=contact_diagnostics,
+            trajectory_diagnostics=self._trajectory_diagnostics(lift_samples),
         )
+
+    def _trajectory_diagnostics(self, samples: list[dict]) -> dict:
+        hz = float(self.robot.control_hz)
+        positions = np.asarray([s["grasp_center_position_m"] for s in samples])
+        measured = {}
+        for order, name in enumerate(("velocity_m_s", "acceleration_m_s2",
+                                      "jerk_m_s3"), start=1):
+            values = np.diff(positions, n=order, axis=0) * hz ** order
+            measured["peak_" + name] = (
+                float(np.max(np.linalg.norm(values, axis=1))) if len(values) else None
+            )
+        start = positions[0]
+        desired = np.asarray([
+            s_curve_lift_waypoint(
+                start_position=start,
+                total_delta=np.asarray(self.config["lift"]["grasp_center_delta_m"]),
+                step=i, control_hz=hz, baseline=self.config["external_baseline"],
+                limits=self.config["lift"]["s_curve_limits"],
+            ) for i in range(len(samples))
+        ])
+        return {
+            "profile": "two_segment_quintic_minimum_jerk",
+            "limit_scope": "Cartesian_reference_before_IK_and_actuator_dynamics",
+            "configured_limits": dict(self.config["lift"]["s_curve_limits"]),
+            "measured_finite_difference_hz": hz,
+            "measured_peaks": measured,
+            "max_position_tracking_error_m": float(np.max(
+                np.linalg.norm(positions - desired, axis=1)
+            )),
+            "baseline_window_completed": len(samples) - 1 >= int(round(
+                hz * self.config["external_baseline"]["lift_duration_s"]
+            )),
+        }
 
     @staticmethod
     def _contact_diagnostics(samples: list[dict]) -> dict:

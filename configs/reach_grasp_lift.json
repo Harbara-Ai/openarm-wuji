@@ -47,18 +47,26 @@
     "close_synergy_step": 0.03,
     "max_close_steps": 55,
     "min_synergy_for_success": 0.7,
+    "preload_target_synergy": 0.76,
+    "preload_synergy_step": 0.01,
+    "preload_max_steps": 30,
+    "preload_settle_max_steps": 30,
     "min_finger_groups": 2,
     "min_normal_force_n": 0.1,
     "contact_hold_frames": 8
   },
   "lift": {
     "grasp_center_delta_m": [0.0, 0.0, 0.12],
-    "gravity_compensation_offset_m": [0.0, 0.0, 0.02977],
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.0273],
     "ik_max_iterations": 150,
     "ik_solve_tolerance_m": 0.00001,
     "max_steps": 120,
     "max_action_step_rad": 0.015,
-    "hold_synergy": 0.93,
+    "s_curve_limits": {
+      "max_velocity_m_s": 0.19,
+      "max_acceleration_m_s2": 1.16,
+      "max_jerk_m_s3": 24.1
+    },
     "success_height_m": 0.08,
     "success_hold_frames": 15,
     "min_finger_groups": 2,

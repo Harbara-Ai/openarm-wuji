@@ -75,16 +75,17 @@ are deliberately excluded from the first ACT input. See `docs/lerobot_integratio
 
 `run_lift_smoke.ps1` rebuilds a task model from the pinned official assets, resets a
 free cube with an explicit seed, executes collision-free Reach, closes the power grasp,
-and lifts while retaining force-filtered multi-finger contact. `task_success` requires
+preloads with fixed arm targets, checks a fresh SE(3)/wrench window, and follows a
+bounded quintic Cartesian Lift reference at constant hand synergy. `task_success` requires
 80 mm cube elevation for 15 consecutive frames, while `grasp_stable` separately checks
-object-in-palm SE(3) drift against explicitly labeled CD-WM external baselines. The episode smoke records all four
+object-in-palm SE(3) drift against explicitly labeled CD-WM external baselines. The episode smoke records all six
 phases as `observation_t -> bounded action_t -> observation_t+1` and replays the saved
 actions from the same seeded reset. This intermediate NPZ is not yet an ACT training
 dataset. See `docs/reach_grasp_lift.md` and `docs/episode_recording.md`.
 
 ![Complete Reach–Grasp–Lift expert](outputs/reach_grasp_lift/lift_demo.gif)
 
-The frozen-synergy and paced-Lift experimental branch and its seed-7 slip diagnosis are documented in
+The preload/S-curve experiment, actual trajectory tracking limits, and seed-7 slip diagnosis are documented in
 `docs/grasp_settle_experiment.md`.
 
 ## License

@@ -71,24 +71,38 @@ friction, contact forces, and resulting cube motion.
 
 `FingerContactMonitor` inspects `data.contact`, maps each unnamed hand collision geom
 through its owning body to `finger1`–`finger5`, and uses `mj_contactForce` to reject
-normal forces below `0.1 N`. Grasp succeeds when:
+normal forces below `0.1 N`. Closing freezes at the first frame where:
 
 - the close synergy is at least `0.7`;
-- at least two distinct finger groups contact the cube; and
-- that condition remains true for eight consecutive frames.
+- at least two distinct finger groups contact the cube.
 
-The seed-7 reference reaches synergy `0.93`, ends with all five finger groups in contact,
-and moves the cube only `0.18 mm` during the open-hand approach. A five-seed diagnostic
-Grasp-only run passed 5/5, but this is not yet the final benchmark. Failure labels include
-`grasp_ik_unreachable`, `approach_collision`, `approach_timeout`, and `grasp_empty`.
+Seed 7 freezes at `0.72`. Preload holds arm targets and increases synergy by at most
+`0.01/frame` to the provisional target `0.76`. Preload-settle then holds both commands
+for a fresh eight-frame window: contact must persist, relative SE(3) must pass the
+external 8 mm / 6° gate, and resultant force/moment norm slopes must both be nonpositive.
+This gate measures non-growth; it cannot rule out excessive constant loads. The current
+seed-7 settle window is 4.53 mm / 3.43°. Closing has a 55-frame budget, while preload
+and preload-settle have separate 30-frame budgets; timeout rejects Lift and requests a
+regrasp. The arm is held by its normal actuators, not by a rigid constraint. Synergy
+commands hand joint positions, so this is not direct force regulation.
+
+The approach still moves the cube only `0.18 mm`. The historical 5/5 Grasp-only result
+predates preload and must not be used as its success rate. Failure labels now also
+include `preload_timeout` and `preload_unstable`. See `grasp_settle_experiment.md` for
+the full parameter sweep and negative results.
 
 ## Lift expert and separated outcomes
 
 Lift keeps the successful hand command active and moves the grasp center upward by
-`120 mm`. The first 0.5 seconds follow cubic Cartesian waypoints ending at the external
+`120 mm`. The first 0.5 seconds follow quintic minimum-jerk waypoints ending at the external
 protocol's `50 mm` gripper displacement; later waypoints continue toward 120 mm. Joint
-commands remain limited to `0.015 rad` per 30 Hz frame. A Lift-only `29.77 mm` upward
-gravity-compensation calibration makes the measured seed-7 displacement `50.12 mm`.
+commands remain limited to `0.015 rad` per 30 Hz frame. A Lift-only `27.3 mm` upward
+gravity-compensation calibration makes the measured seed-7 displacement `50.32 mm`.
+Lift keeps the final preload synergy without a closure jump. The reference limits are
+0.19 m/s, 1.16 m/s², and 24.1 m/s³, validated before motion. The two segments join with
+continuous position, velocity, and acceleration. Actual sampled palm motion exceeds
+these reference bounds (0.2425 m/s, 2.7656 m/s², 66.06 m/s³); tracking diagnostics are
+stored separately. These are not guaranteed physical-motion bounds.
 No weld, equality, adhesion, or other fake attachment is enabled: the cube rises only
 through MuJoCo contact and friction.
 
@@ -102,18 +116,18 @@ The evaluator no longer treats height plus multi-finger contact as complete succ
 The relative-pose comparison uses the public CD-WM parallel-jaw criterion as an external
 baseline: 50 mm gripper motion within 0.5 s, at least 25 mm object lift, translation
 drift below 8 mm, rotation drift below 6 degrees, and a two-frame Lift anchor margin.
-Closing-phase establishment translation and rotation are recorded separately. These
+Establishment from the start of closing through preload-settle is recorded separately. These
 thresholds are not claimed to be calibrated for the Wuji Hand.
 
-For seed 7, the paced Lift reaches `96.3 mm` and finishes at `93.5 mm`, so
-`task_success=true`. However, maximum object-in-palm drift is `50.8 mm` and `36.6°`.
-The final 15 frames settle to `0.60 mm` and `0.82°`, producing
+For seed 7, the preloaded Lift reaches `97.35 mm` and finishes at `95.97 mm`, so
+`task_success=true`. However, maximum object-in-palm drift is `43.96 mm` and `16.92°`.
+The final 15 frames settle to `0.65 mm` and `0.41°`, producing
 `grasp_stable=false` and `outcome=settled_after_slip`. It is no longer reported as a
 complete stable-grasp success. The previous five-seed 3/5 count used the old height and
 contact criterion and must be replaced by a new benchmark under the SE(3) taxonomy.
 
 The remaining slip is consistent with poor opposition geometry. Wuji maps `finger1` to
-the thumb; in the final seed-7 settle frame its mean cube-local contact is near the
+the thumb; in the previous 3b1189a seed-7 settle frame its mean cube-local contact was near the
 `x=-35 mm, y=-35 mm` edge, while the four fingers are distributed over three other
 faces. This is not the desired thumb-versus-fingers force closure and is the next grasp
 pose/synergy variable to change.
@@ -128,9 +142,9 @@ observation_t -> expert action_t -> observation_t+1
 
 All state-machine actions pass through one hook, so the stored action is the bounded
 10-D vector actually returned by `send_action`, not an intended pre-limit command. The
-seed-7 smoke contains 121 transitions: 12 Reach, 31 Approach, 24 Grasp-close, eight
-Grasp-settle, and 46 Lift. A fresh seeded replay reproduces actions, measured state,
-both world poses, relative SE(3), 1,317 individual contacts, resultants, and simulation
+seed-7 smoke contains 122 transitions: 12 Reach, 31 Approach, 24 Grasp-close, four
+Preload, eight Preload-settle, and 43 Lift. A fresh seeded replay reproduces actions,
+measured state, both world poses, relative SE(3), 1,241 individual contacts, resultants, and simulation
 time exactly; camera rasterization stays within 2/255 intensity levels.
 
 Backend wall-clock timestamp, simulation time, velocity diagnostics, cube pose, seed,

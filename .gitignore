@@ -21,5 +21,7 @@ outputs/reach_grasp_lift/*
 !outputs/reach_grasp_lift/lift_report.json
 !outputs/reach_grasp_lift/lift_demo.gif
 !outputs/reach_grasp_lift/episode_report.json
+!outputs/reach_grasp_lift/preload_sweep_seed7.json
+!outputs/reach_grasp_lift/lift_keyframes.png
 vendor/
 MUJOCO_LOG.TXT

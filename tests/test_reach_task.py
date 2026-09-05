@@ -3,13 +3,17 @@ import copy
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 import numpy as np
 
 from openarm_wuji.dataset import CausalEpisodeRecorder, replay_causal_episode
 from openarm_wuji.simulation.mujoco_backend import MujocoOpenArmWuji
 from openarm_wuji.tasks import ReachGraspLiftTask
-from openarm_wuji.tasks.reach_grasp_lift import paced_lift_waypoint
+from openarm_wuji.tasks.reach_grasp_lift import (
+    preload_wrench_trends,
+    s_curve_lift_waypoint,
+)
 
 
 class ReachTaskTests(unittest.TestCase):
@@ -32,26 +36,113 @@ class ReachTaskTests(unittest.TestCase):
             front_camera=self.config["scene"]["front_camera_name"],
         )
 
-    def test_lift_waypoints_follow_external_50mm_in_half_second_protocol(self):
+    def test_lift_s_curve_respects_external_endpoint_and_total_distance(self):
         start = np.array([0.4, 0.2, 0.5])
         delta = np.array([0.0, 0.0, 0.12])
         baseline = self.config["external_baseline"]
-        halfway = paced_lift_waypoint(
+        halfway = s_curve_lift_waypoint(
             start_position=start,
             total_delta=delta,
             step=15,
             control_hz=30,
             baseline=baseline,
+            limits=self.config["lift"]["s_curve_limits"],
         )
-        final = paced_lift_waypoint(
+        final = s_curve_lift_waypoint(
             start_position=start,
             total_delta=delta,
-            step=120,
+            step=36,
             control_hz=30,
             baseline=baseline,
+            limits=self.config["lift"]["s_curve_limits"],
         )
         np.testing.assert_allclose(halfway - start, [0.0, 0.0, 0.05])
         np.testing.assert_allclose(final - start, delta)
+        too_slow = copy.deepcopy(self.config["lift"]["s_curve_limits"])
+        too_slow["max_velocity_m_s"] = 0.18
+        with self.assertRaisesRegex(ValueError, "exceeds configured"):
+            s_curve_lift_waypoint(
+                start_position=start,
+                total_delta=delta,
+                step=1,
+                control_hz=30,
+                baseline=baseline,
+                limits=too_slow,
+            )
+
+    def test_preload_wrench_trend_rejects_divergence(self):
+        def samples(force, moment):
+            return [{
+                "contact_resultant_force_world_n": [value, 0.0, 0.0],
+                "contact_resultant_moment_about_cube_world_nm": [
+                    moment[index], 0.0, 0.0
+                ],
+            } for index, value in enumerate(force)]
+
+        _, _, stable = preload_wrench_trends(
+            samples([4.0, 3.0, 2.0, 1.0], [0.4, 0.3, 0.2, 0.1])
+        )
+        force_slope, moment_slope, divergent = preload_wrench_trends(
+            samples([1.0, 2.0, 3.0, 4.0], [0.1, 0.2, 0.3, 0.4])
+        )
+        self.assertTrue(stable)
+        self.assertFalse(divergent)
+        self.assertGreater(force_slope, 0.0)
+        self.assertGreater(moment_slope, 0.0)
+        self.assertFalse(preload_wrench_trends([])[2])
+        self.assertFalse(preload_wrench_trends(samples([1], [1]))[2])
+        self.assertFalse(preload_wrench_trends(
+            samples([3, 2, 1], [1, 2, 3])
+        )[2])
+
+    def test_s_curve_derivative_limits_across_segment_boundaries(self):
+        hz = 1000
+        limits = self.config["lift"]["s_curve_limits"]
+        points = np.asarray([
+            s_curve_lift_waypoint(
+                start_position=np.zeros(3), total_delta=np.array([0, 0, 0.12]),
+                step=i, control_hz=hz, baseline=self.config["external_baseline"],
+                limits=limits,
+            ) for i in range(-5, 1206)
+        ])
+        for order, limit in enumerate(limits.values(), start=1):
+            peak = np.max(np.linalg.norm(np.diff(points, n=order, axis=0), axis=1))
+            self.assertLessEqual(peak * hz ** order, limit)
+        for key in limits:
+            with self.subTest(limit=key):
+                invalid = dict(limits)
+                invalid[key] = 0.001
+                with self.assertRaises(ValueError):
+                    s_curve_lift_waypoint(
+                        start_position=np.zeros(3), total_delta=np.array([0, 0, 0.12]),
+                        step=0, control_hz=30, baseline=self.config["external_baseline"],
+                        limits=invalid,
+                    )
+
+    def test_preload_timeout_and_wrench_divergence_reject_lift(self):
+        for failure in ("timeout", "wrench"):
+            with self.subTest(failure=failure):
+                robot = self.make_robot()
+                robot.connect()
+                try:
+                    config = copy.deepcopy(self.config)
+                    if failure == "timeout":
+                        config["grasp"]["preload_max_steps"] = 1
+                    task = ReachGraspLiftTask(robot, config)
+                    with patch(
+                        "openarm_wuji.tasks.reach_grasp_lift.preload_wrench_trends",
+                        return_value=(1.0, 1.0, False),
+                    ):
+                        result = task.run_lift(7)
+                    self.assertFalse(result.grasp.success)
+                    self.assertTrue(result.grasp.regrasp_required)
+                    self.assertEqual(result.steps, 0)
+                    self.assertNotIn("lift_s_curve", task._phase_samples)
+                    self.assertEqual(result.grasp.failure_reason,
+                                     "preload_timeout" if failure == "timeout"
+                                     else "preload_unstable")
+                finally:
+                    robot.disconnect()
 
     def test_reset_is_seeded_and_reach_converges(self):
         robot = self.make_robot()
@@ -86,7 +177,12 @@ class ReachTaskTests(unittest.TestCase):
         robot = self.make_robot()
         robot.connect()
         try:
-            task = ReachGraspLiftTask(robot, copy.deepcopy(self.config))
+            recorder = CausalEpisodeRecorder(
+                task_name="reach_grasp_lift", control_hz=30
+            )
+            task = ReachGraspLiftTask(
+                robot, copy.deepcopy(self.config), recorder=recorder
+            )
             result = task.run_grasp(7)
             self.assertTrue(result.success, result.to_dict())
             self.assertGreaterEqual(result.max_contact_groups, 2)
@@ -94,14 +190,55 @@ class ReachTaskTests(unittest.TestCase):
             self.assertGreaterEqual(len(result.final_contact_groups), 2)
             self.assertLess(result.approach_cube_displacement_m, 0.025)
             self.assertTrue(result.synergy_frozen)
-            self.assertAlmostEqual(result.final_synergy, 0.72, places=12)
+            self.assertAlmostEqual(result.frozen_synergy, 0.72, places=12)
+            self.assertAlmostEqual(result.final_synergy, 0.76, places=12)
             self.assertEqual(result.close_steps, 24)
-            self.assertEqual(result.settle_steps, result.settle_window_frames)
+            self.assertTrue(result.preload_reached)
+            self.assertEqual(result.preload_steps, 4)
+            self.assertGreaterEqual(
+                result.preload_settle_steps, result.settle_window_frames
+            )
             self.assertEqual(len(task._phase_samples["grasp_close"]), 24)
-            self.assertEqual(len(task._phase_samples["grasp_settle"]), 8)
+            self.assertEqual(len(task._phase_samples["preload"]), 4)
+            self.assertEqual(
+                len(task._phase_samples["preload_settle"]),
+                result.preload_settle_steps,
+            )
             self.assertTrue(result.settle_stable)
+            self.assertTrue(result.preload_wrench_stable)
             self.assertLess(result.settle_max_translation_drift_m, 0.008)
             self.assertLess(result.settle_max_rotation_drift_deg, 6.0)
+            close_action = next(
+                transition["action_t"]
+                for transition in reversed(recorder.transitions)
+                if transition["phase"] == "grasp_close"
+            )
+            preload_actions = np.stack([
+                transition["action_t"]
+                for transition in recorder.transitions
+                if transition["phase"] == "preload"
+            ])
+            settle_actions = np.stack([
+                transition["action_t"]
+                for transition in recorder.transitions
+                if transition["phase"] == "preload_settle"
+            ])
+            np.testing.assert_allclose(
+                preload_actions[:, :7],
+                np.tile(close_action[:7], (len(preload_actions), 1)),
+            )
+            np.testing.assert_allclose(
+                settle_actions[:, :7],
+                np.tile(close_action[:7], (len(settle_actions), 1)),
+            )
+            self.assertLessEqual(
+                float(np.max(np.diff(np.r_[result.frozen_synergy,
+                                           preload_actions[:, 7]]))),
+                self.config["grasp"]["preload_synergy_step"] + 1e-12,
+            )
+            np.testing.assert_allclose(
+                settle_actions[:, 7], result.preload_target_synergy
+            )
         finally:
             robot.disconnect()
 
@@ -173,9 +310,9 @@ class ReachTaskTests(unittest.TestCase):
             self.assertTrue(result.grasp.synergy_frozen)
             self.assertFalse(result.grasp.settle_stable)
             self.assertTrue(result.grasp.regrasp_required)
-            self.assertEqual(result.grasp.failure_reason, "grasp_unstable")
+            self.assertEqual(result.grasp.failure_reason, "preload_unstable")
             self.assertEqual(result.steps, 0)
-            self.assertNotIn("lift", task._phase_samples)
+            self.assertNotIn("lift_s_curve", task._phase_samples)
         finally:
             robot.disconnect()
 
@@ -201,8 +338,28 @@ class ReachTaskTests(unittest.TestCase):
                 self.assertGreater(validation["samples"], 0)
                 self.assertEqual(
                     validation["phases"],
-                    ["approach", "grasp_close", "grasp_settle", "lift", "reach"],
+                    [
+                        "approach",
+                        "grasp_close",
+                        "lift_s_curve",
+                        "preload",
+                        "preload_settle",
+                        "reach",
+                    ],
                 )
+                lift_actions = [
+                    transition["action_t"]
+                    for transition in recorder.transitions
+                    if transition["phase"] == "lift_s_curve"
+                ]
+                self.assertTrue(lift_actions)
+                self.assertTrue(all(
+                    action[7] == result.grasp.final_synergy
+                    for action in lift_actions
+                ))
+                last_settle = next(t["action_t"] for t in reversed(recorder.transitions)
+                                   if t["phase"] == "preload_settle")
+                np.testing.assert_array_equal(lift_actions[0][7:], last_settle[7:])
                 with np.load(episode_path, allow_pickle=False) as episode:
                     samples = validation["samples"]
                     self.assertEqual(episode["observation_state"].shape, (samples, 27))

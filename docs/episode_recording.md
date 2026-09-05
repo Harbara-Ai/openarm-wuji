@@ -10,7 +10,9 @@ observation_t -> bounded action_t actually returned by send_action -> observatio
 ```
 
 The state machine sends every phase through the same recording hook: `reach`,
-`approach`, `grasp_close`, optional `grasp_settle`, and `lift`. Reset creates frame 0;
+`approach`, `grasp_close`, `preload`, `preload_settle`, and `lift_s_curve`.
+Older episodes can contain `grasp_settle` and `lift`; phases are metadata, not policy
+features. Reset creates frame 0;
 the first action creates frame 1. Adjacent rows must share the same boundary frame and
 27-D measured state.
 
@@ -43,7 +45,14 @@ the causal relationship checkable.
 
 Task metadata includes schema version, task name and text, episode index, seed, control
 frequency, serialized outcome, `task_success`, `grasp_stable`, and the exclusive outcome
-label. Schema v2 also records, at every state boundary:
+label.
+
+The serialized result additionally includes frozen/preload synergy, preload and settle
+durations, wrench slopes, and `trajectory_diagnostics`. Reference Cartesian limits and
+actual sampled derivative peaks are reported separately. These result fields are task
+telemetry and do not change the 27-D state or 10-D action contracts.
+
+Schema v2 also records, at every state boundary:
 
 - cube world position and scalar-first `(w, x, y, z)` quaternion;
 - grasp-center world position and quaternion;

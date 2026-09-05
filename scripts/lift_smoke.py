@@ -60,6 +60,7 @@ def main():
                 (
                     "gripper@0.5s="
                     f"{result.gripper_lift_within_baseline_window_m * 1000:.1f} mm"
+                    f"  synergy={transition['action_t'][7]:.2f}"
                 ),
             ]
             draw.rectangle((0, 0, 395, 51), fill=(0, 0, 0))
@@ -67,9 +68,24 @@ def main():
                 draw.text((5, 3 + 12 * line_index), line, fill=(255, 255, 255))
             frames.append(np.asarray(image))
         if frames:
+            gif_frames = frames[::2]
+            # GIF uses 10 ms ticks; alternate 60/70 ms to preserve 30 Hz timing.
+            ticks = np.rint(np.arange(len(gif_frames) + 1) * 200 / robot.control_hz)
             imageio.mimsave(
-                args.output / "lift_demo.gif", frames[::2], duration=0.066, loop=0
+                args.output / "lift_demo.gif", gif_frames,
+                duration=(np.diff(ticks).astype(int) * 10).tolist(), loop=0,
             )
+            indices = [
+                max(i for i, t in enumerate(recorder.transitions) if t["phase"] == phase)
+                for phase in ("grasp_close", "preload", "preload_settle")
+                if any(t["phase"] == phase for t in recorder.transitions)
+            ]
+            indices.append(len(frames) - 1)
+            sheet = Image.new("RGB", (640 * 2, 240 * 2))
+            for index, frame_index in enumerate(indices):
+                sheet.paste(Image.fromarray(frames[frame_index]),
+                            (640 * (index % 2), 240 * (index // 2)))
+            sheet.save(args.output / "lift_keyframes.png")
         print(json.dumps(result.to_dict(), indent=2))
         outcome_matches = (
             result.outcome == args.expected_outcome
