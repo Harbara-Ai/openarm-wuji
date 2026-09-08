@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "reward_version": "v1",
+  "model_path": "outputs/reach_grasp_lift/reach_grasp_lift.mjb",
+  "synergy_config": "configs/wuji_hand_left_synergies.json",
+  "task_config": "configs/reach_grasp_lift.json",
+  "control_hz": 30.0,
+  "max_episode_steps": 120,
+  "reset": {
+    "seed_min": 0,
+    "seed_max": 1000000,
+    "pregrasp_extra_offset_m": [0.0, 0.0, 0.0],
+    "post_place_settle_steps": 20,
+    "max_reset_cube_displacement_m": 0.02
+  },
+  "action": {
+    "delta_position_scale_rad": 0.035,
+    "max_action_change_per_step": 0.35,
+    "smoothing_alpha": 0.65
+  },
+  "observation": {
+    "world_position_center_m": [0.48, 0.15, 0.50],
+    "world_position_scale_m": 0.50,
+    "relative_position_scale_m": 0.15,
+    "joint_velocity_scale_rad_s": 5.0,
+    "linear_velocity_scale_m_s": 0.50,
+    "angular_velocity_scale_rad_s": 10.0,
+    "contact_count_scale": 4.0,
+    "normal_force_scale_n": 5.0,
+    "tangential_force_scale_n": 5.0,
+    "relative_contact_speed_scale_m_s": 0.50
+  },
+  "reward": {
+    "proximity_weight": 0.50,
+    "proximity_sigma_m": 0.025,
+    "multi_contact_weight": 1.00,
+    "contact_target_fingers": 3,
+    "thumb_contact_bonus": 0.20,
+    "stability_weight": 0.50,
+    "stability_linear_scale_m_s": 0.04,
+    "stability_angular_scale_rad_s": 0.70,
+    "hold_region_weight": 0.50,
+    "hold_region_scale_m": 0.025,
+    "slip_weight": 0.20,
+    "slip_linear_scale_m_s": 0.04,
+    "slip_angular_scale_rad_s": 0.70,
+    "penetration_weight": 2.00,
+    "penetration_tolerance_m": 0.001,
+    "penetration_scale_m": 0.004,
+    "cube_motion_weight": 1.00,
+    "cube_displacement_allowance_m": 0.015,
+    "cube_displacement_scale_m": 0.040,
+    "cube_speed_allowance_m_s": 0.08,
+    "cube_speed_scale_m_s": 0.25,
+    "action_magnitude_weight": 0.01,
+    "action_rate_weight": 0.02,
+    "success_bonus": 10.0
+  },
+  "success": {
+    "min_contact_fingers": 2,
+    "min_normal_force_n": 0.10,
+    "settle_grace_s": 0.25,
+    "sustain_s": 0.50,
+    "max_relative_linear_speed_m_s": 0.025,
+    "max_relative_angular_speed_deg_s": 20.0,
+    "max_window_translation_drift_m": 0.012,
+    "max_window_rotation_drift_deg": 10.0,
+    "max_cube_displacement_m": 0.050
+  },
+  "failure": {
+    "max_penetration_m": 0.008,
+    "max_cube_displacement_m": 0.120,
+    "drop_margin_m": 0.030
+  },
+  "external_rigid_diagnostic": {
+    "source": "CD-WM external baseline; diagnostic only, not the RL success gate",
+    "max_relative_translation_drift_m": 0.008,
+    "max_relative_rotation_drift_deg": 6.0
+  }
+}

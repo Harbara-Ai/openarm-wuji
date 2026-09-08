@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "palm_site_name": "wuji_grasp_center",
+  "cube_body_name": "task_cube",
+  "table_geom_name": "task_table_top",
+  "finger_body_regex": "wuji_left_finger([1-5])_",
+  "topologies": [
+    {
+      "name": "thumb_minus_x_fingers_plus_x",
+      "required_fingers": ["finger1", "finger2", "finger3", "finger4"],
+      "optional_fingers": ["finger5"],
+      "faces": {
+        "finger1": "-X",
+        "finger2": "+X",
+        "finger3": "+X",
+        "finger4": "+X",
+        "finger5": "+X"
+      },
+      "initializations": [
+        {
+          "name": "current_grasp",
+          "hand_seed": "current",
+          "palm_translation_cube_m": [0.0, 0.0, 0.0],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "independent_opposition_same_palm",
+          "hand_seed": "opposition",
+          "palm_translation_cube_m": [0.0, 0.0, 0.008],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "power_half_with_small_yaw_relief",
+          "hand_seed": "power_half",
+          "palm_translation_cube_m": [0.0, 0.0, 0.008],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, -0.3490658503988659]
+        }
+      ]
+    },
+    {
+      "name": "thumb_minus_y_fingers_plus_y",
+      "required_fingers": ["finger1", "finger2", "finger3", "finger4"],
+      "optional_fingers": ["finger5"],
+      "faces": {
+        "finger1": "-Y",
+        "finger2": "+Y",
+        "finger3": "+Y",
+        "finger4": "+Y",
+        "finger5": "+Y"
+      },
+      "initializations": [
+        {
+          "name": "current_grasp",
+          "hand_seed": "current",
+          "palm_translation_cube_m": [0.0, 0.0, 0.0],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "natural_y_opposition",
+          "hand_seed": "opposition",
+          "palm_translation_cube_m": [0.0, 0.0, 0.008],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "y_opposition_with_small_yaw_relief",
+          "hand_seed": "power_half",
+          "palm_translation_cube_m": [0.0, 0.0, 0.008],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.3490658503988659]
+        }
+      ]
+    },
+    {
+      "name": "thumb_middle_ring_x_opposition",
+      "required_fingers": ["finger1", "finger3", "finger4"],
+      "optional_fingers": ["finger2", "finger5"],
+      "faces": {
+        "finger1": "-X",
+        "finger2": "+X",
+        "finger3": "+X",
+        "finger4": "+X",
+        "finger5": "+X"
+      },
+      "initializations": [
+        {
+          "name": "current_grasp",
+          "hand_seed": "current",
+          "palm_translation_cube_m": [0.0, 0.0, 0.0],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "three_finger_opposition_same_palm",
+          "hand_seed": "opposition",
+          "palm_translation_cube_m": [0.0, 0.0, 0.008],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "three_finger_power_small_yaw",
+          "hand_seed": "power_half",
+          "palm_translation_cube_m": [0.0, 0.0, 0.008],
+          "palm_rotation_cube_rotvec_rad": [0.0, 0.0, -0.3490658503988659]
+        }
+      ]
+    }
+  ],
+  "target_region": {
+    "tangential_half_extent_m": [0.018, 0.018],
+    "required_edge_clearance_m": 0.012,
+    "representative_standoff_fraction_of_geom_rbound": 0.75
+  },
+  "optimization": {
+    "max_iterations": 60,
+    "finite_difference_rad": 0.0002,
+    "damping": 0.01,
+    "max_arm_step_rad": 0.035,
+    "max_finger_step_rad": 0.08,
+    "position_scale_m": 0.01,
+    "position_weight": 1.0,
+    "optional_finger_weight": 0.25,
+    "normal_weight": 0.08,
+    "normal_scale": 1.0,
+    "non_tip_collision_clearance_m": 0.001,
+    "max_kinematic_penetration_m": 0.00005,
+    "collision_scale_m": 0.002,
+    "collision_weight": 3.0,
+    "self_collision_weight": 1.0,
+    "joint_delta_weight": 0.002,
+    "joint_limit_margin_fraction": 0.04,
+    "joint_limit_weight": 0.05,
+    "contact_position_tolerance_m": 0.006,
+    "normal_alignment_tolerance_deg": 55.0,
+    "palm_seed_ik": {
+      "damping": 0.03,
+      "max_joint_step_rad": 0.06,
+      "max_iterations": 120,
+      "position_tolerance_m": 0.0001,
+      "orientation_tolerance_deg": 0.5,
+      "orientation_weight": 0.2
+    },
+    "stages": [
+      {
+        "name": "contact_acquisition",
+        "max_iterations": 45,
+        "normal_weight": 0.01,
+        "collision_weight": 1.5,
+        "joint_delta_weight": 0.0005
+      },
+      {
+        "name": "alignment_and_clearance",
+        "max_iterations": 75,
+        "normal_weight": 0.12,
+        "collision_weight": 5.0,
+        "joint_delta_weight": 0.002
+      },
+      {
+        "name": "collision_polish",
+        "max_iterations": 60,
+        "max_arm_step_rad": 0.02,
+        "max_finger_step_rad": 0.04,
+        "position_weight": 0.8,
+        "normal_weight": 0.12,
+        "collision_weight": 20.0,
+        "self_collision_weight": 10.0,
+        "joint_delta_weight": 0.001
+      }
+    ]
+  },
+  "execution": {
+    "move_to_candidate_s": 1.0,
+    "squeeze_s": 0.5,
+    "settle_s": 0.5,
+    "squeeze_increment_rad": 0.08,
+    "squeeze_gain": {
+      "finger1": 1.0,
+      "finger2": 0.8,
+      "finger3": 0.8,
+      "finger4": 0.6,
+      "finger5": 0.5
+    }
+  },
+  "acquisition": {
+    "default_strategy": "synchronized",
+    "pregrasp_clearance_m": 0.005,
+    "pregrasp_search_steps": 32,
+    "pregrasp_ik_iterations": 32,
+    "pregrasp_ik_tolerance_m": 0.0005,
+    "pregrasp_ik_damping": 0.001,
+    "pregrasp_ik_max_step_rad": 0.06,
+    "pregrasp_retreat_attempts": 5,
+    "pregrasp_retreat_step_m": 0.003,
+    "path_samples": 21,
+    "path_clearance_safe_m": 0.001,
+    "pregrasp_move_s": 0.8,
+    "control_hz": 30,
+    "max_acquisition_steps": 90,
+    "approach_step_rad": 0.004,
+    "min_normal_force_n": 0.1,
+    "edge_margin_m": 0.002,
+    "normal_alignment_max_deg": 45.0,
+    "contact_confirm_steps": 5,
+    "hold_s": 0.3,
+    "squeeze_s": 0.25,
+    "squeeze_hold_s": 0.25,
+    "squeeze_increment_rad": 0.02,
+    "squeeze_gain": {
+      "finger1": 1.0,
+      "finger2": 0.8,
+      "finger3": 0.8,
+      "finger4": 0.6,
+      "finger5": 0.4
+    },
+    "max_cube_translation_before_topology_m": 0.005,
+    "max_cube_rotation_before_topology_deg": 5.0,
+    "max_cube_linear_velocity_m_s": 0.15,
+    "max_cube_angular_velocity_deg_s": 90.0
+  },
+  "finger2_path_planning": {
+    "finger": "finger2",
+    "target_face": "+X",
+    "contact_region_seed_offset_m": 0.01,
+    "contact_region_half_extent_m": 0.004,
+    "endpoint_gap_m": 0.0,
+    "endpoint_contact_tolerance_m": 0.00015,
+    "endpoint_distance_scale_m": 0.0005,
+    "pregrasp_clearance_m": 0.005,
+    "soft_non_tip_clearance_m": 0.001,
+    "path_samples_per_segment": 21,
+    "pose_max_iterations": 80,
+    "pose_damping": 0.01,
+    "pose_finite_difference_rad": 0.0002,
+    "pose_max_joint_step_rad": 0.05,
+    "midpoint_restarts": 7,
+    "midpoint_iterations": 48,
+    "midpoint_initial_step_rad": 0.12,
+    "midpoint_min_step_rad": 0.002,
+    "path_clearance_weight": 20.0,
+    "path_hard_collision_penalty": 1000000.0,
+    "path_smoothness_weight": 0.05,
+    "path_joint_limit_weight": 0.1,
+    "path_self_collision_weight": 100.0,
+    "dynamic_segment_duration_s": 3.0,
+    "dynamic_pre_settle_s": 0.0,
+    "dynamic_contact_hold_s": 0.25
+  },
+  "static_test": {
+    "hold_s": 1.0,
+    "min_normal_force_n": 0.1,
+    "min_finger_groups": 2,
+    "max_relative_translation_drift_m": 0.008,
+    "max_relative_rotation_drift_deg": 6.0
+  }
+}

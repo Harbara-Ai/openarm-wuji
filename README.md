@@ -10,7 +10,8 @@ ACT, and a fail-safe asynchronous policy bridge.
 - OpenArm v2 headless smoke: passed on native Windows with MuJoCo 3.12.0; `outputs/openarm/` is generated locally.
 - Wuji Hand full prerecorded retargeting: passed under WSL2 Ubuntu 22.04; 2751 frames of 21×3 keypoints converted to finite 20-D trajectories.
 - Combined OpenArm v2 + left Wuji Hand model: compiled and stable; 20-DoF hand synergies are config-driven and safety limited.
-- Reach–Grasp–Lift scene: deterministic reset, fixed dual cameras, collision-free Reach, contact-aware power grasp, and SE(3)-evaluated Lift are ready. The full state machine writes causally aligned episodes with per-contact world wrenches and passes seeded replay. Seed 7 reaches the height goal but is correctly labeled `settled_after_slip`, not stable success; the old five-seed height/contact score is superseded.
+- Reach–Grasp–Lift scene: deterministic reset, fixed dual cameras, 6D palm-pose IK, contact-aware power grasp, and SE(3)-evaluated Lift are ready for diagnostics. Schema-v3 episodes add palm/object velocities, cube-frame contact faces/edges, opposition, and net wrench telemetry while preserving the LeRobot policy contract. The first five fixed seeds still contain zero strict stable grasps, so ACT training remains deferred.
+- Stage-1 grasp RL: expert-derived PCA5 absolute actions solve the original 20-D/manual5D exploration bottleneck and reach 3–4 simultaneous contacts. Reward V3 preserves multi-contact but does not improve edge margin/slip or 0.3 s hold. A no-training reachability audit then evaluates 2500 global, 720 local, and 50 full-hold PCA5 candidates: none reaches formal success or 0.3 s persistent low-slip contact. The evidence points first to fixed-palm geometry/rigid-domain mismatch and second to insufficient independent correction inside PCA5; the next controlled test is a small bounded palm SE(3) residual search, not longer RL.
 - Real robot protocol: intentionally unimplemented until the customized arm specification arrives.
 
 ![OpenArm v2 left arm with Wuji Hand](outputs/combined/combined_smoke.png)
@@ -86,7 +87,45 @@ dataset. See `docs/reach_grasp_lift.md` and `docs/episode_recording.md`.
 ![Complete Reach–Grasp–Lift expert](outputs/reach_grasp_lift/lift_demo.gif)
 
 The preload/S-curve experiment, actual trajectory tracking limits, and seed-7 slip diagnosis are documented in
-`docs/grasp_settle_experiment.md`.
+`docs/grasp_settle_experiment.md` and `docs/grasp_geometry_diagnostics.md`.
+
+## Stage-1 grasp RL
+
+This first RL baseline learns only static contact acquisition with the arm numerically
+fixed. It intentionally excludes RGB, ACT, Lift, torque control, domain randomization,
+and hard-coded face topology. Run the environment checker/random-policy smoke and a
+short SAC update with:
+
+```powershell
+./.venvs/lerobot-policy/Scripts/python.exe scripts/rl_grasp_smoke.py
+./.venvs/lerobot-policy/Scripts/python.exe scripts/train_sac_grasp.py --timesteps 256
+```
+
+The environment contract, reward equation, reset, provisional success gate, and first
+short-run evidence are in `docs/rl_grasp_stage1.md`.
+
+The controlled Reward V2 action-space ablation is also complete. A 5-D per-finger
+structured action exactly reproduces the old scripted closing direction when all five
+commands are +1, and its sanity probe reaches five simultaneous contacts. A fresh 5K
+SAC run nevertheless remains at one maximum training contact, so it is not extended
+to 10K. See `docs/structured_action_ablation_5k.md`.
+
+Real Wuji cube teleoperation has now been downloaded from
+`yeeeiii111/wuji-pick-and-place` at a pinned revision and analyzed across all 60
+left/right cube episodes directly from the 54-D LeRobot state/action Parquet arrays.
+The hand-only export contains 20,769 bit-exact frames. Centered PCA needs 5 side-specific
+dimensions for about 95% of state/action closing-delta variance; finger onset is often
+staged and the thumb direction is strongly side-specific. See
+`docs/wuji_cube_teleop_analysis.md`.
+
+The subsequent expert-PCA5 prior, contact-topology diagnosis, and Reward V3
+contact-quality 5K ablation are documented in
+`docs/expert_pca5_action_prior.md`, `docs/contact_topology_stability_diagnosis.md`,
+and `docs/reward_v3_contact_quality_5k.md`. The V3 experiment keeps the original
+policy contract, records quality only as telemetry, and follows its stop rule: no
+10K run after edge margin and tangential slip failed to improve. The subsequent
+no-training latent reachability search is in
+`docs/pca5_fixed_palm_reachability_analysis.md`.
 
 ## License
 

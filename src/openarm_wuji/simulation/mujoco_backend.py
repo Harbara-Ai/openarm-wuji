@@ -20,7 +20,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
     def __init__(self, model_path: str | Path, synergy_config: str | Path, *,
                  arm_side: str = "left", control_hz: float = 30.0,
                  image_height: int = 240, image_width: int = 320,
-                 front_camera: str | None = None):
+                 front_camera: str | None = None, render: bool = True):
         if control_hz <= 0:
             raise ValueError("control_hz must be positive")
         if image_height <= 0 or image_width <= 0:
@@ -33,6 +33,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         self.image_height = image_height
         self.image_width = image_width
         self.front_camera = front_camera
+        self.render_enabled = bool(render)
         self._model = self._data = self._renderer = self._front_camera = None
         self._arm_actuator_ids = self._arm_qpos_ids = self._arm_qvel_ids = None
         self._hand_actuator_ids = self._hand_qpos_ids = self._hand_qvel_ids = None
@@ -73,8 +74,13 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         key = mujoco.mj_name2id(self._model, mujoco.mjtObj.mjOBJ_KEY, "home")
         if key >= 0:
             mujoco.mj_resetDataKeyframe(self._model, self._data, key)
-        self._renderer = mujoco.Renderer(self._model, height=self.image_height, width=self.image_width)
-        if self.front_camera is None:
+        if self.render_enabled:
+            self._renderer = mujoco.Renderer(
+                self._model, height=self.image_height, width=self.image_width
+            )
+        if not self.render_enabled:
+            self._front_camera = None
+        elif self.front_camera is None:
             self._front_camera = mujoco.MjvCamera()
             self._front_camera.lookat[:] = self._model.stat.center
             self._front_camera.distance = self._model.stat.extent * 1.2
@@ -109,6 +115,21 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
     def hand_qpos_ids(self) -> np.ndarray:
         self._require_connected()
         return self._hand_qpos_ids.copy()
+
+    @property
+    def arm_qvel_ids(self) -> np.ndarray:
+        self._require_connected()
+        return self._arm_qvel_ids.copy()
+
+    @property
+    def hand_qvel_ids(self) -> np.ndarray:
+        self._require_connected()
+        return self._hand_qvel_ids.copy()
+
+    @property
+    def arm_actuator_ids(self) -> np.ndarray:
+        self._require_connected()
+        return self._arm_actuator_ids.copy()
 
     @property
     def hand_actuator_ids(self) -> np.ndarray:
@@ -148,6 +169,8 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
             raise RuntimeError("simulation is disconnected")
 
     def _render(self, camera) -> np.ndarray:
+        if self._renderer is None:
+            raise RuntimeError("rendering is disabled for this simulation")
         self._renderer.update_scene(self._data, camera=camera)
         return self._renderer.render().copy()
 

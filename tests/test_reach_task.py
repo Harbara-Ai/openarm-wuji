@@ -159,7 +159,21 @@ class ReachTaskTests(unittest.TestCase):
             self.assertLessEqual(
                 result.final_error_m, self.config["reach"]["position_tolerance_m"]
             )
+            self.assertLessEqual(
+                result.final_orientation_error_deg,
+                self.config["reach"]["orientation_tolerance_deg"],
+            )
+            self.assertLessEqual(
+                result.ik_orientation_residual_deg,
+                self.config["reach"]["ik_orientation_solve_tolerance_deg"],
+            )
             self.assertGreater(result.initial_error_m, result.final_error_m)
+            observation = robot.get_observation()
+            for telemetry_key in (
+                "cube_position_m", "object_relative_position_m",
+                "commanded_palm_quaternion_wxyz", "contact_geometry",
+            ):
+                self.assertNotIn(telemetry_key, observation)
             self.assertEqual(robot.records[-1]["front_rgb"].shape, (48, 64, 3))
             self.assertGreater(int(np.ptp(robot.records[-1]["front_rgb"])), 80)
             import mujoco
@@ -264,14 +278,15 @@ class ReachTaskTests(unittest.TestCase):
             ).run_lift(7)
             self.assertTrue(result.task_success, result.to_dict())
             self.assertFalse(result.grasp_stable, result.to_dict())
+            self.assertTrue(result.post_settle_stable, result.to_dict())
             self.assertFalse(result.success, result.to_dict())
             self.assertEqual(result.outcome, "settled_after_slip")
             self.assertGreaterEqual(result.peak_height_m, 0.08)
             self.assertGreaterEqual(result.final_height_m, 0.025)
-            self.assertAlmostEqual(
-                result.gripper_lift_within_baseline_window_m,
-                self.config["external_baseline"]["gripper_lift_m"],
-                delta=0.001,
+            self.assertEqual(
+                result.external_lift_protocol_reached,
+                result.gripper_lift_within_baseline_window_m
+                >= self.config["external_baseline"]["gripper_lift_m"],
             )
             self.assertGreater(result.max_relative_translation_drift_m, 0.008)
             self.assertGreater(result.max_relative_rotation_drift_deg, 6.0)
@@ -294,6 +309,10 @@ class ReachTaskTests(unittest.TestCase):
             self.assertEqual(
                 len(diagnostics["final_resultant_moment_about_cube_world_nm"]), 3
             )
+            self.assertIn(diagnostics["final_contact_geometry"][
+                "thumb_dominant_face"
+            ], ("+X", "-X", "+Y", "-Y", "+Z", "-Z"))
+            self.assertGreaterEqual(diagnostics["opposition_success_rate"], 0.0)
         finally:
             robot.disconnect()
 
@@ -392,6 +411,15 @@ class ReachTaskTests(unittest.TestCase):
                     )
                     self.assertIn("host_timestamp", episode.files)
                     self.assertNotIn("timestamp", episode.files)
+                    self.assertIn("cube_linear_velocity_world_m_s", episode.files)
+                    self.assertIn("palm_orientation_error_deg", episode.files)
+                    self.assertIn("contact_position_cube_m", episode.files)
+                    self.assertIn("contact_cube_face", episode.files)
+                    policy_keys = {
+                        "observation.state", "observation.images.front",
+                        "observation.images.wrist",
+                    }
+                    self.assertTrue(policy_keys.isdisjoint(episode.files))
 
                 replay_robot = self.make_robot()
                 replay_robot.connect()

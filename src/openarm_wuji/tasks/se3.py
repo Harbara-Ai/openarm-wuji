@@ -30,6 +30,34 @@ def quaternion_multiply(left, right) -> np.ndarray:
     ]))
 
 
+def quaternion_error_rotvec(target_quaternion, current_quaternion) -> np.ndarray:
+    """World-frame shortest rotation vector taking current to target."""
+    target = normalize_quaternion(target_quaternion)
+    current = normalize_quaternion(current_quaternion)
+    delta = quaternion_multiply(target, quaternion_conjugate(current))
+    if delta[0] < 0.0:
+        delta = -delta
+    vector_norm = float(np.linalg.norm(delta[1:]))
+    if vector_norm <= 1e-12:
+        return np.zeros(3)
+    angle = 2.0 * np.arctan2(vector_norm, float(np.clip(delta[0], 0.0, 1.0)))
+    return delta[1:] * (angle / vector_norm)
+
+
+def rotation_vector_to_quaternion(rotation_vector) -> np.ndarray:
+    """Convert a finite axis-angle rotation vector to scalar-first quaternion."""
+    value = np.asarray(rotation_vector, dtype=float)
+    if value.shape != (3,) or not np.isfinite(value).all():
+        raise ValueError("rotation vector must be finite and have shape (3,)")
+    angle = float(np.linalg.norm(value))
+    if angle <= 1e-12:
+        return np.asarray([1.0, 0.0, 0.0, 0.0])
+    half_angle = 0.5 * angle
+    return normalize_quaternion(np.r_[
+        np.cos(half_angle), value * (np.sin(half_angle) / angle)
+    ])
+
+
 def quaternion_to_matrix(quaternion) -> np.ndarray:
     w, x, y, z = normalize_quaternion(quaternion)
     return np.asarray([

@@ -14,7 +14,7 @@ Run the complete seed-7 experiment with:
 ```
 
 The command rebuilds the model, regenerates the annotated GIF and reports, records the
-schema-v2 episode, and requires deterministic replay. `settled_after_slip` is the
+then-current schema-v2 episode, and requires deterministic replay. `settled_after_slip` is the
 expected seed-7 outcome for this branch, so height success does not masquerade as a
 stable grasp.
 
@@ -59,8 +59,9 @@ analytic requirements. Infeasible settings are rejected before robot motion. The
 values are engineering reference limits derived from the requested motion, not CD-WM
 published acceleration/jerk limits or verified hardware limits.
 
-Lift retains the final preload synergy with no first-frame closure jump. IK remains
-position-only and joint targets still pass through the existing 0.015 rad/frame cap.
+At this historical checkpoint, Lift retained the final preload synergy with no
+first-frame closure jump, while IK remained position-only and joint targets passed
+through the existing 0.015 rad/frame cap.
 The actual simulated palm therefore need not satisfy the reference limits. The report
 includes 30 Hz finite-difference measurements: seed 7 reaches 0.2425 m/s, 2.7656 m/s²,
 and 66.06 m/s³, with a maximum position tracking error of 14.34 mm. These are sampled

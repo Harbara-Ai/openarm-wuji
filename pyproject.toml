@@ -12,6 +12,8 @@ dependencies = ["numpy>=1.26,<3"]
 [project.optional-dependencies]
 lerobot = ["lerobot>=0.6.2,<0.7"]
 sim = ["mujoco==3.12.0", "imageio==2.37.0", "pillow>=12,<13"]
+rl = ["mujoco==3.12.0", "gymnasium>=1.3,<2", "stable-baselines3==2.9.0"]
+analysis = ["huggingface-hub>=1.0,<2", "pyarrow>=20,<26", "opencv-python-headless>=4.10,<5"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

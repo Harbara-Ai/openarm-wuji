@@ -6,6 +6,8 @@
   "task_mount_rpy_rad": [3.141592653589793, 0.0, 3.141592653589793],
   "scene": {
     "grasp_site_name": "wuji_grasp_center",
+    "palm_target_quaternion_wxyz": [0.7071067811865476, 0.0, 0.7071067811865475, 0.0],
+    "palm_ik_orientation_compensation_rotvec_rad": [-0.00233138176, -0.0814356115, -0.0000982018604],
     "grasp_site_offset_m": [0.0, 0.0, 0.13],
     "table_center_m": [0.47, 0.0, 0.36],
     "table_half_size_m": [0.41, 0.55, 0.04],
@@ -26,6 +28,9 @@
   "reach": {
     "pregrasp_offset_m": [-0.1, 0.0, 0.05],
     "position_tolerance_m": 0.012,
+    "orientation_tolerance_deg": 2.0,
+    "ik_orientation_solve_tolerance_deg": 0.1,
+    "ik_orientation_weight": 0.2,
     "hold_frames": 5,
     "max_steps": 120,
     "ik_damping": 0.03,
@@ -83,5 +88,11 @@
     "stability_anchor_margin_frames": 2,
     "max_relative_translation_drift_m": 0.008,
     "max_relative_rotation_drift_deg": 6.0
+  },
+  "post_settle": {
+    "window_s": 0.5,
+    "threshold_source": "derived_from_external_8mm_6deg_over_0.5s_window",
+    "rms_relative_translation_speed_m_s": 0.016,
+    "rms_relative_angular_speed_deg_s": 12.0
   }
 }

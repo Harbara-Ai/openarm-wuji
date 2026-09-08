@@ -44,10 +44,11 @@ the cube pose.
 
 The safe pre-grasp target is `100 mm` behind and `50 mm` above the settled cube center.
 This avoids the earlier joint-space trajectory that swept through and pushed the cube.
-Position-only damped least-squares IK uses the translational site Jacobian:
+Six-dimensional damped least-squares IK stacks position with a quaternion
+rotation-vector error and uses both translational and rotational site Jacobians:
 
 ```text
-delta_q = J^T (J J^T + lambda^2 I)^-1 delta_x
+delta_q = J_6D^T (J_6D J_6D^T + lambda^2 I)^-1 [delta_x, w delta_theta]
 ```
 
 IK is solved on a separate kinematic `MjData`, so planning does not mutate the live task
@@ -57,10 +58,14 @@ Cartesian calibration offsets gravity sag measured with the current position act
 and attached hand. This number is simulation-specific and must be recalibrated or
 removed for another controller or real hardware.
 
-Reach succeeds only after the grasp center remains within `12 mm` of the un-biased
-pre-grasp target for five consecutive frames. A failed kinematic solve reports
+The desired palm orientation is held across Reach, Approach/Preload, and Lift. A
+simulation-only rotation-vector compensation separates the desired quaternion from the
+internal IK command so actuator load bias is visible in telemetry rather than hidden by
+a relaxed threshold. Reach succeeds only after the grasp center remains within `12 mm`
+and `2°` of the un-biased target for five consecutive frames. A failed kinematic solve reports
 `ik_unreachable`; a control-loop timeout reports `reach_timeout`.
-The seed-7 reference result is 12 frames, 9.2 mm final error, and 5.7 mm minimum error.
+The current seed-7 Reach result is 12 frames, 9.6 mm final position error, and about
+0.44° final orientation error.
 
 ## Grasp expert and contact labels
 
@@ -94,10 +99,13 @@ the full parameter sweep and negative results.
 ## Lift expert and separated outcomes
 
 Lift keeps the successful hand command active and moves the grasp center upward by
-`120 mm`. The first 0.5 seconds follow quintic minimum-jerk waypoints ending at the external
-protocol's `50 mm` gripper displacement; later waypoints continue toward 120 mm. Joint
-commands remain limited to `0.015 rad` per 30 Hz frame. A Lift-only `27.3 mm` upward
-gravity-compensation calibration makes the measured seed-7 displacement `50.32 mm`.
+`120 mm`. The first 0.5 seconds follow quintic minimum-jerk waypoints ending at the
+external protocol's `50 mm` commanded gripper displacement; later waypoints continue
+toward 120 mm. Joint commands remain limited to `0.015 rad` per 30 Hz frame. With the
+new 6D constraint, the measured seed-7 palm displacement is only `24.97 mm` in that
+window even though the reference endpoint remains 50 mm. This under-tracking is reported
+as an external-protocol failure and must be fixed at the controller layer rather than
+hidden in evaluation.
 Lift keeps the final preload synergy without a closure jump. The reference limits are
 0.19 m/s, 1.16 m/s², and 24.1 m/s³, validated before motion. The two segments join with
 continuous position, velocity, and acceleration. Actual sampled palm motion exceeds
@@ -110,6 +118,8 @@ The evaluator no longer treats height plus multi-finger contact as complete succ
 
 - `task_success` means the cube stayed at least `80 mm` above reset height for 15 frames.
 - `grasp_stable` measures full object-in-palm relative SE(3) drift.
+- `post_settle_stable` independently checks whether the final fixed 0.5-second hold has
+  converged after any initial slip; it never changes `grasp_stable` to true.
 - `contact_diagnostics` stores fingers, contact directions, individual world forces,
   resultant force, and resultant moment, but cannot make a grasp successful.
 
@@ -119,18 +129,18 @@ drift below 8 mm, rotation drift below 6 degrees, and a two-frame Lift anchor ma
 Establishment from the start of closing through preload-settle is recorded separately. These
 thresholds are not claimed to be calibrated for the Wuji Hand.
 
-For seed 7, the preloaded Lift reaches `97.35 mm` and finishes at `95.97 mm`, so
-`task_success=true`. However, maximum object-in-palm drift is `43.96 mm` and `16.92°`.
-The final 15 frames settle to `0.65 mm` and `0.41°`, producing
+For seed 7, the preloaded Lift peaks at `109.92 mm` and finishes at `92.40 mm`, so
+`task_success=true`. However, maximum object-in-palm drift is `52.54 mm` and `17.71°`.
+The final 0.5-second hold settles to `1.39 mm` and `1.60°`, producing
 `grasp_stable=false` and `outcome=settled_after_slip`. It is no longer reported as a
 complete stable-grasp success. The previous five-seed 3/5 count used the old height and
 contact criterion and must be replaced by a new benchmark under the SE(3) taxonomy.
 
-The remaining slip is consistent with poor opposition geometry. Wuji maps `finger1` to
-the thumb; in the previous 3b1189a seed-7 settle frame its mean cube-local contact was near the
-`x=-35 mm, y=-35 mm` edge, while the four fingers are distributed over three other
-faces. This is not the desired thumb-versus-fingers force closure and is the next grasp
-pose/synergy variable to change.
+The new cube-frame contact diagnostics show that fixed palm orientation removes the old
+systematic thumb-corner contact in the first five diagnostic seeds, but other fingers
+are still dominated by a non-opposing `+X` face in three of four completed lifts. Strict
+stability remains 0/5. See `grasp_geometry_diagnostics.md` for the full controlled run
+and the decision to defer pose scan until physical 6D tracking improves.
 
 ## Episode recorder and why this is not ACT data yet
 
@@ -142,10 +152,11 @@ observation_t -> expert action_t -> observation_t+1
 
 All state-machine actions pass through one hook, so the stored action is the bounded
 10-D vector actually returned by `send_action`, not an intended pre-limit command. The
-seed-7 smoke contains 122 transitions: 12 Reach, 31 Approach, 24 Grasp-close, four
-Preload, eight Preload-settle, and 43 Lift. A fresh seeded replay reproduces actions,
-measured state, both world poses, relative SE(3), 1,241 individual contacts, resultants, and simulation
-time exactly; camera rasterization stays within 2/255 intensity levels.
+schema-v3 seed-7 smoke contains 140 transitions: 12 Reach, 41 Approach, 24 Grasp-close,
+four Preload, eight Preload-settle, and 51 Lift (including 15 frames at the final
+reference). A fresh seeded replay reproduces actions, measured state, both world poses,
+relative SE(3), 1,343 individual contacts, resultants, and simulation time exactly;
+camera rasterization stays within 1/255 intensity level in the current run.
 
 Backend wall-clock timestamp, simulation time, velocity diagnostics, cube pose, seed,
 contact force, and failure labels remain task telemetry rather than ad-hoc policy
@@ -155,6 +166,8 @@ not yet an ACT training dataset. See `episode_recording.md` for the schema.
 
 ## Next acceptance test
 
-Run at least 30 fixed seeds with this recorder, preserve successful and failed outcomes,
-and report failure categories. Then convert the successful demonstrations to
-LeRobotDataset and pass a 100-step DataLoader smoke test.
+First restore reliable measured 6D palm tracking during Lift and the physical 50 mm /
+0.5 s motion while keeping the current reference and preload fixed. Repeat the same
+small fixed-seed diagnostic. Only then run a limited yaw/XY grasp-pose scan using
+opposition, edge avoidance, wrench, and SE(3) quality metrics. Do not record ACT
+demonstrations until strict stable successes repeat on unseen seeds.

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "robot_config": "configs/openarm_v2_wuji_left.json",
+  "arm_model": "vendor/openarm_mujoco/v2/pedestal/openarm_pedestal.xml",
+  "arm_side": "left",
+  "task_mount_rpy_rad": [3.141592653589793, 0.0, 3.141592653589793],
+  "scene": {
+    "grasp_site_name": "wuji_grasp_center",
+    "palm_target_quaternion_wxyz": [0.7071067811865476, 0.0, 0.7071067811865475, 0.0],
+    "palm_ik_orientation_compensation_rotvec_rad": [-0.00233138176, -0.0814356115, -0.0000982018604],
+    "grasp_site_offset_m": [0.0, 0.0, 0.13],
+    "table_center_m": [0.47, 0.0, 0.36],
+    "table_half_size_m": [0.41, 0.55, 0.04],
+    "cube_name": "task_cube",
+    "cube_joint_name": "task_cube_freejoint",
+    "cube_half_size_m": [0.027, 0.027, 0.027],
+    "cube_mass_kg": 0.12,
+    "front_camera_name": "task_front",
+    "front_camera_position_m": [1.05, -0.55, 0.9],
+    "front_camera_xyaxes": [0.6897, 0.7241, 0.0, -0.3322, 0.3164, 0.8883]
+  },
+  "reset": {
+    "home_arm_joint_position_rad": [0.0, 0.0, 0.0, 1.570796, 0.0, 0.0, 0.0],
+    "cube_nominal_position_m": [0.48, 0.15, 0.435],
+    "cube_xy_noise_m": [0.025, 0.025],
+    "settle_physics_steps": 250
+  },
+  "reach": {
+    "pregrasp_offset_m": [-0.1, 0.0, 0.05],
+    "position_tolerance_m": 0.012,
+    "orientation_tolerance_deg": 2.0,
+    "ik_orientation_solve_tolerance_deg": 0.1,
+    "ik_orientation_weight": 0.2,
+    "hold_frames": 5,
+    "max_steps": 120,
+    "ik_damping": 0.03,
+    "max_joint_step_rad": 0.06,
+    "max_action_step_rad": 0.06,
+    "ik_max_iterations": 100,
+    "ik_solve_tolerance_m": 0.00001,
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.034]
+  },
+  "grasp": {
+    "target_offset_m": [0.0, 0.0, 0.035],
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.034],
+    "ik_max_iterations": 150,
+    "ik_solve_tolerance_m": 0.00001,
+    "approach_max_steps": 45,
+    "max_action_step_rad": 0.02,
+    "approach_settle_frames": 5,
+    "max_approach_cube_displacement_m": 0.025,
+    "close_synergy_step": 0.03,
+    "max_close_steps": 55,
+    "min_synergy_for_success": 0.7,
+    "preload_target_synergy": 0.76,
+    "preload_synergy_step": 0.01,
+    "preload_max_steps": 30,
+    "preload_settle_max_steps": 30,
+    "min_finger_groups": 2,
+    "min_normal_force_n": 0.1,
+    "contact_hold_frames": 8
+  },
+  "lift": {
+    "grasp_center_delta_m": [0.0, 0.0, 0.12],
+    "gravity_compensation_offset_m": [0.0, 0.0, 0.0273],
+    "ik_max_iterations": 150,
+    "ik_solve_tolerance_m": 0.00001,
+    "max_steps": 120,
+    "max_action_step_rad": 0.015,
+    "s_curve_limits": {
+      "max_velocity_m_s": 0.19,
+      "max_acceleration_m_s2": 1.16,
+      "max_jerk_m_s3": 24.1
+    },
+    "success_height_m": 0.08,
+    "success_hold_frames": 15,
+    "min_finger_groups": 2,
+    "min_normal_force_n": 0.1,
+    "contact_loss_frames": 5,
+    "drop_height_margin_m": 0.025
+  },
+  "external_baseline": {
+    "name": "CD-WM Grasp Dataset rigid lift-success criterion",
+    "source_url": "https://huggingface.co/datasets/BWangCN/cdwm-grasp-dataset",
+    "lift_duration_s": 0.5,
+    "gripper_lift_m": 0.05,
+    "min_object_lift_m": 0.025,
+    "stability_anchor_margin_frames": 2,
+    "max_relative_translation_drift_m": 0.008,
+    "max_relative_rotation_drift_deg": 6.0
+  },
+  "post_settle": {
+    "window_s": 0.5,
+    "threshold_source": "derived_from_external_8mm_6deg_over_0.5s_window",
+    "rms_relative_translation_speed_m_s": 0.016,
+    "rms_relative_angular_speed_deg_s": 12.0
+  }
+}

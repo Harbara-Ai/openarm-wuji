@@ -36,20 +36,36 @@ def _pack_contacts(telemetry_samples: list[dict]) -> dict[str, np.ndarray]:
     offsets = [0]
     fingers: list[str] = []
     positions = []
+    positions_cube = []
     normals = []
+    normals_cube = []
     forces = []
+    forces_cube = []
     torques = []
     moments = []
     normal_forces = []
+    faces = []
+    edge_distances = []
+    corner_distances = []
+    edge_contacts = []
+    corner_contacts = []
     for sample in telemetry_samples:
         for contact in sample["contacts"]:
             fingers.append(str(contact["finger"]))
             positions.append(contact["position_world_m"])
+            positions_cube.append(contact["position_cube_m"])
             normals.append(contact["normal_on_cube_world"])
+            normals_cube.append(contact["normal_on_cube_cube"])
             forces.append(contact["force_on_cube_world_n"])
+            forces_cube.append(contact["force_on_cube_cube_n"])
             torques.append(contact["contact_torque_on_cube_world_nm"])
             moments.append(contact["moment_about_cube_center_world_nm"])
             normal_forces.append(contact["normal_force_n"])
+            faces.append(contact["cube_face"])
+            edge_distances.append(contact["distance_to_nearest_edge_m"])
+            corner_distances.append(contact["distance_to_nearest_corner_m"])
+            edge_contacts.append(contact["edge_contact"])
+            corner_contacts.append(contact["corner_contact"])
         offsets.append(len(fingers))
 
     def vectors(values) -> np.ndarray:
@@ -59,11 +75,23 @@ def _pack_contacts(telemetry_samples: list[dict]) -> dict[str, np.ndarray]:
         "contact_sample_offsets": np.asarray(offsets, dtype=np.int64),
         "contact_finger": np.asarray(fingers, dtype="U16"),
         "contact_position_world_m": vectors(positions),
+        "contact_position_cube_m": vectors(positions_cube),
         "contact_normal_on_cube_world": vectors(normals),
+        "contact_normal_on_cube_cube": vectors(normals_cube),
         "contact_force_on_cube_world_n": vectors(forces),
+        "contact_force_on_cube_cube_n": vectors(forces_cube),
         "contact_torque_on_cube_world_nm": vectors(torques),
         "contact_moment_about_cube_world_nm": vectors(moments),
         "contact_normal_force_n": np.asarray(normal_forces, dtype=float),
+        "contact_cube_face": np.asarray(faces, dtype="U2"),
+        "contact_distance_to_nearest_edge_m": np.asarray(
+            edge_distances, dtype=float
+        ),
+        "contact_distance_to_nearest_corner_m": np.asarray(
+            corner_distances, dtype=float
+        ),
+        "contact_edge": np.asarray(edge_contacts, dtype=bool),
+        "contact_corner": np.asarray(corner_contacts, dtype=bool),
     }
 
 
@@ -75,7 +103,7 @@ def _contact_slice(episode, sample_index: int) -> slice:
 class CausalEpisodeRecorder:
     """Record obs_t, bounded action_t, and the exact resulting obs_t+1."""
 
-    SCHEMA_VERSION = 2
+    SCHEMA_VERSION = 3
 
     def __init__(self, *, task_name: str, control_hz: float,
                  task_description: str = "", episode_index: int = 0):
@@ -168,6 +196,9 @@ class CausalEpisodeRecorder:
             "outcome_success": np.asarray(bool(self.outcome.get("success", False))),
             "task_success": np.asarray(bool(self.outcome.get("task_success", False))),
             "grasp_stable": np.asarray(bool(self.outcome.get("grasp_stable", False))),
+            "post_settle_stable": np.asarray(bool(
+                self.outcome.get("post_settle_stable", False)
+            )),
             "outcome": np.asarray(self.outcome.get("outcome") or ""),
             "failure_reason": np.asarray(self.outcome.get("failure_reason") or ""),
             "outcome_json": np.asarray(json.dumps(self.outcome, separators=(",", ":"))),
@@ -208,6 +239,57 @@ class CausalEpisodeRecorder:
             ]),
             "next_grasp_center_quaternion_wxyz": np.asarray([
                 item["grasp_center_quaternion_wxyz"] for item in next_telemetry
+            ]),
+            "commanded_palm_quaternion_wxyz": np.asarray([
+                item["commanded_palm_quaternion_wxyz"] for item in telemetry
+            ]),
+            "next_commanded_palm_quaternion_wxyz": np.asarray([
+                item["commanded_palm_quaternion_wxyz"] for item in next_telemetry
+            ]),
+            "ik_command_palm_quaternion_wxyz": np.asarray([
+                item["ik_command_palm_quaternion_wxyz"] for item in telemetry
+            ]),
+            "next_ik_command_palm_quaternion_wxyz": np.asarray([
+                item["ik_command_palm_quaternion_wxyz"] for item in next_telemetry
+            ]),
+            "palm_orientation_error_rotvec_rad": np.asarray([
+                item["palm_orientation_error_rotvec_rad"] for item in telemetry
+            ]),
+            "next_palm_orientation_error_rotvec_rad": np.asarray([
+                item["palm_orientation_error_rotvec_rad"] for item in next_telemetry
+            ]),
+            "palm_orientation_error_deg": np.asarray([
+                item["palm_orientation_error_deg"] for item in telemetry
+            ]),
+            "next_palm_orientation_error_deg": np.asarray([
+                item["palm_orientation_error_deg"] for item in next_telemetry
+            ]),
+            "cube_linear_velocity_world_m_s": np.asarray([
+                item["cube_linear_velocity_world_m_s"] for item in telemetry
+            ]),
+            "next_cube_linear_velocity_world_m_s": np.asarray([
+                item["cube_linear_velocity_world_m_s"] for item in next_telemetry
+            ]),
+            "cube_angular_velocity_world_rad_s": np.asarray([
+                item["cube_angular_velocity_world_rad_s"] for item in telemetry
+            ]),
+            "next_cube_angular_velocity_world_rad_s": np.asarray([
+                item["cube_angular_velocity_world_rad_s"] for item in next_telemetry
+            ]),
+            "grasp_center_linear_velocity_world_m_s": np.asarray([
+                item["grasp_center_linear_velocity_world_m_s"] for item in telemetry
+            ]),
+            "next_grasp_center_linear_velocity_world_m_s": np.asarray([
+                item["grasp_center_linear_velocity_world_m_s"]
+                for item in next_telemetry
+            ]),
+            "grasp_center_angular_velocity_world_rad_s": np.asarray([
+                item["grasp_center_angular_velocity_world_rad_s"]
+                for item in telemetry
+            ]),
+            "next_grasp_center_angular_velocity_world_rad_s": np.asarray([
+                item["grasp_center_angular_velocity_world_rad_s"]
+                for item in next_telemetry
             ]),
             "object_relative_position": np.asarray([
                 item["object_relative_position_m"] for item in telemetry
@@ -262,6 +344,22 @@ class CausalEpisodeRecorder:
                 "next_grasp_center_position": (samples, 3),
                 "grasp_center_quaternion_wxyz": (samples, 4),
                 "next_grasp_center_quaternion_wxyz": (samples, 4),
+                "commanded_palm_quaternion_wxyz": (samples, 4),
+                "next_commanded_palm_quaternion_wxyz": (samples, 4),
+                "ik_command_palm_quaternion_wxyz": (samples, 4),
+                "next_ik_command_palm_quaternion_wxyz": (samples, 4),
+                "palm_orientation_error_rotvec_rad": (samples, 3),
+                "next_palm_orientation_error_rotvec_rad": (samples, 3),
+                "palm_orientation_error_deg": (samples,),
+                "next_palm_orientation_error_deg": (samples,),
+                "cube_linear_velocity_world_m_s": (samples, 3),
+                "next_cube_linear_velocity_world_m_s": (samples, 3),
+                "cube_angular_velocity_world_rad_s": (samples, 3),
+                "next_cube_angular_velocity_world_rad_s": (samples, 3),
+                "grasp_center_linear_velocity_world_m_s": (samples, 3),
+                "next_grasp_center_linear_velocity_world_m_s": (samples, 3),
+                "grasp_center_angular_velocity_world_rad_s": (samples, 3),
+                "next_grasp_center_angular_velocity_world_rad_s": (samples, 3),
                 "object_relative_position": (samples, 3),
                 "next_object_relative_position": (samples, 3),
                 "object_relative_quaternion_wxyz": (samples, 4),
@@ -289,6 +387,10 @@ class CausalEpisodeRecorder:
                 "next_grasp_center_quaternion_wxyz",
                 "object_relative_quaternion_wxyz",
                 "next_object_relative_quaternion_wxyz",
+                "commanded_palm_quaternion_wxyz",
+                "next_commanded_palm_quaternion_wxyz",
+                "ik_command_palm_quaternion_wxyz",
+                "next_ik_command_palm_quaternion_wxyz",
             ):
                 norms = np.linalg.norm(episode[key], axis=1)
                 if not np.allclose(norms, 1.0, atol=1e-9):
@@ -302,16 +404,25 @@ class CausalEpisodeRecorder:
             contact_fields = {
                 "contact_finger": (contact_count,),
                 "contact_position_world_m": (contact_count, 3),
+                "contact_position_cube_m": (contact_count, 3),
                 "contact_normal_on_cube_world": (contact_count, 3),
+                "contact_normal_on_cube_cube": (contact_count, 3),
                 "contact_force_on_cube_world_n": (contact_count, 3),
+                "contact_force_on_cube_cube_n": (contact_count, 3),
                 "contact_torque_on_cube_world_nm": (contact_count, 3),
                 "contact_moment_about_cube_world_nm": (contact_count, 3),
                 "contact_normal_force_n": (contact_count,),
+                "contact_cube_face": (contact_count,),
+                "contact_distance_to_nearest_edge_m": (contact_count,),
+                "contact_distance_to_nearest_corner_m": (contact_count,),
+                "contact_edge": (contact_count,),
+                "contact_corner": (contact_count,),
             }
             for key, shape in contact_fields.items():
                 if episode[key].shape != shape:
                     raise ValueError(f"invalid {key} shape: {episode[key].shape}")
-                if key != "contact_finger" and not np.isfinite(episode[key]).all():
+                if key not in ("contact_finger", "contact_cube_face") \
+                        and not np.isfinite(episode[key]).all():
                     raise ValueError(f"{key} contains NaN or infinity")
             if contact_count:
                 normal_norms = np.linalg.norm(
@@ -319,6 +430,11 @@ class CausalEpisodeRecorder:
                 )
                 if not np.allclose(normal_norms, 1.0, atol=1e-9):
                     raise ValueError("contact normals are not unit vectors")
+                cube_normal_norms = np.linalg.norm(
+                    episode["contact_normal_on_cube_cube"], axis=1
+                )
+                if not np.allclose(cube_normal_norms, 1.0, atol=1e-9):
+                    raise ValueError("cube-frame contact normals are not unit vectors")
 
             for prefix in ("", "next_"):
                 for index in range(samples):

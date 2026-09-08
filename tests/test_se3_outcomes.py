@@ -7,6 +7,10 @@ from openarm_wuji.tasks import (
     relative_pose,
     rotation_geodesic_angle_deg,
 )
+from openarm_wuji.tasks.se3 import (
+    quaternion_error_rotvec,
+    rotation_vector_to_quaternion,
+)
 
 
 BASELINE = {
@@ -65,6 +69,13 @@ class SE3AndOutcomeTests(unittest.TestCase):
         self.assertAlmostEqual(
             rotation_geodesic_angle_deg(quarter_turn, -quarter_turn), 0.0
         )
+        rotation_vector = quaternion_error_rotvec(
+            quarter_turn, [1.0, 0.0, 0.0, 0.0]
+        )
+        np.testing.assert_allclose(rotation_vector, [0.0, 0.0, np.pi / 2])
+        np.testing.assert_allclose(
+            rotation_vector_to_quaternion(rotation_vector), quarter_turn
+        )
 
     def test_stable_grasp_is_rigid_success(self):
         samples = [
@@ -74,6 +85,7 @@ class SE3AndOutcomeTests(unittest.TestCase):
         result = evaluate(samples)
         self.assertTrue(result["task_success"])
         self.assertTrue(result["grasp_stable"])
+        self.assertTrue(result["post_settle_stable"])
         self.assertEqual(result["outcome"], "rigid_success")
 
     def test_translation_slip_is_not_stable(self):
@@ -87,6 +99,7 @@ class SE3AndOutcomeTests(unittest.TestCase):
         ]
         result = evaluate(samples)
         self.assertFalse(result["grasp_stable"])
+        self.assertTrue(result["post_settle_stable"])
         self.assertGreater(result["max_relative_translation_drift_m"], 0.008)
         self.assertEqual(result["outcome"], "settled_after_slip")
 
@@ -101,6 +114,7 @@ class SE3AndOutcomeTests(unittest.TestCase):
         ]
         result = evaluate(samples)
         self.assertFalse(result["grasp_stable"])
+        self.assertTrue(result["post_settle_stable"])
         self.assertGreater(result["max_relative_rotation_drift_deg"], 6.0)
         self.assertEqual(result["outcome"], "settled_after_slip")
 
@@ -133,6 +147,8 @@ class SE3AndOutcomeTests(unittest.TestCase):
         result = evaluate(samples)
         self.assertFalse(result["grasp_stable"])
         self.assertFalse(result["final_window_stable"])
+        self.assertFalse(result["post_settle_stable"])
+        self.assertTrue(result["continuous_slip"])
         self.assertEqual(result["outcome"], "persistent_slip")
 
 
