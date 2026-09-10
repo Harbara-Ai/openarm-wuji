@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="520">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="30" font-size="20">Contact placement vs tangential slip</text>
+<line x1="90" y1="450" x2="800" y2="450" stroke="black"/>
+<line x1="90" y1="60" x2="90" y2="450" stroke="black"/>
+<text x="330" y="500" font-size="14">Mean edge margin (mm)</text>
+<text x="12" y="255" font-size="14" transform="rotate(-90 12 255)">Mean tangential slip (mm/s)</text>
+<circle cx="139.5" cy="318.4" r="4" fill="#4c78a8" opacity="0.75"/>
+<circle cx="137.5" cy="122.3" r="4" fill="#4c78a8" opacity="0.75"/>
+<circle cx="633.6" cy="330.8" r="4" fill="#4c78a8" opacity="0.75"/>
+<circle cx="614.0" cy="225.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="194.1" cy="316.9" r="4" fill="#999" opacity="0.75"/>
+<circle cx="669.0" cy="252.2" r="4" fill="#999" opacity="0.75"/>
+<circle cx="105.0" cy="230.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="511.0" cy="380.1" r="4" fill="#999" opacity="0.75"/>
+<circle cx="113.4" cy="132.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="111.6" cy="209.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="516.6" cy="435.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="457.4" cy="409.1" r="4" fill="#999" opacity="0.75"/>
+<circle cx="113.8" cy="118.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="117.2" cy="172.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="143.6" cy="167.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="130.7" cy="149.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="130.8" cy="208.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="108.4" cy="394.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="471.7" cy="231.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="413.7" cy="348.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="627.4" cy="349.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="543.3" cy="378.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="536.1" cy="248.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="626.5" cy="310.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="552.0" cy="432.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="366.5" cy="338.3" r="4" fill="#999" opacity="0.75"/>
+<circle cx="113.3" cy="270.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="121.8" cy="75.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="124.5" cy="127.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="268.0" cy="394.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="497.7" cy="403.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="532.3" cy="403.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="538.6" cy="396.1" r="4" fill="#999" opacity="0.75"/>
+<circle cx="127.7" cy="251.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="688.0" cy="259.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="785.0" cy="352.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="594.2" cy="428.3" r="4" fill="#999" opacity="0.75"/>
+<circle cx="657.8" cy="394.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="667.8" cy="380.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="111.3" cy="208.6" r="4" fill="#999" opacity="0.75"/>
+<circle cx="533.8" cy="376.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="746.8" cy="356.7" r="4" fill="#999" opacity="0.75"/>
+<circle cx="116.0" cy="336.3" r="4" fill="#999" opacity="0.75"/>
+<circle cx="153.3" cy="151.9" r="4" fill="#999" opacity="0.75"/>
+<circle cx="107.5" cy="262.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="553.6" cy="312.4" r="4" fill="#999" opacity="0.75"/>
+<circle cx="141.3" cy="353.8" r="4" fill="#999" opacity="0.75"/>
+<circle cx="424.6" cy="282.5" r="4" fill="#999" opacity="0.75"/>
+<circle cx="106.3" cy="389.4" r="4" fill="#999" opacity="0.75"/>
+<circle cx="177.1" cy="229.9" r="4" fill="#999" opacity="0.75"/>
+<text x="90" y="470" font-size="11">0.097</text>
+<text x="760" y="470" font-size="11">6.73</text>
+<text x="45" y="445" font-size="11">3.83</text>
+<text x="45" y="80" font-size="11">10.6</text>
+</svg>

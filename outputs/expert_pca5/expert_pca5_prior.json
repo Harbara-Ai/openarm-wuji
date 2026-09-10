@@ -1,0 +1,1372 @@
+{
+  "representation": "expert_pca5_absolute",
+  "dataset": "yeeeiii111/wuji-pick-and-place",
+  "dataset_revision": "211283b732d73c3d10c005ebc8191af2d63673cf",
+  "source_episode_ids": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89
+  ],
+  "joint_mapping": {
+    "source": "dataset info.json names=null; official Wuji flat-array convention",
+    "model_path": "D:/yl/embodied ai/openarm-wuji-learning/outputs/reach_grasp_lift/reach_grasp_lift.mjb",
+    "left_hand_dataset_slice": "observation.state/action[14:34]",
+    "muJoCo_hand_order_source": "configs/wuji_hand_left_synergies.json",
+    "mapping_proven": true,
+    "recorder_reorder_uncertainty": "Parquet does not embed per-channel names. The mapping is exact against the current MuJoCo model and official Wuji order, but the external dataset recorder's internal channel construction cannot be proven from the file alone.",
+    "rows": [
+      {
+        "expert_index_global_54d": 14,
+        "expert_index_left_hand_20d": 0,
+        "expert_assumed_joint_name": "left_finger1_joint1",
+        "mujoco_joint_name": "wuji_left_finger1_joint1",
+        "mujoco_joint_id": 7,
+        "mapped_index": 0,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 15,
+        "expert_index_left_hand_20d": 1,
+        "expert_assumed_joint_name": "left_finger1_joint2",
+        "mujoco_joint_name": "wuji_left_finger1_joint2",
+        "mujoco_joint_id": 8,
+        "mapped_index": 1,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 16,
+        "expert_index_left_hand_20d": 2,
+        "expert_assumed_joint_name": "left_finger1_joint3",
+        "mujoco_joint_name": "wuji_left_finger1_joint3",
+        "mujoco_joint_id": 9,
+        "mapped_index": 2,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 17,
+        "expert_index_left_hand_20d": 3,
+        "expert_assumed_joint_name": "left_finger1_joint4",
+        "mujoco_joint_name": "wuji_left_finger1_joint4",
+        "mujoco_joint_id": 10,
+        "mapped_index": 3,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 18,
+        "expert_index_left_hand_20d": 4,
+        "expert_assumed_joint_name": "left_finger2_joint1",
+        "mujoco_joint_name": "wuji_left_finger2_joint1",
+        "mujoco_joint_id": 11,
+        "mapped_index": 4,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 19,
+        "expert_index_left_hand_20d": 5,
+        "expert_assumed_joint_name": "left_finger2_joint2",
+        "mujoco_joint_name": "wuji_left_finger2_joint2",
+        "mujoco_joint_id": 12,
+        "mapped_index": 5,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 20,
+        "expert_index_left_hand_20d": 6,
+        "expert_assumed_joint_name": "left_finger2_joint3",
+        "mujoco_joint_name": "wuji_left_finger2_joint3",
+        "mujoco_joint_id": 13,
+        "mapped_index": 6,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 21,
+        "expert_index_left_hand_20d": 7,
+        "expert_assumed_joint_name": "left_finger2_joint4",
+        "mujoco_joint_name": "wuji_left_finger2_joint4",
+        "mujoco_joint_id": 14,
+        "mapped_index": 7,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 22,
+        "expert_index_left_hand_20d": 8,
+        "expert_assumed_joint_name": "left_finger3_joint1",
+        "mujoco_joint_name": "wuji_left_finger3_joint1",
+        "mujoco_joint_id": 15,
+        "mapped_index": 8,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 23,
+        "expert_index_left_hand_20d": 9,
+        "expert_assumed_joint_name": "left_finger3_joint2",
+        "mujoco_joint_name": "wuji_left_finger3_joint2",
+        "mujoco_joint_id": 16,
+        "mapped_index": 9,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 24,
+        "expert_index_left_hand_20d": 10,
+        "expert_assumed_joint_name": "left_finger3_joint3",
+        "mujoco_joint_name": "wuji_left_finger3_joint3",
+        "mujoco_joint_id": 17,
+        "mapped_index": 10,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 25,
+        "expert_index_left_hand_20d": 11,
+        "expert_assumed_joint_name": "left_finger3_joint4",
+        "mujoco_joint_name": "wuji_left_finger3_joint4",
+        "mujoco_joint_id": 18,
+        "mapped_index": 11,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 26,
+        "expert_index_left_hand_20d": 12,
+        "expert_assumed_joint_name": "left_finger4_joint1",
+        "mujoco_joint_name": "wuji_left_finger4_joint1",
+        "mujoco_joint_id": 19,
+        "mapped_index": 12,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 27,
+        "expert_index_left_hand_20d": 13,
+        "expert_assumed_joint_name": "left_finger4_joint2",
+        "mujoco_joint_name": "wuji_left_finger4_joint2",
+        "mujoco_joint_id": 20,
+        "mapped_index": 13,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 28,
+        "expert_index_left_hand_20d": 14,
+        "expert_assumed_joint_name": "left_finger4_joint3",
+        "mujoco_joint_name": "wuji_left_finger4_joint3",
+        "mujoco_joint_id": 21,
+        "mapped_index": 14,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 29,
+        "expert_index_left_hand_20d": 15,
+        "expert_assumed_joint_name": "left_finger4_joint4",
+        "mujoco_joint_name": "wuji_left_finger4_joint4",
+        "mujoco_joint_id": 22,
+        "mapped_index": 15,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 30,
+        "expert_index_left_hand_20d": 16,
+        "expert_assumed_joint_name": "left_finger5_joint1",
+        "mujoco_joint_name": "wuji_left_finger5_joint1",
+        "mujoco_joint_id": 23,
+        "mapped_index": 16,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 31,
+        "expert_index_left_hand_20d": 17,
+        "expert_assumed_joint_name": "left_finger5_joint2",
+        "mujoco_joint_name": "wuji_left_finger5_joint2",
+        "mujoco_joint_id": 24,
+        "mapped_index": 17,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 32,
+        "expert_index_left_hand_20d": 18,
+        "expert_assumed_joint_name": "left_finger5_joint3",
+        "mujoco_joint_name": "wuji_left_finger5_joint3",
+        "mujoco_joint_id": 25,
+        "mapped_index": 18,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      },
+      {
+        "expert_index_global_54d": 33,
+        "expert_index_left_hand_20d": 19,
+        "expert_assumed_joint_name": "left_finger5_joint4",
+        "mujoco_joint_name": "wuji_left_finger5_joint4",
+        "mujoco_joint_id": 26,
+        "mapped_index": 19,
+        "sign": 1,
+        "unit": "rad",
+        "exact_name_match": true
+      }
+    ]
+  },
+  "phase_metadata": {
+    "dataset": "yeeeiii111/wuji-pick-and-place",
+    "dataset_revision": "211283b732d73c3d10c005ebc8191af2d63673cf",
+    "fps": 30.0,
+    "phase_definition": {
+      "start": "frame 0 (pregrasp context)",
+      "close_start": "first sustained 12% action-excursion crossing, floor 0.08 rad",
+      "grasp_established": "inferred close + 3 frames; start of one-second early-hold window",
+      "end": "one-second early-hold window end",
+      "contact_source": "none; dataset has no tactile/contact field"
+    },
+    "episodes": [
+      {
+        "episode_id": 60,
+        "start_frame": 0,
+        "close_start_frame": 66,
+        "grasp_established_frame": 183,
+        "end_frame_exclusive": 213,
+        "duration_s": 7.1,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 61,
+        "start_frame": 0,
+        "close_start_frame": 30,
+        "grasp_established_frame": 203,
+        "end_frame_exclusive": 233,
+        "duration_s": 7.766666666666667,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 62,
+        "start_frame": 0,
+        "close_start_frame": 37,
+        "grasp_established_frame": 277,
+        "end_frame_exclusive": 307,
+        "duration_s": 10.233333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 63,
+        "start_frame": 0,
+        "close_start_frame": 18,
+        "grasp_established_frame": 165,
+        "end_frame_exclusive": 195,
+        "duration_s": 6.5,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 64,
+        "start_frame": 0,
+        "close_start_frame": 24,
+        "grasp_established_frame": 180,
+        "end_frame_exclusive": 210,
+        "duration_s": 7.0,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 65,
+        "start_frame": 0,
+        "close_start_frame": 48,
+        "grasp_established_frame": 201,
+        "end_frame_exclusive": 231,
+        "duration_s": 7.7,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 66,
+        "start_frame": 0,
+        "close_start_frame": 38,
+        "grasp_established_frame": 179,
+        "end_frame_exclusive": 209,
+        "duration_s": 6.966666666666667,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 67,
+        "start_frame": 0,
+        "close_start_frame": 31,
+        "grasp_established_frame": 301,
+        "end_frame_exclusive": 331,
+        "duration_s": 11.033333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 68,
+        "start_frame": 0,
+        "close_start_frame": 34,
+        "grasp_established_frame": 147,
+        "end_frame_exclusive": 177,
+        "duration_s": 5.9,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 69,
+        "start_frame": 0,
+        "close_start_frame": 32,
+        "grasp_established_frame": 78,
+        "end_frame_exclusive": 108,
+        "duration_s": 3.6,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 70,
+        "start_frame": 0,
+        "close_start_frame": 15,
+        "grasp_established_frame": 178,
+        "end_frame_exclusive": 208,
+        "duration_s": 6.933333333333334,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 71,
+        "start_frame": 0,
+        "close_start_frame": 16,
+        "grasp_established_frame": 138,
+        "end_frame_exclusive": 168,
+        "duration_s": 5.6,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 72,
+        "start_frame": 0,
+        "close_start_frame": 20,
+        "grasp_established_frame": 170,
+        "end_frame_exclusive": 200,
+        "duration_s": 6.666666666666667,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 73,
+        "start_frame": 0,
+        "close_start_frame": 25,
+        "grasp_established_frame": 157,
+        "end_frame_exclusive": 187,
+        "duration_s": 6.233333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 74,
+        "start_frame": 0,
+        "close_start_frame": 23,
+        "grasp_established_frame": 167,
+        "end_frame_exclusive": 197,
+        "duration_s": 6.566666666666666,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 75,
+        "start_frame": 0,
+        "close_start_frame": 18,
+        "grasp_established_frame": 147,
+        "end_frame_exclusive": 177,
+        "duration_s": 5.9,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 76,
+        "start_frame": 0,
+        "close_start_frame": 26,
+        "grasp_established_frame": 132,
+        "end_frame_exclusive": 162,
+        "duration_s": 5.4,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 77,
+        "start_frame": 0,
+        "close_start_frame": 38,
+        "grasp_established_frame": 172,
+        "end_frame_exclusive": 202,
+        "duration_s": 6.733333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 78,
+        "start_frame": 0,
+        "close_start_frame": 34,
+        "grasp_established_frame": 134,
+        "end_frame_exclusive": 164,
+        "duration_s": 5.466666666666667,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 79,
+        "start_frame": 0,
+        "close_start_frame": 19,
+        "grasp_established_frame": 182,
+        "end_frame_exclusive": 212,
+        "duration_s": 7.066666666666666,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 80,
+        "start_frame": 0,
+        "close_start_frame": 20,
+        "grasp_established_frame": 145,
+        "end_frame_exclusive": 175,
+        "duration_s": 5.833333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 81,
+        "start_frame": 0,
+        "close_start_frame": 26,
+        "grasp_established_frame": 136,
+        "end_frame_exclusive": 166,
+        "duration_s": 5.533333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 82,
+        "start_frame": 0,
+        "close_start_frame": 16,
+        "grasp_established_frame": 135,
+        "end_frame_exclusive": 165,
+        "duration_s": 5.5,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 83,
+        "start_frame": 0,
+        "close_start_frame": 35,
+        "grasp_established_frame": 142,
+        "end_frame_exclusive": 172,
+        "duration_s": 5.733333333333333,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 84,
+        "start_frame": 0,
+        "close_start_frame": 24,
+        "grasp_established_frame": 110,
+        "end_frame_exclusive": 140,
+        "duration_s": 4.666666666666667,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 85,
+        "start_frame": 0,
+        "close_start_frame": 23,
+        "grasp_established_frame": 122,
+        "end_frame_exclusive": 152,
+        "duration_s": 5.066666666666666,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 86,
+        "start_frame": 0,
+        "close_start_frame": 23,
+        "grasp_established_frame": 109,
+        "end_frame_exclusive": 139,
+        "duration_s": 4.633333333333334,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 87,
+        "start_frame": 0,
+        "close_start_frame": 28,
+        "grasp_established_frame": 238,
+        "end_frame_exclusive": 268,
+        "duration_s": 8.933333333333334,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 88,
+        "start_frame": 0,
+        "close_start_frame": 16,
+        "grasp_established_frame": 250,
+        "end_frame_exclusive": 280,
+        "duration_s": 9.333333333333334,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      },
+      {
+        "episode_id": 89,
+        "start_frame": 0,
+        "close_start_frame": 20,
+        "grasp_established_frame": 51,
+        "end_frame_exclusive": 81,
+        "duration_s": 2.7,
+        "segmentation_source": "Parquet action activity heuristic",
+        "video_role": "optional interval QA only; no joint values used"
+      }
+    ]
+  },
+  "mean_vector_rad": [
+    0.8237270735348655,
+    -0.12486856174397748,
+    0.9980143248590071,
+    0.0,
+    0.49277505990987597,
+    0.04103626486849341,
+    0.6256928769681461,
+    -0.24890712302241322,
+    0.4522438189878371,
+    0.18199306700780007,
+    0.6058978929271773,
+    0.411655368959235,
+    0.44369184513598536,
+    0.19131553199499793,
+    0.7542888446470914,
+    0.12024573156238572,
+    0.054513114408659025,
+    0.349875048974388,
+    0.47259712676936333,
+    0.37477393887035265
+  ],
+  "basis_shape": [
+    20,
+    5
+  ],
+  "principal_components": [
+    {
+      "pc": 1,
+      "explained_variance_ratio": 0.7032753119246345,
+      "cumulative_explained_variance_ratio": 0.7032753119246345,
+      "vector": [
+        0.3121049911244848,
+        0.07289603376312592,
+        -0.1404002191298858,
+        0.0,
+        0.21993770207403662,
+        0.06942511497171067,
+        0.30215709933380946,
+        0.11201167360187644,
+        0.3445496654096516,
+        0.037620732699001236,
+        0.2750464215426585,
+        0.05103954041899979,
+        0.3325565591445487,
+        0.03573958121206085,
+        0.4515455972264224,
+        -0.05497613118794726,
+        0.1583674290655232,
+        0.013763917851807746,
+        0.41382836653341404,
+        0.08264686907554872
+      ],
+      "by_finger": {
+        "thumb": [
+          0.3121049911244848,
+          0.07289603376312592,
+          -0.1404002191298858,
+          0.0
+        ],
+        "finger2": [
+          0.21993770207403662,
+          0.06942511497171067,
+          0.30215709933380946,
+          0.11201167360187644
+        ],
+        "middle": [
+          0.3445496654096516,
+          0.037620732699001236,
+          0.2750464215426585,
+          0.05103954041899979
+        ],
+        "ring": [
+          0.3325565591445487,
+          0.03573958121206085,
+          0.4515455972264224,
+          -0.05497613118794726
+        ],
+        "little": [
+          0.1583674290655232,
+          0.013763917851807746,
+          0.41382836653341404,
+          0.08264686907554872
+        ]
+      }
+    },
+    {
+      "pc": 2,
+      "explained_variance_ratio": 0.10014824388006865,
+      "cumulative_explained_variance_ratio": 0.8034235558047031,
+      "vector": [
+        -0.10965731550350878,
+        -0.07466243933264678,
+        0.16725390899416395,
+        -2.7755575615628914e-17,
+        -0.23625537443911931,
+        -0.050520418797950044,
+        0.12046890487536556,
+        -0.26204554607936714,
+        -0.40122343548968936,
+        0.015947361303036763,
+        0.4620143522166193,
+        -0.16189136727598216,
+        -0.32930352497527315,
+        0.012107854552551846,
+        0.469996191092216,
+        -0.24205495537095675,
+        -0.11549913622869873,
+        0.006126945335644063,
+        0.06126317428496571,
+        0.08228939250906156
+      ],
+      "by_finger": {
+        "thumb": [
+          -0.10965731550350878,
+          -0.07466243933264678,
+          0.16725390899416395,
+          -2.7755575615628914e-17
+        ],
+        "finger2": [
+          -0.23625537443911931,
+          -0.050520418797950044,
+          0.12046890487536556,
+          -0.26204554607936714
+        ],
+        "middle": [
+          -0.40122343548968936,
+          0.015947361303036763,
+          0.4620143522166193,
+          -0.16189136727598216
+        ],
+        "ring": [
+          -0.32930352497527315,
+          0.012107854552551846,
+          0.469996191092216,
+          -0.24205495537095675
+        ],
+        "little": [
+          -0.11549913622869873,
+          0.006126945335644063,
+          0.06126317428496571,
+          0.08228939250906156
+        ]
+      }
+    },
+    {
+      "pc": 3,
+      "explained_variance_ratio": 0.09245332831066017,
+      "cumulative_explained_variance_ratio": 0.8958768841153633,
+      "vector": [
+        -0.3542806629711247,
+        0.02449164482201014,
+        0.4479960896286075,
+        -8.326672684688674e-17,
+        0.3875867656920975,
+        0.08702791965143267,
+        -0.26030837938155754,
+        -0.09412131302871717,
+        0.34374000031440544,
+        0.05205342135766065,
+        0.11474231530518764,
+        -0.4201088918408485,
+        0.18666388150593038,
+        0.05285076861719045,
+        0.028325621781028133,
+        -0.2632490931408835,
+        -0.04019835279491941,
+        -0.013928906571071235,
+        -0.08951294811067753,
+        -0.10335710223473074
+      ],
+      "by_finger": {
+        "thumb": [
+          -0.3542806629711247,
+          0.02449164482201014,
+          0.4479960896286075,
+          -8.326672684688674e-17
+        ],
+        "finger2": [
+          0.3875867656920975,
+          0.08702791965143267,
+          -0.26030837938155754,
+          -0.09412131302871717
+        ],
+        "middle": [
+          0.34374000031440544,
+          0.05205342135766065,
+          0.11474231530518764,
+          -0.4201088918408485
+        ],
+        "ring": [
+          0.18666388150593038,
+          0.05285076861719045,
+          0.028325621781028133,
+          -0.2632490931408835
+        ],
+        "little": [
+          -0.04019835279491941,
+          -0.013928906571071235,
+          -0.08951294811067753,
+          -0.10335710223473074
+        ]
+      }
+    },
+    {
+      "pc": 4,
+      "explained_variance_ratio": 0.03398918668927942,
+      "cumulative_explained_variance_ratio": 0.9298660708046427,
+      "vector": [
+        -0.16601901512096265,
+        0.023191812566280372,
+        0.3814960354461995,
+        -1.1102230246251565e-16,
+        -0.17352788311417386,
+        -0.20727638786309555,
+        0.7598033202056756,
+        -0.12953059085893254,
+        0.16956459086342263,
+        -0.12546076718280286,
+        0.01667479268662068,
+        0.08336544238406121,
+        0.14676877963670987,
+        -0.03415407671553736,
+        -0.23317224277669302,
+        0.0436781890701972,
+        0.01454128873287431,
+        0.06975922722805196,
+        -0.15114456820384164,
+        -0.024049544161791392
+      ],
+      "by_finger": {
+        "thumb": [
+          -0.16601901512096265,
+          0.023191812566280372,
+          0.3814960354461995,
+          -1.1102230246251565e-16
+        ],
+        "finger2": [
+          -0.17352788311417386,
+          -0.20727638786309555,
+          0.7598033202056756,
+          -0.12953059085893254
+        ],
+        "middle": [
+          0.16956459086342263,
+          -0.12546076718280286,
+          0.01667479268662068,
+          0.08336544238406121
+        ],
+        "ring": [
+          0.14676877963670987,
+          -0.03415407671553736,
+          -0.23317224277669302,
+          0.0436781890701972
+        ],
+        "little": [
+          0.01454128873287431,
+          0.06975922722805196,
+          -0.15114456820384164,
+          -0.024049544161791392
+        ]
+      }
+    },
+    {
+      "pc": 5,
+      "explained_variance_ratio": 0.018412263156258917,
+      "cumulative_explained_variance_ratio": 0.9482783339609016,
+      "vector": [
+        -0.21778367348680638,
+        -0.025484419080894688,
+        0.19896350677184552,
+        0.0,
+        -0.18070852230888634,
+        -0.04281007601292015,
+        -0.11530843875724937,
+        -0.12654068937150081,
+        -0.15879165335302303,
+        0.04037488606982015,
+        -0.14940176742340364,
+        -0.04274153964085427,
+        0.08155877638326699,
+        0.008882264048573625,
+        -0.20852114912912284,
+        0.0862586760601483,
+        0.17597289821719403,
+        0.16175049246705786,
+        0.8164141655843461,
+        -0.12739978926489767
+      ],
+      "by_finger": {
+        "thumb": [
+          -0.21778367348680638,
+          -0.025484419080894688,
+          0.19896350677184552,
+          0.0
+        ],
+        "finger2": [
+          -0.18070852230888634,
+          -0.04281007601292015,
+          -0.11530843875724937,
+          -0.12654068937150081
+        ],
+        "middle": [
+          -0.15879165335302303,
+          0.04037488606982015,
+          -0.14940176742340364,
+          -0.04274153964085427
+        ],
+        "ring": [
+          0.08155877638326699,
+          0.008882264048573625,
+          -0.20852114912912284,
+          0.0862586760601483
+        ],
+        "little": [
+          0.17597289821719403,
+          0.16175049246705786,
+          0.8164141655843461,
+          -0.12739978926489767
+        ]
+      }
+    }
+  ],
+  "explained_variance_ratio": [
+    0.7032753119246345,
+    0.10014824388006865,
+    0.09245332831066017,
+    0.03398918668927942,
+    0.018412263156258917
+  ],
+  "cumulative_explained_variance_ratio": [
+    0.7032753119246345,
+    0.8034235558047031,
+    0.8958768841153633,
+    0.9298660708046427,
+    0.9482783339609016
+  ],
+  "reconstruction_metrics": {
+    "overall_rmse_rad": 0.03802933321466622,
+    "max_absolute_error_rad": 0.3839454330202103,
+    "thumb_rmse_rad": 0.0413704368074101,
+    "other_finger_rmse_rad": 0.0371471327363387,
+    "per_joint_rmse_rad": [
+      0.05388973028866485,
+      0.04857914664265765,
+      0.03977456030466906,
+      2.521732360771749e-17,
+      0.029132826802702516,
+      0.03273061016187015,
+      0.01893190702074056,
+      0.04046093359327066,
+      0.021514002557193008,
+      0.020555849572643364,
+      0.04087542639060206,
+      0.05347225854001116,
+      0.029952400031342342,
+      0.024134334249733155,
+      0.04002939966085134,
+      0.038987292086318334,
+      0.0457115327221853,
+      0.05665778440366911,
+      0.019598342880830726,
+      0.04961689959378259
+    ],
+    "trajectory_count": 30,
+    "trajectory_rmse_mean_rad": 0.03655994370150535,
+    "trajectory_rmse_median_rad": 0.03455795015160135,
+    "trajectory_rmse_max_rad": 0.05475067354428925
+  },
+  "trajectory_reconstruction_metrics": [
+    {
+      "episode_id": 60,
+      "frames": 213,
+      "rmse_rad": 0.04389302180332789,
+      "max_abs_error_rad": 0.1602280711041278,
+      "thumb_rmse_rad": 0.04768397667149731,
+      "other_finger_rmse_rad": 0.04289296324552894,
+      "max_abs_error_joint_index": 1
+    },
+    {
+      "episode_id": 61,
+      "frames": 233,
+      "rmse_rad": 0.04010647937468185,
+      "max_abs_error_rad": 0.15396809649451182,
+      "thumb_rmse_rad": 0.04294750632826267,
+      "other_finger_rmse_rad": 0.039364197373192876,
+      "max_abs_error_joint_index": 0
+    },
+    {
+      "episode_id": 62,
+      "frames": 307,
+      "rmse_rad": 0.04894583382882024,
+      "max_abs_error_rad": 0.24877513923387207,
+      "thumb_rmse_rad": 0.06424398537933781,
+      "other_finger_rmse_rad": 0.04430345242916134,
+      "max_abs_error_joint_index": 0
+    },
+    {
+      "episode_id": 63,
+      "frames": 195,
+      "rmse_rad": 0.05168435548354722,
+      "max_abs_error_rad": 0.2861772103762871,
+      "thumb_rmse_rad": 0.05674654946784774,
+      "other_finger_rmse_rad": 0.050339328889650224,
+      "max_abs_error_joint_index": 11
+    },
+    {
+      "episode_id": 64,
+      "frames": 210,
+      "rmse_rad": 0.028918942836973046,
+      "max_abs_error_rad": 0.1473493354532518,
+      "thumb_rmse_rad": 0.028438610958322844,
+      "other_finger_rmse_rad": 0.02903778435418986,
+      "max_abs_error_joint_index": 7
+    },
+    {
+      "episode_id": 65,
+      "frames": 231,
+      "rmse_rad": 0.034471264316146784,
+      "max_abs_error_rad": 0.21123863834892193,
+      "thumb_rmse_rad": 0.05389053513131862,
+      "other_finger_rmse_rad": 0.027555174382629055,
+      "max_abs_error_joint_index": 1
+    },
+    {
+      "episode_id": 66,
+      "frames": 209,
+      "rmse_rad": 0.03347352428006992,
+      "max_abs_error_rad": 0.170303324329814,
+      "thumb_rmse_rad": 0.038775179821181616,
+      "other_finger_rmse_rad": 0.03201120728931191,
+      "max_abs_error_joint_index": 16
+    },
+    {
+      "episode_id": 67,
+      "frames": 331,
+      "rmse_rad": 0.0388602516065908,
+      "max_abs_error_rad": 0.26470583943923465,
+      "thumb_rmse_rad": 0.03398211773425817,
+      "other_finger_rmse_rad": 0.03998690863561702,
+      "max_abs_error_joint_index": 16
+    },
+    {
+      "episode_id": 68,
+      "frames": 177,
+      "rmse_rad": 0.02828675528494848,
+      "max_abs_error_rad": 0.13333229136161595,
+      "thumb_rmse_rad": 0.03670496571832924,
+      "other_finger_rmse_rad": 0.025755815432485722,
+      "max_abs_error_joint_index": 0
+    },
+    {
+      "episode_id": 69,
+      "frames": 108,
+      "rmse_rad": 0.037951957668829375,
+      "max_abs_error_rad": 0.15233124045050755,
+      "thumb_rmse_rad": 0.048712183153651764,
+      "other_finger_rmse_rad": 0.03474506679691439,
+      "max_abs_error_joint_index": 1
+    },
+    {
+      "episode_id": 70,
+      "frames": 208,
+      "rmse_rad": 0.05475067354428925,
+      "max_abs_error_rad": 0.2779473483150835,
+      "thumb_rmse_rad": 0.0666850670200725,
+      "other_finger_rmse_rad": 0.05133537548390757,
+      "max_abs_error_joint_index": 19
+    },
+    {
+      "episode_id": 71,
+      "frames": 168,
+      "rmse_rad": 0.034644635987055916,
+      "max_abs_error_rad": 0.1390568795887066,
+      "thumb_rmse_rad": 0.04003846993603824,
+      "other_finger_rmse_rad": 0.03315936873102009,
+      "max_abs_error_joint_index": 0
+    },
+    {
+      "episode_id": 72,
+      "frames": 200,
+      "rmse_rad": 0.029310712980478732,
+      "max_abs_error_rad": 0.1318777606891789,
+      "thumb_rmse_rad": 0.029191961239203777,
+      "other_finger_rmse_rad": 0.029340325816735777,
+      "max_abs_error_joint_index": 7
+    },
+    {
+      "episode_id": 73,
+      "frames": 187,
+      "rmse_rad": 0.031133831442639967,
+      "max_abs_error_rad": 0.17413847754776549,
+      "thumb_rmse_rad": 0.029726952824808472,
+      "other_finger_rmse_rad": 0.03147572706565011,
+      "max_abs_error_joint_index": 7
+    },
+    {
+      "episode_id": 74,
+      "frames": 197,
+      "rmse_rad": 0.04311553623808777,
+      "max_abs_error_rad": 0.2294892194758893,
+      "thumb_rmse_rad": 0.03967239240240218,
+      "other_finger_rmse_rad": 0.04393417976518715,
+      "max_abs_error_joint_index": 16
+    },
+    {
+      "episode_id": 75,
+      "frames": 177,
+      "rmse_rad": 0.030180297832485787,
+      "max_abs_error_rad": 0.13062025363376062,
+      "thumb_rmse_rad": 0.03778173320882175,
+      "other_finger_rmse_rad": 0.02795886497170954,
+      "max_abs_error_joint_index": 1
+    },
+    {
+      "episode_id": 76,
+      "frames": 162,
+      "rmse_rad": 0.024285605106540733,
+      "max_abs_error_rad": 0.1281055011438037,
+      "thumb_rmse_rad": 0.024947447121533562,
+      "other_finger_rmse_rad": 0.024117306851473248,
+      "max_abs_error_joint_index": 15
+    },
+    {
+      "episode_id": 77,
+      "frames": 202,
+      "rmse_rad": 0.02396614166161579,
+      "max_abs_error_rad": 0.11757937216129433,
+      "thumb_rmse_rad": 0.030871744397641673,
+      "other_finger_rmse_rad": 0.021902141040146397,
+      "max_abs_error_joint_index": 15
+    },
+    {
+      "episode_id": 78,
+      "frames": 164,
+      "rmse_rad": 0.03396799029046298,
+      "max_abs_error_rad": 0.11424014931813992,
+      "thumb_rmse_rad": 0.038511351492183286,
+      "other_finger_rmse_rad": 0.03273376554916363,
+      "max_abs_error_joint_index": 11
+    },
+    {
+      "episode_id": 79,
+      "frames": 212,
+      "rmse_rad": 0.04161675943381247,
+      "max_abs_error_rad": 0.2570475579984634,
+      "thumb_rmse_rad": 0.027832431168956295,
+      "other_finger_rmse_rad": 0.044399124721339965,
+      "max_abs_error_joint_index": 17
+    },
+    {
+      "episode_id": 80,
+      "frames": 175,
+      "rmse_rad": 0.04023054871133139,
+      "max_abs_error_rad": 0.1931914026139882,
+      "thumb_rmse_rad": 0.03755478073155711,
+      "other_finger_rmse_rad": 0.040872128927542745,
+      "max_abs_error_joint_index": 17
+    },
+    {
+      "episode_id": 81,
+      "frames": 166,
+      "rmse_rad": 0.03296040044892392,
+      "max_abs_error_rad": 0.13538472149937597,
+      "thumb_rmse_rad": 0.02976518578550851,
+      "other_finger_rmse_rad": 0.03371191815931453,
+      "max_abs_error_joint_index": 7
+    },
+    {
+      "episode_id": 82,
+      "frames": 165,
+      "rmse_rad": 0.026036560672831877,
+      "max_abs_error_rad": 0.09665340068593176,
+      "thumb_rmse_rad": 0.030149405833105873,
+      "other_finger_rmse_rad": 0.024902438566639207,
+      "max_abs_error_joint_index": 7
+    },
+    {
+      "episode_id": 83,
+      "frames": 172,
+      "rmse_rad": 0.048065223939530534,
+      "max_abs_error_rad": 0.20057551957131747,
+      "thumb_rmse_rad": 0.05517685688477812,
+      "other_finger_rmse_rad": 0.046116274855258,
+      "max_abs_error_joint_index": 1
+    },
+    {
+      "episode_id": 84,
+      "frames": 140,
+      "rmse_rad": 0.04184179708641696,
+      "max_abs_error_rad": 0.15846985397813343,
+      "thumb_rmse_rad": 0.04097696484281396,
+      "other_finger_rmse_rad": 0.04205522639748609,
+      "max_abs_error_joint_index": 16
+    },
+    {
+      "episode_id": 85,
+      "frames": 152,
+      "rmse_rad": 0.036937175767258405,
+      "max_abs_error_rad": 0.17040593948081656,
+      "thumb_rmse_rad": 0.040764104357905666,
+      "other_finger_rmse_rad": 0.035916787732912875,
+      "max_abs_error_joint_index": 7
+    },
+    {
+      "episode_id": 86,
+      "frames": 139,
+      "rmse_rad": 0.03189638127035642,
+      "max_abs_error_rad": 0.1437786018445648,
+      "thumb_rmse_rad": 0.028541727375997215,
+      "other_finger_rmse_rad": 0.03268128474032947,
+      "max_abs_error_joint_index": 15
+    },
+    {
+      "episode_id": 87,
+      "frames": 268,
+      "rmse_rad": 0.030069539435141745,
+      "max_abs_error_rad": 0.14480501225129738,
+      "thumb_rmse_rad": 0.031003826316166366,
+      "other_finger_rmse_rad": 0.02983139605752936,
+      "max_abs_error_joint_index": 2
+    },
+    {
+      "episode_id": 88,
+      "frames": 280,
+      "rmse_rad": 0.04418589025207294,
+      "max_abs_error_rad": 0.3839454330202103,
+      "thumb_rmse_rad": 0.0347359129902563,
+      "other_finger_rmse_rad": 0.04624765084729848,
+      "max_abs_error_joint_index": 19
+    },
+    {
+      "episode_id": 89,
+      "frames": 81,
+      "rmse_rad": 0.031010222459891292,
+      "max_abs_error_rad": 0.08876547245718114,
+      "thumb_rmse_rad": 0.03104634180452581,
+      "other_finger_rmse_rad": 0.031001186048344526,
+      "max_abs_error_joint_index": 11
+    }
+  ],
+  "latent_scaling": {
+    "representation": "expert_pca5_absolute",
+    "formula": "q_target = clip(mu + B @ (latent_center + latent_half_range * action), joint_limits)",
+    "policy_action_range": [
+      -1.0,
+      1.0
+    ],
+    "latent_min": [
+      -1.6232298679790425,
+      -1.1601813273587487,
+      -1.2003170646320953,
+      -0.7601516758061553,
+      -0.4060408730632368
+    ],
+    "latent_max": [
+      1.3987037302070167,
+      1.1976178644130153,
+      0.5906938545790014,
+      0.5544128060192237,
+      0.6764239383728393
+    ],
+    "latent_center": [
+      -0.1122630688860129,
+      0.01871826852713332,
+      -0.304811605026547,
+      -0.10286943489346578,
+      0.13519153265480127
+    ],
+    "latent_half_range": [
+      1.5109667990930296,
+      1.178899595885882,
+      0.8955054596055483,
+      0.6572822409126895,
+      0.541232405718038
+    ],
+    "latent_percentiles": {
+      "1": [
+        -1.1678423750008011,
+        -0.6800928667167627,
+        -0.5206874363458464,
+        -0.5230336083206508,
+        -0.2286207064743486
+      ],
+      "5": [
+        -0.7531313729942026,
+        -0.41036904801482516,
+        -0.316989047860989,
+        -0.18913599500120418,
+        -0.15106583102589838
+      ],
+      "50": [
+        -0.19362457649645565,
+        0.0075794655039516925,
+        -0.03412281871065594,
+        0.005502408628504159,
+        -0.0044232433479037825
+      ],
+      "95": [
+        1.185281311917491,
+        0.35843709108320243,
+        0.4359641444416642,
+        0.18761571171729882,
+        0.1661158570100647
+      ],
+      "99": [
+        1.3078921166674302,
+        0.5704944742075468,
+        0.5292178525914453,
+        0.3180229751905464,
+        0.2351733874372532
+      ]
+    },
+    "rate_limit": "environment joint-rate limit; no target teleport"
+  },
+  "representatives": [
+    {
+      "label": "low_reconstruction_error",
+      "episode_id": 77,
+      "reconstruction": {
+        "episode_id": 77,
+        "frames": 202,
+        "rmse_rad": 0.02396614166161579,
+        "max_abs_error_rad": 0.11757937216129433,
+        "thumb_rmse_rad": 0.030871744397641673,
+        "other_finger_rmse_rad": 0.021902141040146397,
+        "max_abs_error_joint_index": 15
+      }
+    },
+    {
+      "label": "median_reconstruction_error",
+      "episode_id": 71,
+      "reconstruction": {
+        "episode_id": 71,
+        "frames": 168,
+        "rmse_rad": 0.034644635987055916,
+        "max_abs_error_rad": 0.1390568795887066,
+        "thumb_rmse_rad": 0.04003846993603824,
+        "other_finger_rmse_rad": 0.03315936873102009,
+        "max_abs_error_joint_index": 0
+      }
+    },
+    {
+      "label": "high_reconstruction_error",
+      "episode_id": 70,
+      "reconstruction": {
+        "episode_id": 70,
+        "frames": 208,
+        "rmse_rad": 0.05475067354428925,
+        "max_abs_error_rad": 0.2779473483150835,
+        "thumb_rmse_rad": 0.0666850670200725,
+        "other_finger_rmse_rad": 0.05133537548390757,
+        "max_abs_error_joint_index": 19
+      }
+    },
+    {
+      "label": "largest_thumb_motion",
+      "episode_id": 84,
+      "reconstruction": {
+        "episode_id": 84,
+        "frames": 140,
+        "rmse_rad": 0.04184179708641696,
+        "max_abs_error_rad": 0.15846985397813343,
+        "thumb_rmse_rad": 0.04097696484281396,
+        "other_finger_rmse_rad": 0.04205522639748609,
+        "max_abs_error_joint_index": 16
+      }
+    },
+    {
+      "label": "largest_staging_spread",
+      "episode_id": 74,
+      "reconstruction": {
+        "episode_id": 74,
+        "frames": 197,
+        "rmse_rad": 0.04311553623808777,
+        "max_abs_error_rad": 0.2294892194758893,
+        "thumb_rmse_rad": 0.03967239240240218,
+        "other_finger_rmse_rad": 0.04393417976518715,
+        "max_abs_error_joint_index": 16
+      }
+    }
+  ],
+  "constraints": {
+    "uses_left_cube_episodes_only": true,
+    "uses_right_hand_data": false,
+    "modifies_reward_v2": false,
+    "modifies_observation": false,
+    "modifies_reset_or_success": false,
+    "includes_20d_residual": false,
+    "uses_manual_synergy_direction": false
+  }
+}

@@ -1,0 +1,3129 @@
+{
+  "perturbations": "each of the final top-3 candidates, PC_i +/-0.05 and +/-0.10, clipped to [-1,1]",
+  "basis_joint_space_l2_influence_per_finger": {
+    "PC1": {
+      "finger1": 0.34990795754730913,
+      "finger2": 0.396280162364151,
+      "finger3": 0.44540471500907697,
+      "finger4": 0.5646122422249061,
+      "finger5": 0.45094801245726696
+    },
+    "PC2": {
+      "finger1": 0.21347851593161618,
+      "finger2": 0.37623070040706713,
+      "finger3": 0.6331671501043842,
+      "finger4": 0.6229562045311314,
+      "finger5": 0.15460372107973971
+    },
+    "PC3": {
+      "finger1": 0.5716774660102237,
+      "finger2": 0.4841659154474009,
+      "finger3": 0.5572468271928754,
+      "finger4": 0.3282362476800319,
+      "finger5": 0.14319630046728116
+    },
+    "PC4": {
+      "finger1": 0.4167006102863443,
+      "finger2": 0.8167953761790596,
+      "finger3": 0.22742119573999556,
+      "finger4": 0.28104208694482913,
+      "finger5": 0.16882197704500293
+    },
+    "PC5": {
+      "finger1": 0.2960838750763857,
+      "finger2": 0.25258039266447874,
+      "finger3": 0.22581551744697506,
+      "finger4": 0.24010905324361226,
+      "finger5": 0.8601700290011384
+    }
+  },
+  "summary": {
+    "PC1": {
+      "sample_count": 10,
+      "mean_abs_delta_objective": 0.36727702569591036,
+      "mean_abs_delta_longest_3_contact_duration_s": 0.05666666666666668,
+      "mean_abs_delta_edge_margin_m": 0.00016479410872476176,
+      "mean_abs_delta_tangential_slip_m_s": 0.001575869030058348,
+      "mean_abs_delta_se3_translation_drift_m": 8.994850646882981e-06,
+      "mean_abs_delta_se3_rotation_drift_deg": 0.0069727203643817764,
+      "topology_collapse_fraction": 1.0,
+      "per_finger_mean_abs_effect": {
+        "finger1": {
+          "contact_duration_s": 0.08666666666666666,
+          "edge_margin_m": 0.00019425538311798967,
+          "slip_m_s": 0.0011883209638340313
+        },
+        "finger2": {
+          "contact_duration_s": 0.11333333333333336,
+          "edge_margin_m": 2.521890910588185e-06,
+          "slip_m_s": 0.0007342063182958665
+        },
+        "finger3": {
+          "contact_duration_s": 0.09,
+          "edge_margin_m": 0.00013767804946430471,
+          "slip_m_s": 0.0013932925886527882
+        },
+        "finger4": {
+          "contact_duration_s": 0.07333333333333333,
+          "edge_margin_m": 0.0001834143939783345,
+          "slip_m_s": 0.0038317580441983084
+        },
+        "finger5": {
+          "contact_duration_s": 0.0,
+          "edge_margin_m": 0.0,
+          "slip_m_s": 0.0
+        }
+      }
+    },
+    "PC2": {
+      "sample_count": 12,
+      "mean_abs_delta_objective": 0.31789676342109724,
+      "mean_abs_delta_longest_3_contact_duration_s": 0.05555555555555556,
+      "mean_abs_delta_edge_margin_m": 0.00027839009440310127,
+      "mean_abs_delta_tangential_slip_m_s": 0.0005382714949944971,
+      "mean_abs_delta_se3_translation_drift_m": 9.124377919275643e-06,
+      "mean_abs_delta_se3_rotation_drift_deg": 0.006604797199324347,
+      "topology_collapse_fraction": 0.9166666666666666,
+      "per_finger_mean_abs_effect": {
+        "finger1": {
+          "contact_duration_s": 0.07777777777777778,
+          "edge_margin_m": 0.0001619788188870301,
+          "slip_m_s": 0.0008008938472517903
+        },
+        "finger2": {
+          "contact_duration_s": 0.09722222222222221,
+          "edge_margin_m": 1.9736819293050066e-06,
+          "slip_m_s": 0.0007124057984020738
+        },
+        "finger3": {
+          "contact_duration_s": 0.08888888888888886,
+          "edge_margin_m": 0.00031444506512461013,
+          "slip_m_s": 0.0008714453554757603
+        },
+        "finger4": {
+          "contact_duration_s": 0.06944444444444446,
+          "edge_margin_m": 0.00026356307600531096,
+          "slip_m_s": 0.0014514265398267573
+        },
+        "finger5": {
+          "contact_duration_s": 0.0,
+          "edge_margin_m": 0.0,
+          "slip_m_s": 0.0
+        }
+      }
+    },
+    "PC3": {
+      "sample_count": 12,
+      "mean_abs_delta_objective": 0.4126046743925185,
+      "mean_abs_delta_longest_3_contact_duration_s": 0.05833333333333334,
+      "mean_abs_delta_edge_margin_m": 0.00018700375063343276,
+      "mean_abs_delta_tangential_slip_m_s": 0.001253048019877495,
+      "mean_abs_delta_se3_translation_drift_m": 4.9349702495656335e-06,
+      "mean_abs_delta_se3_rotation_drift_deg": 0.004016755324974361,
+      "topology_collapse_fraction": 1.0,
+      "per_finger_mean_abs_effect": {
+        "finger1": {
+          "contact_duration_s": 0.09166666666666667,
+          "edge_margin_m": 3.860811365223398e-05,
+          "slip_m_s": 0.0015985528993627861
+        },
+        "finger2": {
+          "contact_duration_s": 0.12222222222222223,
+          "edge_margin_m": 2.0956074402665585e-06,
+          "slip_m_s": 0.0009104258957989166
+        },
+        "finger3": {
+          "contact_duration_s": 0.0861111111111111,
+          "edge_margin_m": 0.0002399186134726148,
+          "slip_m_s": 0.0012241319304970649
+        },
+        "finger4": {
+          "contact_duration_s": 0.0888888888888889,
+          "edge_margin_m": 0.0002825826771851554,
+          "slip_m_s": 0.0029738567010906022
+        },
+        "finger5": {
+          "contact_duration_s": 0.0,
+          "edge_margin_m": 0.0,
+          "slip_m_s": 0.0
+        }
+      }
+    },
+    "PC4": {
+      "sample_count": 12,
+      "mean_abs_delta_objective": 0.3907947744052436,
+      "mean_abs_delta_longest_3_contact_duration_s": 0.05833333333333334,
+      "mean_abs_delta_edge_margin_m": 0.00030296291301776674,
+      "mean_abs_delta_tangential_slip_m_s": 0.0009547026814102109,
+      "mean_abs_delta_se3_translation_drift_m": 5.225456774798303e-06,
+      "mean_abs_delta_se3_rotation_drift_deg": 0.0052807760750695895,
+      "topology_collapse_fraction": 1.0,
+      "per_finger_mean_abs_effect": {
+        "finger1": {
+          "contact_duration_s": 0.09166666666666667,
+          "edge_margin_m": 1.9768259344449637e-05,
+          "slip_m_s": 0.0011140442642728536
+        },
+        "finger2": {
+          "contact_duration_s": 0.09722222222222222,
+          "edge_margin_m": 2.542513726363723e-06,
+          "slip_m_s": 0.0006582517062079501
+        },
+        "finger3": {
+          "contact_duration_s": 0.0861111111111111,
+          "edge_margin_m": 0.00023702984336645494,
+          "slip_m_s": 0.0015013193490001932
+        },
+        "finger4": {
+          "contact_duration_s": 0.10833333333333334,
+          "edge_margin_m": 0.00023038782959490913,
+          "slip_m_s": 0.004607672207538614
+        },
+        "finger5": {
+          "contact_duration_s": 0.0,
+          "edge_margin_m": 0.0,
+          "slip_m_s": 0.0
+        }
+      }
+    },
+    "PC5": {
+      "sample_count": 12,
+      "mean_abs_delta_objective": 0.38522330163518337,
+      "mean_abs_delta_longest_3_contact_duration_s": 0.05555555555555556,
+      "mean_abs_delta_edge_margin_m": 0.0003557487212153884,
+      "mean_abs_delta_tangential_slip_m_s": 0.0006344525002315188,
+      "mean_abs_delta_se3_translation_drift_m": 6.34408881284394e-06,
+      "mean_abs_delta_se3_rotation_drift_deg": 0.005666796923857925,
+      "topology_collapse_fraction": 0.9166666666666666,
+      "per_finger_mean_abs_effect": {
+        "finger1": {
+          "contact_duration_s": 0.06666666666666667,
+          "edge_margin_m": 3.487788950803142e-05,
+          "slip_m_s": 0.0010291813270002284
+        },
+        "finger2": {
+          "contact_duration_s": 0.1111111111111111,
+          "edge_margin_m": 2.1557053218191343e-06,
+          "slip_m_s": 0.0008054956357346567
+        },
+        "finger3": {
+          "contact_duration_s": 0.09166666666666667,
+          "edge_margin_m": 0.00020745233804745302,
+          "slip_m_s": 0.001984554290324799
+        },
+        "finger4": {
+          "contact_duration_s": 0.1166666666666667,
+          "edge_margin_m": 0.0003731754279998763,
+          "slip_m_s": 0.002631382999638295
+        },
+        "finger5": {
+          "contact_duration_s": 0.0,
+          "edge_margin_m": 0.0,
+          "slip_m_s": 0.0
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "base_rank": 1,
+      "pc": 1,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        0.8706609526739612,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.3044942670905697,
+      "delta_objective": -0.2851632344644266,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00011588174415996008,
+      "delta_mean_tangential_slip_m_s": -0.00041555944644547805,
+      "delta_se3_translation_drift_m": -4.712887731557743e-06,
+      "delta_se3_rotation_drift_deg": -0.0036672196756668413,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.23333333333333334,
+          "delta_edge_margin_m": -2.5967597697042396e-08,
+          "delta_slip_m_s": -0.0004872710285246558
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -1.0743044346504872e-06,
+          "delta_slip_m_s": -0.0005322006087612949
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 8.262233410434633e-06,
+          "delta_slip_m_s": -0.00021073323112826264
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": 0.00021817713037889795,
+          "delta_slip_m_s": 0.0023611786933198323
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 1,
+      "requested_delta": -0.05,
+      "actual_delta": -0.050000000000000044,
+      "latent_normalized_z": [
+        0.9206609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 0.9742279194426098,
+      "delta_objective": -0.6154295821123865,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.1,
+      "delta_mean_edge_margin_m": -7.794739926958775e-05,
+      "delta_mean_tangential_slip_m_s": 0.0006494873506632665,
+      "delta_se3_translation_drift_m": 2.486607954213494e-05,
+      "delta_se3_rotation_drift_deg": 0.020295690871453498,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": 2.2552156420547906e-07,
+          "delta_slip_m_s": -0.0005425020843269381
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -1.3715332576994037e-06,
+          "delta_slip_m_s": -7.035231119542022e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 8.022758981128082e-07,
+          "delta_slip_m_s": -0.0005048423511525475
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": -0.00012829431160353544,
+          "delta_slip_m_s": 0.0041187928025855705
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 1,
+      "requested_delta": 0.05,
+      "actual_delta": 0.02933904732603887,
+      "latent_normalized_z": [
+        1.0,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.4008391678472674,
+      "delta_objective": -0.18881833370772894,
+      "delta_longest_2_contact_duration_s": 0.033333333333333354,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -7.347643268603961e-06,
+      "delta_mean_tangential_slip_m_s": 0.003421073556316743,
+      "delta_se3_translation_drift_m": 4.506378036536049e-06,
+      "delta_se3_rotation_drift_deg": 0.004324602672902786,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 7.320266713301082e-07,
+          "delta_slip_m_s": 0.0021203779632520126
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -4.904363846652074e-07,
+          "delta_slip_m_s": 0.00011006921916130365
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 2.1748095461047344e-06,
+          "delta_slip_m_s": 0.0012568534904701368
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -0.00011797923196846922,
+          "delta_slip_m_s": 0.008431972982091893
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 1,
+      "requested_delta": 0.1,
+      "actual_delta": 0.02933904732603887,
+      "latent_normalized_z": [
+        1.0,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.4008391678472674,
+      "delta_objective": -0.18881833370772894,
+      "delta_longest_2_contact_duration_s": 0.033333333333333354,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -7.347643268603961e-06,
+      "delta_mean_tangential_slip_m_s": 0.003421073556316743,
+      "delta_se3_translation_drift_m": 4.506378036536049e-06,
+      "delta_se3_rotation_drift_deg": 0.004324602672902786,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 7.320266713301082e-07,
+          "delta_slip_m_s": 0.0021203779632520126
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -4.904363846652074e-07,
+          "delta_slip_m_s": 0.00011006921916130365
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 2.1748095461047344e-06,
+          "delta_slip_m_s": 0.0012568534904701368
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -0.00011797923196846922,
+          "delta_slip_m_s": 0.008431972982091893
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 2,
+      "requested_delta": -0.1,
+      "actual_delta": -0.03676839528234466,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -1.0,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.451333190946047,
+      "delta_objective": -0.13832431060894934,
+      "delta_longest_2_contact_duration_s": 0.033333333333333354,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00013417746617047324,
+      "delta_mean_tangential_slip_m_s": 0.00019046279903176064,
+      "delta_se3_translation_drift_m": -1.4591336303270832e-05,
+      "delta_se3_rotation_drift_deg": -0.003027704057005476,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -2.539899415122371e-08,
+          "delta_slip_m_s": -0.00020339904692363332
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": -1.9313087655325923e-06,
+          "delta_slip_m_s": 0.0007934309336579942
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": 2.2847717141266892e-06,
+          "delta_slip_m_s": 0.0007992226407372129
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -0.00044398118381065634,
+          "delta_slip_m_s": 0.00025194623792716003
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 2,
+      "requested_delta": -0.05,
+      "actual_delta": -0.03676839528234466,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -1.0,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.451333190946047,
+      "delta_objective": -0.13832431060894934,
+      "delta_longest_2_contact_duration_s": 0.033333333333333354,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00013417746617047324,
+      "delta_mean_tangential_slip_m_s": 0.00019046279903176064,
+      "delta_se3_translation_drift_m": -1.4591336303270832e-05,
+      "delta_se3_rotation_drift_deg": -0.003027704057005476,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -2.539899415122371e-08,
+          "delta_slip_m_s": -0.00020339904692363332
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": -1.9313087655325923e-06,
+          "delta_slip_m_s": 0.0007934309336579942
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": 2.2847717141266892e-06,
+          "delta_slip_m_s": 0.0007992226407372129
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -0.00044398118381065634,
+          "delta_slip_m_s": 0.00025194623792716003
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 2,
+      "requested_delta": 0.05,
+      "actual_delta": 0.050000000000000044,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9132316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.260179796126163,
+      "delta_objective": -0.32947770542883337,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00017245900630169113,
+      "delta_mean_tangential_slip_m_s": 0.001301798390130309,
+      "delta_se3_translation_drift_m": 1.2069239320138518e-06,
+      "delta_se3_rotation_drift_deg": 8.41293921177988e-05,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.10000000000000003,
+          "delta_edge_margin_m": -3.428951189413269e-07,
+          "delta_slip_m_s": 0.0014142778725652104
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -1.981664068662404e-06,
+          "delta_slip_m_s": -4.2371808313648035e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": 1.6677092946344465e-06,
+          "delta_slip_m_s": 0.0018116979810740789
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": -0.0003692035496500423,
+          "delta_slip_m_s": 0.0036163933389423367
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 2,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.8632316047176554,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 0.9908879038469526,
+      "delta_objective": -0.5987695977080437,
+      "delta_longest_2_contact_duration_s": -0.09999999999999999,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00018591759064047014,
+      "delta_mean_tangential_slip_m_s": -0.00011070049123848222,
+      "delta_se3_translation_drift_m": -6.8163468277520755e-06,
+      "delta_se3_rotation_drift_deg": -0.0036592602516526684,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": 2.649348553067239e-07,
+          "delta_slip_m_s": 0.00043233840605318933
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -5.885522397029847e-07,
+          "delta_slip_m_s": 0.0005954167319842376
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": 2.045178800141565e-06,
+          "delta_slip_m_s": 0.0011547525457325666
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.2,
+          "delta_edge_margin_m": 0.00016024145391796223,
+          "delta_slip_m_s": 0.0012813682394510056
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 3,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.63568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.1353685303819825,
+      "delta_objective": -0.4542889711730138,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -4.380352582561268e-05,
+      "delta_mean_tangential_slip_m_s": 0.001071489740778247,
+      "delta_se3_translation_drift_m": -6.029254328372767e-06,
+      "delta_se3_rotation_drift_deg": -0.006324836533125544,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.10000000000000003,
+          "delta_edge_margin_m": -2.8059723848891806e-07,
+          "delta_slip_m_s": -0.0017051042754590304
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -2.013569276776777e-06,
+          "delta_slip_m_s": -0.00014355022920669105
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 8.959310696615066e-07,
+          "delta_slip_m_s": 0.0031619038013239497
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": 0.0002354075922952033,
+          "delta_slip_m_s": 0.006024067467078346
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 3,
+      "requested_delta": -0.05,
+      "actual_delta": -0.050000000000000044,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.58568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.1934856594285848,
+      "delta_objective": -0.39617184212641154,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -2.6254708929303197e-05,
+      "delta_mean_tangential_slip_m_s": -0.0005040534157323322,
+      "delta_se3_translation_drift_m": 1.0433592379284514e-05,
+      "delta_se3_rotation_drift_deg": 0.008648168618264243,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.10000000000000003,
+          "delta_edge_margin_m": 5.252291538158198e-07,
+          "delta_slip_m_s": 0.00048474158890064473
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 6.002100377468532e-07,
+          "delta_slip_m_s": -0.0014243355719579212
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 8.461919058200162e-07,
+          "delta_slip_m_s": -0.0004334894089215542
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": 0.0003776649734099,
+          "delta_slip_m_s": 0.0005914501989867822
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 3,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.48568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 0.6957440710102237,
+      "delta_objective": -0.8939134305447726,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -1.8307952964474543e-05,
+      "delta_mean_tangential_slip_m_s": 0.0036209495445685604,
+      "delta_se3_translation_drift_m": -1.0489287092375996e-06,
+      "delta_se3_rotation_drift_deg": -0.000347596704919087,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -1.3550290502928645e-07,
+          "delta_slip_m_s": 7.681123750723565e-05
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.2333333333333333,
+          "delta_edge_margin_m": -5.07320090000183e-07,
+          "delta_slip_m_s": 0.0006793624510575604
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 1.8527535294733213e-06,
+          "delta_slip_m_s": 5.116393875847364e-05
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": -0.00036368086049486494,
+          "delta_slip_m_s": 0.008951935293452486
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 3,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.43568206777603,
+        -0.38360130092895905,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 0.8235780833417627,
+      "delta_objective": -0.7660794182132336,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -8.22094137038872e-05,
+      "delta_mean_tangential_slip_m_s": 0.0024423377305420515,
+      "delta_se3_translation_drift_m": -8.58701258926175e-06,
+      "delta_se3_rotation_drift_deg": 0.003192357234511403,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.10000000000000003,
+          "delta_edge_margin_m": -3.101307095649913e-07,
+          "delta_slip_m_s": 0.0032807379220094416
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -1.3337229009773474e-06,
+          "delta_slip_m_s": 0.0011491860937501092
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.1,
+          "delta_edge_margin_m": 2.677956876150052e-06,
+          "delta_slip_m_s": 0.0006779538603787065
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": -0.00018204005040773578,
+          "delta_slip_m_s": 0.0029902384666071584
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 4,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.48360130092895903,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 0.92411577250916,
+      "delta_objective": -0.6655417290458363,
+      "delta_longest_2_contact_duration_s": -0.09999999999999999,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00012232195006112032,
+      "delta_mean_tangential_slip_m_s": -0.00013969115372056834,
+      "delta_se3_translation_drift_m": 1.2826850277507598e-05,
+      "delta_se3_rotation_drift_deg": -0.00335308021519376,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": 2.9631509882010466e-07,
+          "delta_slip_m_s": -0.0020603815573669235
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -1.9561629052516302e-06,
+          "delta_slip_m_s": -0.0010580063744969094
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 6.327587387751268e-07,
+          "delta_slip_m_s": 0.0008740185112172285
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -4.0949714081737294e-05,
+          "delta_slip_m_s": 0.004893400140029465
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 4,
+      "requested_delta": -0.05,
+      "actual_delta": -0.04999999999999999,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.43360130092895904,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 0.7348676186770214,
+      "delta_objective": -0.8547898828779749,
+      "delta_longest_2_contact_duration_s": -0.09999999999999999,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 9.008721655941442e-05,
+      "delta_mean_tangential_slip_m_s": 0.001889531879842624,
+      "delta_se3_translation_drift_m": 6.448490045323971e-07,
+      "delta_se3_rotation_drift_deg": -0.0018734496918780402,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -2.1967006834807955e-07,
+          "delta_slip_m_s": 0.00042196774285857466
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -8.835725679006929e-07,
+          "delta_slip_m_s": -0.0001482230695655307
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.1,
+          "delta_edge_margin_m": 1.6744590886304158e-06,
+          "delta_slip_m_s": -0.0006827993106984735
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": 0.0005183623601354834,
+          "delta_slip_m_s": 0.0072742377803475325
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 4,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.33360130092895907,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.1267777141084754,
+      "delta_objective": -0.4628797874465209,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -7.490345470594713e-05,
+      "delta_mean_tangential_slip_m_s": 0.0019032422015313744,
+      "delta_se3_translation_drift_m": -3.5373849378713632e-06,
+      "delta_se3_rotation_drift_deg": 0.004778609360094069,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -1.122647419222252e-07,
+          "delta_slip_m_s": 0.0026254144942879174
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.10000000000000003,
+          "delta_edge_margin_m": -4.717322449796704e-07,
+          "delta_slip_m_s": 0.00041893046667620514
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 5.168214486988405e-07,
+          "delta_slip_m_s": 0.000910886212232447
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": 2.1094558503020238e-05,
+          "delta_slip_m_s": 0.004714959555225745
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 4,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.2836013009289591,
+        0.04389233592432884
+      ],
+      "diagnostic_objective": 1.0798505836830135,
+      "delta_objective": -0.5098069178719828,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -6.652431171747951e-05,
+      "delta_mean_tangential_slip_m_s": 0.0016809305196179023,
+      "delta_se3_translation_drift_m": -4.930450444384356e-06,
+      "delta_se3_rotation_drift_deg": 0.007353440611709575,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.13333333333333336,
+          "delta_edge_margin_m": -3.570374346800191e-07,
+          "delta_slip_m_s": 0.002380275355899052
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 8.220161060463112e-07,
+          "delta_slip_m_s": 0.0010558895601941488
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": 1.588468144349106e-06,
+          "delta_slip_m_s": 0.0011334770988625366
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": 0.0006245128788247157,
+          "delta_slip_m_s": 0.005708447898263878
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 5,
+      "requested_delta": -0.1,
+      "actual_delta": -0.1,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        -0.056107664075671165
+      ],
+      "diagnostic_objective": 0.9950623501350705,
+      "delta_objective": -0.5945951514199258,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -7.402555540131698e-05,
+      "delta_mean_tangential_slip_m_s": 0.0017310634713975283,
+      "delta_se3_translation_drift_m": 7.648792221520053e-06,
+      "delta_se3_rotation_drift_deg": 0.002102673125376417,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666671,
+          "delta_edge_margin_m": 2.4758067849324377e-07,
+          "delta_slip_m_s": 0.001798773253708097
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.1333333333333333,
+          "delta_edge_margin_m": 2.029762839221682e-06,
+          "delta_slip_m_s": -0.000578535679045279
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.16666666666666669,
+          "delta_edge_margin_m": 1.1291055040695511e-06,
+          "delta_slip_m_s": 0.0009917413520069713
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": 2.563341467363197e-05,
+          "delta_slip_m_s": 0.006445025490251704
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 5,
+      "requested_delta": -0.05,
+      "actual_delta": -0.05,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        -0.0061076640756711625
+      ],
+      "diagnostic_objective": 0.8792784042720961,
+      "delta_objective": -0.7103790972829002,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00024209615946312385,
+      "delta_mean_tangential_slip_m_s": 0.0017145177326441758,
+      "delta_se3_translation_drift_m": 8.158518168125553e-06,
+      "delta_se3_rotation_drift_deg": 0.007457560405276037,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666671,
+          "delta_edge_margin_m": -2.935221064449809e-07,
+          "delta_slip_m_s": -0.00048140030046278995
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.1333333333333333,
+          "delta_edge_margin_m": 7.246256183656677e-08,
+          "delta_slip_m_s": -0.0007566049802579175
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 3.2267512296856793e-06,
+          "delta_slip_m_s": 0.0028792800043818357
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -0.0008941926702343681,
+          "delta_slip_m_s": 0.004234664804064557
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 5,
+      "requested_delta": 0.05,
+      "actual_delta": 0.05,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.09389233592432884
+      ],
+      "diagnostic_objective": 1.2215203829375543,
+      "delta_objective": -0.368137118617442,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00027030935675329036,
+      "delta_mean_tangential_slip_m_s": 0.00026397935103061876,
+      "delta_se3_translation_drift_m": 1.4565268265004822e-06,
+      "delta_se3_rotation_drift_deg": 0.00018826096277237137,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -6.839175755648719e-07,
+          "delta_slip_m_s": -0.0011769120982786105
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -1.3338193439948396e-06,
+          "delta_slip_m_s": 0.0006994829922187121
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": 1.1749436433720389e-06,
+          "delta_slip_m_s": 0.0008233999525397726
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": -0.0008652365421076938,
+          "delta_slip_m_s": 0.0018609734411152556
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 1,
+      "pc": 5,
+      "requested_delta": 0.1,
+      "actual_delta": 0.1,
+      "latent_normalized_z": [
+        0.9706609526739611,
+        -0.9632316047176553,
+        -0.53568206777603,
+        -0.38360130092895905,
+        0.14389233592432885
+      ],
+      "diagnostic_objective": 1.2471333382509988,
+      "delta_objective": -0.3425241633039975,
+      "delta_longest_2_contact_duration_s": -0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -6.282353601382517e-05,
+      "delta_mean_tangential_slip_m_s": 0.0004929660587895618,
+      "delta_se3_translation_drift_m": -3.0268799430716628e-06,
+      "delta_se3_rotation_drift_deg": -0.001965250984025682,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.16666666666666669,
+          "delta_edge_margin_m": -3.658149256615539e-07,
+          "delta_slip_m_s": 0.0003041813195318252
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 6.152042465349919e-07,
+          "delta_slip_m_s": -0.00033311763266678264
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": 4.004955365599093e-06,
+          "delta_slip_m_s": 0.0004094275032169906
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": 0.0001282320197815948,
+          "delta_slip_m_s": 0.003302673810113994
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 1,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        0.9,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.3378209758510715,
+      "delta_objective": 0.013251056331836875,
+      "delta_longest_2_contact_duration_s": 0.06666666666666668,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00022425437248957698,
+      "delta_mean_tangential_slip_m_s": -0.0009224248873439308,
+      "delta_se3_translation_drift_m": 1.4629294699803065e-05,
+      "delta_se3_rotation_drift_deg": -0.016586237571040316,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -6.193125351044912e-08,
+          "delta_slip_m_s": -0.0010885211600315421
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.23333333333333334,
+          "delta_edge_margin_m": -1.5591840006756805e-06,
+          "delta_slip_m_s": 0.0012803834003135995
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": -0.00048377639049798204,
+          "delta_slip_m_s": 0.0014474985996863234
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.2,
+          "delta_edge_margin_m": 7.497231102088515e-05,
+          "delta_slip_m_s": 0.0005972141750222159
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 1,
+      "requested_delta": -0.05,
+      "actual_delta": -0.050000000000000044,
+      "latent_normalized_z": [
+        0.95,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 0.9797239950290357,
+      "delta_objective": -0.3448459244901989,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -4.766748443578878e-05,
+      "delta_mean_tangential_slip_m_s": -0.0019957716419774776,
+      "delta_se3_translation_drift_m": 1.4489801992978988e-06,
+      "delta_se3_rotation_drift_deg": -0.0023678817628786236,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.1333333333333333,
+          "delta_edge_margin_m": -3.9760857511021856e-07,
+          "delta_slip_m_s": -0.00290017860764606
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.19999999999999998,
+          "delta_edge_margin_m": 8.744814687058046e-07,
+          "delta_slip_m_s": -0.0006757806632988464
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -0.0008710753505224172,
+          "delta_slip_m_s": -0.005979996390065432
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 0.0006565281029759993,
+          "delta_slip_m_s": 0.0011891847178321108
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 2,
+      "requested_delta": -0.1,
+      "actual_delta": -0.1,
+      "latent_normalized_z": [
+        1.0,
+        0.16557986449213327,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.8177730946917736,
+      "delta_objective": 0.493203175172539,
+      "delta_longest_2_contact_duration_s": 0.1,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -0.00014178258348010816,
+      "delta_mean_tangential_slip_m_s": -0.0004923589407476205,
+      "delta_se3_translation_drift_m": 8.03950483305849e-06,
+      "delta_se3_rotation_drift_deg": -0.008109389056866312,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.23333333333333328,
+          "delta_edge_margin_m": -1.2890276143551047e-07,
+          "delta_slip_m_s": -0.0015515792200358168
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.13333333333333336,
+          "delta_edge_margin_m": -2.2473224115026223e-06,
+          "delta_slip_m_s": -0.0003551493073998338
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -0.0008666620228261869,
+          "delta_slip_m_s": 0.001020838157572675
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 0.0004128066858617095,
+          "delta_slip_m_s": 0.0016240636455448001
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 2,
+      "requested_delta": -0.05,
+      "actual_delta": -0.04999999999999999,
+      "latent_normalized_z": [
+        1.0,
+        0.2155798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.5825354947478052,
+      "delta_objective": 0.25796557522857055,
+      "delta_longest_2_contact_duration_s": 0.06666666666666668,
+      "delta_longest_3_contact_duration_s": 0.0,
+      "delta_mean_edge_margin_m": -0.00026204026693450716,
+      "delta_mean_tangential_slip_m_s": -0.0005780626134955138,
+      "delta_se3_translation_drift_m": 1.0829832255124111e-05,
+      "delta_se3_rotation_drift_deg": -0.014965266281725814,
+      "delta_max_contacts": -1,
+      "topology_collapsed": false,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.1333333333333333,
+          "delta_edge_margin_m": -1.0494249737512987e-07,
+          "delta_slip_m_s": -0.0020912297705239346
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 2.0494043560312025e-08,
+          "delta_slip_m_s": -0.00023859787046052149
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": -0.0014304551666858365,
+          "delta_slip_m_s": 0.0003601177423136863
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 0.00031415476320966894,
+          "delta_slip_m_s": 0.00033290789826374845
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 2,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        1.0,
+        0.31557986449213327,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 0.7788260377870626,
+      "delta_objective": -0.545743881732172,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -8.911648163036008e-05,
+      "delta_mean_tangential_slip_m_s": 0.0007450717080749406,
+      "delta_se3_translation_drift_m": 4.490338087300322e-06,
+      "delta_se3_rotation_drift_deg": -0.011066522575111523,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -2.218107428289031e-07,
+          "delta_slip_m_s": -0.00028334377669635147
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -1.330309626393998e-06,
+          "delta_slip_m_s": 0.00013597159779156487
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": -0.0005925818889902965,
+          "delta_slip_m_s": 0.0009823424111109185
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": 0.0004493744491980237,
+          "delta_slip_m_s": 0.004148805123085993
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 2,
+      "requested_delta": 0.1,
+      "actual_delta": 0.10000000000000003,
+      "latent_normalized_z": [
+        1.0,
+        0.3655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 0.8706535265067418,
+      "delta_objective": -0.45391639301249287,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00018393510152598183,
+      "delta_mean_tangential_slip_m_s": -0.0013504670829693598,
+      "delta_se3_translation_drift_m": 1.002788593604156e-06,
+      "delta_se3_rotation_drift_deg": -0.004841248828092254,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -2.1596352217096232e-07,
+          "delta_slip_m_s": -0.0023507490735969498
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": 1.735624191127172e-06,
+          "delta_slip_m_s": 0.0010953212835584179
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -0.0008699115858341609,
+          "delta_slip_m_s": -0.00019717347204167325
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": 0.0002145046454544381,
+          "delta_slip_m_s": -0.0013185398814490514
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 3,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.735504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.529108195645828,
+      "delta_objective": 0.20453827612659325,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": 5.523699791202532e-06,
+      "delta_mean_tangential_slip_m_s": -0.0021013123118627935,
+      "delta_se3_translation_drift_m": 1.004958876839386e-06,
+      "delta_se3_rotation_drift_deg": -0.011528305995790009,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.1333333333333333,
+          "delta_edge_margin_m": -1.8494473376242587e-08,
+          "delta_slip_m_s": -0.0033911725679647902
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.06666666666666671,
+          "delta_edge_margin_m": -1.8690320184333922e-06,
+          "delta_slip_m_s": 0.001278398173973073
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": 7.831505950953079e-05,
+          "delta_slip_m_s": 0.001053267558556897
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": 0.0001754129874634059,
+          "delta_slip_m_s": -0.004688233324093641
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 3,
+      "requested_delta": -0.05,
+      "actual_delta": -0.050000000000000044,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.685504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.2222449062040388,
+      "delta_objective": -0.10232501331519583,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": 3.3550430606763275e-05,
+      "delta_mean_tangential_slip_m_s": -0.0003103868942803886,
+      "delta_se3_translation_drift_m": 2.004759026293237e-06,
+      "delta_se3_rotation_drift_deg": -0.005407215005821267,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": 2.3597645765997968e-07,
+          "delta_slip_m_s": -0.001185560451505788
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 9.79425259383875e-07,
+          "delta_slip_m_s": 0.001181834688970069
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -0.0003439701903682484,
+          "delta_slip_m_s": -0.0019433159378096018
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": 0.0007135777767627132,
+          "delta_slip_m_s": 0.003007433912795952
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 3,
+      "requested_delta": 0.05,
+      "actual_delta": 0.050000000000000044,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.585504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 0.9608887945257406,
+      "delta_objective": -0.36368112499349403,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00015915755292731108,
+      "delta_mean_tangential_slip_m_s": -0.0013364672784194533,
+      "delta_se3_translation_drift_m": 7.688332515208034e-06,
+      "delta_se3_rotation_drift_deg": -0.0008578429511725549,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": -5.36701527062457e-07,
+          "delta_slip_m_s": -0.0024268375865532576
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": 6.224198974635708e-07,
+          "delta_slip_m_s": 9.486900051076854e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.03333333333333338,
+          "delta_edge_margin_m": -0.000960778039814514,
+          "delta_slip_m_s": -0.002875060796098979
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": 0.0003407879534897204,
+          "delta_slip_m_s": 0.0013633761567816618
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 3,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.535504771768713,
+        -0.14660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.009431733983625,
+      "delta_objective": -0.3151381855356097,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.0002880263148142435,
+      "delta_mean_tangential_slip_m_s": -0.0012435697056070467,
+      "delta_se3_translation_drift_m": 5.958982017859025e-06,
+      "delta_se3_rotation_drift_deg": -0.0015577935739312793,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.16666666666666663,
+          "delta_edge_margin_m": -1.0220519554112214e-06,
+          "delta_slip_m_s": -0.0021182701033806203
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.2333333333333333,
+          "delta_edge_margin_m": 2.5859268176575105e-06,
+          "delta_slip_m_s": -4.698016943191323e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -0.0014861447187207158,
+          "delta_slip_m_s": -0.00035593747301580596
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.00024387928857864675,
+          "delta_slip_m_s": -0.001199508147039759
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 4,
+      "requested_delta": -0.1,
+      "actual_delta": -0.1,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.24660086263443917,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.0158320779116852,
+      "delta_objective": -0.30873784160754947,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -0.00022615736542393357,
+      "delta_mean_tangential_slip_m_s": -0.0011899803699289401,
+      "delta_se3_translation_drift_m": 1.2304030652106568e-06,
+      "delta_se3_rotation_drift_deg": -0.008148804407687144,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.19999999999999996,
+          "delta_edge_margin_m": -1.735177108406282e-07,
+          "delta_slip_m_s": -0.0018601986913360227
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.1333333333333333,
+          "delta_edge_margin_m": -1.3953133845082785e-06,
+          "delta_slip_m_s": 0.0005946686077280324
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -0.0009741005958006863,
+          "delta_slip_m_s": 0.0038931421770158382
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": 0.00019680384713834106,
+          "delta_slip_m_s": -0.003787746694519407
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 4,
+      "requested_delta": -0.05,
+      "actual_delta": -0.04999999999999999,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.19660086263443916,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 0.9434984860037444,
+      "delta_objective": -0.3810714335154902,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00011877616609048491,
+      "delta_mean_tangential_slip_m_s": -0.0003437601939699445,
+      "delta_se3_translation_drift_m": 1.977369337089217e-06,
+      "delta_se3_rotation_drift_deg": -0.007019015076316984,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -3.5730910632543403e-07,
+          "delta_slip_m_s": -0.0009057120312508391
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -3.2357573097641665e-06,
+          "delta_slip_m_s": -0.0004022218139579205
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -0.0006591808829529128,
+          "delta_slip_m_s": 0.003674283043705845
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": 0.00036248014645240086,
+          "delta_slip_m_s": -0.0007636916751257092
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 4,
+      "requested_delta": 0.05,
+      "actual_delta": 0.05,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.09660086263443916,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.0994549413897563,
+      "delta_objective": -0.22511497812947834,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -4.391033975943302e-05,
+      "delta_mean_tangential_slip_m_s": -5.459435465947696e-05,
+      "delta_se3_translation_drift_m": 1.0517687901299408e-05,
+      "delta_se3_rotation_drift_deg": -0.013772387166503391,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.19999999999999996,
+          "delta_edge_margin_m": -4.745924838229747e-08,
+          "delta_slip_m_s": -0.001421897738434326
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -2.9819446828237635e-06,
+          "delta_slip_m_s": -0.0008017364745556092
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -0.0005494604055836594,
+          "delta_slip_m_s": -0.0002494901166148894
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": 0.000481850913454777,
+          "delta_slip_m_s": 0.0052172049938094805
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 4,
+      "requested_delta": 0.1,
+      "actual_delta": 0.1,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.04660086263443916,
+        -0.1855483002006223
+      ],
+      "diagnostic_objective": 1.2268853496193166,
+      "delta_objective": -0.09768456989991803,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00015797703825571902,
+      "delta_mean_tangential_slip_m_s": -0.000916032386310486,
+      "delta_se3_translation_drift_m": 7.265793985745226e-06,
+      "delta_se3_rotation_drift_deg": -0.010929200079089652,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -2.976533053208972e-07,
+          "delta_slip_m_s": -0.0003128037413602661
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": 8.031535428365658e-07,
+          "delta_slip_m_s": 3.520953481301638e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": -0.0006514020492577842,
+          "delta_slip_m_s": 0.004489087629385904
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": -7.838351858702678e-05,
+          "delta_slip_m_s": -0.008700626935430087
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 5,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.2855483002006223
+      ],
+      "diagnostic_objective": 0.7556588216931656,
+      "delta_objective": -0.5689110978260691,
+      "delta_longest_2_contact_duration_s": -0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -9.539914457255616e-05,
+      "delta_mean_tangential_slip_m_s": 0.00012995842450983473,
+      "delta_se3_translation_drift_m": 8.635227768731747e-06,
+      "delta_se3_rotation_drift_deg": -0.014260463007395419,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 1.34067107451366e-07,
+          "delta_slip_m_s": 4.4673891331149795e-05
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -2.2842655731160544e-06,
+          "delta_slip_m_s": 0.00028316808168988346
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -0.00073892168272089,
+          "delta_slip_m_s": 0.005189768016907372
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.2,
+          "delta_edge_margin_m": 0.0006540214957167164,
+          "delta_slip_m_s": -0.0011458473335274385
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 5,
+      "requested_delta": -0.05,
+      "actual_delta": -0.04999999999999999,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.23554830020062228
+      ],
+      "diagnostic_objective": 0.9709959741896954,
+      "delta_objective": -0.35357394532953923,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -3.196834626925367e-05,
+      "delta_mean_tangential_slip_m_s": -0.0015406867020633392,
+      "delta_se3_translation_drift_m": 3.0447972926435748e-06,
+      "delta_se3_rotation_drift_deg": -0.009280581871877691,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -3.155679145763814e-07,
+          "delta_slip_m_s": -0.0023940700581912546
+        },
+        "finger2": {
+          "delta_contact_duration_s": -0.16666666666666663,
+          "delta_edge_margin_m": -3.0628984635885955e-06,
+          "delta_slip_m_s": -0.0009211000237218572
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -0.0005879364716319317,
+          "delta_slip_m_s": 0.0015691243867193873
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": 0.0004730405752577208,
+          "delta_slip_m_s": -0.003150135856810083
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 5,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.1355483002006223
+      ],
+      "diagnostic_objective": 0.6074087021802548,
+      "delta_objective": -0.7171612173389799,
+      "delta_longest_2_contact_duration_s": -0.06666666666666667,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.0001786599557861313,
+      "delta_mean_tangential_slip_m_s": -0.0004390824423111551,
+      "delta_se3_translation_drift_m": 1.3044691020811202e-05,
+      "delta_se3_rotation_drift_deg": -0.013763741107241684,
+      "delta_max_contacts": -1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": -2.0584243871083492e-07,
+          "delta_slip_m_s": -0.0015584103069386556
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 8.857976363298604e-07,
+          "delta_slip_m_s": 0.0010310999301599887
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.2,
+          "delta_edge_margin_m": -0.0007048624149032019,
+          "delta_slip_m_s": 0.006889869718718893
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.26666666666666666,
+          "delta_edge_margin_m": 0.0004696734826837301,
+          "delta_slip_m_s": -0.00038563440003199466
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 2,
+      "pc": 5,
+      "requested_delta": 0.1,
+      "actual_delta": 0.1,
+      "latent_normalized_z": [
+        1.0,
+        0.2655798644921333,
+        -0.635504771768713,
+        -0.14660086263443917,
+        -0.08554830020062229
+      ],
+      "diagnostic_objective": 1.2074199533754133,
+      "delta_objective": -0.11714996614382134,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -1.3666018305481115e-05,
+      "delta_mean_tangential_slip_m_s": 5.3560239533276266e-05,
+      "delta_se3_translation_drift_m": 3.065651167550191e-06,
+      "delta_se3_rotation_drift_deg": -0.007385968510680116,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -4.385204809433142e-07,
+          "delta_slip_m_s": -0.0024068453163215067
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.03333333333333338,
+          "delta_edge_margin_m": -2.552637526902959e-06,
+          "delta_slip_m_s": 0.0015232894323297845
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": -0.0004454001406010305,
+          "delta_slip_m_s": 0.001995471976677876
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 0.000595511722363944,
+          "delta_slip_m_s": 0.001958345186872998
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 1,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        0.7083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.3149664022179217,
+      "delta_objective": -0.7056076387424488,
+      "delta_longest_2_contact_duration_s": -0.03333333333333334,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.0009983079567762558,
+      "delta_mean_tangential_slip_m_s": 0.0016993621363224362,
+      "delta_se3_translation_drift_m": 2.8128055772543036e-06,
+      "delta_se3_rotation_drift_deg": 0.005387041873395268,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.16666666666666669,
+          "delta_edge_margin_m": -0.0006223281483819839,
+          "delta_slip_m_s": 0.00142182496591542
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.033333333333333354,
+          "delta_edge_margin_m": -6.310247828800222e-06,
+          "delta_slip_m_s": -0.0013200470446543293
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.1333333333333333,
+          "delta_edge_margin_m": 4.070921786969591e-06,
+          "delta_slip_m_s": -0.0012903225312290996
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 1.6971375842866985e-05,
+          "delta_slip_m_s": 0.003963166333353002
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 1,
+      "requested_delta": -0.05,
+      "actual_delta": -0.050000000000000044,
+      "latent_normalized_z": [
+        0.758387529873297,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 2.608727708563837,
+      "delta_objective": 0.5881536676034664,
+      "delta_longest_2_contact_duration_s": 0.13333333333333333,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -8.357815643527354e-05,
+      "delta_mean_tangential_slip_m_s": -0.0009199059286479419,
+      "delta_se3_translation_drift_m": -1.5985050765711964e-05,
+      "delta_se3_rotation_drift_deg": 0.0016886072606259045,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -0.0003298474857256536,
+          "delta_slip_m_s": -0.00022379411100533798
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.2666666666666667,
+          "delta_edge_margin_m": -4.547911321331054e-06,
+          "delta_slip_m_s": -0.0008377956595961647
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -2.3359936711459783e-06,
+          "delta_slip_m_s": -0.0004711906795404944
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -0.0001405668975126296,
+          "delta_slip_m_s": -0.0023785888895744064
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 1,
+      "requested_delta": 0.05,
+      "actual_delta": 0.050000000000000044,
+      "latent_normalized_z": [
+        0.8583875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 2.334560612916568,
+      "delta_objective": 0.3139865719561974,
+      "delta_longest_2_contact_duration_s": 0.13333333333333333,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -4.724945340058625e-05,
+      "delta_mean_tangential_slip_m_s": 0.0012406033914277564,
+      "delta_se3_translation_drift_m": -9.80085963647883e-06,
+      "delta_se3_rotation_drift_deg": -0.004652362782914574,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 0.00034988352195827223,
+          "delta_slip_m_s": -0.0002884130210899071
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.23333333333333336,
+          "delta_edge_margin_m": -3.426209557777512e-06,
+          "delta_slip_m_s": -0.001474041404094159
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": 9.665944465638408e-07,
+          "delta_slip_m_s": 0.001467414123686311
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -0.00015128711799541954,
+          "delta_slip_m_s": 0.005407088986510589
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 1,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        0.9083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.5918781271176867,
+      "delta_objective": -0.4286959138426838,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 3.8359233743380516e-05,
+      "delta_mean_tangential_slip_m_s": 0.0010734284051217083,
+      "delta_se3_translation_drift_m": 6.679792243518965e-06,
+      "delta_se3_rotation_drift_deg": 0.006432956500037168,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 0.0006383195927808036,
+          "delta_slip_m_s": -0.0006899487332964276
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -5.074164466911273e-06,
+          "delta_slip_m_s": -0.0009313236527222438
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.19999999999999998,
+          "delta_edge_margin_m": -1.141115317211624e-06,
+          "delta_slip_m_s": -4.722099909913822e-05
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -0.00021138822851617253,
+          "delta_slip_m_s": 0.0014384198796015737
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 2,
+      "requested_delta": -0.1,
+      "actual_delta": -0.09999999999999998,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.6402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.6760580897066415,
+      "delta_objective": -0.344515951253729,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 7.68153638386962e-05,
+      "delta_mean_tangential_slip_m_s": 8.08484167048075e-05,
+      "delta_se3_translation_drift_m": 7.823387633960015e-06,
+      "delta_se3_rotation_drift_deg": 0.006819459965173372,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 0.0006624403152526662,
+          "delta_slip_m_s": -0.00016271561531787642
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": -1.405828734498409e-06,
+          "delta_slip_m_s": -0.0015882795353511642
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.19999999999999998,
+          "delta_edge_margin_m": -2.555826912961444e-06,
+          "delta_slip_m_s": -0.0007865604180176851
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": -9.151958516655492e-05,
+          "delta_slip_m_s": 0.0010233604978172398
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 2,
+      "requested_delta": -0.05,
+      "actual_delta": -0.050000000000000044,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5902958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 2.2319202967183425,
+      "delta_objective": 0.21134625575797195,
+      "delta_longest_2_contact_duration_s": 0.13333333333333333,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.0011470583092120512,
+      "delta_mean_tangential_slip_m_s": 0.00019261320487770107,
+      "delta_se3_translation_drift_m": -1.6340727209771848e-05,
+      "delta_se3_rotation_drift_deg": 0.0025882143734955176,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": 0.0002883172964938986,
+          "delta_slip_m_s": 0.0004826419720691073
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": -6.241408946117272e-07,
+          "delta_slip_m_s": 4.112803686290214e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -6.907047155464145e-08,
+          "delta_slip_m_s": -0.000724197623870949
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": -3.19864119917358e-05,
+          "delta_slip_m_s": -0.00012054831097151573
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 2,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.4902958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.7930455531446632,
+      "delta_objective": -0.22752848781570734,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 0.0005111360471870474,
+      "delta_mean_tangential_slip_m_s": 0.0010935911497113307,
+      "delta_se3_translation_drift_m": 5.193953132786038e-06,
+      "delta_se3_rotation_drift_deg": 0.005412250758362644,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -0.00032779642837041205,
+          "delta_slip_m_s": -3.098609209240943e-05
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.033333333333333354,
+          "delta_edge_margin_m": -3.29892152939791e-06,
+          "delta_slip_m_s": -0.0005856307351251536
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -6.266415358597313e-07,
+          "delta_slip_m_s": 0.0008217375023339322
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": -7.177033481580358e-06,
+          "delta_slip_m_s": 0.002965845116615821
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 2,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.4402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 2.0962195576855787,
+      "delta_objective": 0.07564551672520814,
+      "delta_longest_2_contact_duration_s": 0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00030206544974535534,
+      "delta_mean_tangential_slip_m_s": -0.0001328203439203788,
+      "delta_se3_translation_drift_m": 1.856605991939514e-05,
+      "delta_se3_rotation_drift_deg": 0.015656416795283304,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": -0.0006638615390410236,
+          "delta_slip_m_s": 0.00040406627422336777
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.13333333333333333,
+          "delta_edge_margin_m": -6.588707881137357e-06,
+          "delta_slip_m_s": -0.002284140806661454
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -2.196146715435773e-06,
+          "delta_slip_m_s": 0.0009994811301665325
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": -0.00022382596651070288,
+          "delta_slip_m_s": 0.00048139394992525314
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 3,
+      "requested_delta": -0.1,
+      "actual_delta": -0.1,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.20461706605724347,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.567165319007602,
+      "delta_objective": -0.4534087219527685,
+      "delta_longest_2_contact_duration_s": -0.03333333333333334,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00024299764955384648,
+      "delta_mean_tangential_slip_m_s": 0.000713273735206567,
+      "delta_se3_translation_drift_m": -4.771012836659455e-07,
+      "delta_se3_rotation_drift_deg": -0.001843524032370522,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 0.00021231449985232437,
+          "delta_slip_m_s": 0.0005070907406540736
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.13333333333333333,
+          "delta_edge_margin_m": -5.088868276785625e-06,
+          "delta_slip_m_s": -0.001296288935561273
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.19999999999999998,
+          "delta_edge_margin_m": 7.446237824748481e-07,
+          "delta_slip_m_s": -0.0007686099862861525
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.06666666666666665,
+          "delta_edge_margin_m": 0.0004288069166309236,
+          "delta_slip_m_s": 0.0006279521518643156
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 3,
+      "requested_delta": -0.05,
+      "actual_delta": -0.04999999999999999,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.2546170660572435,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 2.7248111810302773,
+      "delta_objective": 0.7042371400699068,
+      "delta_longest_2_contact_duration_s": 0.16666666666666666,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": 0.0006037680344707867,
+      "delta_mean_tangential_slip_m_s": 6.619117747461937e-05,
+      "delta_se3_translation_drift_m": -2.8325600516652027e-06,
+      "delta_se3_rotation_drift_deg": -0.0033650788340372773,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.19999999999999996,
+          "delta_edge_margin_m": 5.6114085364912525e-05,
+          "delta_slip_m_s": -0.001421947327581819
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.30000000000000004,
+          "delta_edge_margin_m": -5.576057381966312e-06,
+          "delta_slip_m_s": -0.00016347501336352963
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -5.281545033046211e-07,
+          "delta_slip_m_s": 0.0010504633436571064
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -5.628971888890614e-05,
+          "delta_slip_m_s": 0.003991172151749581
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 3,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.35461706605724347,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.8809738387626622,
+      "delta_objective": -0.1396002021977083,
+      "delta_longest_2_contact_duration_s": 0.06666666666666665,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.0007397022686663384,
+      "delta_mean_tangential_slip_m_s": 0.0005919903551770342,
+      "delta_se3_translation_drift_m": -1.3112026454222784e-05,
+      "delta_se3_rotation_drift_deg": -0.003925053680138346,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": -4.588954922780247e-05,
+          "delta_slip_m_s": -0.0016476105425583649
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": 2.991352558301176e-07,
+          "delta_slip_m_s": -0.002084702698396686
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.2666666666666666,
+          "delta_edge_margin_m": -1.6518373035340732e-06,
+          "delta_slip_m_s": -0.001856782280964067
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -4.5975085970754e-05,
+          "delta_slip_m_s": 0.001844736956556705
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 3,
+      "requested_delta": 0.1,
+      "actual_delta": 0.09999999999999998,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.40461706605724346,
+        0.22370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.862700274498856,
+      "delta_objective": -0.15787376646151463,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 7.434553474239269e-07,
+      "delta_mean_tangential_slip_m_s": -0.0010345543488808435,
+      "delta_se3_translation_drift_m": 4.21347628773547e-08,
+      "delta_se3_rotation_drift_deg": -0.0012032907356108041,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -0.00014591454496135949,
+          "delta_slip_m_s": -0.0009367504482783685
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": -3.6716020701771364e-06,
+          "delta_slip_m_s": -0.0013821277234074046
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 6.179042879501131e-07,
+          "delta_slip_m_s": -0.00046163478019348603
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -0.00022746892182909058,
+          "delta_slip_m_s": -0.0004061761860808463
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 4,
+      "requested_delta": -0.1,
+      "actual_delta": -0.1,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.12370885953666436,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.9187344887369633,
+      "delta_objective": -0.10183955222340724,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 0.001574515605644148,
+      "delta_mean_tangential_slip_m_s": 0.0007689275767011634,
+      "delta_se3_translation_drift_m": 1.6020452506464806e-06,
+      "delta_se3_rotation_drift_deg": -0.00212752760332012,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.16666666666666663,
+          "delta_edge_margin_m": 7.390158096097325e-05,
+          "delta_slip_m_s": 0.00010490757218650434
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -8.168255198618572e-06,
+          "delta_slip_m_s": -0.0010736369837933473
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.1333333333333333,
+          "delta_edge_margin_m": 6.494147861292057e-07,
+          "delta_slip_m_s": -0.0008023411846926176
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -9.603023141546572e-05,
+          "delta_slip_m_s": 0.0028767182508648414
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 4,
+      "requested_delta": -0.05,
+      "actual_delta": -0.04999999999999999,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.17370885953666437,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.7664032131112568,
+      "delta_objective": -0.2541708278491137,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 0.00030845261137815716,
+      "delta_mean_tangential_slip_m_s": 0.0005125336319227267,
+      "delta_se3_translation_drift_m": 5.554978036857321e-06,
+      "delta_se3_rotation_drift_deg": 0.0022993251153563266,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.033333333333333326,
+          "delta_edge_margin_m": 7.01188897908496e-05,
+          "delta_slip_m_s": 0.0002957823802890733
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.23333333333333336,
+          "delta_edge_margin_m": -4.977041101345664e-06,
+          "delta_slip_m_s": -0.0005773923231251633
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.1333333333333333,
+          "delta_edge_margin_m": -9.28399279686338e-07,
+          "delta_slip_m_s": 0.00016091485771190265
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.13333333333333336,
+          "delta_edge_margin_m": -0.00019190841107378056,
+          "delta_slip_m_s": 0.003020026221044589
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 4,
+      "requested_delta": 0.05,
+      "actual_delta": 0.04999999999999999,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.27370885953666435,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 1.385459797810103,
+      "delta_objective": -0.6351142431502674,
+      "delta_longest_2_contact_duration_s": -0.03333333333333334,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 0.0007271531519149497,
+      "delta_mean_tangential_slip_m_s": 0.0017440983710947568,
+      "delta_se3_translation_drift_m": -3.9210805785244355e-06,
+      "delta_se3_rotation_drift_deg": -0.0008621706871774076,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": 6.61234309354275e-06,
+          "delta_slip_m_s": -0.0006471767686438454
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.06666666666666668,
+          "delta_edge_margin_m": -2.4790849044300115e-06,
+          "delta_slip_m_s": -0.0005208655338989595
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.2333333333333333,
+          "delta_edge_margin_m": -2.4396937602170885e-06,
+          "delta_slip_m_s": 0.0006663778146009541
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.06666666666666671,
+          "delta_edge_margin_m": -1.9606659505927085e-05,
+          "delta_slip_m_s": 0.005244707161323985
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 4,
+      "requested_delta": 0.1,
+      "actual_delta": 0.10000000000000003,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.3237088595366644,
+        -0.06725584272204456
+      ],
+      "diagnostic_objective": 2.2133595702057525,
+      "delta_objective": 0.19278552924538195,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": -0.00012477574470241403,
+      "delta_mean_tangential_slip_m_s": 0.0003131095376225678,
+      "delta_se3_translation_drift_m": -8.696588477911176e-06,
+      "delta_se3_rotation_drift_deg": -0.0008523028865086019,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -8.472507157339035e-05,
+          "delta_slip_m_s": -0.0003320130973608988
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.30000000000000004,
+          "delta_edge_margin_m": -2.3361307678593495e-06,
+          "delta_slip_m_s": -0.0012122397316905583
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": -1.784171555930276e-06,
+          "delta_slip_m_s": -0.00047901423126368034
+        },
+        "finger4": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.00013267071596623372,
+          "delta_slip_m_s": 0.0030902991844786454
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 5,
+      "requested_delta": -0.1,
+      "actual_delta": -0.10000000000000002,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.16725584272204458
+      ],
+      "diagnostic_objective": 1.6661313547249657,
+      "delta_objective": -0.35444268623540487,
+      "delta_longest_2_contact_duration_s": 0.0,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": -0.00033399303263626726,
+      "delta_mean_tangential_slip_m_s": 0.0006412419311141188,
+      "delta_se3_translation_drift_m": -1.2596162746405544e-06,
+      "delta_se3_rotation_drift_deg": -0.002831800556534564,
+      "delta_max_contacts": 0,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.06666666666666665,
+          "delta_edge_margin_m": 0.00012930541071626972,
+          "delta_slip_m_s": -0.0006462228242236235
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": -2.507027189071622e-06,
+          "delta_slip_m_s": -0.0013861877423006685
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": -3.925492035922267e-07,
+          "delta_slip_m_s": 0.0011797181309940673
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -2.317780930559258e-06,
+          "delta_slip_m_s": 0.0038435143902202425
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 5,
+      "requested_delta": -0.05,
+      "actual_delta": -0.05,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.11725584272204456
+      ],
+      "diagnostic_objective": 2.109488915198719,
+      "delta_objective": 0.08891487423834832,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.03333333333333334,
+      "delta_mean_edge_margin_m": 0.00089978893843782,
+      "delta_mean_tangential_slip_m_s": -0.00044990281641035367,
+      "delta_se3_translation_drift_m": -5.632788275108968e-06,
+      "delta_se3_rotation_drift_deg": -0.002860160873357845,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": 6.758375879353622e-05,
+          "delta_slip_m_s": 0.00014193218715798442
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": -3.459108999742851e-06,
+          "delta_slip_m_s": -9.325371353956224e-05
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": -1.6341734898404797e-08,
+          "delta_slip_m_s": 0.0011530060868179515
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.23333333333333334,
+          "delta_edge_margin_m": 0.00011569428226750365,
+          "delta_slip_m_s": -0.0006772816400111067
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 5,
+      "requested_delta": 0.05,
+      "actual_delta": 0.05,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        -0.017255842722044556
+      ],
+      "diagnostic_objective": 1.9335891931204907,
+      "delta_objective": -0.08698484783987981,
+      "delta_longest_2_contact_duration_s": 0.033333333333333326,
+      "delta_longest_3_contact_duration_s": -0.06666666666666668,
+      "delta_mean_edge_margin_m": 0.0010715110261986533,
+      "delta_mean_tangential_slip_m_s": -8.367652476194611e-05,
+      "delta_se3_translation_drift_m": -8.953796641927278e-06,
+      "delta_se3_rotation_drift_deg": -0.0030932668981777933,
+      "delta_max_contacts": 1,
+      "topology_collapsed": true,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": 0.09999999999999998,
+          "delta_edge_margin_m": -0.00011709176386149635,
+          "delta_slip_m_s": 0.0011168582178985595
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.16666666666666666,
+          "delta_edge_margin_m": -4.6766503926000255e-06,
+          "delta_slip_m_s": -0.0006435363694845837
+        },
+        "finger3": {
+          "delta_contact_duration_s": -0.09999999999999998,
+          "delta_edge_margin_m": -6.813799146214797e-07,
+          "delta_slip_m_s": 0.00017055632563454546
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.2,
+          "delta_edge_margin_m": -0.00016009720862033314,
+          "delta_slip_m_s": -0.00018422830930228673
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    },
+    {
+      "base_rank": 3,
+      "pc": 5,
+      "requested_delta": 0.1,
+      "actual_delta": 0.1,
+      "latent_normalized_z": [
+        0.8083875298732971,
+        -0.5402958842096054,
+        0.3046170660572435,
+        0.22370885953666436,
+        0.032744157277955446
+      ],
+      "diagnostic_objective": 2.3404794950062637,
+      "delta_objective": 0.3199054540458932,
+      "delta_longest_2_contact_duration_s": 0.06666666666666665,
+      "delta_longest_3_contact_duration_s": 0.0,
+      "delta_mean_edge_margin_m": -0.0009947435847469412,
+      "delta_mean_tangential_slip_m_s": 7.27943082123178e-05,
+      "delta_se3_translation_drift_m": -1.2201780153496018e-05,
+      "delta_se3_rotation_drift_deg": -0.0028118347835794782,
+      "delta_max_contacts": 1,
+      "topology_collapsed": false,
+      "per_finger": {
+        "finger1": {
+          "delta_contact_duration_s": -0.033333333333333326,
+          "delta_edge_margin_m": -0.00010186890749722816,
+          "delta_slip_m_s": -0.0002798961499586826
+        },
+        "finger2": {
+          "delta_contact_duration_s": 0.33333333333333337,
+          "delta_edge_margin_m": -2.3888290888895696e-06,
+          "delta_slip_m_s": -0.0014165710514008611
+        },
+        "finger3": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 1.6813201165429083e-06,
+          "delta_slip_m_s": -0.0005632880292819275
+        },
+        "finger4": {
+          "delta_contact_duration_s": -0.10000000000000003,
+          "delta_edge_margin_m": -9.445394136071969e-05,
+          "delta_slip_m_s": 0.0043882713333378755
+        },
+        "finger5": {
+          "delta_contact_duration_s": 0.0,
+          "delta_edge_margin_m": 0.0,
+          "delta_slip_m_s": 0.0
+        }
+      }
+    }
+  ]
+}

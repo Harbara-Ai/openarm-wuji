@@ -1,0 +1,30 @@
+{
+  "algorithm": "Stable-Baselines3 SAC",
+  "timesteps": 256,
+  "seed": 7,
+  "device": "cpu",
+  "observation_dimension": 228,
+  "action_dimension": 20,
+  "hyperparameters": {
+    "learning_rate": 0.0003,
+    "buffer_size": 50000,
+    "learning_starts": 100,
+    "batch_size": 64,
+    "tau": 0.005,
+    "gamma": 0.98,
+    "train_freq": 1,
+    "gradient_steps": 1,
+    "ent_coef": "auto",
+    "policy_net_arch": [
+      256,
+      256
+    ]
+  },
+  "replay_buffer_size": 256,
+  "gradient_updates": 156,
+  "actor_parameter_l2_change": 1.027064561843872,
+  "first_reward_window_mean": 0.10780865132808685,
+  "last_reward_window_mean": 0.1388006801903248,
+  "max_contact_fingers": 0,
+  "success_events": 0
+}

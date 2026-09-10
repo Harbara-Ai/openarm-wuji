@@ -1,0 +1,1137 @@
+{
+  "status": "partial_baseline_only",
+  "replay_semantics": "fixed seed 7; same Reward V2 and 120-step horizon",
+  "results": [
+    {
+      "episode_id": 69,
+      "label": "A_fixed_palm_raw20",
+      "quality": {
+        "steps": 108,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.4,
+        "time_to_2_contacts_s": 0.6333333333333333,
+        "time_to_3_contacts_s": 0.6333333333333333,
+        "duration_ge_2": {
+          "total_s": 0.5,
+          "max_contiguous_s": 0.16666666666666666,
+          "frames": 15
+        },
+        "duration_ge_3": {
+          "total_s": 0.2,
+          "max_contiguous_s": 0.06666666666666667,
+          "frames": 6
+        },
+        "hold_ge_0.1s": true,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 35,
+            "contact_duration_s": 1.1666666666666667,
+            "max_normal_force_n": 0.8990194981855695,
+            "mean_normal_force_n": 0.6817016962986615,
+            "max_sliding_speed_m_s": 0.047849468278420335,
+            "mean_sliding_speed_m_s": 0.017174338606314683,
+            "min_edge_margin_m": 0.00645488283006956,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00012076868860278102
+          },
+          "finger2": {
+            "contact_frames": 8,
+            "contact_duration_s": 0.26666666666666666,
+            "max_normal_force_n": 1.5984596447821153,
+            "mean_normal_force_n": 1.0803248759463129,
+            "max_sliding_speed_m_s": 0.01647823667248881,
+            "mean_sliding_speed_m_s": 0.010716391701981041,
+            "min_edge_margin_m": 0.0000013967123385569269,
+            "edge_contact_frames": 8,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom",
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.0006140552636167257
+          },
+          "finger3": {
+            "contact_frames": 7,
+            "contact_duration_s": 0.23333333333333334,
+            "max_normal_force_n": 0.9238144117179625,
+            "mean_normal_force_n": 0.7856231531996699,
+            "max_sliding_speed_m_s": 0.02336285209821148,
+            "mean_sliding_speed_m_s": 0.016885126498626623,
+            "min_edge_margin_m": 0.000001415805958610017,
+            "edge_contact_frames": 7,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00003863644001013923
+          },
+          "finger4": {
+            "contact_frames": 23,
+            "contact_duration_s": 0.7666666666666666,
+            "max_normal_force_n": 1.200718646064925,
+            "mean_normal_force_n": 0.9349205708351088,
+            "max_sliding_speed_m_s": 0.05333469426396007,
+            "mean_sliding_speed_m_s": 0.01990174532438979,
+            "min_edge_margin_m": 1.157501809401218e-7,
+            "edge_contact_frames": 23,
+            "corner_contact_frames": 12,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00016509171377013484
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.00023522344287964155,
+        "max_relative_rotation_drift_deg": 0.217219533832587,
+        "max_relative_linear_speed_m_s": 0.0046338482263966405,
+        "max_relative_angular_speed_deg_s": 7.4475465689228635,
+        "max_cube_displacement_m": 0.00023522344281692888,
+        "max_deepest_penetration_m": 0.000623990014851099
+      }
+    },
+    {
+      "episode_id": 69,
+      "label": "B_fixed_palm_pca5",
+      "quality": {
+        "steps": 108,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.4,
+        "time_to_2_contacts_s": 0.5666666666666667,
+        "time_to_3_contacts_s": 0.7333333333333333,
+        "duration_ge_2": {
+          "total_s": 0.3333333333333333,
+          "max_contiguous_s": 0.06666666666666667,
+          "frames": 10
+        },
+        "duration_ge_3": {
+          "total_s": 0.06666666666666667,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 2
+        },
+        "hold_ge_0.1s": false,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 31,
+            "contact_duration_s": 1.0333333333333332,
+            "max_normal_force_n": 0.822610197284102,
+            "mean_normal_force_n": 0.6715804447174607,
+            "max_sliding_speed_m_s": 0.06997228609019322,
+            "mean_sliding_speed_m_s": 0.015477323283825041,
+            "min_edge_margin_m": 0.0056630756742987,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0006348931195714455
+          },
+          "finger2": {
+            "contact_frames": 7,
+            "contact_duration_s": 0.23333333333333334,
+            "max_normal_force_n": 2.0040712033218644,
+            "mean_normal_force_n": 1.260039520865811,
+            "max_sliding_speed_m_s": 0.038732802534477716,
+            "mean_sliding_speed_m_s": 0.01776090704875746,
+            "min_edge_margin_m": 2.9843429013437506e-7,
+            "edge_contact_frames": 7,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom",
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.0006759800441083802
+          },
+          "finger3": {
+            "contact_frames": 10,
+            "contact_duration_s": 0.3333333333333333,
+            "max_normal_force_n": 0.9251467712833948,
+            "mean_normal_force_n": 0.8270732356917373,
+            "max_sliding_speed_m_s": 0.03414383802013939,
+            "mean_sliding_speed_m_s": 0.014032663940251145,
+            "min_edge_margin_m": 6.916465108280923e-8,
+            "edge_contact_frames": 10,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.000124949282430293
+          },
+          "finger4": {
+            "contact_frames": 15,
+            "contact_duration_s": 0.5,
+            "max_normal_force_n": 1.163777370267919,
+            "mean_normal_force_n": 0.9128591911179706,
+            "max_sliding_speed_m_s": 0.057474026120164994,
+            "mean_sliding_speed_m_s": 0.01751825453182706,
+            "min_edge_margin_m": 8.007991646880042e-8,
+            "edge_contact_frames": 15,
+            "corner_contact_frames": 10,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0000867925661554527
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.00022920246075548072,
+        "max_relative_rotation_drift_deg": 0.2241078033787449,
+        "max_relative_linear_speed_m_s": 0.00458193262570094,
+        "max_relative_angular_speed_deg_s": 7.335595058019404,
+        "max_cube_displacement_m": 0.00022920246067632726,
+        "max_deepest_penetration_m": 0.0006759800441083802
+      }
+    },
+    {
+      "episode_id": 75,
+      "label": "A_fixed_palm_raw20",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.4666666666666667,
+        "time_to_2_contacts_s": 1.5333333333333332,
+        "time_to_3_contacts_s": 1.8333333333333333,
+        "duration_ge_2": {
+          "total_s": 0.23333333333333334,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 7
+        },
+        "duration_ge_3": {
+          "total_s": 0.06666666666666667,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 2
+        },
+        "hold_ge_0.1s": false,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 28,
+            "contact_duration_s": 0.9333333333333333,
+            "max_normal_force_n": 0.8576143929536112,
+            "mean_normal_force_n": 0.6981854456235917,
+            "max_sliding_speed_m_s": 0.0739135859985244,
+            "mean_sliding_speed_m_s": 0.018150035070694927,
+            "min_edge_margin_m": 0.00269380864034105,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00006234192593828022
+          },
+          "finger2": {
+            "contact_frames": 3,
+            "contact_duration_s": 0.1,
+            "max_normal_force_n": 1.1975461922687973,
+            "mean_normal_force_n": 1.1239372893670916,
+            "max_sliding_speed_m_s": 0.06581627814970052,
+            "mean_sliding_speed_m_s": 0.03640511072321895,
+            "min_edge_margin_m": 0.0000022409369266757073,
+            "edge_contact_frames": 3,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.00005973802140365242
+          },
+          "finger3": {
+            "contact_frames": 2,
+            "contact_duration_s": 0.06666666666666667,
+            "max_normal_force_n": 0.8170309690391335,
+            "mean_normal_force_n": 0.8086148564089726,
+            "max_sliding_speed_m_s": 0.006674651036397836,
+            "mean_sliding_speed_m_s": 0.005695236470660293,
+            "min_edge_margin_m": 1.168485111030515e-7,
+            "edge_contact_frames": 2,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.000007880899138415551
+          },
+          "finger4": {
+            "contact_frames": 25,
+            "contact_duration_s": 0.8333333333333334,
+            "max_normal_force_n": 1.2444157739811004,
+            "mean_normal_force_n": 1.0039231915629399,
+            "max_sliding_speed_m_s": 0.03391669347801986,
+            "mean_sliding_speed_m_s": 0.01515598649139668,
+            "min_edge_margin_m": 0,
+            "edge_contact_frames": 25,
+            "corner_contact_frames": 24,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.000047670417444350174
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.000263589121797558,
+        "max_relative_rotation_drift_deg": 0.24730747469946954,
+        "max_relative_linear_speed_m_s": 0.0018123813317909988,
+        "max_relative_angular_speed_deg_s": 2.7398709750614993,
+        "max_cube_displacement_m": 0.0002635891216453197,
+        "max_deepest_penetration_m": 0.00006234192593828022
+      }
+    },
+    {
+      "episode_id": 75,
+      "label": "B_fixed_palm_pca5",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 2,
+        "time_to_first_contact_s": 0.5,
+        "time_to_2_contacts_s": 1.8,
+        "time_to_3_contacts_s": null,
+        "duration_ge_2": {
+          "total_s": 0.23333333333333334,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 7
+        },
+        "duration_ge_3": {
+          "total_s": 0,
+          "max_contiguous_s": 0,
+          "frames": 0
+        },
+        "hold_ge_0.1s": false,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 51,
+            "contact_duration_s": 1.7,
+            "max_normal_force_n": 0.9297476697748297,
+            "mean_normal_force_n": 0.7601871836155262,
+            "max_sliding_speed_m_s": 0.04046291258158483,
+            "mean_sliding_speed_m_s": 0.016857549864701567,
+            "min_edge_margin_m": 0.002350271139687367,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00007088930669036847
+          },
+          "finger2": {
+            "contact_frames": 2,
+            "contact_duration_s": 0.06666666666666667,
+            "max_normal_force_n": 1.2085770566448344,
+            "mean_normal_force_n": 1.074786170633273,
+            "max_sliding_speed_m_s": 0.0649077783286938,
+            "mean_sliding_speed_m_s": 0.04277598354155269,
+            "min_edge_margin_m": 0.000003274844986800307,
+            "edge_contact_frames": 2,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.000060641145376161295
+          },
+          "finger3": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          },
+          "finger4": {
+            "contact_frames": 13,
+            "contact_duration_s": 0.43333333333333335,
+            "max_normal_force_n": 1.235360933882179,
+            "mean_normal_force_n": 1.0984196410538898,
+            "max_sliding_speed_m_s": 0.036971690567990746,
+            "mean_sliding_speed_m_s": 0.01914075131977738,
+            "min_edge_margin_m": 5.6904006194569146e-8,
+            "edge_contact_frames": 13,
+            "corner_contact_frames": 1,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00008991677297496794
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.0003207206539474356,
+        "max_relative_rotation_drift_deg": 0.3258185829200296,
+        "max_relative_linear_speed_m_s": 0.002241471602289372,
+        "max_relative_angular_speed_deg_s": 3.487334910378588,
+        "max_cube_displacement_m": 0.0003207206537629742,
+        "max_deepest_penetration_m": 0.00008991677297496794
+      }
+    },
+    {
+      "episode_id": 87,
+      "label": "A_fixed_palm_raw20",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.4,
+        "time_to_2_contacts_s": 0.9333333333333333,
+        "time_to_3_contacts_s": 1.1333333333333333,
+        "duration_ge_2": {
+          "total_s": 0.3333333333333333,
+          "max_contiguous_s": 0.16666666666666666,
+          "frames": 10
+        },
+        "duration_ge_3": {
+          "total_s": 0.03333333333333333,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 1
+        },
+        "hold_ge_0.1s": true,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 39,
+            "contact_duration_s": 1.3,
+            "max_normal_force_n": 0.8890971357090338,
+            "mean_normal_force_n": 0.6980322082007259,
+            "max_sliding_speed_m_s": 0.033044007183350065,
+            "mean_sliding_speed_m_s": 0.014161427593226979,
+            "min_edge_margin_m": 0.0035164795506399463,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00005273236960854604
+          },
+          "finger2": {
+            "contact_frames": 4,
+            "contact_duration_s": 0.13333333333333333,
+            "max_normal_force_n": 1.2719025964576536,
+            "mean_normal_force_n": 1.0967741844036534,
+            "max_sliding_speed_m_s": 0.030273014484022562,
+            "mean_sliding_speed_m_s": 0.018047647371288916,
+            "min_edge_margin_m": 0.000001252568048282221,
+            "edge_contact_frames": 4,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.00005364165060045133
+          },
+          "finger3": {
+            "contact_frames": 10,
+            "contact_duration_s": 0.3333333333333333,
+            "max_normal_force_n": 1.010663010883154,
+            "mean_normal_force_n": 0.8889169640394036,
+            "max_sliding_speed_m_s": 0.03541417011601403,
+            "mean_sliding_speed_m_s": 0.02157149520393137,
+            "min_edge_margin_m": 5.574200266783569e-7,
+            "edge_contact_frames": 10,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00027199144001068866
+          },
+          "finger4": {
+            "contact_frames": 15,
+            "contact_duration_s": 0.5,
+            "max_normal_force_n": 1.1197674578374426,
+            "mean_normal_force_n": 0.9383090340700658,
+            "max_sliding_speed_m_s": 0.07065398009782485,
+            "mean_sliding_speed_m_s": 0.02003097936745512,
+            "min_edge_margin_m": 6.34450158076838e-7,
+            "edge_contact_frames": 15,
+            "corner_contact_frames": 12,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0003044676516276524
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.0002921624614874496,
+        "max_relative_rotation_drift_deg": 0.27978726501339857,
+        "max_relative_linear_speed_m_s": 0.0015513029820803227,
+        "max_relative_angular_speed_deg_s": 2.450016408065626,
+        "max_cube_displacement_m": 0.0002921624609841397,
+        "max_deepest_penetration_m": 0.0003044676516276524
+      }
+    },
+    {
+      "episode_id": 87,
+      "label": "B_fixed_palm_pca5",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 4,
+        "time_to_first_contact_s": 0.5,
+        "time_to_2_contacts_s": 0.7,
+        "time_to_3_contacts_s": 0.7,
+        "duration_ge_2": {
+          "total_s": 0.6,
+          "max_contiguous_s": 0.1,
+          "frames": 18
+        },
+        "duration_ge_3": {
+          "total_s": 0.1,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 3
+        },
+        "hold_ge_0.1s": true,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 34,
+            "contact_duration_s": 1.1333333333333333,
+            "max_normal_force_n": 0.8660021357830434,
+            "mean_normal_force_n": 0.7090897759721099,
+            "max_sliding_speed_m_s": 0.031074762437563342,
+            "mean_sliding_speed_m_s": 0.011761252793922294,
+            "min_edge_margin_m": 0.0029843375022570867,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00005702619408362796
+          },
+          "finger2": {
+            "contact_frames": 15,
+            "contact_duration_s": 0.5,
+            "max_normal_force_n": 1.2682563322024998,
+            "mean_normal_force_n": 1.1041867782641612,
+            "max_sliding_speed_m_s": 0.036572337680354415,
+            "mean_sliding_speed_m_s": 0.019702674157986558,
+            "min_edge_margin_m": 1.9080742916233184e-8,
+            "edge_contact_frames": 15,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.00011868976667684663
+          },
+          "finger3": {
+            "contact_frames": 11,
+            "contact_duration_s": 0.36666666666666664,
+            "max_normal_force_n": 1.1098277349827765,
+            "mean_normal_force_n": 0.8958073071187207,
+            "max_sliding_speed_m_s": 0.043694721842367515,
+            "mean_sliding_speed_m_s": 0.025135842588627496,
+            "min_edge_margin_m": 0.0000022836754322505537,
+            "edge_contact_frames": 11,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+X",
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00006480441000078862
+          },
+          "finger4": {
+            "contact_frames": 22,
+            "contact_duration_s": 0.7333333333333333,
+            "max_normal_force_n": 1.1086277925351227,
+            "mean_normal_force_n": 0.8883992763340949,
+            "max_sliding_speed_m_s": 0.03639344354899064,
+            "mean_sliding_speed_m_s": 0.01837639067009915,
+            "min_edge_margin_m": 4.380980536677903e-9,
+            "edge_contact_frames": 22,
+            "corner_contact_frames": 14,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00008979022612715204
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.00032439924839137947,
+        "max_relative_rotation_drift_deg": 0.3146792250452615,
+        "max_relative_linear_speed_m_s": 0.0020061574198524147,
+        "max_relative_angular_speed_deg_s": 3.1285828689986928,
+        "max_cube_displacement_m": 0.0003243992479330723,
+        "max_deepest_penetration_m": 0.00011868976667684663
+      }
+    },
+    {
+      "episode_id": 77,
+      "label": "A_fixed_palm_raw20",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.4,
+        "time_to_2_contacts_s": 0.43333333333333335,
+        "time_to_3_contacts_s": 1.0333333333333332,
+        "duration_ge_2": {
+          "total_s": 1.4333333333333333,
+          "max_contiguous_s": 0.13333333333333333,
+          "frames": 43
+        },
+        "duration_ge_3": {
+          "total_s": 0.26666666666666666,
+          "max_contiguous_s": 0.06666666666666667,
+          "frames": 8
+        },
+        "hold_ge_0.1s": true,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 46,
+            "contact_duration_s": 1.5333333333333332,
+            "max_normal_force_n": 1.0170182573081277,
+            "mean_normal_force_n": 0.7300647741232974,
+            "max_sliding_speed_m_s": 0.0556205078978442,
+            "mean_sliding_speed_m_s": 0.016390026370820054,
+            "min_edge_margin_m": 0.0036995386753871443,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00006549744920509039
+          },
+          "finger2": {
+            "contact_frames": 23,
+            "contact_duration_s": 0.7666666666666666,
+            "max_normal_force_n": 1.2611965391129383,
+            "mean_normal_force_n": 1.0352649476784035,
+            "max_sliding_speed_m_s": 0.03054793132498501,
+            "mean_sliding_speed_m_s": 0.016946604787522256,
+            "min_edge_margin_m": 3.4007849153416814e-7,
+            "edge_contact_frames": 23,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.00004057884304538852
+          },
+          "finger3": {
+            "contact_frames": 26,
+            "contact_duration_s": 0.8666666666666667,
+            "max_normal_force_n": 1.0520600402857454,
+            "mean_normal_force_n": 0.8082995510278751,
+            "max_sliding_speed_m_s": 0.060674478229339454,
+            "mean_sliding_speed_m_s": 0.017920306307096952,
+            "min_edge_margin_m": 4.560606149672797e-7,
+            "edge_contact_frames": 26,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0002356898134616224
+          },
+          "finger4": {
+            "contact_frames": 37,
+            "contact_duration_s": 1.2333333333333334,
+            "max_normal_force_n": 1.0792170772945764,
+            "mean_normal_force_n": 0.895118981478861,
+            "max_sliding_speed_m_s": 0.04595892617937741,
+            "mean_sliding_speed_m_s": 0.016130383272716355,
+            "min_edge_margin_m": 1.1898241967372991e-7,
+            "edge_contact_frames": 37,
+            "corner_contact_frames": 14,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0003076963246652872
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.0004053762966483535,
+        "max_relative_rotation_drift_deg": 0.3565711913316828,
+        "max_relative_linear_speed_m_s": 0.004340428190940817,
+        "max_relative_angular_speed_deg_s": 6.93102791018157,
+        "max_cube_displacement_m": 0.00040537629634140236,
+        "max_deepest_penetration_m": 0.0003076963246652872
+      }
+    },
+    {
+      "episode_id": 77,
+      "label": "B_fixed_palm_pca5",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 4,
+        "time_to_first_contact_s": 0.4,
+        "time_to_2_contacts_s": 0.43333333333333335,
+        "time_to_3_contacts_s": 0.8,
+        "duration_ge_2": {
+          "total_s": 1.3666666666666667,
+          "max_contiguous_s": 0.1,
+          "frames": 41
+        },
+        "duration_ge_3": {
+          "total_s": 0.26666666666666666,
+          "max_contiguous_s": 0.06666666666666667,
+          "frames": 8
+        },
+        "hold_ge_0.1s": true,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 42,
+            "contact_duration_s": 1.4,
+            "max_normal_force_n": 0.9777815539365391,
+            "mean_normal_force_n": 0.7660636001473031,
+            "max_sliding_speed_m_s": 0.042453391904706955,
+            "mean_sliding_speed_m_s": 0.01939987459464421,
+            "min_edge_margin_m": 0.004509394366622892,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00010518468294414415
+          },
+          "finger2": {
+            "contact_frames": 26,
+            "contact_duration_s": 0.8666666666666667,
+            "max_normal_force_n": 1.2619540583986657,
+            "mean_normal_force_n": 1.0045115303824486,
+            "max_sliding_speed_m_s": 0.03138926687917164,
+            "mean_sliding_speed_m_s": 0.015202657430941697,
+            "min_edge_margin_m": 5.467002182901748e-8,
+            "edge_contact_frames": 26,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.000054913737816712844
+          },
+          "finger3": {
+            "contact_frames": 31,
+            "contact_duration_s": 1.0333333333333332,
+            "max_normal_force_n": 1.1129079830718442,
+            "mean_normal_force_n": 0.8208956687573783,
+            "max_sliding_speed_m_s": 0.1126768030718726,
+            "mean_sliding_speed_m_s": 0.01858677274698905,
+            "min_edge_margin_m": 3.663263696759844e-7,
+            "edge_contact_frames": 31,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+X",
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0001536465321281152
+          },
+          "finger4": {
+            "contact_frames": 33,
+            "contact_duration_s": 1.1,
+            "max_normal_force_n": 1.1095717940268686,
+            "mean_normal_force_n": 0.9209324461774547,
+            "max_sliding_speed_m_s": 0.06046680668630058,
+            "mean_sliding_speed_m_s": 0.01700138296178148,
+            "min_edge_margin_m": 6.085927775623112e-9,
+            "edge_contact_frames": 33,
+            "corner_contact_frames": 21,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00021026274566378746
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.00043123628782049616,
+        "max_relative_rotation_drift_deg": 0.38220627243984995,
+        "max_relative_linear_speed_m_s": 0.004649464391498128,
+        "max_relative_angular_speed_deg_s": 7.4455102970419595,
+        "max_cube_displacement_m": 0.0004312362875258383,
+        "max_deepest_penetration_m": 0.00021026274566378746
+      }
+    },
+    {
+      "episode_id": 84,
+      "label": "A_fixed_palm_raw20",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.8666666666666667,
+        "time_to_2_contacts_s": 1.3,
+        "time_to_3_contacts_s": 3.3666666666666667,
+        "duration_ge_2": {
+          "total_s": 0.5,
+          "max_contiguous_s": 0.06666666666666667,
+          "frames": 15
+        },
+        "duration_ge_3": {
+          "total_s": 0.06666666666666667,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 2
+        },
+        "hold_ge_0.1s": false,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 34,
+            "contact_duration_s": 1.1333333333333333,
+            "max_normal_force_n": 0.93163000209688,
+            "mean_normal_force_n": 0.7375044285426502,
+            "max_sliding_speed_m_s": 0.06863302405951269,
+            "mean_sliding_speed_m_s": 0.01765360766452595,
+            "min_edge_margin_m": 0.0013990615326351444,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom",
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.0002662831883371937
+          },
+          "finger2": {
+            "contact_frames": 7,
+            "contact_duration_s": 0.23333333333333334,
+            "max_normal_force_n": 1.3121121391715567,
+            "mean_normal_force_n": 1.0726171790107737,
+            "max_sliding_speed_m_s": 0.04902433787250097,
+            "mean_sliding_speed_m_s": 0.02334232989520082,
+            "min_edge_margin_m": 0.0000020253731295646893,
+            "edge_contact_frames": 7,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom",
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.00047941376587179105
+          },
+          "finger3": {
+            "contact_frames": 8,
+            "contact_duration_s": 0.26666666666666666,
+            "max_normal_force_n": 1.1419803823308166,
+            "mean_normal_force_n": 0.9479166874457581,
+            "max_sliding_speed_m_s": 0.050045848737648335,
+            "mean_sliding_speed_m_s": 0.02456526166495021,
+            "min_edge_margin_m": 7.785864976350698e-8,
+            "edge_contact_frames": 7,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0000985104774564261
+          },
+          "finger4": {
+            "contact_frames": 24,
+            "contact_duration_s": 0.8,
+            "max_normal_force_n": 1.27298908696511,
+            "mean_normal_force_n": 0.9522463120656551,
+            "max_sliding_speed_m_s": 0.051758696687799255,
+            "mean_sliding_speed_m_s": 0.021438969821694468,
+            "min_edge_margin_m": 0,
+            "edge_contact_frames": 24,
+            "corner_contact_frames": 4,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0000629263726648445
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.0003076626563457394,
+        "max_relative_rotation_drift_deg": 0.29272990575225005,
+        "max_relative_linear_speed_m_s": 0.0018992624119535354,
+        "max_relative_angular_speed_deg_s": 2.992559641160177,
+        "max_cube_displacement_m": 0.00030766265578290616,
+        "max_deepest_penetration_m": 0.00047941376587179105
+      }
+    },
+    {
+      "episode_id": 84,
+      "label": "B_fixed_palm_pca5",
+      "quality": {
+        "steps": 120,
+        "max_simultaneous_contacts": 3,
+        "time_to_first_contact_s": 0.8666666666666667,
+        "time_to_2_contacts_s": 1.1666666666666667,
+        "time_to_3_contacts_s": 2.966666666666667,
+        "duration_ge_2": {
+          "total_s": 0.6666666666666666,
+          "max_contiguous_s": 0.1,
+          "frames": 20
+        },
+        "duration_ge_3": {
+          "total_s": 0.13333333333333333,
+          "max_contiguous_s": 0.03333333333333333,
+          "frames": 4
+        },
+        "hold_ge_0.1s": true,
+        "hold_ge_0.3s": false,
+        "hold_ge_0.5s": false,
+        "stable_grasp_success": false,
+        "per_finger": {
+          "finger1": {
+            "contact_frames": 43,
+            "contact_duration_s": 1.4333333333333333,
+            "max_normal_force_n": 0.9208874756153286,
+            "mean_normal_force_n": 0.7862873584910165,
+            "max_sliding_speed_m_s": 0.08371075489357212,
+            "mean_sliding_speed_m_s": 0.0177961065312332,
+            "min_edge_margin_m": 0.0011283933800826582,
+            "edge_contact_frames": 0,
+            "corner_contact_frames": 0,
+            "faces": [
+              "-Y"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.0002239303382602628
+          },
+          "finger2": {
+            "contact_frames": 7,
+            "contact_duration_s": 0.23333333333333334,
+            "max_normal_force_n": 1.16450616118509,
+            "mean_normal_force_n": 1.056469785946021,
+            "max_sliding_speed_m_s": 0.04018027508588569,
+            "mean_sliding_speed_m_s": 0.02576935285157001,
+            "min_edge_margin_m": 0.000002679270666480771,
+            "edge_contact_frames": 7,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom",
+              "distal_non_tip_geom"
+            ],
+            "max_penetration_m": 0.0003644637104665728
+          },
+          "finger3": {
+            "contact_frames": 17,
+            "contact_duration_s": 0.5666666666666667,
+            "max_normal_force_n": 1.4606045140226578,
+            "mean_normal_force_n": 0.9475734838377357,
+            "max_sliding_speed_m_s": 0.03516573329471846,
+            "mean_sliding_speed_m_s": 0.019929213242158364,
+            "min_edge_margin_m": 0,
+            "edge_contact_frames": 15,
+            "corner_contact_frames": 0,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.000046966730947688035
+          },
+          "finger4": {
+            "contact_frames": 23,
+            "contact_duration_s": 0.7666666666666666,
+            "max_normal_force_n": 1.2367403570155169,
+            "mean_normal_force_n": 0.9410810352293162,
+            "max_sliding_speed_m_s": 0.057138332440756515,
+            "mean_sliding_speed_m_s": 0.020639950440473842,
+            "min_edge_margin_m": 0,
+            "edge_contact_frames": 22,
+            "corner_contact_frames": 3,
+            "faces": [
+              "+Z"
+            ],
+            "contact_roles": [
+              "designated_tip_geom"
+            ],
+            "max_penetration_m": 0.00006675634417798582
+          },
+          "finger5": {
+            "contact_frames": 0,
+            "contact_duration_s": 0
+          }
+        },
+        "max_relative_translation_drift_m": 0.00031861900706043114,
+        "max_relative_rotation_drift_deg": 0.29677299429135817,
+        "max_relative_linear_speed_m_s": 0.0022489545621276613,
+        "max_relative_angular_speed_deg_s": 3.0137171125044917,
+        "max_cube_displacement_m": 0.00031861900654050275,
+        "max_deepest_penetration_m": 0.00044274434160950833
+      }
+    }
+  ],
+  "moving_palm": {
+    "status": "blocked_without_expert_fk",
+    "A_fixed_palm_raw20": {
+      "status": "blocked_without_expert_fk",
+      "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+      "required_inputs": [
+        "expert FK model",
+        "seven expert arm joint names",
+        "expert palm/wrist site",
+        "base/tool transform if not encoded in model"
+      ],
+      "openarm_fallback": false
+    },
+    "B_fixed_palm_pca5": {
+      "status": "blocked_without_expert_fk",
+      "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+      "required_inputs": [
+        "expert FK model",
+        "seven expert arm joint names",
+        "expert palm/wrist site",
+        "base/tool transform if not encoded in model"
+      ],
+      "openarm_fallback": false
+    },
+    "C_expert_palm_raw20": {
+      "status": "blocked_without_expert_fk",
+      "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+      "required_inputs": [
+        "expert FK model",
+        "seven expert arm joint names",
+        "expert palm/wrist site",
+        "base/tool transform if not encoded in model"
+      ],
+      "openarm_fallback": false
+    },
+    "D_expert_palm_pca5": {
+      "status": "blocked_without_expert_fk",
+      "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+      "required_inputs": [
+        "expert FK model",
+        "seven expert arm joint names",
+        "expert palm/wrist site",
+        "base/tool transform if not encoded in model"
+      ],
+      "openarm_fallback": false
+    }
+  },
+  "timeseries_artifact": "timeseries.json is generated by scripts/expert_palm_hand_coordination_replay.py when the output directory is writable; the committed result is the metric summary only."
+}

@@ -1,0 +1,666 @@
+{
+  "seed": 7,
+  "observation_dimension": 228,
+  "action_dimension": 5,
+  "action_representation": "structured_per_finger",
+  "direction_source": "scripted_sign_close_minus_open",
+  "normalized_closing_directions": [
+    [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ],
+    [
+      0.5773502691896258,
+      0.0,
+      0.5773502691896258,
+      0.5773502691896258
+    ],
+    [
+      0.5773502691896258,
+      0.0,
+      0.5773502691896258,
+      0.5773502691896258
+    ],
+    [
+      0.5773502691896258,
+      0.0,
+      0.5773502691896258,
+      0.5773502691896258
+    ],
+    [
+      0.5773502691896258,
+      0.0,
+      0.5773502691896258,
+      0.5773502691896258
+    ]
+  ],
+  "per_finger_delta_norm_scale_rad": [
+    0.07,
+    0.0606217783,
+    0.0606217783,
+    0.0606217783,
+    0.0606217783
+  ],
+  "gymnasium_check_passed": true,
+  "test_a_all_fingers_close": {
+    "action": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "steps": 120,
+    "joint_movement_rad": {
+      "finger1": {
+        "left_finger1_joint1": 0.5465102245683512,
+        "left_finger1_joint2": 0.7404579738238041,
+        "left_finger1_joint3": 0.24159356309877691,
+        "left_finger1_joint4": 0.8279239821806816
+      },
+      "finger2": {
+        "left_finger2_joint1": 0.07412552904956439,
+        "left_finger2_joint2": 0.05407017541185287,
+        "left_finger2_joint3": 0.7321832172854436,
+        "left_finger2_joint4": 1.57588089758194
+      },
+      "finger3": {
+        "left_finger3_joint1": 0.15434577811635802,
+        "left_finger3_joint2": -0.07228753890231408,
+        "left_finger3_joint3": 0.7926388563700932,
+        "left_finger3_joint4": 1.5752989974887208
+      },
+      "finger4": {
+        "left_finger4_joint1": 0.08232461383927854,
+        "left_finger4_joint2": -0.23647373701214394,
+        "left_finger4_joint3": 0.8899796939119498,
+        "left_finger4_joint4": 1.5644545018800011
+      },
+      "finger5": {
+        "left_finger5_joint1": 0.15788655509926677,
+        "left_finger5_joint2": -0.3412413302151174,
+        "left_finger5_joint3": 0.31990000971930094,
+        "left_finger5_joint4": 1.573093333457573
+      }
+    },
+    "tip_pad_distance_m": {
+      "finger1": {
+        "tip": {
+          "initial": 0.07786350770708216,
+          "minimum": -0.0005124867436091122,
+          "final": 8.193311978296203e-07
+        },
+        "pad": {
+          "initial": 0.06534412163055338,
+          "minimum": 0.0022385091162709456,
+          "final": 0.0028505226483871086
+        }
+      },
+      "finger2": {
+        "tip": {
+          "initial": 0.04659390680667892,
+          "minimum": -3.769678024283142e-05,
+          "final": 1.1135964843428088e-05
+        },
+        "pad": {
+          "initial": 0.045144473216552336,
+          "minimum": 0.003395548531202175,
+          "final": 0.011421057305684162
+        }
+      },
+      "finger3": {
+        "tip": {
+          "initial": 0.05348260312154432,
+          "minimum": -6.618868602451364e-05,
+          "final": 4.701177093243522e-06
+        },
+        "pad": {
+          "initial": 0.0527946307536147,
+          "minimum": 0.007756482025706965,
+          "final": 0.010354156332241182
+        }
+      },
+      "finger4": {
+        "tip": {
+          "initial": 0.04860548797594754,
+          "minimum": -0.0001043153809022918,
+          "final": 4.499661708877018e-06
+        },
+        "pad": {
+          "initial": 0.04819163995274824,
+          "minimum": 0.008038354216290983,
+          "final": 0.010176889452788745
+        }
+      },
+      "finger5": {
+        "tip": {
+          "initial": 0.043158719484967405,
+          "minimum": -4.542964693078047e-05,
+          "final": 3.4485856985330335e-05
+        },
+        "pad": {
+          "initial": 0.04278655631815547,
+          "minimum": 0.007402319690854875,
+          "final": 0.01574530092347941
+        }
+      }
+    },
+    "contact_count_curve": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      2,
+      2,
+      3,
+      3,
+      2,
+      1,
+      1,
+      0,
+      0,
+      1,
+      2,
+      1,
+      1,
+      1,
+      1,
+      2,
+      1,
+      0,
+      1,
+      3,
+      2,
+      2,
+      1,
+      0,
+      1,
+      0,
+      2,
+      0,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      2,
+      5,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      3,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      3,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      2,
+      0,
+      1,
+      2,
+      1,
+      0,
+      2,
+      2,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      2,
+      1,
+      0
+    ],
+    "max_simultaneous_contacts": 5,
+    "final_contacts": 0,
+    "deepest_penetration_m": 0.0005124867436091122,
+    "failure_reason": null,
+    "success": false
+  },
+  "test_b_isolated_fingers": [
+    {
+      "action": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "finger": "finger1",
+      "isolated_command_passed": true,
+      "commanded_joint_delta_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.007962499999999997,
+          "left_finger1_joint2": 0.0079625,
+          "left_finger1_joint3": 0.0079625,
+          "left_finger1_joint4": 0.0079625
+        },
+        "finger2": {
+          "left_finger2_joint1": 0.0,
+          "left_finger2_joint2": 0.0,
+          "left_finger2_joint3": 0.0,
+          "left_finger2_joint4": 0.0
+        },
+        "finger3": {
+          "left_finger3_joint1": 0.0,
+          "left_finger3_joint2": 0.0,
+          "left_finger3_joint3": 0.0,
+          "left_finger3_joint4": 0.0
+        },
+        "finger4": {
+          "left_finger4_joint1": 0.0,
+          "left_finger4_joint2": 0.0,
+          "left_finger4_joint3": 0.0,
+          "left_finger4_joint4": 0.0
+        },
+        "finger5": {
+          "left_finger5_joint1": 0.0,
+          "left_finger5_joint2": 0.0,
+          "left_finger5_joint3": 0.0,
+          "left_finger5_joint4": 0.0
+        }
+      },
+      "actual_joint_movement_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.011842102057367576,
+          "left_finger1_joint2": 0.009256305081168618,
+          "left_finger1_joint3": 0.009751307554193994,
+          "left_finger1_joint4": 0.004507308736983717
+        },
+        "finger2": {
+          "left_finger2_joint1": -0.0035007727349774293,
+          "left_finger2_joint2": 0.0017725835123918318,
+          "left_finger2_joint3": -0.002740033384864482,
+          "left_finger2_joint4": -0.0005322538279670506
+        },
+        "finger3": {
+          "left_finger3_joint1": -0.003155222824374042,
+          "left_finger3_joint2": -0.0008733266884587311,
+          "left_finger3_joint3": -0.0027814263722047987,
+          "left_finger3_joint4": -0.00046415630866323974
+        },
+        "finger4": {
+          "left_finger4_joint1": -0.0026422559763344474,
+          "left_finger4_joint2": -0.0022507774646176315,
+          "left_finger4_joint3": -0.0022795410461074906,
+          "left_finger4_joint4": -0.0003848726946085217
+        },
+        "finger5": {
+          "left_finger5_joint1": -0.0012168110865404236,
+          "left_finger5_joint2": -0.004057318169931431,
+          "left_finger5_joint3": -0.0017763291251018298,
+          "left_finger5_joint4": -0.00030624820019861887
+        }
+      },
+      "contact_fingers": 0,
+      "deepest_penetration_m": 0.0
+    },
+    {
+      "action": [
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "finger": "finger2",
+      "isolated_command_passed": true,
+      "commanded_joint_delta_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.0,
+          "left_finger1_joint2": 0.0,
+          "left_finger1_joint3": 0.0,
+          "left_finger1_joint4": 0.0
+        },
+        "finger2": {
+          "left_finger2_joint1": 0.00796250000460888,
+          "left_finger2_joint2": 0.0,
+          "left_finger2_joint3": 0.00796250000460888,
+          "left_finger2_joint4": 0.00796250000460888
+        },
+        "finger3": {
+          "left_finger3_joint1": 0.0,
+          "left_finger3_joint2": 0.0,
+          "left_finger3_joint3": 0.0,
+          "left_finger3_joint4": 0.0
+        },
+        "finger4": {
+          "left_finger4_joint1": 0.0,
+          "left_finger4_joint2": 0.0,
+          "left_finger4_joint3": 0.0,
+          "left_finger4_joint4": 0.0
+        },
+        "finger5": {
+          "left_finger5_joint1": 0.0,
+          "left_finger5_joint2": 0.0,
+          "left_finger5_joint3": 0.0,
+          "left_finger5_joint4": 0.0
+        }
+      },
+      "actual_joint_movement_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.01020498997242407,
+          "left_finger1_joint2": 0.006395683022326433,
+          "left_finger1_joint3": 0.007403650883692722,
+          "left_finger1_joint4": 0.0018124818683899248
+        },
+        "finger2": {
+          "left_finger2_joint1": -0.0018487134635464743,
+          "left_finger2_joint2": 0.0017129327699400762,
+          "left_finger2_joint3": -4.5861879953336664e-05,
+          "left_finger2_joint4": 0.002044640083234731
+        },
+        "finger3": {
+          "left_finger3_joint1": -0.0031172411134338107,
+          "left_finger3_joint2": -0.0009244562000915933,
+          "left_finger3_joint3": -0.0027587133317948423,
+          "left_finger3_joint4": -0.0004607625695461129
+        },
+        "finger4": {
+          "left_finger4_joint1": -0.0026025186849153972,
+          "left_finger4_joint2": -0.00229662249833993,
+          "left_finger4_joint3": -0.0022572522542015925,
+          "left_finger4_joint4": -0.00038147998365240345
+        },
+        "finger5": {
+          "left_finger5_joint1": -0.0011754136326081153,
+          "left_finger5_joint2": -0.004095004849525958,
+          "left_finger5_joint3": -0.0017514695810793462,
+          "left_finger5_joint4": -0.0003024377628960845
+        }
+      },
+      "contact_fingers": 0,
+      "deepest_penetration_m": 0.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "finger": "finger3",
+      "isolated_command_passed": true,
+      "commanded_joint_delta_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.0,
+          "left_finger1_joint2": 0.0,
+          "left_finger1_joint3": 0.0,
+          "left_finger1_joint4": 0.0
+        },
+        "finger2": {
+          "left_finger2_joint1": 0.0,
+          "left_finger2_joint2": 0.0,
+          "left_finger2_joint3": 0.0,
+          "left_finger2_joint4": 0.0
+        },
+        "finger3": {
+          "left_finger3_joint1": 0.00796250000460888,
+          "left_finger3_joint2": 0.0,
+          "left_finger3_joint3": 0.00796250000460888,
+          "left_finger3_joint4": 0.00796250000460888
+        },
+        "finger4": {
+          "left_finger4_joint1": 0.0,
+          "left_finger4_joint2": 0.0,
+          "left_finger4_joint3": 0.0,
+          "left_finger4_joint4": 0.0
+        },
+        "finger5": {
+          "left_finger5_joint1": 0.0,
+          "left_finger5_joint2": 0.0,
+          "left_finger5_joint3": 0.0,
+          "left_finger5_joint4": 0.0
+        }
+      },
+      "actual_joint_movement_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.01020035562070322,
+          "left_finger1_joint2": 0.0063906480384242955,
+          "left_finger1_joint3": 0.007399267288377532,
+          "left_finger1_joint4": 0.0018114463625956156
+        },
+        "finger2": {
+          "left_finger2_joint1": -0.0034761620291177985,
+          "left_finger2_joint2": 0.0016954824965523094,
+          "left_finger2_joint3": -0.0027258524506323122,
+          "left_finger2_joint4": -0.0005299833392433
+        },
+        "finger3": {
+          "left_finger3_joint1": -0.001499469103271033,
+          "left_finger3_joint2": -0.0009426281730808922,
+          "left_finger3_joint3": -0.000244617636238936,
+          "left_finger3_joint4": 0.0022026004332272846
+        },
+        "finger4": {
+          "left_finger4_joint1": -0.002601576236310098,
+          "left_finger4_joint2": -0.002313910942141795,
+          "left_finger4_joint3": -0.0022567144876273655,
+          "left_finger4_joint4": -0.0003813952173651774
+        },
+        "finger5": {
+          "left_finger5_joint1": -0.0011727253661031017,
+          "left_finger5_joint2": -0.004111542324995677,
+          "left_finger5_joint3": -0.00174987532906721,
+          "left_finger5_joint4": -0.000302185386705585
+        }
+      },
+      "contact_fingers": 0,
+      "deepest_penetration_m": 0.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "finger": "finger4",
+      "isolated_command_passed": true,
+      "commanded_joint_delta_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.0,
+          "left_finger1_joint2": 0.0,
+          "left_finger1_joint3": 0.0,
+          "left_finger1_joint4": 0.0
+        },
+        "finger2": {
+          "left_finger2_joint1": 0.0,
+          "left_finger2_joint2": 0.0,
+          "left_finger2_joint3": 0.0,
+          "left_finger2_joint4": 0.0
+        },
+        "finger3": {
+          "left_finger3_joint1": 0.0,
+          "left_finger3_joint2": 0.0,
+          "left_finger3_joint3": 0.0,
+          "left_finger3_joint4": 0.0
+        },
+        "finger4": {
+          "left_finger4_joint1": 0.00796250000460888,
+          "left_finger4_joint2": 0.0,
+          "left_finger4_joint3": 0.00796250000460888,
+          "left_finger4_joint4": 0.00796250000460888
+        },
+        "finger5": {
+          "left_finger5_joint1": 0.0,
+          "left_finger5_joint2": 0.0,
+          "left_finger5_joint3": 0.0,
+          "left_finger5_joint4": 0.0
+        }
+      },
+      "actual_joint_movement_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.010198493922211005,
+          "left_finger1_joint2": 0.0063896581500807355,
+          "left_finger1_joint3": 0.00739779217922593,
+          "left_finger1_joint4": 0.0018111028542324677
+        },
+        "finger2": {
+          "left_finger2_joint1": -0.0034781502330217258,
+          "left_finger2_joint2": 0.001691396792484027,
+          "left_finger2_joint3": -0.002726998036425139,
+          "left_finger2_joint4": -0.000530174391030972
+        },
+        "finger3": {
+          "left_finger3_joint1": -0.0031183416293026327,
+          "left_finger3_joint2": -0.0009471220345867267,
+          "left_finger3_joint3": -0.002759350565505665,
+          "left_finger3_joint4": -0.00046086280530707014
+        },
+        "finger4": {
+          "left_finger4_joint1": -0.0010554708374147987,
+          "left_finger4_joint2": -0.002318846703105169,
+          "left_finger4_joint3": 0.00047964543311569815,
+          "left_finger4_joint4": 0.00262262943005565
+        },
+        "finger5": {
+          "left_finger5_joint1": -0.0011726553708615041,
+          "left_finger5_joint2": -0.004115980331820014,
+          "left_finger5_joint3": -0.001749867903939061,
+          "left_finger5_joint4": -0.00030218447470823864
+        }
+      },
+      "contact_fingers": 0,
+      "deepest_penetration_m": 0.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "finger": "finger5",
+      "isolated_command_passed": true,
+      "commanded_joint_delta_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.0,
+          "left_finger1_joint2": 0.0,
+          "left_finger1_joint3": 0.0,
+          "left_finger1_joint4": 0.0
+        },
+        "finger2": {
+          "left_finger2_joint1": 0.0,
+          "left_finger2_joint2": 0.0,
+          "left_finger2_joint3": 0.0,
+          "left_finger2_joint4": 0.0
+        },
+        "finger3": {
+          "left_finger3_joint1": 0.0,
+          "left_finger3_joint2": 0.0,
+          "left_finger3_joint3": 0.0,
+          "left_finger3_joint4": 0.0
+        },
+        "finger4": {
+          "left_finger4_joint1": 0.0,
+          "left_finger4_joint2": 0.0,
+          "left_finger4_joint3": 0.0,
+          "left_finger4_joint4": 0.0
+        },
+        "finger5": {
+          "left_finger5_joint1": 0.00796250000460888,
+          "left_finger5_joint2": 0.0,
+          "left_finger5_joint3": 0.00796250000460888,
+          "left_finger5_joint4": 0.00796250000460888
+        }
+      },
+      "actual_joint_movement_rad": {
+        "finger1": {
+          "left_finger1_joint1": 0.0101950673255993,
+          "left_finger1_joint2": 0.00638782762485483,
+          "left_finger1_joint3": 0.007395088360207761,
+          "left_finger1_joint4": 0.00181046901609536
+        },
+        "finger2": {
+          "left_finger2_joint1": -0.003482756347279558,
+          "left_finger2_joint2": 0.0016839259279542906,
+          "left_finger2_joint3": -0.0027296186093192097,
+          "left_finger2_joint4": -0.0005306218924779566
+        },
+        "finger3": {
+          "left_finger3_joint1": -0.003121299043471029,
+          "left_finger3_joint2": -0.000955842061391008,
+          "left_finger3_joint3": -0.00276111559935182,
+          "left_finger3_joint4": -0.00046113658110570464
+        },
+        "finger4": {
+          "left_finger4_joint1": -0.0026044666083001214,
+          "left_finger4_joint2": -0.002326941396452416,
+          "left_finger4_joint3": -0.002258381838536214,
+          "left_finger4_joint4": -0.00038165533451173575
+        },
+        "finger5": {
+          "left_finger5_joint1": 0.0004206344969649577,
+          "left_finger5_joint2": -0.004125306217893697,
+          "left_finger5_joint3": 0.0008349329596646452,
+          "left_finger5_joint4": 0.0024043348235617715
+        }
+      },
+      "contact_fingers": 0,
+      "deepest_penetration_m": 0.0
+    }
+  ],
+  "sanity_passed": true
+}

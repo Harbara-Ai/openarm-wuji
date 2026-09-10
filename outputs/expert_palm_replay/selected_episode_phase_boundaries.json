@@ -1,0 +1,52 @@
+{
+  "69": {
+    "episode_id": 69,
+    "start_frame": 0,
+    "close_start_frame": 32,
+    "grasp_established_frame": 78,
+    "end_frame_exclusive": 108,
+    "duration_s": 3.6,
+    "segmentation_source": "Parquet action activity heuristic",
+    "video_role": "optional interval QA only; no joint values used"
+  },
+  "75": {
+    "episode_id": 75,
+    "start_frame": 0,
+    "close_start_frame": 18,
+    "grasp_established_frame": 147,
+    "end_frame_exclusive": 177,
+    "duration_s": 5.9,
+    "segmentation_source": "Parquet action activity heuristic",
+    "video_role": "optional interval QA only; no joint values used"
+  },
+  "77": {
+    "episode_id": 77,
+    "start_frame": 0,
+    "close_start_frame": 38,
+    "grasp_established_frame": 172,
+    "end_frame_exclusive": 202,
+    "duration_s": 6.733333333333333,
+    "segmentation_source": "Parquet action activity heuristic",
+    "video_role": "optional interval QA only; no joint values used"
+  },
+  "84": {
+    "episode_id": 84,
+    "start_frame": 0,
+    "close_start_frame": 24,
+    "grasp_established_frame": 110,
+    "end_frame_exclusive": 140,
+    "duration_s": 4.666666666666667,
+    "segmentation_source": "Parquet action activity heuristic",
+    "video_role": "optional interval QA only; no joint values used"
+  },
+  "87": {
+    "episode_id": 87,
+    "start_frame": 0,
+    "close_start_frame": 28,
+    "grasp_established_frame": 238,
+    "end_frame_exclusive": 268,
+    "duration_s": 8.933333333333334,
+    "segmentation_source": "Parquet action activity heuristic",
+    "video_role": "optional interval QA only; no joint values used"
+  }
+}

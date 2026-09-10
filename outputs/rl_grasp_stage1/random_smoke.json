@@ -1,0 +1,49 @@
+{
+  "environment": "WujiStaticGraspEnv-v0",
+  "observation_dimension": 228,
+  "action_dimension": 20,
+  "gymnasium_check_passed": true,
+  "episodes": [
+    {
+      "seed": 7,
+      "steps": 120,
+      "return": 15.779950437139632,
+      "max_contact_fingers": 0,
+      "success": false,
+      "failure_reason": null,
+      "observation_finite": true,
+      "reset_cube_displacement_m": 5.6744609011616376e-12
+    },
+    {
+      "seed": 8,
+      "steps": 120,
+      "return": 15.911593349216636,
+      "max_contact_fingers": 0,
+      "success": false,
+      "failure_reason": null,
+      "observation_finite": true,
+      "reset_cube_displacement_m": 5.6744609011616376e-12
+    },
+    {
+      "seed": 9,
+      "steps": 120,
+      "return": 19.990534011344685,
+      "max_contact_fingers": 1,
+      "success": false,
+      "failure_reason": null,
+      "observation_finite": true,
+      "reset_cube_displacement_m": 5.6744609011616376e-12
+    }
+  ],
+  "direction_only_contact_reachability_probe": {
+    "seed": 7,
+    "steps": 120,
+    "return": 123.42727289435281,
+    "first_contact_step": 22,
+    "max_contact_fingers": 5,
+    "final_contact_fingers": 1,
+    "success": false,
+    "failure_reason": null,
+    "deepest_penetration_m": 6.842918962074864e-06
+  }
+}

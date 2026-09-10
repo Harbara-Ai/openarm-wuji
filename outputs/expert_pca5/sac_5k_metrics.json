@@ -1,0 +1,44 @@
+{
+  "algorithm": "Stable-Baselines3 SAC",
+  "action_version": "expert_pca5_absolute",
+  "action_representation": "expert_pca5_absolute",
+  "reward_version": "v2",
+  "timesteps": 5000,
+  "seed": 7,
+  "observation_dimension": 228,
+  "action_dimension": 5,
+  "fresh_policy": true,
+  "checkpoint_loaded": null,
+  "max_contact_fingers_training": 4,
+  "success_events_training": 0,
+  "final_entropy_coefficient": 0.2302224636,
+  "training_action_statistics": {
+    "per_dimension_mean": [0.0718836057,-0.0066627909,0.0724459723,-0.0001565705,0.0196058506],
+    "per_dimension_std": [0.5880656499,0.5869813197,0.5840819276,0.5944582806,0.5975797129],
+    "per_finger_mean_absolute": {
+      "finger1": 0.5182490161,
+      "finger2": 0.5146009752,
+      "finger3": 0.5150597446,
+      "finger4": 0.5242491729,
+      "finger5": 0.5273626304
+    },
+    "global_mean_absolute": 0.5199043028
+  },
+  "deterministic_evaluation_seeds_7_11": [
+    {"seed":7,"return":35.3710760468,"max_contact_fingers":3,"final_contact_fingers":0,"multi_contact_acquired":true,"three_contact_acquired":true,"contact_held_0p1s":true,"contact_held_0p3s":false,"success":false,"cube_displacement_m":0.0004518965},
+    {"seed":8,"return":41.0480149591,"max_contact_fingers":4,"final_contact_fingers":2,"multi_contact_acquired":true,"three_contact_acquired":true,"contact_held_0p1s":true,"contact_held_0p3s":false,"success":false,"cube_displacement_m":0.0004748490},
+    {"seed":9,"return":43.8849624819,"max_contact_fingers":3,"final_contact_fingers":2,"multi_contact_acquired":true,"three_contact_acquired":true,"contact_held_0p1s":true,"contact_held_0p3s":false,"success":false,"cube_displacement_m":0.0004394888},
+    {"seed":10,"return":40.4989957277,"max_contact_fingers":4,"final_contact_fingers":0,"multi_contact_acquired":true,"three_contact_acquired":true,"contact_held_0p1s":true,"contact_held_0p3s":false,"success":false,"cube_displacement_m":0.0004330383},
+    {"seed":11,"return":41.1392495591,"max_contact_fingers":4,"final_contact_fingers":2,"multi_contact_acquired":true,"three_contact_acquired":true,"contact_held_0p1s":true,"contact_held_0p3s":false,"success":false,"cube_displacement_m":0.0004997140}
+  ],
+  "deterministic_summary": {
+    "mean_return": 40.3884597543,
+    "max_contact_fingers": 4,
+    "seeds_with_2plus_contacts": 5,
+    "seeds_with_3plus_contacts": 5,
+    "seeds_with_0p1s_hold": 5,
+    "seeds_with_0p3s_hold": 0,
+    "stable_successes": 0
+  },
+  "artifact_note": "The sandbox denied binary checkpoint and report writes during the run; these compact metrics were preserved in the repository via the workspace patch."
+}

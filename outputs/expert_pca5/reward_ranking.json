@@ -1,0 +1,26 @@
+{
+  "ranking_metric": "total_return",
+  "same_reset_seed": 7,
+  "ranking": [
+    ["pca5_episode_77", 37.9195819126],
+    ["raw_episode_77", 36.4527282782],
+    ["manual3d_open_close", 32.8493025267],
+    ["structured5_open_to_close", 32.8493025267],
+    ["pca5_episode_74", 31.7670911818],
+    ["raw_episode_74", 23.7861086852],
+    ["pca5_episode_84", 23.0590102309],
+    ["raw_episode_84", 18.9960575888],
+    ["pca5_episode_71", 18.9567272759],
+    ["raw_episode_71", 16.2161296822],
+    ["raw_episode_70", 15.9588345660],
+    ["pca5_episode_70", 13.2389873438]
+  ],
+  "current_deterministic_sac_v2_structured5_reference": {
+    "source": "outputs/rl_grasp_stage1/sac_v2_structured5_5000_steps.json",
+    "evaluation_seeds": [7, 8, 9, 10, 11],
+    "returns": [0.0737685, 0.0778272, 0.0694402, 0.0677695, 0.0728364],
+    "max_contact_fingers": [0, 0, 0, 0, 0],
+    "success": false
+  },
+  "note": "The ranking list is a compact diagnostic summary; replay_metrics.json contains per-run gate metrics."
+}

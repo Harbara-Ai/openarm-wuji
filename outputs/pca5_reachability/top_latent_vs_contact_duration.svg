@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="30" font-size="20">Top candidates: normalized PCA5 latent coordinates</text>
+<line x1="100.0" y1="70" x2="100.0" y2="450" stroke="#999"/>
+<text x="84.0" y="478" font-size="14">PC1</text>
+<line x1="275.0" y1="70" x2="275.0" y2="450" stroke="#999"/>
+<text x="259.0" y="478" font-size="14">PC2</text>
+<line x1="450.0" y1="70" x2="450.0" y2="450" stroke="#999"/>
+<text x="434.0" y="478" font-size="14">PC3</text>
+<line x1="625.0" y1="70" x2="625.0" y2="450" stroke="#999"/>
+<text x="609.0" y="478" font-size="14">PC4</text>
+<line x1="800.0" y1="70" x2="800.0" y2="450" stroke="#999"/>
+<text x="784.0" y="478" font-size="14">PC5</text>
+<polyline points="100.0,70.0 275.0,242.6 450.0,357.3 625.0,328.4 800.0,168.3" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,70.0 275.0,308.2 450.0,271.3 625.0,285.1 800.0,294.5" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,168.4 275.0,339.4 450.0,225.1 625.0,269.6 800.0,272.8" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,70.9 275.0,307.1 450.0,327.1 625.0,341.4 800.0,240.9" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,105.4 275.0,309.2 450.0,256.9 625.0,236.5 800.0,206.7" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,98.7 275.0,323.6 450.0,266.6 625.0,369.5 800.0,87.6" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,94.3 275.0,289.8 450.0,243.6 625.0,224.8 800.0,182.5" fill="none" stroke="rgb(157,80,196)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,106.4 275.0,362.7 450.0,202.1 625.0,217.5 800.0,272.8" fill="none" stroke="rgb(128,80,255)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,70.0 275.0,209.5 450.0,380.7 625.0,287.9 800.0,295.3" fill="none" stroke="rgb(128,80,255)" stroke-width="1.2" opacity="0.65"/>
+<polyline points="100.0,75.6 275.0,443.0 450.0,361.8 625.0,332.9 800.0,251.7" fill="none" stroke="rgb(128,80,255)" stroke-width="1.2" opacity="0.65"/>
+<text x="100" y="500" font-size="12">Color intensity = longest continuous >=3-contact duration; thick = formal success</text>
+</svg>

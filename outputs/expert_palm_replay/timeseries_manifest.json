@@ -1,0 +1,28 @@
+{
+  "status": "baseline_series_generated_in_replay_run",
+  "source_run": "expert_palm_hand_coordination_replay.py",
+  "episodes": [
+    69,
+    75,
+    87,
+    77,
+    84
+  ],
+  "conditions": [
+    "A_fixed_palm_raw20",
+    "B_fixed_palm_pca5"
+  ],
+  "sample_rate_hz": 30,
+  "fields": [
+    "contact_count",
+    "per_finger_normal_force",
+    "per_finger_sliding_speed",
+    "per_finger_edge_margin",
+    "relative_linear_speed",
+    "relative_angular_speed",
+    "cube_displacement",
+    "penetration"
+  ],
+  "key_timeseries_file": "outputs/expert_palm_replay/key_timeseries.json",
+  "full_file_note": "The executable writes full timeseries.json; key contact-transition and peak-slip events from this run are retained in key_timeseries.json."
+}

@@ -1,0 +1,396 @@
+{
+  "dataset_audit": {
+    "source": "D:/yl/embodied ai/openarm-wuji-learning/data/external/wuji-pick-and-place/teleop/data/chunk-000/episode_000069.parquet",
+    "dataset_info": "D:/yl/embodied ai/openarm-wuji-learning/data/external/wuji-pick-and-place/teleop/meta/info.json",
+    "state_shape": [
+      54
+    ],
+    "action_shape": [
+      54
+    ],
+    "left_arm": {
+      "slice_0_based": "[0:7]",
+      "indices_inclusive": [
+        0,
+        6
+      ],
+      "names": null
+    },
+    "left_hand": {
+      "slice_0_based": "[14:34]",
+      "indices_inclusive": [
+        14,
+        33
+      ]
+    },
+    "right_arm": {
+      "slice_0_based": "[7:14]",
+      "indices_inclusive": [
+        7,
+        13
+      ],
+      "names": null
+    },
+    "right_hand": {
+      "slice_0_based": "[34:54]",
+      "indices_inclusive": [
+        34,
+        53
+      ]
+    },
+    "arm_joint_order": null,
+    "hand_joint_order": {
+      "provenance": "official Wuji flat-array convention; dataset info.json names=null",
+      "left": [
+        "left_finger1_joint1",
+        "left_finger1_joint2",
+        "left_finger1_joint3",
+        "left_finger1_joint4",
+        "left_finger2_joint1",
+        "left_finger2_joint2",
+        "left_finger2_joint3",
+        "left_finger2_joint4",
+        "left_finger3_joint1",
+        "left_finger3_joint2",
+        "left_finger3_joint3",
+        "left_finger3_joint4",
+        "left_finger4_joint1",
+        "left_finger4_joint2",
+        "left_finger4_joint3",
+        "left_finger4_joint4",
+        "left_finger5_joint1",
+        "left_finger5_joint2",
+        "left_finger5_joint3",
+        "left_finger5_joint4"
+      ]
+    },
+    "units": {
+      "arm_state": "rad (dataset README: source arm degrees converted to radians)",
+      "arm_action": "rad absolute target",
+      "hand_state": "rad absolute encoder position",
+      "hand_action": "rad absolute target",
+      "timestamp": "s"
+    },
+    "recorder_pose_fields": [],
+    "parquet_columns": [
+      "observation.state",
+      "action",
+      "timestamp",
+      "frame_index",
+      "episode_index",
+      "index",
+      "task_index",
+      "next.done"
+    ],
+    "expert_fk_available_in_bundle": false,
+    "expert_fk_blocker": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint."
+  },
+  "status": "blocked_without_expert_fk",
+  "episodes": [
+    69,
+    75,
+    87,
+    77,
+    84
+  ],
+  "palm_translation_m": null,
+  "palm_rotation_deg": null,
+  "arm_joint_delta_proxy_rad": {
+    "mean": [
+      -0.3352597951889038,
+      0.1620115876197815,
+      0.15094774961471558,
+      0.1640698194503784,
+      0.09908217191696167,
+      -0.10734298527240753,
+      -0.1217211799841607
+    ],
+    "median": [
+      -0.3265729546546936,
+      0.1225273609161377,
+      0.13104629516601562,
+      0.15209484100341797,
+      0.14620357751846313,
+      -0.1011400893330574,
+      -0.14695846568793058
+    ],
+    "std": [
+      0.0936640407635673,
+      0.0913910224484082,
+      0.07623106283871682,
+      0.0509705982710676,
+      0.1367018433957477,
+      0.14325171449253618,
+      0.10456215146262794
+    ],
+    "norm_mean": 0.5290531054339215
+  },
+  "interpretation": "These are expert arm-joint changes, not palm motion. A palm SE(3) statistic is intentionally not fabricated without the expert FK model.",
+  "per_episode": [
+    {
+      "episode_id": 69,
+      "frames_replayed": 108,
+      "close_start_frame_local": 32,
+      "arm_state_start_rad": [
+        1.9986271858215332,
+        -0.9490088224411011,
+        -1.271784782409668,
+        -2.1982228755950928,
+        1.609694480895996,
+        0.48100924491882324,
+        0.07902152836322784
+      ],
+      "arm_state_grasp_rad": [
+        1.6720542311668396,
+        -0.8264814615249634,
+        -1.1407384872436523,
+        -2.046128034591675,
+        1.8260141015052795,
+        0.18827041238546371,
+        -0.0879785567522049
+      ],
+      "delta_arm_state_rad": [
+        -0.3265729546546936,
+        0.1225273609161377,
+        0.13104629516601562,
+        0.15209484100341797,
+        0.21631962060928345,
+        -0.2927388325333595,
+        -0.16700008511543274
+      ],
+      "arm_translation_proxy_joint_norm_rad": 0.5677570358733249,
+      "delta_arm_action_rad": [
+        -0.5435776114463806,
+        0.15750223398208618,
+        0.1656557321548462,
+        0.21097880601882935,
+        0.22964638471603394,
+        -0.30878713726997375,
+        -0.1605774126946926
+      ],
+      "hand_close_excursion_at_end_rad": 1.4349144701132046,
+      "arm_excursion_at_end_rad": 1.625629692588139,
+      "hand_excursion_during_close_rad": {
+        "max": 1.5237684151196316,
+        "mean": 1.1266847290876574
+      },
+      "arm_excursion_during_close_rad": {
+        "max": 1.625629692588139,
+        "mean": 1.0031711449064187
+      },
+      "palm_pose_available": false
+    },
+    {
+      "episode_id": 75,
+      "frames_replayed": 120,
+      "close_start_frame_local": 18,
+      "arm_state_start_rad": [
+        1.8403362035751343,
+        -0.9985482692718506,
+        -1.2085410356521606,
+        -2.0688154697418213,
+        1.4190748929977417,
+        0.45514869689941406,
+        0.2579544186592102
+      ],
+      "arm_state_grasp_rad": [
+        1.4428191781044006,
+        -0.7447476983070374,
+        -1.079806387424469,
+        -1.9358450174331665,
+        1.6222547888755798,
+        0.21792617440223694,
+        -0.02336297743022442
+      ],
+      "delta_arm_state_rad": [
+        -0.39751702547073364,
+        0.25380057096481323,
+        0.12873464822769165,
+        0.13297045230865479,
+        0.20317989587783813,
+        -0.23722252249717712,
+        -0.2813173960894346
+      ],
+      "arm_translation_proxy_joint_norm_rad": 0.6583193289081171,
+      "delta_arm_action_rad": [
+        -0.5424513816833496,
+        0.25433096289634705,
+        0.2029426395893097,
+        0.18332386016845703,
+        0.27478933334350586,
+        -0.28496605157852173,
+        -0.31032752990722656
+      ],
+      "hand_close_excursion_at_end_rad": 0.9038160167006811,
+      "arm_excursion_at_end_rad": 1.4579038169771037,
+      "hand_excursion_during_close_rad": {
+        "max": 0.9612443452652839,
+        "mean": 0.8132084704565067
+      },
+      "arm_excursion_during_close_rad": {
+        "max": 1.4687530765000174,
+        "mean": 1.072777255857749
+      },
+      "palm_pose_available": false
+    },
+    {
+      "episode_id": 87,
+      "frames_replayed": 120,
+      "close_start_frame_local": 28,
+      "arm_state_start_rad": [
+        1.8330564498901367,
+        -0.9673993587493896,
+        -1.218543529510498,
+        -2.0793259143829346,
+        1.5927455425262451,
+        0.3501147925853729,
+        0.1367570161819458
+      ],
+      "arm_state_grasp_rad": [
+        1.6474939584732056,
+        -0.8833285868167877,
+        -1.166025698184967,
+        -1.9854717254638672,
+        1.681294858455658,
+        0.24897470325231552,
+        -0.010201449505984783
+      ],
+      "delta_arm_state_rad": [
+        -0.18556249141693115,
+        0.08407077193260193,
+        0.052517831325531006,
+        0.09385418891906738,
+        0.08854931592941284,
+        -0.1011400893330574,
+        -0.14695846568793058
+      ],
+      "arm_translation_proxy_joint_norm_rad": 0.304524471854417,
+      "delta_arm_action_rad": [
+        -0.3439309000968933,
+        0.08590483665466309,
+        0.1292981505393982,
+        0.1743883490562439,
+        0.10750085115432739,
+        -0.1544279083609581,
+        -0.16546043753623962
+      ],
+      "hand_close_excursion_at_end_rad": 0.5503730087290112,
+      "arm_excursion_at_end_rad": 1.2691877336611506,
+      "hand_excursion_during_close_rad": {
+        "max": 1.1166846697773976,
+        "mean": 0.9415815047665518
+      },
+      "arm_excursion_during_close_rad": {
+        "max": 1.2705418921743774,
+        "mean": 0.7666978703645957
+      },
+      "palm_pose_available": false
+    },
+    {
+      "episode_id": 77,
+      "frames_replayed": 120,
+      "close_start_frame_local": 38,
+      "arm_state_start_rad": [
+        2.0274548530578613,
+        -1.0207680463790894,
+        -1.494343876838684,
+        -2.1891891956329346,
+        1.3760490417480469,
+        0.06337639689445496,
+        0.04234343394637108
+      ],
+      "arm_state_grasp_rad": [
+        1.5638699531555176,
+        -0.7333018481731415,
+        -1.2075435519218445,
+        -1.952166497707367,
+        1.52225261926651,
+        0.15278089046478271,
+        0.03165940009057522
+      ],
+      "delta_arm_state_rad": [
+        -0.46358489990234375,
+        0.2874661982059479,
+        0.2868003249168396,
+        0.23702269792556763,
+        0.14620357751846313,
+        0.08940449357032776,
+        -0.01068403385579586
+      ],
+      "arm_translation_proxy_joint_norm_rad": 0.6822497771065689,
+      "delta_arm_action_rad": [
+        -0.6111717820167542,
+        0.2926606833934784,
+        0.3505779504776001,
+        0.30464643239974976,
+        0.1435171365737915,
+        -0.001383855938911438,
+        -0.014827403239905834
+      ],
+      "hand_close_excursion_at_end_rad": 0.6273051356392386,
+      "arm_excursion_at_end_rad": 1.491374784905168,
+      "hand_excursion_during_close_rad": {
+        "max": 0.6845231607664003,
+        "mean": 0.5817711525750128
+      },
+      "arm_excursion_during_close_rad": {
+        "max": 1.491374784905168,
+        "mean": 1.0319707631636494
+      },
+      "palm_pose_available": false
+    },
+    {
+      "episode_id": 84,
+      "frames_replayed": 120,
+      "close_start_frame_local": 24,
+      "arm_state_start_rad": [
+        1.8318469524383545,
+        -1.0105019807815552,
+        -1.1542123556137085,
+        -2.037853479385376,
+        2.139517068862915,
+        0.5490998029708862,
+        0.0037384952884167433
+      ],
+      "arm_state_grasp_rad": [
+        1.5287853479385376,
+        -0.9483089447021484,
+        -0.9985727071762085,
+        -1.8334465622901917,
+        1.9806755185127258,
+        0.5540818274021149,
+        0.0010925761162070557
+      ],
+      "delta_arm_state_rad": [
+        -0.3030616044998169,
+        0.06219303607940674,
+        0.1556396484375,
+        0.20440691709518433,
+        -0.1588415503501892,
+        0.004982024431228638,
+        -0.0026459191722096875
+      ],
+      "arm_translation_proxy_joint_norm_rad": 0.4324149134271792,
+      "delta_arm_action_rad": [
+        -0.4451303482055664,
+        0.06140407919883728,
+        0.2232329249382019,
+        0.3057120442390442,
+        -0.22808700799942017,
+        -0.055478647351264954,
+        0.024584772530943155
+      ],
+      "hand_close_excursion_at_end_rad": 2.3354100059787455,
+      "arm_excursion_at_end_rad": 1.0875141130085972,
+      "hand_excursion_during_close_rad": {
+        "max": 2.3356683872129635,
+        "mean": 1.035347318117348
+      },
+      "arm_excursion_during_close_rad": {
+        "max": 1.3018254851797804,
+        "mean": 0.9151447997217833
+      },
+      "palm_pose_available": false
+    }
+  ]
+}

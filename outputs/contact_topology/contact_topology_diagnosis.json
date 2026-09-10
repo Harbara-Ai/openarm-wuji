@@ -1,0 +1,115 @@
+{
+  "method": "deterministic open-loop replay of raw Wuji expert q_hand through fixed-palm MuJoCo",
+  "training": "none",
+  "policy_checkpoint": null,
+  "scope": "five previously selected representative cube_left trajectories (episode ids 77, 71, 70, 84, 74), 30 Hz replay",
+  "valid_contact_definition": "normal_force_n >= success.min_normal_force_n from grasp_stage1_expert_pca5.json",
+  "topology_summary": {
+    "first_three_triplet_counts": {
+      "finger1+finger3+finger4": 1,
+      "finger1+finger2+finger4": 2,
+      "finger1+finger2+finger3": 1
+    },
+    "first_loss_counts_by_finger": {
+      "finger1": 3,
+      "finger2": 2,
+      "finger3": 2,
+      "finger4": 3,
+      "finger5": 0
+    },
+    "simultaneous_first_loss_episodes": 3,
+    "episodes_with_exact_two_contact_segment_after_drop": 1
+  },
+  "episodes": [
+    {
+      "episode_id": 77,
+      "first_three_contact_time_s": 1.0666667,
+      "first_three_contact_fingers": ["finger1", "finger3", "finger4"],
+      "drop_time_s": 1.1,
+      "dropped_fingers": ["finger1", "finger3", "finger4"],
+      "drop_is_simultaneous": true,
+      "pre_drop": {
+        "finger1": {"normal_force_sum_n": 0.65986, "sliding_speed_m_s": 0.010643, "faces": ["-Y"], "edge_contact": false, "corner_contact": false, "distance_to_nearest_edge_m": 0.00834},
+        "finger3": {"normal_force_sum_n": 0.75729, "sliding_speed_m_s": 0.000332, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.00000885},
+        "finger4": {"normal_force_sum_n": 0.74991, "sliding_speed_m_s": 0.021493, "faces": ["+Z"], "edge_contact": true, "corner_contact": true, "distance_to_nearest_edge_m": 0.00000133, "distance_to_nearest_corner_m": 0.00000435}
+      },
+      "transition_relative_linear_speed_m_s": 0.00142,
+      "transition_relative_angular_speed_deg_s": 2.063,
+      "transition_cube_displacement_m": 0.0001567,
+      "remaining_pair_frames": 0,
+      "remaining_pair_duration_s": 0.0
+    },
+    {
+      "episode_id": 71,
+      "first_three_contact_time_s": null,
+      "first_three_contact_fingers": [],
+      "drop_time_s": null,
+      "dropped_fingers": [],
+      "drop_is_simultaneous": false,
+      "max_contact_fingers": 2,
+      "remaining_pair_frames": 0,
+      "remaining_pair_duration_s": 0.0
+    },
+    {
+      "episode_id": 70,
+      "first_three_contact_time_s": 1.7,
+      "first_three_contact_fingers": ["finger1", "finger2", "finger4"],
+      "drop_time_s": 1.7333333,
+      "dropped_fingers": ["finger1", "finger2", "finger4"],
+      "drop_is_simultaneous": true,
+      "pre_drop": {
+        "finger1": {"normal_force_sum_n": 0.81911, "sliding_speed_m_s": 0.022868, "faces": ["-Y"], "edge_contact": false, "corner_contact": false, "distance_to_nearest_edge_m": 0.00581},
+        "finger2": {"normal_force_sum_n": 0.78232, "sliding_speed_m_s": 0.005738, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.00000276},
+        "finger4": {"normal_force_sum_n": 0.65663, "sliding_speed_m_s": 0.018373, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.00000413}
+      },
+      "transition_relative_linear_speed_m_s": 0.00078,
+      "transition_relative_angular_speed_deg_s": 1.333,
+      "transition_cube_displacement_m": 0.0000750,
+      "remaining_pair_frames": 0,
+      "remaining_pair_duration_s": 0.0
+    },
+    {
+      "episode_id": 84,
+      "first_three_contact_time_s": 3.4,
+      "first_three_contact_fingers": ["finger1", "finger2", "finger3"],
+      "drop_time_s": 3.4333333,
+      "dropped_fingers": ["finger1", "finger2", "finger3"],
+      "drop_is_simultaneous": true,
+      "post_transition_new_contact": ["finger4"],
+      "pre_drop": {
+        "finger1": {"normal_force_sum_n": 0.685, "sliding_speed_m_s": 0.0326, "faces": ["-Y"], "edge_contact": false, "corner_contact": false, "distance_to_nearest_edge_m": 0.00529},
+        "finger2": {"normal_force_sum_n": 0.807, "sliding_speed_m_s": 0.0384, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.00000588},
+        "finger3": {"normal_force_sum_n": 1.052, "sliding_speed_m_s": 0.0487, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.0000162}
+      },
+      "transition_relative_linear_speed_m_s": 0.00093,
+      "transition_relative_angular_speed_deg_s": 1.269,
+      "transition_cube_displacement_m": 0.0002696,
+      "remaining_pair_frames": 0,
+      "remaining_pair_duration_s": 0.0
+    },
+    {
+      "episode_id": 74,
+      "first_three_contact_time_s": 1.3333333,
+      "first_three_contact_fingers": ["finger1", "finger2", "finger4"],
+      "drop_time_s": 1.3666667,
+      "dropped_fingers": ["finger4"],
+      "drop_is_simultaneous": false,
+      "pre_drop": {
+        "finger1": {"normal_force_sum_n": 0.73449, "sliding_speed_m_s": 0.011926, "faces": ["-Y"], "edge_contact": false, "corner_contact": false, "distance_to_nearest_edge_m": 0.00550},
+        "finger2": {"normal_force_sum_n": 0.91508, "sliding_speed_m_s": 0.004229, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.00000149},
+        "finger4": {"normal_force_sum_n": 0.81436, "sliding_speed_m_s": 0.016371, "faces": ["+Z"], "edge_contact": true, "corner_contact": false, "distance_to_nearest_edge_m": 0.00000015}
+      },
+      "transition_relative_linear_speed_m_s": 0.00083,
+      "transition_relative_angular_speed_deg_s": 1.027,
+      "transition_cube_displacement_m": 0.0001192,
+      "remaining_pair_fingers": ["finger1", "finger2"],
+      "remaining_pair_frames": 1,
+      "remaining_pair_duration_s": 0.0,
+      "remaining_pair": {
+        "finger1": {"normal_force_max_n": 0.36738, "sliding_speed_m_s": 0.01377, "tangential_force_n": 0.73279, "face": "-Y"},
+        "finger2": {"normal_force_max_n": 0.55207, "sliding_speed_m_s": 0.01435, "tangential_force_n": 1.05033, "face": "+Z"}
+      }
+    }
+  ],
+  "interpretation": "Force, sliding and geometry are continuous diagnostics. No new stability threshold or success claim is introduced. Episode 74 is the only observed 3-to-2 transition and lasts one frame; this is insufficient evidence to call the remaining pair stable."
+}

@@ -1,0 +1,44 @@
+{
+  "policy_source": "fresh_reconstruction",
+  "checkpoint": null,
+  "checkpoint_note": "The prior PCA5 zip was not writable in the managed desktop sandbox; the exact seed-7 5K SAC recipe was reconstructed in memory before evaluating both environments.",
+  "training_steps_for_reconstruction": 5000,
+  "same_policy_and_reset_seeds": [7, 8, 9, 10, 11],
+  "latch_trigger": "valid contact finger count >= 3 continuously for 0.10 s; formal stable-success criterion unchanged",
+  "baseline": {
+    "counts": {"any_contact":5,"contacts_ge2":5,"contacts_ge3":5,"contact_established":1,"hold_ge0p1s":5,"hold_ge0p3s":0,"hold_ge0p5s":0,"stable_grasp_success":0},
+    "max_contact_fingers": [3,4,3,4,4],
+    "established_time_s": [null,0.6666666667,null,null,null],
+    "returns": [35.3710760468,41.0480149591,43.8849624819,40.4989957277,41.1392495591],
+    "max_relative_translation_drift_m": [0.0000396440,0.0000526973,0.0000413778,0.0000463341,0.0000372054],
+    "max_relative_rotation_drift_deg": [0.0632110,0.0815151,0.0570709,0.0611795,0.0373986],
+    "max_relative_linear_speed_m_s": [0.0025001,0.0031800,0.0024119,0.0031740,0.0050010],
+    "max_relative_angular_speed_deg_s": [4.0421,5.1295,3.9007,4.9843,7.4901],
+    "cube_displacement_m": [0.0004519,0.0004748,0.0004395,0.0004330,0.0005012],
+    "deepest_penetration_m": [0.0007001,0.0007414,0.0009378,0.0008140,0.0006559],
+    "reward_components_pre_latch_sum": {"total_reward":166.2716580,"weighted_contact_transition":139.25,"weighted_stability":0.2497319,"weighted_hold":0.2498482,"weighted_slip":-0.0001072,"weighted_cube_motion":0.0,"weighted_action":-0.0655763,"weighted_delta_action":-0.0492344},
+    "reward_components_post_establishment_sum": {"total_reward":35.6706408,"weighted_contact_transition":30.5,"weighted_stability":0.2493800,"weighted_hold":0.2498282,"weighted_slip":-0.0002480,"weighted_cube_motion":0.0,"weighted_action":-0.0142066,"weighted_delta_action":-0.0119624}
+  },
+  "latch": {
+    "counts": {"any_contact":5,"contacts_ge2":5,"contacts_ge3":5,"contact_established":1,"hold_ge0p1s":5,"hold_ge0p3s":0,"hold_ge0p5s":0,"stable_grasp_success":0},
+    "max_contact_fingers": [3,4,3,4,4],
+    "established_time_s": [null,0.6666666667,null,null,null],
+    "returns": [35.3710760468,40.1172158228,43.8849624819,40.4990,41.1392495591],
+    "max_relative_translation_drift_m": [0.0000396440,0.0000257058,0.0000413778,0.0000463341,0.0000372054],
+    "max_relative_rotation_drift_deg": [0.0632110,0.0442667,0.0570709,0.0611795,0.0373986],
+    "max_relative_linear_speed_m_s": [0.0025001,0.0031800,0.0024119,0.0031740,0.0050010],
+    "max_relative_angular_speed_deg_s": [4.0421,5.1295,3.9007,4.9843,7.4901],
+    "cube_displacement_m": [0.0004519,0.0003864,0.0004395,0.0004330,0.0005012],
+    "deepest_penetration_m": [0.0007001,0.0007414,0.0009378,0.0008140,0.0006559],
+    "reward_components_pre_latch_sum": {"total_reward":166.2716580,"weighted_contact_transition":139.25,"weighted_stability":0.2497319,"weighted_hold":0.2498482,"weighted_slip":-0.0001072,"weighted_cube_motion":0.0,"weighted_action":-0.0655763,"weighted_delta_action":-0.0492344},
+    "reward_components_post_latch_sum": {"total_reward":34.7398416,"weighted_contact_transition":29.5,"weighted_stability":0.2496301,"weighted_hold":0.2499899,"weighted_slip":-0.0001480,"weighted_cube_motion":0.0,"weighted_action":-0.0137149,"weighted_delta_action":-0.0093095}
+  },
+  "per_seed": [
+    {"seed":7,"baseline":{"contact_established":false,"max_contact_fingers":3,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false},"latch":{"contact_established":false,"max_contact_fingers":3,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false}},
+    {"seed":8,"baseline":{"contact_established":true,"established_time_s":0.6666666667,"contact_count_at_established":3,"max_contact_fingers":4,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false,"return":41.0480149591},"latch":{"contact_established":true,"established_time_s":0.6666666667,"contact_count_at_established":3,"post_contact_latched":true,"max_contact_fingers":4,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false,"return":40.1172158228}},
+    {"seed":9,"baseline":{"contact_established":false,"max_contact_fingers":3,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false},"latch":{"contact_established":false,"max_contact_fingers":3,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false}},
+    {"seed":10,"baseline":{"contact_established":false,"max_contact_fingers":4,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false},"latch":{"contact_established":false,"max_contact_fingers":4,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false}},
+    {"seed":11,"baseline":{"contact_established":false,"max_contact_fingers":4,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false},"latch":{"contact_established":false,"max_contact_fingers":4,"hold_ge0p1s":true,"hold_ge0p3s":false,"hold_ge0p5s":false,"stable_grasp_success":false}}
+  ],
+  "conclusion": "No positive diagnostic: latch changed only seed 8, and hold >=0.3 s / >=0.5 s remained 0/5. Do not train a latch SAC in this round."
+}

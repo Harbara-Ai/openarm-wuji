@@ -1,0 +1,31 @@
+{
+  "source": "outputs/wuji_teleop_analysis/cube_60_hand_trajectories.parquet",
+  "phase_metadata": "outputs/expert_pca5/phase_metadata.json",
+  "representative_episode_ids": [77, 71, 70, 84, 74],
+  "replay_semantics": "fixed reset seed 7; same Reward V2 and 120-step horizon; phase sequence truncated by horizon",
+  "gate": {
+    "required_max_contact_fingers": 2,
+    "pca5_max_contact_fingers": 4,
+    "pca5_max_penetration_m": 0.0005706113804325358,
+    "pca5_max_cube_displacement_m": 0.0004312362875258383,
+    "penetration_limit_m": 0.008,
+    "cube_motion_limit_m": 0.12,
+    "pass": true
+  },
+  "results": [
+    {"label":"raw_episode_77","episode_id":77,"steps":120,"return":36.4527282782,"max_contact_fingers":3,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0003076963,"max_cube_displacement_m":0.0004053763,"max_cube_rotation_deg":0.3565712,"success":false,"truncated":true},
+    {"label":"pca5_episode_77","episode_id":77,"steps":120,"return":37.9195819126,"max_contact_fingers":4,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0002102627,"max_cube_displacement_m":0.0004312363,"max_cube_rotation_deg":0.3822063,"success":false,"truncated":true},
+    {"label":"raw_episode_71","episode_id":71,"steps":120,"return":16.2161296822,"max_contact_fingers":2,"episodes_with_2_contacts":true,"episodes_with_3_contacts":false,"max_penetration_m":0.0001993882,"max_cube_displacement_m":0.0003015966,"max_cube_rotation_deg":0.2841663,"success":false,"truncated":true},
+    {"label":"pca5_episode_71","episode_id":71,"steps":120,"return":18.9567272759,"max_contact_fingers":4,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0002181054,"max_cube_displacement_m":0.0002580,"max_cube_rotation_deg":0.2529171,"success":false,"truncated":true},
+    {"label":"raw_episode_70","episode_id":70,"steps":120,"return":15.9588345660,"max_contact_fingers":3,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0002422372,"max_cube_displacement_m":0.0002151662,"max_cube_rotation_deg":0.1935765,"success":false,"truncated":true},
+    {"label":"pca5_episode_70","episode_id":70,"steps":120,"return":13.2389873438,"max_contact_fingers":2,"episodes_with_2_contacts":true,"episodes_with_3_contacts":false,"max_penetration_m":0.0005706114,"max_cube_displacement_m":0.0002618426,"max_cube_rotation_deg":0.2719764,"success":false,"truncated":true},
+    {"label":"raw_episode_84","episode_id":84,"steps":120,"return":18.9960575888,"max_contact_fingers":3,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0004794138,"max_cube_displacement_m":0.0003076627,"max_cube_rotation_deg":0.2927299,"success":false,"truncated":true},
+    {"label":"pca5_episode_84","episode_id":84,"steps":120,"return":23.0590102309,"max_contact_fingers":3,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0004427443,"max_cube_displacement_m":0.0003186190,"max_cube_rotation_deg":0.2967730,"success":false,"truncated":true},
+    {"label":"raw_episode_74","episode_id":74,"steps":120,"return":23.7861086852,"max_contact_fingers":3,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0004736622,"max_cube_displacement_m":0.0003395057,"max_cube_rotation_deg":0.2864149,"success":false,"truncated":true},
+    {"label":"pca5_episode_74","episode_id":74,"steps":120,"return":31.7670911818,"max_contact_fingers":4,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0000789056,"max_cube_displacement_m":0.0003676139,"max_cube_rotation_deg":0.3395169,"success":false,"truncated":true},
+    {"label":"manual3d_open_close","steps":120,"return":32.8493025267,"max_contact_fingers":5,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0012110730,"max_cube_displacement_m":0.0001764100,"max_cube_rotation_deg":0.1539418,"success":false,"truncated":true},
+    {"label":"structured5_open_to_close","steps":120,"return":32.8493025267,"max_contact_fingers":5,"episodes_with_2_contacts":true,"episodes_with_3_contacts":true,"max_penetration_m":0.0012110730,"max_cube_displacement_m":0.0001764100,"max_cube_rotation_deg":0.1539418,"success":false,"truncated":true}
+  ],
+  "sac_training_allowed": true,
+  "sac_training_note": "This file records the deterministic gate; no SAC run is included in this round."
+}

@@ -1,0 +1,1241 @@
+{
+  "comparison": "fresh PCA5+V2 5K vs fresh PCA5+V3 5K, seed 7",
+  "v2": {
+    "algorithm": "Stable-Baselines3 SAC",
+    "reward_version": "v2",
+    "action_version": "expert_pca5_absolute",
+    "action_representation": "expert_pca5_absolute",
+    "timesteps": 5000,
+    "seed": 7,
+    "observation_dimension": 228,
+    "action_dimension": 5,
+    "hyperparameters": {
+      "learning_rate": 0.0003,
+      "buffer_size": 50000,
+      "learning_starts": 100,
+      "batch_size": 64,
+      "tau": 0.005,
+      "gamma": 0.98,
+      "train_freq": 1,
+      "gradient_steps": 1,
+      "ent_coef": "auto",
+      "policy_net_arch": [
+        256,
+        256
+      ]
+    },
+    "replay_buffer_size": 5000,
+    "gradient_updates": 4900,
+    "actor_parameter_l2_change": 2.9497880935668945,
+    "first_reward_window_mean": 0.0785985740959004,
+    "last_reward_window_mean": 0.14329953695985023,
+    "max_contact_fingers": 4,
+    "success_events": 0,
+    "initial_entropy_coefficient": 1.0,
+    "final_entropy_coefficient": 0.23022246360778809,
+    "training_action_statistics": {
+      "per_dimension_mean": [
+        0.07188360565900803,
+        -0.006662790906429291,
+        0.07244597231149673,
+        -0.00015657050609588623,
+        0.019605850577354433
+      ],
+      "per_dimension_std": [
+        0.5880656498848332,
+        0.5869813197356241,
+        0.5840819275552744,
+        0.5944582805681862,
+        0.5975797128934267
+      ],
+      "per_finger_mean_absolute": {
+        "finger1": 0.518249016058445,
+        "finger2": 0.5146009751677513,
+        "finger3": 0.5150597446322441,
+        "finger4": 0.524249172949791,
+        "finger5": 0.5273626053094864
+      },
+      "global_mean_absolute": 0.5199043028235435
+    },
+    "policy_distribution_diagnostics": {
+      "seed": 7,
+      "latent_gaussian_std": [
+        0.8833909034729004,
+        0.8695468306541443,
+        0.8632928729057312,
+        0.8675327897071838,
+        0.8872228264808655
+      ],
+      "deterministic_initial_action": [
+        -0.09964221715927124,
+        0.07869529724121094,
+        0.0011655092239379883,
+        0.0033969879150390625,
+        0.0034590959548950195
+      ],
+      "stochastic_initial_action": {
+        "per_dimension_mean": [
+          0.012476736679673195,
+          0.04791260650381446,
+          -0.018688012845814228,
+          -0.061331778299063444,
+          0.07692923257127404
+        ],
+        "per_dimension_std": [
+          0.588585526099741,
+          0.5931794360889366,
+          0.6144731281334634,
+          0.5730820279388319,
+          0.5944408475673897
+        ],
+        "per_finger_mean_absolute": {
+          "finger1": 0.5212852358818054,
+          "finger2": 0.5097654336132109,
+          "finger3": 0.5393938673660159,
+          "finger4": 0.5007757707498968,
+          "finger5": 0.530122512485832
+        },
+        "global_mean_absolute": 0.5202685640193522
+      }
+    },
+    "completed_training_episodes": 41,
+    "training_episode_returns": [
+      8.576304361973598,
+      10.844519780905102,
+      14.823569604428485,
+      10.058465101988986,
+      15.070292183518177,
+      9.021821907022968,
+      15.66164847271284,
+      10.832783279489377,
+      12.518462803214788,
+      8.552653342892881,
+      11.089663803461008,
+      11.027801755117252,
+      10.15737801483192,
+      12.12744823936373,
+      13.675795734627172,
+      8.175604511601705,
+      9.856538603373338,
+      14.173000250011683,
+      9.723717352258973,
+      10.633950413903221,
+      14.706759832624812,
+      8.761350669228705,
+      13.84586511721136,
+      11.115625017788261,
+      14.255320178577676,
+      13.610851494420785,
+      17.026912206201814,
+      11.860301281441934,
+      14.481184854696039,
+      18.23181650027982,
+      10.516936146188527,
+      15.36742561115534,
+      12.393225900130346,
+      18.000107950356323,
+      11.252811982762069,
+      16.10243109241128,
+      15.430742313270457,
+      18.0180278380285,
+      12.62617232487537,
+      14.873511148034595,
+      14.750872722244821
+    ],
+    "training_episode_lengths": [
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120
+    ],
+    "training_episode_max_contact_fingers": [
+      2,
+      4,
+      3,
+      3,
+      3,
+      2,
+      4,
+      3,
+      3,
+      2,
+      3,
+      2,
+      3,
+      3,
+      3,
+      2,
+      3,
+      3,
+      2,
+      3,
+      4,
+      3,
+      3,
+      4,
+      3,
+      4,
+      3,
+      2,
+      3,
+      3,
+      2,
+      2,
+      4,
+      4,
+      2,
+      4,
+      3,
+      4,
+      2,
+      3,
+      3
+    ],
+    "training_episode_failure_reasons": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "training_milestone_episode_counts": {
+      "multi_contact_acquired": 41,
+      "three_contact_acquired": 30,
+      "contact_held_0p1s": 10,
+      "contact_held_0p3s": 0,
+      "stable_grasp_success": 0
+    },
+    "contact_episode_fraction": 1.0,
+    "multi_contact_episode_fraction": 1.0,
+    "three_contact_episode_fraction": 0.7317073170731707,
+    "deterministic_evaluation": [
+      {
+        "seed": 7,
+        "steps": 120,
+        "return": 35.3710760467861,
+        "max_contact_fingers": 3,
+        "final_contact_fingers": 0,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.00045189649410089315,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 5.919566851832674e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004810932369829518,
+            "minimum": -0.0005832696723071339,
+            "final": 5.919566851832674e-05
+          },
+          "finger2": {
+            "mean": 0.0024641164931815053,
+            "minimum": -0.000700061550498318,
+            "final": -5.218266166267414e-05
+          },
+          "finger3": {
+            "mean": 0.0026027213196304984,
+            "minimum": -0.00016685619509802747,
+            "final": 1.3173427868008834e-05
+          },
+          "finger4": {
+            "mean": 0.0020860580007026662,
+            "minimum": -0.00014434582213024413,
+            "final": 6.960857681286646e-05
+          },
+          "finger5": {
+            "mean": 0.024478482354391904,
+            "minimum": 0.022173740216036273,
+            "final": 0.023359188691881968
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.20566756129264832,
+            -0.03643331527709961,
+            0.07105392416318258,
+            0.01957047830025355,
+            0.033421640594800316
+          ],
+          "per_dimension_std": [
+            0.09476058447978716,
+            0.056276472892416114,
+            0.016016877906449505,
+            0.03302117544222589,
+            0.03580796465849754
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.21125770211219788,
+            "finger2": 0.045674016078313194,
+            "finger3": 0.07105392416318258,
+            "finger4": 0.0330344373981158,
+            "finger5": 0.040302545825640364
+          },
+          "global_mean_absolute": 0.08026452511548995
+        }
+      },
+      {
+        "seed": 8,
+        "steps": 120,
+        "return": 41.04801495908029,
+        "max_contact_fingers": 4,
+        "final_contact_fingers": 2,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.00047484900856428134,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 9.307316011205994e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004772852830962538,
+            "minimum": -0.0007413815023506819,
+            "final": -1.656021180201355e-05
+          },
+          "finger2": {
+            "mean": 0.0024932046956170407,
+            "minimum": -0.00028680258446153295,
+            "final": 0.0001242982603808373
+          },
+          "finger3": {
+            "mean": 0.002584971705672702,
+            "minimum": -0.0003765393261896849,
+            "final": 9.307316011205994e-05
+          },
+          "finger4": {
+            "mean": 0.0020599185571269834,
+            "minimum": -0.0002767008125810498,
+            "final": -5.807049980897952e-05
+          },
+          "finger5": {
+            "mean": 0.02471368261143414,
+            "minimum": 0.022318768528505412,
+            "final": 0.023389338834789913
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.19567025899887086,
+            -0.04981795599063237,
+            0.0747785747051239,
+            0.010846816996733347,
+            0.029460410277048748
+          ],
+          "per_dimension_std": [
+            0.10077042709865379,
+            0.064361942736252,
+            0.01742587349487868,
+            0.035095529001202365,
+            0.03534047416744551
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.20124285221099852,
+            "finger2": 0.05928328682978948,
+            "finger3": 0.0747785747051239,
+            "finger4": 0.03214907298485438,
+            "finger5": 0.03615733981132507
+          },
+          "global_mean_absolute": 0.08072222530841827
+        }
+      },
+      {
+        "seed": 9,
+        "steps": 120,
+        "return": 43.88496248189518,
+        "max_contact_fingers": 3,
+        "final_contact_fingers": 2,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.00043948882012015015,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 3.19655112799284e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004841974544604045,
+            "minimum": -0.0009377550868961527,
+            "final": 3.19655112799284e-05
+          },
+          "finger2": {
+            "mean": 0.002550567186382983,
+            "minimum": -0.00011758250163006968,
+            "final": -2.1781195920871883e-05
+          },
+          "finger3": {
+            "mean": 0.002616545847377557,
+            "minimum": -9.875502970920557e-05,
+            "final": 3.759579496644356e-05
+          },
+          "finger4": {
+            "mean": 0.0020937502246117295,
+            "minimum": -8.613383216167251e-05,
+            "final": -3.164573961396858e-05
+          },
+          "finger5": {
+            "mean": 0.02441004375823254,
+            "minimum": 0.02211627236161371,
+            "final": 0.023005360673775652
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.20934931188821793,
+            -0.046427886188030246,
+            0.07343870202700296,
+            0.012254152198632557,
+            0.03204362193743388
+          ],
+          "per_dimension_std": [
+            0.10700173848518234,
+            0.06157402696016094,
+            0.015996301795029946,
+            0.034084252334288544,
+            0.0323113632547711
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.21496290216843286,
+            "finger2": 0.05569596538941066,
+            "finger3": 0.07343870202700296,
+            "finger4": 0.03035963624715805,
+            "finger5": 0.03732761144638062
+          },
+          "global_mean_absolute": 0.08235696345567703
+        }
+      },
+      {
+        "seed": 10,
+        "steps": 120,
+        "return": 40.49899572769015,
+        "max_contact_fingers": 4,
+        "final_contact_fingers": 0,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.0004330382812229755,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 5.8388221943459254e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004854241377756439,
+            "minimum": -0.0008140029928482205,
+            "final": 2.3478902657595186e-05
+          },
+          "finger2": {
+            "mean": 0.002564148460066686,
+            "minimum": -0.00017125506560418434,
+            "final": 5.8388221943459254e-05
+          },
+          "finger3": {
+            "mean": 0.002620044746957622,
+            "minimum": -8.889229951451604e-05,
+            "final": 0.00017452299204414392
+          },
+          "finger4": {
+            "mean": 0.002104172023353117,
+            "minimum": -8.759374426060731e-05,
+            "final": 1.7172488520079818e-05
+          },
+          "finger5": {
+            "mean": 0.024605012570848128,
+            "minimum": 0.02202679886402714,
+            "final": 0.023888971494561644
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.19976981331904728,
+            -0.04246069093545278,
+            0.0729693740606308,
+            0.013182220359643301,
+            0.031427901486555734
+          ],
+          "per_dimension_std": [
+            0.10466693700553806,
+            0.061399941307134026,
+            0.016545623687671113,
+            0.034725977310369784,
+            0.0338829123203728
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.20538745472828548,
+            "finger2": 0.052064799269040424,
+            "finger3": 0.0729693740606308,
+            "finger4": 0.031128494441509245,
+            "finger5": 0.03788875788450241
+          },
+          "global_mean_absolute": 0.07988777607679368
+        }
+      },
+      {
+        "seed": 11,
+        "steps": 120,
+        "return": 41.139249559117125,
+        "max_contact_fingers": 4,
+        "final_contact_fingers": 2,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.0004997139554350096,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": -1.4704815747005075e-06,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004783887142052061,
+            "minimum": -0.0005286401685749019,
+            "final": 3.136107040768355e-05
+          },
+          "finger2": {
+            "mean": 0.0024256791177322367,
+            "minimum": -0.000655875887944309,
+            "final": -0.00018817752361132103
+          },
+          "finger3": {
+            "mean": 0.002573525287262884,
+            "minimum": -0.00044615613201106805,
+            "final": -2.0950986329366862e-05
+          },
+          "finger4": {
+            "mean": 0.0020516829147749086,
+            "minimum": -0.00019448389809439463,
+            "final": -1.4704815747005075e-06
+          },
+          "finger5": {
+            "mean": 0.024443704239933074,
+            "minimum": 0.022122782120025598,
+            "final": 0.023073996277469054
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.20481868187586466,
+            -0.04121958166360855,
+            0.07229902644952138,
+            0.01600310355424881,
+            0.036585878829161325
+          ],
+          "per_dimension_std": [
+            0.10270743284918617,
+            0.059450485798113344,
+            0.016683739759181915,
+            0.03571066588230735,
+            0.033721010829897646
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.21040651798248292,
+            "finger2": 0.05045382132132848,
+            "finger3": 0.07229902644952138,
+            "finger4": 0.0340886597832044,
+            "finger5": 0.04189580927292506
+          },
+          "global_mean_absolute": 0.08182876696189245
+        }
+      }
+    ]
+  },
+  "v3": {
+    "algorithm": "Stable-Baselines3 SAC",
+    "reward_version": "v3",
+    "action_version": "expert_pca5_absolute",
+    "action_representation": "expert_pca5_absolute",
+    "timesteps": 5000,
+    "seed": 7,
+    "observation_dimension": 228,
+    "action_dimension": 5,
+    "hyperparameters": {
+      "learning_rate": 0.0003,
+      "buffer_size": 50000,
+      "learning_starts": 100,
+      "batch_size": 64,
+      "tau": 0.005,
+      "gamma": 0.98,
+      "train_freq": 1,
+      "gradient_steps": 1,
+      "ent_coef": "auto",
+      "policy_net_arch": [
+        256,
+        256
+      ]
+    },
+    "replay_buffer_size": 5000,
+    "gradient_updates": 4900,
+    "actor_parameter_l2_change": 2.7951643466949463,
+    "first_reward_window_mean": 0.06456541315416689,
+    "last_reward_window_mean": 0.0982863704515621,
+    "max_contact_fingers": 4,
+    "success_events": 0,
+    "initial_entropy_coefficient": 1.0,
+    "final_entropy_coefficient": 0.23007681965827942,
+    "training_action_statistics": {
+      "per_dimension_mean": [
+        0.05218102823495865,
+        0.006149751615524292,
+        0.059921947038173676,
+        -0.0138878723859787,
+        0.015726996374130248
+      ],
+      "per_dimension_std": [
+        0.5882202482329132,
+        0.5861983690058419,
+        0.5818588226353261,
+        0.5916724699862332,
+        0.5951936913523236
+      ],
+      "per_finger_mean_absolute": {
+        "finger1": 0.5167094028830528,
+        "finger2": 0.5138784659862519,
+        "finger3": 0.5115859989762306,
+        "finger4": 0.5216546482801437,
+        "finger5": 0.5248254924774169
+      },
+      "global_mean_absolute": 0.5177308017206192
+    },
+    "policy_distribution_diagnostics": {
+      "seed": 7,
+      "latent_gaussian_std": [
+        0.8769898414611816,
+        0.8612803220748901,
+        0.8401805758476257,
+        0.8741906881332397,
+        0.8801519870758057
+      ],
+      "deterministic_initial_action": [
+        -0.12198913097381592,
+        0.08916270732879639,
+        -0.017000794410705566,
+        0.005736827850341797,
+        -0.03894561529159546
+      ],
+      "stochastic_initial_action": {
+        "per_dimension_mean": [
+          -0.003108082339167595,
+          0.055146838538348675,
+          -0.030538309831172228,
+          -0.060083968099206686,
+          0.049431187100708485
+        ],
+        "per_dimension_std": [
+          0.5853922953734183,
+          0.5899284024141199,
+          0.6054947173489454,
+          0.5754528796715074,
+          0.594174812842666
+        ],
+        "per_finger_mean_absolute": {
+          "finger1": 0.5177475232630968,
+          "finger2": 0.5071545680984855,
+          "finger3": 0.5299433716572821,
+          "finger4": 0.5030252314172685,
+          "finger5": 0.5277294004336
+        },
+        "global_mean_absolute": 0.5171200189739465
+      }
+    },
+    "completed_training_episodes": 41,
+    "training_episode_returns": [
+      5.023828872239392,
+      10.895978598389775,
+      10.11713772022631,
+      5.757309171836823,
+      5.610192177387944,
+      6.383030187513214,
+      8.592689364566468,
+      5.1860314041841775,
+      6.709855886852893,
+      2.016999068669975,
+      10.352770207769936,
+      8.308129987912253,
+      7.2751782009145245,
+      6.463557624956593,
+      7.229011599440128,
+      5.0812519965693355,
+      6.458373425470199,
+      8.794175299350172,
+      5.3754193094791844,
+      5.353320179972798,
+      15.000625507542281,
+      4.7213123484980315,
+      8.70398457290139,
+      8.657123170851264,
+      8.349831047758926,
+      7.618265226890799,
+      9.14907262363704,
+      10.035147730377503,
+      8.63725889037596,
+      8.717101457237732,
+      3.1601441589882597,
+      9.439430598751642,
+      6.148224313757964,
+      9.91826312453486,
+      7.973173024714924,
+      9.284426194964908,
+      11.532638381628203,
+      11.58349608205026,
+      9.166305688559078,
+      8.703329290030524,
+      12.597396290395409
+    ],
+    "training_episode_lengths": [
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120,
+      120
+    ],
+    "training_episode_max_contact_fingers": [
+      2,
+      4,
+      3,
+      2,
+      2,
+      3,
+      3,
+      2,
+      3,
+      2,
+      3,
+      3,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      3,
+      2,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      3,
+      3,
+      2,
+      4,
+      3,
+      3,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "training_episode_failure_reasons": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "training_milestone_episode_counts": {
+      "multi_contact_acquired": 41,
+      "three_contact_acquired": 30,
+      "contact_held_0p1s": 12,
+      "contact_held_0p3s": 0,
+      "stable_grasp_success": 0
+    },
+    "contact_episode_fraction": 1.0,
+    "multi_contact_episode_fraction": 1.0,
+    "three_contact_episode_fraction": 0.7317073170731707,
+    "deterministic_evaluation": [
+      {
+        "seed": 7,
+        "steps": 120,
+        "return": 42.125040848636516,
+        "max_contact_fingers": 4,
+        "final_contact_fingers": 2,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.0004889822134830563,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 3.985332254450238e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004824851279254269,
+            "minimum": -0.0007179633040500811,
+            "final": -1.0260872521090433e-05
+          },
+          "finger2": {
+            "mean": 0.0025374775728760255,
+            "minimum": -9.511624023596514e-05,
+            "final": -2.2823172388354664e-05
+          },
+          "finger3": {
+            "mean": 0.0027891709706169307,
+            "minimum": -8.310346380698961e-05,
+            "final": 3.985332254450238e-05
+          },
+          "finger4": {
+            "mean": 0.002078807744003021,
+            "minimum": -0.0001990350100384908,
+            "final": 9.7414091425366e-05
+          },
+          "finger5": {
+            "mean": 0.025353652011547923,
+            "minimum": 0.02303014817686813,
+            "final": 0.025047057242311623
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.16499912043412526,
+            -0.002867079774538676,
+            0.07010585019985835,
+            -0.05269605964422226,
+            -0.020401454468568166
+          ],
+          "per_dimension_std": [
+            0.10944599105985037,
+            0.032586808384007813,
+            0.0291655057718179,
+            0.016780169779414912,
+            0.02799888159804643
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.17875872353712718,
+            "finger2": 0.024171673258145652,
+            "finger3": 0.0711067999402682,
+            "finger4": 0.05287293245395024,
+            "finger5": 0.02690004954735438
+          },
+          "global_mean_absolute": 0.07076203574736913
+        }
+      },
+      {
+        "seed": 8,
+        "steps": 120,
+        "return": 39.71786379426895,
+        "max_contact_fingers": 4,
+        "final_contact_fingers": 1,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.000491092317652483,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 4.346194998765535e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004790718930438725,
+            "minimum": -0.00040623313541133496,
+            "final": 7.790703811168915e-05
+          },
+          "finger2": {
+            "mean": 0.00250922381852533,
+            "minimum": -0.0003500683429666014,
+            "final": -1.7443337439075138e-05
+          },
+          "finger3": {
+            "mean": 0.0027610180516459367,
+            "minimum": -5.468088235713754e-05,
+            "final": 4.346194998765535e-05
+          },
+          "finger4": {
+            "mean": 0.002069251975369292,
+            "minimum": -0.0003264957907025622,
+            "final": 3.2210641893005916e-05
+          },
+          "finger5": {
+            "mean": 0.025246359836043005,
+            "minimum": 0.02297207261605637,
+            "final": 0.025412180550096034
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.17140315622091293,
+            -0.0047058219710985815,
+            0.07075574100017548,
+            -0.05287062525749207,
+            -0.020137243966261546
+          ],
+          "per_dimension_std": [
+            0.10616482458560601,
+            0.033117832281081255,
+            0.031192102361380196,
+            0.017866751231002276,
+            0.025678807155593987
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.18346131791671116,
+            "finger2": 0.02517895052830378,
+            "finger3": 0.07174426813920338,
+            "finger4": 0.05304820338884989,
+            "finger5": 0.02579058756430944
+          },
+          "global_mean_absolute": 0.07184466550747554
+        }
+      },
+      {
+        "seed": 9,
+        "steps": 120,
+        "return": 41.8013926156567,
+        "max_contact_fingers": 4,
+        "final_contact_fingers": 1,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.0004563961276919389,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 4.2078549878468394e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004860006077943119,
+            "minimum": -0.0006589543194118498,
+            "final": -1.0693637566622795e-05
+          },
+          "finger2": {
+            "mean": 0.002557395257872072,
+            "minimum": -5.6683729095803424e-05,
+            "final": 2.507837786806793e-05
+          },
+          "finger3": {
+            "mean": 0.002803451597982101,
+            "minimum": -7.305778404780101e-05,
+            "final": 4.939065486773225e-05
+          },
+          "finger4": {
+            "mean": 0.0020945441528650494,
+            "minimum": -7.099971165074592e-05,
+            "final": 4.2078549878468394e-05
+          },
+          "finger5": {
+            "mean": 0.025479922697601347,
+            "minimum": 0.02301960119560787,
+            "final": 0.02301960119560787
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.16234090079863867,
+            -0.003494606415430705,
+            0.07111695110797882,
+            -0.05203127562999725,
+            -0.021988197167714437
+          ],
+          "per_dimension_std": [
+            0.10316395949226617,
+            0.033168153964160306,
+            0.030984560475335574,
+            0.017352360102276077,
+            0.02713803214003765
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.17469948381185532,
+            "finger2": 0.02486896316210429,
+            "finger3": 0.0721464862426122,
+            "finger4": 0.05220267275969188,
+            "finger5": 0.028260821104049684
+          },
+          "global_mean_absolute": 0.07043568541606267
+        }
+      },
+      {
+        "seed": 10,
+        "steps": 120,
+        "return": 36.11006384267581,
+        "max_contact_fingers": 3,
+        "final_contact_fingers": 0,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.0004552353682090988,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 4.4387172930356755e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004870601317692111,
+            "minimum": -0.0007600467766192238,
+            "final": 2.0006051250461274e-05
+          },
+          "finger2": {
+            "mean": 0.0025754567211188025,
+            "minimum": -5.2280982934838626e-05,
+            "final": 0.00011710386927354226
+          },
+          "finger3": {
+            "mean": 0.002794352843912725,
+            "minimum": -8.254818260527568e-05,
+            "final": 4.4387172930356755e-05
+          },
+          "finger4": {
+            "mean": 0.0020960221147314365,
+            "minimum": -6.390299556007836e-05,
+            "final": 4.3976506603381445e-05
+          },
+          "finger5": {
+            "mean": 0.025459521233611518,
+            "minimum": 0.02321708505599155,
+            "final": 0.024911066258907943
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.1632386734088262,
+            -0.0015616580843925477,
+            0.07421066761016845,
+            -0.05028859178225199,
+            -0.017909431954224904
+          ],
+          "per_dimension_std": [
+            0.10152069409649352,
+            0.03153933386923941,
+            0.03201213919824688,
+            0.017653856887928702,
+            0.026799169001348454
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.17462415397167205,
+            "finger2": 0.022381941974163055,
+            "finger3": 0.07524550159772238,
+            "finger4": 0.050459251801172895,
+            "finger5": 0.025936715304851532
+          },
+          "global_mean_absolute": 0.06972951292991639
+        }
+      },
+      {
+        "seed": 11,
+        "steps": 120,
+        "return": 43.28598921984517,
+        "max_contact_fingers": 3,
+        "final_contact_fingers": 2,
+        "success": false,
+        "rigid_success_diagnostic": false,
+        "failure_reason": null,
+        "cube_displacement_m": 0.0005245214559597526,
+        "multi_contact_acquired": true,
+        "three_contact_acquired": true,
+        "contact_held_0p1s": true,
+        "contact_held_0p3s": false,
+        "third_closest_final_distance_m": 5.614340198902299e-05,
+        "per_finger_distance_m": {
+          "finger1": {
+            "mean": 0.004811380189156807,
+            "minimum": -0.0005074490888207248,
+            "final": -6.216268175456463e-05
+          },
+          "finger2": {
+            "mean": 0.0025085033563732343,
+            "minimum": -0.0002715032962973769,
+            "final": 5.614340198902299e-05
+          },
+          "finger3": {
+            "mean": 0.0027583215277623132,
+            "minimum": -6.309462916817817e-05,
+            "final": 8.931438842929339e-05
+          },
+          "finger4": {
+            "mean": 0.0020462311046805883,
+            "minimum": -0.00024381966975592137,
+            "final": -2.205911613818312e-05
+          },
+          "finger5": {
+            "mean": 0.025378926067844983,
+            "minimum": 0.02317478998489687,
+            "final": 0.02615740162709158
+          }
+        },
+        "action_statistics": {
+          "per_dimension_mean": [
+            0.162563785413901,
+            -0.0023754884799321494,
+            0.07579482446114222,
+            -0.05019715428352356,
+            -0.018417540192604064
+          ],
+          "per_dimension_std": [
+            0.10492068492140023,
+            0.03234733498457691,
+            0.03301407910945493,
+            0.018491314866796775,
+            0.02603050733168287
+          ],
+          "per_finger_mean_absolute": {
+            "finger1": 0.17383419821659724,
+            "finger2": 0.023773571848869322,
+            "finger3": 0.07679368605216344,
+            "finger4": 0.050370216369628906,
+            "finger5": 0.026016852259635924
+          },
+          "global_mean_absolute": 0.07015770494937897
+        }
+      }
+    ]
+  }
+}

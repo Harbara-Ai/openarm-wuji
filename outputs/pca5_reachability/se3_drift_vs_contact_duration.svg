@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="520">
+<rect width="100%" height="100%" fill="white"/>
+<text x="30" y="30" font-size="20">Relative drift vs multi-contact persistence</text>
+<line x1="90" y1="450" x2="800" y2="450" stroke="black"/>
+<line x1="90" y1="60" x2="90" y2="450" stroke="black"/>
+<text x="330" y="500" font-size="14">SE(3) translation drift (mm)</text>
+<text x="12" y="255" font-size="14" transform="rotate(-90 12 255)">Longest &gt;=3-contact duration (s)</text>
+<circle cx="535.8" cy="75.0" r="4" fill="#4c78a8" opacity="0.75"/>
+<circle cx="105.0" cy="75.0" r="4" fill="#4c78a8" opacity="0.75"/>
+<circle cx="340.5" cy="75.0" r="4" fill="#4c78a8" opacity="0.75"/>
+<circle cx="314.8" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="452.4" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="447.1" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="467.9" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="378.3" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="554.8" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="280.7" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="383.4" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="402.7" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="440.3" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="539.1" cy="195.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="398.5" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="233.1" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="140.6" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="469.6" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="309.5" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="687.8" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="492.4" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="310.7" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="395.1" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="412.8" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="278.6" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="404.7" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="382.9" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="220.1" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="299.1" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="461.6" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="427.2" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="613.3" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="461.4" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="492.0" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="306.4" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="531.2" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="258.8" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="471.5" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="463.0" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="380.0" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="311.0" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="454.2" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="521.9" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="785.0" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="535.7" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="612.9" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="454.9" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="383.6" cy="315.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="540.1" cy="435.0" r="4" fill="#999" opacity="0.75"/>
+<circle cx="371.6" cy="435.0" r="4" fill="#999" opacity="0.75"/>
+<text x="90" y="470" font-size="11">0.0759</text>
+<text x="760" y="470" font-size="11">0.131</text>
+<text x="45" y="445" font-size="11">0</text>
+<text x="45" y="80" font-size="11">0.1</text>
+</svg>

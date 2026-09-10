@@ -1,0 +1,314 @@
+{
+  "dataset": "yeeeiii111/wuji-pick-and-place",
+  "dataset_revision": "211283b732d73c3d10c005ebc8191af2d63673cf",
+  "fps": 30.0,
+  "phase_definition": {
+    "start": "frame 0 (pregrasp context)",
+    "close_start": "first sustained 12% action-excursion crossing, floor 0.08 rad",
+    "grasp_established": "inferred close + 3 frames; start of one-second early-hold window",
+    "end": "one-second early-hold window end",
+    "contact_source": "none; dataset has no tactile/contact field"
+  },
+  "episodes": [
+    {
+      "episode_id": 60,
+      "start_frame": 0,
+      "close_start_frame": 66,
+      "grasp_established_frame": 183,
+      "end_frame_exclusive": 213,
+      "duration_s": 7.1,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 61,
+      "start_frame": 0,
+      "close_start_frame": 30,
+      "grasp_established_frame": 203,
+      "end_frame_exclusive": 233,
+      "duration_s": 7.766666666666667,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 62,
+      "start_frame": 0,
+      "close_start_frame": 37,
+      "grasp_established_frame": 277,
+      "end_frame_exclusive": 307,
+      "duration_s": 10.233333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 63,
+      "start_frame": 0,
+      "close_start_frame": 18,
+      "grasp_established_frame": 165,
+      "end_frame_exclusive": 195,
+      "duration_s": 6.5,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 64,
+      "start_frame": 0,
+      "close_start_frame": 24,
+      "grasp_established_frame": 180,
+      "end_frame_exclusive": 210,
+      "duration_s": 7.0,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 65,
+      "start_frame": 0,
+      "close_start_frame": 48,
+      "grasp_established_frame": 201,
+      "end_frame_exclusive": 231,
+      "duration_s": 7.7,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 66,
+      "start_frame": 0,
+      "close_start_frame": 38,
+      "grasp_established_frame": 179,
+      "end_frame_exclusive": 209,
+      "duration_s": 6.966666666666667,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 67,
+      "start_frame": 0,
+      "close_start_frame": 31,
+      "grasp_established_frame": 301,
+      "end_frame_exclusive": 331,
+      "duration_s": 11.033333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 68,
+      "start_frame": 0,
+      "close_start_frame": 34,
+      "grasp_established_frame": 147,
+      "end_frame_exclusive": 177,
+      "duration_s": 5.9,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 69,
+      "start_frame": 0,
+      "close_start_frame": 32,
+      "grasp_established_frame": 78,
+      "end_frame_exclusive": 108,
+      "duration_s": 3.6,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 70,
+      "start_frame": 0,
+      "close_start_frame": 15,
+      "grasp_established_frame": 178,
+      "end_frame_exclusive": 208,
+      "duration_s": 6.933333333333334,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 71,
+      "start_frame": 0,
+      "close_start_frame": 16,
+      "grasp_established_frame": 138,
+      "end_frame_exclusive": 168,
+      "duration_s": 5.6,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 72,
+      "start_frame": 0,
+      "close_start_frame": 20,
+      "grasp_established_frame": 170,
+      "end_frame_exclusive": 200,
+      "duration_s": 6.666666666666667,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 73,
+      "start_frame": 0,
+      "close_start_frame": 25,
+      "grasp_established_frame": 157,
+      "end_frame_exclusive": 187,
+      "duration_s": 6.233333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 74,
+      "start_frame": 0,
+      "close_start_frame": 23,
+      "grasp_established_frame": 167,
+      "end_frame_exclusive": 197,
+      "duration_s": 6.566666666666666,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 75,
+      "start_frame": 0,
+      "close_start_frame": 18,
+      "grasp_established_frame": 147,
+      "end_frame_exclusive": 177,
+      "duration_s": 5.9,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 76,
+      "start_frame": 0,
+      "close_start_frame": 26,
+      "grasp_established_frame": 132,
+      "end_frame_exclusive": 162,
+      "duration_s": 5.4,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 77,
+      "start_frame": 0,
+      "close_start_frame": 38,
+      "grasp_established_frame": 172,
+      "end_frame_exclusive": 202,
+      "duration_s": 6.733333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 78,
+      "start_frame": 0,
+      "close_start_frame": 34,
+      "grasp_established_frame": 134,
+      "end_frame_exclusive": 164,
+      "duration_s": 5.466666666666667,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 79,
+      "start_frame": 0,
+      "close_start_frame": 19,
+      "grasp_established_frame": 182,
+      "end_frame_exclusive": 212,
+      "duration_s": 7.066666666666666,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 80,
+      "start_frame": 0,
+      "close_start_frame": 20,
+      "grasp_established_frame": 145,
+      "end_frame_exclusive": 175,
+      "duration_s": 5.833333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 81,
+      "start_frame": 0,
+      "close_start_frame": 26,
+      "grasp_established_frame": 136,
+      "end_frame_exclusive": 166,
+      "duration_s": 5.533333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 82,
+      "start_frame": 0,
+      "close_start_frame": 16,
+      "grasp_established_frame": 135,
+      "end_frame_exclusive": 165,
+      "duration_s": 5.5,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 83,
+      "start_frame": 0,
+      "close_start_frame": 35,
+      "grasp_established_frame": 142,
+      "end_frame_exclusive": 172,
+      "duration_s": 5.733333333333333,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 84,
+      "start_frame": 0,
+      "close_start_frame": 24,
+      "grasp_established_frame": 110,
+      "end_frame_exclusive": 140,
+      "duration_s": 4.666666666666667,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 85,
+      "start_frame": 0,
+      "close_start_frame": 23,
+      "grasp_established_frame": 122,
+      "end_frame_exclusive": 152,
+      "duration_s": 5.066666666666666,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 86,
+      "start_frame": 0,
+      "close_start_frame": 23,
+      "grasp_established_frame": 109,
+      "end_frame_exclusive": 139,
+      "duration_s": 4.633333333333334,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 87,
+      "start_frame": 0,
+      "close_start_frame": 28,
+      "grasp_established_frame": 238,
+      "end_frame_exclusive": 268,
+      "duration_s": 8.933333333333334,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 88,
+      "start_frame": 0,
+      "close_start_frame": 16,
+      "grasp_established_frame": 250,
+      "end_frame_exclusive": 280,
+      "duration_s": 9.333333333333334,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    },
+    {
+      "episode_id": 89,
+      "start_frame": 0,
+      "close_start_frame": 20,
+      "grasp_established_frame": 51,
+      "end_frame_exclusive": 81,
+      "duration_s": 2.7,
+      "segmentation_source": "Parquet action activity heuristic",
+      "video_role": "optional interval QA only; no joint values used"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "status": "blocked_without_expert_fk",
+  "translation_only": {
+    "status": "blocked_without_expert_fk",
+    "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+    "required_inputs": [
+      "expert FK model",
+      "seven expert arm joint names",
+      "expert palm/wrist site",
+      "base/tool transform if not encoded in model"
+    ],
+    "openarm_fallback": false
+  },
+  "rotation_only": {
+    "status": "blocked_without_expert_fk",
+    "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+    "required_inputs": [
+      "expert FK model",
+      "seven expert arm joint names",
+      "expert palm/wrist site",
+      "base/tool transform if not encoded in model"
+    ],
+    "openarm_fallback": false
+  },
+  "full_6d": {
+    "status": "blocked_without_expert_fk",
+    "reason": "The bundle exposes only 7-D arm values in an unnamed flat array. It does not include expert arm joint names, URDF/MJCF, base/tool transform, or palm/wrist pose. OpenArm FK cannot be substituted without violating the embodiment-mismatch constraint.",
+    "required_inputs": [
+      "expert FK model",
+      "seven expert arm joint names",
+      "expert palm/wrist site",
+      "base/tool transform if not encoded in model"
+    ],
+    "openarm_fallback": false
+  }
+}
