@@ -176,6 +176,16 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
 
     def get_observation(self):
         self._require_connected()
+        # This is the exact 27-D target currently held by MuJoCo's position
+        # actuators.  It is deliberately separate from ``sent_action``: the
+        # public control API is 7 arm targets + 3 hand synergies, while the
+        # actuator-level target contains the 20 joint targets produced by the
+        # synergy mapper.  Demonstration recorders must use this value as the
+        # behavioral-cloning action so controller preload is preserved.
+        controller_joint_target = np.concatenate([
+            self._data.ctrl[self._arm_actuator_ids].copy(),
+            self._data.ctrl[self._hand_actuator_ids].copy(),
+        ])
         return {
             "frame_index": self._frame_index,
             # On Windows, monotonic() may resolve to the 15.625 ms GetTickCount64
@@ -192,6 +202,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
             "hand_joint_target": self._hand_target.copy(),
             "hand_synergy_action": self._last_synergy.copy(),
             "sent_action": self._last_sent_action.copy(),
+            "controller_joint_target": controller_joint_target,
         }
 
     def send_action(self, action: Sequence[float]) -> np.ndarray:

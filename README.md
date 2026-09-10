@@ -89,6 +89,12 @@ dataset. See `docs/reach_grasp_lift.md` and `docs/episode_recording.md`.
 The preload/S-curve experiment, actual trajectory tracking limits, and seed-7 slip diagnosis are documented in
 `docs/grasp_settle_experiment.md` and `docs/grasp_geometry_diagnostics.md`.
 
+Successful scripted episodes can now be collected as unified OpenArm + Wuji
+demonstrations. The demonstration contract uses 27-D measured joint state and the exact
+27-D position-actuator target (rather than next-frame qpos or the 3-D hand synergy), with
+synchronized front/wrist RGB and diagnostic cube/contact metadata. Failed attempts are
+retained separately. See `docs/coordinated_demonstrations.md`.
+
 ## Stage-1 grasp RL
 
 This first RL baseline learns only static contact acquisition with the arm numerically
