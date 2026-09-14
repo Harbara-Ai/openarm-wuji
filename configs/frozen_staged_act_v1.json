@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "release": "staged-act-router-v1",
+  "frozen_at": "2026-09-14",
+  "target_branch": "main",
+  "source_revision": "git tag staged-act-router-v1",
+  "interface": {
+    "fps": 30,
+    "observation_state": {
+      "shape": [27],
+      "semantics": "7D OpenArm actual qpos + 20D Wuji actual qpos"
+    },
+    "images": {
+      "observation.images.front": [3, 240, 320],
+      "observation.images.wrist": [3, 240, 320]
+    },
+    "action": {
+      "shape": [27],
+      "semantics": "7D OpenArm absolute controller target + 20D Wuji absolute controller target"
+    },
+    "act": {
+      "vision_backbone": "resnet18",
+      "pretrained_backbone_weights": "ResNet18_Weights.IMAGENET1K_V1",
+      "chunk_size": 20,
+      "n_action_steps": 20,
+      "execution_horizon": 1
+    }
+  },
+  "policies": {
+    "reach": {
+      "checkpoint": "outputs/act_reach_only/act_train/checkpoints/002000/pretrained_model",
+      "training_step": 2000,
+      "gate": "pregrasp position error <= 0.012 m for 5 consecutive frames",
+      "files_sha256": {
+        "config.json": "5fdc8a8837098da846c530642d2d48f1cb1555b0e093678e019765ca28391160",
+        "model.safetensors": "d4363a86dc887ae70b4d6e0d25e83a3215ae6f3dc3bdefd68d675770147d89ac",
+        "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "3bcab042cf9fa642e7f00992e845b70ce985cd9a1c1da953aa3e7979cd741043",
+        "policy_postprocessor.json": "71b0113b9c421f23064750b040bfc05196179fdcd8b93159fb5732baddf82314",
+        "policy_preprocessor_step_3_normalizer_processor.safetensors": "79229842d4a6613900a20eb2b1cb70babb8f2df5e25bd78154bb0b9765901626",
+        "policy_preprocessor.json": "ff66bd80283dcc5deffeb58e5f447d556567cdb9318fa99b17c134e89e730a0c",
+        "train_config.json": "4e95fe57477c068167e28ded97c8f53eea47f77a3d0ba2a2547800bdacecb3b1"
+      }
+    },
+    "approach": {
+      "checkpoint": "outputs/act_staged/approach_only/act_train/checkpoints/002000/pretrained_model",
+      "training_step": 2000,
+      "gate": "grasp-start position error <= 0.012 m and orientation error <= 2 deg for 5 consecutive frames; cube displacement <= configured safety gate",
+      "files_sha256": {
+        "config.json": "5fdc8a8837098da846c530642d2d48f1cb1555b0e093678e019765ca28391160",
+        "model.safetensors": "fec2b22559b3c92f88cdebd78121a481531b2087e1c124c46dd2a7060e5278fd",
+        "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "42fe69dbcddb9cb1c80c05fd5f1c9632217bc4a1241c72470cc17718846c7f24",
+        "policy_postprocessor.json": "71b0113b9c421f23064750b040bfc05196179fdcd8b93159fb5732baddf82314",
+        "policy_preprocessor_step_3_normalizer_processor.safetensors": "365890c248fe0b0e22761b7c4964ea348b90badbdf7b8c768b46ffc2f5b370ba",
+        "policy_preprocessor.json": "ff66bd80283dcc5deffeb58e5f447d556567cdb9318fa99b17c134e89e730a0c",
+        "train_config.json": "3a40f422136b618888e2ff9854ca6e644a830d783af277e005a24a65d478170e"
+      }
+    },
+    "recovery": {
+      "checkpoint": "outputs/staged_act_with_recovery/recovery_act_train/checkpoints/001500/pretrained_model",
+      "training_step": 1500,
+      "gate": "same terminal Approach gate; at most one Recovery attempt",
+      "files_sha256": {
+        "config.json": "9631d569b3784ccf7e79c4df2b5d1966a9e9283a16085ae7cd90e116c55a3609",
+        "model.safetensors": "a66a9fddf0fe8dc42d622a267a1848feeee928be8f9f83550df4b8d8dac3988b",
+        "policy_postprocessor_step_0_unnormalizer_processor.safetensors": "2963bdee9f7b38605c9ec3fdf0e126a183a907eb71458e94ca3abba46be62fbc",
+        "policy_postprocessor.json": "71b0113b9c421f23064750b040bfc05196179fdcd8b93159fb5732baddf82314",
+        "policy_preprocessor_step_3_normalizer_processor.safetensors": "c0c2469d118d276acf85a6b1288a2855321f3376bfd69ad56b952f83afa1f9d9",
+        "policy_preprocessor.json": "ff66bd80283dcc5deffeb58e5f447d556567cdb9318fa99b17c134e89e730a0c",
+        "train_config.json": "fff608241a95718f11ee8a6592c296c6e81d9e3d7d69cdf97039f3e68ddd9bf0"
+      }
+    }
+  },
+  "router": {
+    "name": "selective_hysteresis",
+    "config": "configs/recovery_router.json",
+    "sha256": "f2dd723564045f17f59c9adfae1decb58897885e8d248106a8264d2ecbff14b6",
+    "minimum_approach_frames": 12,
+    "maximum_recovery_attempts": 1
+  },
+  "validation": {
+    "matched_seed_range": [1400, 1599],
+    "reach_successes": 155,
+    "baseline_approach_successes": 112,
+    "routed_approach_successes": 129,
+    "routed_approach_success_rate_given_reach": 0.832258064516129,
+    "rescued": 22,
+    "regressed": 5,
+    "net_gain": 17,
+    "paired_exact_p": 0.0015137,
+    "baseline_timeouts": 20,
+    "routed_timeouts": 20,
+    "baseline_cube_failures": 23,
+    "routed_cube_failures": 6
+  }
+}

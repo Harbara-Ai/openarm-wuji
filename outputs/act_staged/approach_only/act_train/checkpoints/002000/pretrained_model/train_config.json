@@ -1,0 +1,269 @@
+{
+    "dataset": {
+        "repo_id": "local/openarm-wuji-approach-only",
+        "repo_type": "dataset",
+        "root": "outputs/act_staged/approach_only/dataset/lerobot_dataset",
+        "episodes": null,
+        "exclude_episodes": null,
+        "image_transforms": {
+            "enable": false,
+            "max_num_transforms": 3,
+            "random_order": false,
+            "tfs": {
+                "brightness": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "brightness": [
+                            0.8,
+                            1.2
+                        ]
+                    }
+                },
+                "contrast": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "contrast": [
+                            0.8,
+                            1.2
+                        ]
+                    }
+                },
+                "saturation": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "saturation": [
+                            0.5,
+                            1.5
+                        ]
+                    }
+                },
+                "hue": {
+                    "weight": 1.0,
+                    "type": "ColorJitter",
+                    "kwargs": {
+                        "hue": [
+                            -0.05,
+                            0.05
+                        ]
+                    }
+                },
+                "sharpness": {
+                    "weight": 1.0,
+                    "type": "SharpnessJitter",
+                    "kwargs": {
+                        "sharpness": [
+                            0.5,
+                            1.5
+                        ]
+                    }
+                },
+                "affine": {
+                    "weight": 1.0,
+                    "type": "RandomAffine",
+                    "kwargs": {
+                        "degrees": [
+                            -5.0,
+                            5.0
+                        ],
+                        "translate": [
+                            0.05,
+                            0.05
+                        ]
+                    }
+                }
+            }
+        },
+        "revision": null,
+        "use_imagenet_stats": true,
+        "video_backend": "pyav",
+        "return_uint8": false,
+        "depth_output_unit": "mm",
+        "streaming": false,
+        "eval_split": 0.0
+    },
+    "env": null,
+    "policy": {
+        "type": "act",
+        "n_obs_steps": 1,
+        "input_features": {
+            "observation.state": {
+                "type": "STATE",
+                "shape": [
+                    27
+                ]
+            },
+            "observation.images.front": {
+                "type": "VISUAL",
+                "shape": [
+                    3,
+                    240,
+                    320
+                ]
+            },
+            "observation.images.wrist": {
+                "type": "VISUAL",
+                "shape": [
+                    3,
+                    240,
+                    320
+                ]
+            }
+        },
+        "output_features": {
+            "action": {
+                "type": "ACTION",
+                "shape": [
+                    27
+                ]
+            }
+        },
+        "device": "cpu",
+        "use_amp": false,
+        "use_peft": false,
+        "push_to_hub": false,
+        "repo_id": null,
+        "private": null,
+        "tags": null,
+        "license": null,
+        "pretrained_path": null,
+        "pretrained_revision": null,
+        "chunk_size": 20,
+        "n_action_steps": 20,
+        "normalization_mapping": {
+            "VISUAL": "MEAN_STD",
+            "STATE": "MEAN_STD",
+            "ACTION": "MEAN_STD"
+        },
+        "vision_backbone": "resnet18",
+        "pretrained_backbone_weights": "ResNet18_Weights.IMAGENET1K_V1",
+        "replace_final_stride_with_dilation": false,
+        "pre_norm": false,
+        "dim_model": 512,
+        "n_heads": 8,
+        "dim_feedforward": 3200,
+        "feedforward_activation": "relu",
+        "n_encoder_layers": 4,
+        "n_decoder_layers": 1,
+        "use_vae": true,
+        "latent_dim": 32,
+        "n_vae_encoder_layers": 4,
+        "temporal_ensemble_coeff": null,
+        "dropout": 0.1,
+        "kl_weight": 10.0,
+        "optimizer_lr": 1e-05,
+        "optimizer_weight_decay": 0.0001,
+        "optimizer_lr_backbone": 1e-05
+    },
+    "reward_model": null,
+    "output_dir": "outputs\\act_staged\\approach_only\\act_train",
+    "job_name": "openarm_wuji_act_approach_only",
+    "resume": false,
+    "seed": 1000,
+    "cudnn_deterministic": false,
+    "num_workers": 0,
+    "batch_size": 8,
+    "prefetch_factor": 4,
+    "persistent_workers": true,
+    "dataloader_multiprocessing_context": "spawn",
+    "steps": 2000,
+    "env_eval_freq": 20000,
+    "log_freq": 10,
+    "eval_steps": 0,
+    "max_eval_samples": 0,
+    "tolerance_s": 0.0001,
+    "save_checkpoint": true,
+    "save_freq": 500,
+    "checkpoint_format": "safetensors",
+    "use_policy_training_preset": true,
+    "optimizer": {
+        "type": "adamw",
+        "lr": 1e-05,
+        "weight_decay": 0.0001,
+        "grad_clip_norm": 10.0,
+        "betas": [
+            0.9,
+            0.999
+        ],
+        "eps": 1e-08
+    },
+    "scheduler": null,
+    "parallelism": {
+        "dp_replicate": 1,
+        "dp_shard": 1,
+        "context_parallel": {
+            "ring_degree": 1,
+            "ulysses_degree": 1
+        },
+        "cfg_parallel": 1
+    },
+    "accelerator": {
+        "mixed_precision": "no",
+        "gradient_accumulation": {
+            "steps": 1
+        },
+        "fsdp": {
+            "reshard_after_forward": true,
+            "wrap_modules": null,
+            "min_num_params": null,
+            "cpu_offload": false,
+            "ignored_modules": null
+        },
+        "ddp": {
+            "find_unused_parameters": true,
+            "gradient_as_bucket_view": false,
+            "static_graph": false
+        },
+        "compile": {
+            "enabled": false,
+            "backend": "inductor",
+            "mode": null,
+            "regional": true
+        },
+        "activation_checkpointing": {
+            "mode": "none"
+        }
+    },
+    "eval": {
+        "n_episodes": 50,
+        "batch_size": 22,
+        "use_async_envs": true,
+        "recording": false,
+        "recording_repo_id": null,
+        "recording_private": false
+    },
+    "ema": {
+        "enable": false,
+        "decay": null,
+        "update_after_step": 0,
+        "inv_gamma": 1.0,
+        "power": 0.75,
+        "min_decay": 0.0,
+        "max_decay": 0.9999,
+        "use_for_eval": true
+    },
+    "wandb": {
+        "enable": false,
+        "disable_artifact": false,
+        "project": "lerobot",
+        "entity": null,
+        "notes": null,
+        "run_id": null,
+        "mode": null,
+        "add_tags": true
+    },
+    "peft": null,
+    "job": {
+        "target": null,
+        "image": "huggingface/lerobot-gpu:latest",
+        "timeout": "2d",
+        "detach": false,
+        "tags": []
+    },
+    "save_checkpoint_to_hub": false,
+    "sample_weighting": null,
+    "rename_map": {},
+    "checkpoint_path": null
+}

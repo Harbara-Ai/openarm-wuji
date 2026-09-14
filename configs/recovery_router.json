@@ -1,0 +1,45 @@
+{
+  "name": "selective_hysteresis",
+  "description": "Patience plus persistent failure signal and hysteresis.",
+  "minimum_approach_frames": 12,
+  "branches": [
+    {
+      "trigger_any": ["cube_displacement"],
+      "conditions": [
+        {
+          "feature": "cube_radial_velocity_m_s",
+          "operator": ">",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "trigger_any": ["moving_away"],
+      "conditions": [
+        {
+          "feature": "moving_away_consecutive_frames",
+          "operator": ">=",
+          "value": 5
+        },
+        {
+          "feature": "terminal_error_m",
+          "operator": ">",
+          "value": 0.015
+        }
+      ]
+    },
+    {
+      "trigger_any": ["gate_stall", "terminal_plateau"],
+      "conditions": [
+        {
+          "feature": "non_improving_consecutive_frames",
+          "operator": ">=",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "trigger_any": ["near_timeout_terminal"]
+    }
+  ]
+}

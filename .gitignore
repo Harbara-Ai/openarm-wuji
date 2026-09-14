@@ -1,4 +1,5 @@
 .venvs/
+.hf_*/
 data/external/
 __pycache__/
 *.py[cod]

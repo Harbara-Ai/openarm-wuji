@@ -101,8 +101,23 @@ The staging directory contains LeRobot-named Parquet columns, Hugging Face Image
 PNG byte structs, `meta/info.json`, `episodes.jsonl`, `tasks.jsonl`, and state/action
 statistics. It is intentionally marked `native_lerobot_dataset=false`.
 
-One final conversion step remains: install LeRobot's optional `datasets` dependency,
-write/import the staging rows through `LeRobotDataset` 0.6.2, and pass a DataLoader
-smoke test. For a large collection, images should then be encoded as MP4 rather than
-kept as PNG bytes in Parquet. No ACT or SmolVLA training should start until that native
-dataset validation and train/validation split are complete.
+## Native LeRobotDataset export
+
+After installing the vendored LeRobot dataset extra, convert successful episodes with:
+
+```powershell
+./.venvs/lerobot-policy/Scripts/python.exe -m pip install -e "vendor/lerobot[dataset]"
+./.venvs/lerobot-policy/Scripts/python.exe scripts/export_native_lerobot_dataset.py
+```
+
+This writes `outputs/coordinated_demos/lerobot_dataset` through the installed
+`LeRobotDataset` 0.6 API, reopens it, runs a PyTorch DataLoader batch, and verifies an
+exact state/action round trip. Images currently use LeRobot's supported image feature
+mode (`use_videos=False`). On this Windows machine, MP4 mode additionally requires the
+FFmpeg shared DLLs expected by TorchCodec; that is a storage optimization rather than a
+state/action compatibility requirement.
+
+The 20-episode ACT run documented in `docs/act_e2e_smoke.md` is an explicit
+end-to-end smoke test of this path, not a claim of production dataset scale or
+generalization. A train/validation split and broader coverage remain necessary
+before longer training or model comparison.

@@ -15,6 +15,7 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
 
     ARM_DOF = 7
     SYNERGY_DOF = 3
+    CONTROLLER_TARGET_DOF = 27
     RECORDING_VERSION = 1
 
     def __init__(self, model_path: str | Path, synergy_config: str | Path, *,
@@ -205,8 +206,22 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
             "controller_joint_target": controller_joint_target,
         }
 
-    def send_action(self, action: Sequence[float]) -> np.ndarray:
+    def _step_and_record(self) -> None:
+        """Advance one 30 Hz control interval and retain the resulting frame."""
         import mujoco
+
+        # A 2 ms physics step does not divide a 30 Hz control period exactly.
+        # Target the absolute control timeline so 16/17 physics steps alternate
+        # instead of accumulating the error from always taking 17 steps.
+        target_time = self._control_start_time + (self._frame_index + 1) * self.control_dt
+        steps = max(1, round((target_time - self._data.time) / self._model.opt.timestep))
+        mujoco.mj_step(self._model, self._data, nstep=steps)
+        self._frame_index += 1
+        observation = self.get_observation()
+        self.records.append({key: value.copy() if isinstance(value, np.ndarray) else value
+                             for key, value in observation.items()})
+
+    def send_action(self, action: Sequence[float]) -> np.ndarray:
         self._require_connected()
         action = np.asarray(action, dtype=float)
         expected = (self.ARM_DOF + self.SYNERGY_DOF,)
@@ -220,19 +235,40 @@ class MujocoOpenArmWuji(OpenArmWujiRobot):
         self._hand_target = self.mapper.next(synergy, previous=self._hand_target, dt=self.control_dt)
         self._data.ctrl[self._arm_actuator_ids] = arm
         self._data.ctrl[self._hand_actuator_ids] = self._hand_target
-        # A 2 ms physics step does not divide a 30 Hz control period exactly.
-        # Target the absolute control timeline so 16/17 physics steps alternate
-        # instead of accumulating the error from always taking 17 steps.
-        target_time = self._control_start_time + (self._frame_index + 1) * self.control_dt
-        steps = max(1, round((target_time - self._data.time) / self._model.opt.timestep))
-        mujoco.mj_step(self._model, self._data, nstep=steps)
         self._last_synergy = synergy.copy()
         self._last_sent_action = np.concatenate([arm, synergy])
-        self._frame_index += 1
-        observation = self.get_observation()
-        self.records.append({key: value.copy() if isinstance(value, np.ndarray) else value
-                             for key, value in observation.items()})
+        self._step_and_record()
         return self._last_sent_action.copy()
+
+    def send_controller_joint_target(self, target: Sequence[float]) -> np.ndarray:
+        """Send one absolute 27-D arm+hand position-actuator target.
+
+        This is the deployment counterpart of the demonstration ``action``
+        field.  The first seven entries address OpenArm and the remaining 20
+        address Wuji in exactly the order returned by
+        ``controller_joint_target``.  It deliberately bypasses the 3-D hand
+        synergy mapper: interpreting an ACT joint target as a synergy command
+        would change both its dimension and its behavioral-cloning semantics.
+        """
+        self._require_connected()
+        target = np.asarray(target, dtype=float)
+        expected = (self.CONTROLLER_TARGET_DOF,)
+        if target.shape != expected:
+            raise ValueError(f"expected controller target shape {expected}, got {target.shape}")
+        if not np.isfinite(target).all():
+            raise ValueError("controller target contains NaN or infinity")
+        actuator_ids = np.concatenate([
+            self._arm_actuator_ids, self._hand_actuator_ids
+        ])
+        bounded = np.clip(
+            target,
+            self._model.actuator_ctrlrange[actuator_ids, 0],
+            self._model.actuator_ctrlrange[actuator_ids, 1],
+        )
+        self._data.ctrl[actuator_ids] = bounded
+        self._hand_target = bounded[self.ARM_DOF:].copy()
+        self._step_and_record()
+        return bounded.copy()
 
     def save_recording(self, path: str | Path) -> None:
         if not self.records:

@@ -1,0 +1,16 @@
+{
+  "name": "patience_25",
+  "description": "Any legacy signal, but only after 25 Approach frames.",
+  "minimum_approach_frames": 25,
+  "branches": [
+    {
+      "trigger_any": [
+        "moving_away",
+        "terminal_plateau",
+        "gate_stall",
+        "near_timeout_terminal",
+        "cube_displacement"
+      ]
+    }
+  ]
+}

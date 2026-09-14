@@ -87,6 +87,37 @@ class CoreTests(unittest.TestCase):
             replay.disconnect()
         robot.disconnect()
 
+    def test_mujoco_accepts_absolute_27d_controller_target(self):
+        root = Path(__file__).resolve().parents[1]
+        model = root / "outputs/combined/openarm_v2_wuji_left.mjb"
+        if not model.exists():
+            self.skipTest("generate the combined model before integration testing")
+        robot = MujocoOpenArmWuji(
+            model,
+            root / "configs/wuji_hand_left_synergies.json",
+            control_hz=30,
+            image_height=16,
+            image_width=20,
+        )
+        robot.connect()
+        try:
+            initial = robot.get_observation()["controller_joint_target"]
+            requested = initial.copy()
+            requested[0] += 0.02
+            requested[7] += 0.02
+            sent = robot.send_controller_joint_target(requested)
+            observed = robot.latest_record["controller_joint_target"]
+            self.assertEqual(sent.shape, (27,))
+            np.testing.assert_allclose(observed, sent)
+            with self.assertRaises(ValueError):
+                robot.send_controller_joint_target(np.zeros(10))
+            invalid = requested.copy()
+            invalid[0] = np.nan
+            with self.assertRaises(ValueError):
+                robot.send_controller_joint_target(invalid)
+        finally:
+            robot.disconnect()
+
 
 if __name__ == "__main__":
     unittest.main()
