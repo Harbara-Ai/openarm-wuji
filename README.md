@@ -5,6 +5,10 @@ ACT, and a fail-safe asynchronous policy bridge.
 
 ## Current status
 
+The complete experiment history—including negative results, abandoned hypotheses,
+controlled ablations, frozen assets, and the current staged-ACT + scripted-Lift
+result—is maintained in [`docs/project_experiment_journal.md`](docs/project_experiment_journal.md).
+
 - Project interfaces, mock backend, hand synergies, action validation, and tests: ready.
 - Official repositories are pinned in `docs/upstream_versions.md`.
 - OpenArm v2 headless smoke: passed on native Windows with MuJoCo 3.12.0; `outputs/openarm/` is generated locally.
