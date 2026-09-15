@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "stage": "grasp_secure_act",
+  "status": "frozen_for_scripted_lift_evaluation",
+  "checkpoint": "outputs/grasp_preload_act/act_train/checkpoints/001500/pretrained_model",
+  "selection_basis": {
+    "metric": "closed_loop_grasp_preload_success_with_cube_safety_tiebreak",
+    "standalone_successes": 14,
+    "standalone_attempts": 20,
+    "live_staged_successes": 9,
+    "live_staged_grasp_attempts": 12,
+    "live_staged_total_rollouts": 20
+  },
+  "policy": {
+    "type": "act",
+    "vision_backbone": "resnet18",
+    "pretrained_backbone_weights": "ResNet18_Weights.IMAGENET1K_V1",
+    "chunk_size": 20,
+    "n_action_steps": 20,
+    "execution_horizon": 1,
+    "inference_seed": 0
+  },
+  "interface": {
+    "observation": [
+      "observation.images.front: uint8 RGB 240x320",
+      "observation.images.wrist: uint8 RGB 240x320",
+      "observation.state: 27D actual qpos"
+    ],
+    "action": "27D absolute MuJoCo position-controller target",
+    "telemetry_in_policy_observation": false
+  },
+  "gate": {
+    "minimum_finger_groups": 2,
+    "minimum_normal_force_n": 0.1,
+    "settle_window_frames": 8,
+    "hand_preload_l2_min_rad": 1.1774956941604615,
+    "max_relative_translation_drift_m": 0.008,
+    "max_relative_rotation_drift_deg": 6.0,
+    "timeout_frames": 80
+  },
+  "safety_diagnostics": {
+    "cube_motion_reference_m": 0.025,
+    "standalone_attempts_over_reference": 1,
+    "live_staged_attempts_over_reference": 2,
+    "live_staged_maximum_cube_displacement_m": 0.08648508292655044,
+    "note": "The 25 mm value is the existing project cube-motion safety reference, not a newly fitted GraspSecure success threshold."
+  },
+  "frozen_upstream": {
+    "reach_checkpoint": "outputs/act_reach_only/act_train/checkpoints/002000/pretrained_model",
+    "approach_checkpoint": "outputs/act_staged/approach_only/act_train/checkpoints/002000/pretrained_model",
+    "recovery_checkpoint": "outputs/staged_act_with_recovery/recovery_act_train/checkpoints/001500/pretrained_model",
+    "router": "configs/recovery_router.json"
+  },
+  "lift": {
+    "trained": false,
+    "executed_in_this_experiment": false,
+    "next_step": "attach the existing scripted Lift behind this frozen stage with an explicit cube-motion safety guard"
+  }
+}

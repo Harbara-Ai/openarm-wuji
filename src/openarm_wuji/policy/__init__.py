@@ -1,6 +1,7 @@
 """Policy deployment helpers for the OpenArm + Wuji embodiment."""
 
 from .act_controller import ACTController
+from .grasp_secure_controller import GraspSecurePolicy
 from .staged_controller import (
     ApproachPolicy,
     ReachPolicy,
@@ -13,6 +14,7 @@ from .router_features import extract_router_features
 
 __all__ = [
     "ACTController",
+    "GraspSecurePolicy",
     "ApproachPolicy",
     "ReachPolicy",
     "RecoveryPolicy",

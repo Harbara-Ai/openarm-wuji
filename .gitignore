@@ -1,9 +1,19 @@
 .venvs/
 .hf_*/
 data/external/
+data/cache/
+cache/
+checkpoints/
 __pycache__/
 *.py[cod]
 *.egg-info/
+*.mjb
+*.mp4
+*.npz
+*.parquet
+*.pt
+*.pth
+*.safetensors
 outputs/*
 !outputs/.gitkeep
 !outputs/combined/
@@ -78,3 +88,12 @@ outputs/two_finger_pinch/*
 !outputs/two_finger_pinch/*.parquet
 vendor/
 MUJOCO_LOG.TXT
+
+# Final safeguard: later output allow-lists must not re-include bulky artifacts.
+*.gif
+*.parquet
+*.safetensors
+outputs/two_finger_pinch/top_candidates.json
+outputs/wuji_teleop_analysis/cube_hand_analysis.json
+outputs/rl_grasp_stage1/sac_v2_5000_steps.json
+outputs/rl_grasp_stage1/sac_v2_structured5_5000_steps.json

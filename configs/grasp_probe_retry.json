@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment": "grasp verification plus one regrasp retry",
+  "probe": {
+    "height_m": 0.015,
+    "hold_s": 0.3,
+    "maximum_settle_s": 1.0,
+    "minimum_palm_lift_m": 0.01,
+    "minimum_cube_lift_m": 0.005,
+    "minimum_cube_to_palm_lift_ratio": 0.5,
+    "maximum_supported_hold_fraction": 0.3333333333333333,
+    "maximum_zero_contact_hold_frames": 3,
+    "maximum_relative_translation_drift_m": 0.015,
+    "maximum_terminal_relative_speed_m_s": 0.03,
+    "rotation_drift_is_diagnostic_only": true,
+    "fixed_finger_topology_required": false,
+    "antipodal_gate_used": false
+  },
+  "regrasp": {
+    "maximum_retries": 1,
+    "return_settle_frames": 6,
+    "rerun_policy": "frozen GraspSecure ACT",
+    "rerun_reach": false,
+    "restore_original_grasp_start": false
+  },
+  "conditional": {
+    "source": "outputs/graspsecure_gate_confusion/summary.json",
+    "terminal_states": 60
+  },
+  "full_evaluation": {
+    "fresh_seed_start": 7000,
+    "rollouts": 100
+  },
+  "frozen_contract": {
+    "policy_training": false,
+    "scripted_lift_modified": false,
+    "controller_modified": false,
+    "action_semantics": "27D absolute MuJoCo position-controller target",
+    "hand_target_during_probe": "exact live 20D terminal controller target"
+  }
+}

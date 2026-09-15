@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "pipeline": "openarm_wuji_staged_act_pickup_v1",
+  "requested_runs": 100,
+  "completed_runs": 100,
+  "seed_start": 9000,
+  "seed_end_inclusive": 9099,
+  "fresh_seed_claim": "fresh relative to policy training/selection; deterministic MuJoCo seeds",
+  "counts": {
+    "reach_success": 78,
+    "approach_stage_success": 60,
+    "recovery_triggered": 34,
+    "recovery_success": 16,
+    "graspsecure_attempted": 60,
+    "graspsecure_terminal_valid": 60,
+    "graspsecure_static_gate_pass_diagnostic": 38,
+    "prelift_safety_pass": 44,
+    "lift_attempted": 44,
+    "lift_success": 21,
+    "full_task_success": 21
+  },
+  "probabilities": {
+    "P_Reach": 0.78,
+    "P_Approach_stage_given_Reach": 0.7692307692307693,
+    "P_GraspSecure_terminal_given_Approach": 1.0,
+    "P_static_gate_PASS_given_Approach_diagnostic": 0.6333333333333333,
+    "P_Lift_success_given_GraspSecure_terminal": 0.35,
+    "P_Lift_success_given_Lift_attempt": 0.4772727272727273,
+    "P_full_task_success": 0.21
+  },
+  "failure_stage_distribution": {
+    "reach": 22,
+    "terminal_hold": 16,
+    "lift": 10,
+    "recovery": 18,
+    "lift_hold": 13
+  },
+  "failure_reason_distribution": {
+    "reach_failure": 22,
+    "prelift_cube_motion_safety": 16,
+    "drop": 10,
+    "timeout": 13,
+    "environment_support": 11,
+    "height_not_held": 2,
+    "cube_displacement": 5
+  },
+  "lift_failure_distribution": {
+    "drop": 10,
+    "environment_support": 11,
+    "height_not_held": 2
+  },
+  "diagnostics": {
+    "drop": 10,
+    "environment_support_failure": 11,
+    "height_hold_failure": 2,
+    "timeout": 35,
+    "cube_displacement_m": {
+      "count": 60,
+      "mean": 0.11392305372113341,
+      "median": 0.08156663297356095,
+      "std": 0.17675290356358803,
+      "min": 0.0023428205687395644,
+      "max": 1.0554952437096408
+    },
+    "prelift_cube_motion_m": {
+      "count": 60,
+      "mean": 0.03503935968019235,
+      "median": 0.007671453032972486,
+      "std": 0.12686412574388442,
+      "min": 0.0011440145835405662,
+      "max": 0.9938081182276683
+    },
+    "recovery_trigger_rate": 0.4358974358974359,
+    "recovery_success_rate": 0.47058823529411764
+  },
+  "semantics": {
+    "graspsecure_static_gate": "diagnostic_only_for_lift_admission",
+    "P_GraspSecure_definition": "finite GraspSecure terminal state",
+    "prelift_25mm_cube_motion_guard": "hard safety admission",
+    "retry_enabled": false,
+    "micro_lift_probe_enabled": false,
+    "lift_policy": "scripted"
+  },
+  "representative_rollouts": {
+    "success": {
+      "category": "success",
+      "seed": 9002,
+      "benchmark_rollout_index": 2,
+      "benchmark_outcome": {
+        "success": true,
+        "failure_stage": null,
+        "failure_reason": null
+      },
+      "replay_outcome": {
+        "success": true,
+        "failure_stage": null,
+        "failure_reason": null
+      },
+      "deterministic_outcome_match": true,
+      "artifacts": {
+        "gif": "outputs/staged_pickup_formal_seed9000_100/representative_rollouts/success/rollout.gif",
+        "phase_timeline": "outputs/staged_pickup_formal_seed9000_100/representative_rollouts/success/phase_timeline.png",
+        "raw_phase_frame_counts": {
+          "REACH": 12,
+          "APPROACH": 32,
+          "GRASP_SECURE": 45,
+          "LIFT": 36,
+          "HOLD": 30,
+          "SUCCESS": 1
+        },
+        "captured_gif_frames": 86,
+        "frame_stride": 2
+      },
+      "phase_outcomes": [
+        {
+          "phase": "REACH",
+          "status": "success"
+        },
+        {
+          "phase": "APPROACH",
+          "status": "success"
+        },
+        {
+          "phase": "GRASP_SECURE",
+          "status": "terminal_valid",
+          "static_gate_pass": true,
+          "static_gate_semantics": "diagnostic_only"
+        },
+        {
+          "phase": "LIFT",
+          "status": "complete"
+        },
+        {
+          "phase": "HOLD",
+          "status": "success"
+        },
+        {
+          "phase": "SUCCESS",
+          "status": "success"
+        }
+      ]
+    },
+    "reach_or_approach_failure": {
+      "category": "reach_or_approach_failure",
+      "seed": 9000,
+      "benchmark_rollout_index": 0,
+      "benchmark_outcome": {
+        "success": false,
+        "failure_stage": "reach",
+        "failure_reason": "reach_failure"
+      },
+      "replay_outcome": {
+        "success": false,
+        "failure_stage": "reach",
+        "failure_reason": "reach_failure"
+      },
+      "deterministic_outcome_match": true,
+      "artifacts": {
+        "gif": "outputs/staged_pickup_formal_seed9000_100/representative_rollouts/reach_or_approach_failure/rollout.gif",
+        "phase_timeline": "outputs/staged_pickup_formal_seed9000_100/representative_rollouts/reach_or_approach_failure/phase_timeline.png",
+        "raw_phase_frame_counts": {
+          "REACH": 160,
+          "FAILURE": 1
+        },
+        "captured_gif_frames": 88,
+        "frame_stride": 2
+      },
+      "phase_outcomes": [
+        {
+          "phase": "REACH",
+          "status": "failure"
+        },
+        {
+          "phase": "FAILURE",
+          "status": "reach_failure"
+        }
+      ]
+    },
+    "grasp_or_lift_failure": {
+      "category": "grasp_or_lift_failure",
+      "seed": 9003,
+      "benchmark_rollout_index": 3,
+      "benchmark_outcome": {
+        "success": false,
+        "failure_stage": "lift",
+        "failure_reason": "drop"
+      },
+      "replay_outcome": {
+        "success": false,
+        "failure_stage": "lift",
+        "failure_reason": "drop"
+      },
+      "deterministic_outcome_match": true,
+      "artifacts": {
+        "gif": "outputs/staged_pickup_formal_seed9000_100/representative_rollouts/grasp_or_lift_failure/rollout.gif",
+        "phase_timeline": "outputs/staged_pickup_formal_seed9000_100/representative_rollouts/grasp_or_lift_failure/phase_timeline.png",
+        "raw_phase_frame_counts": {
+          "REACH": 12,
+          "APPROACH": 30,
+          "GRASP_SECURE": 21,
+          "LIFT": 14,
+          "FAILURE": 1
+        },
+        "captured_gif_frames": 47,
+        "frame_stride": 2
+      },
+      "phase_outcomes": [
+        {
+          "phase": "REACH",
+          "status": "success"
+        },
+        {
+          "phase": "APPROACH",
+          "status": "success"
+        },
+        {
+          "phase": "GRASP_SECURE",
+          "status": "terminal_valid",
+          "static_gate_pass": true,
+          "static_gate_semantics": "diagnostic_only"
+        },
+        {
+          "phase": "LIFT",
+          "status": "failure"
+        },
+        {
+          "phase": "HOLD",
+          "status": "not_reached"
+        },
+        {
+          "phase": "FAILURE",
+          "status": "drop"
+        }
+      ]
+    }
+  }
+}

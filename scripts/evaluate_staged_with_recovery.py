@@ -73,7 +73,8 @@ def _run_episode(*, seed: int, rollout_index: int, robot, config: dict,
                  reach_policy: ReachPolicy, approach_policy: ApproachPolicy,
                  recovery_policy: RecoveryPolicy,
                  output: Path,
-                 router_spec: dict[str, Any] | None = None) -> dict[str, Any]:
+                 router_spec: dict[str, Any] | None = None,
+                 frame_callback=None) -> dict[str, Any]:
     task = ReachGraspLiftTask(robot, config)
     task.reset(seed)
     reach_policy.reset()
@@ -98,6 +99,8 @@ def _run_episode(*, seed: int, rollout_index: int, robot, config: dict,
             ),
             cube_displacement_m=cube_displacement,
         )
+        if frame_callback is not None:
+            frame_callback("REACH", robot.get_observation(), telemetry)
         reach_errors.append(error)
         if status.success or status.failure_reason is not None:
             break
@@ -166,6 +169,8 @@ def _run_episode(*, seed: int, rollout_index: int, robot, config: dict,
             orientation_error_deg=orientation,
             cube_displacement_m=cube_displacement,
         )
+        if frame_callback is not None:
+            frame_callback("APPROACH", robot.get_observation(), telemetry)
         errors.append(error)
         baseline_terminal_errors.append(error)
         baseline_cube_displacements.append(cube_displacement)
@@ -317,6 +322,8 @@ def _run_episode(*, seed: int, rollout_index: int, robot, config: dict,
                 orientation_error_deg=orientation,
                 cube_displacement_m=cube_displacement,
             )
+            if frame_callback is not None:
+                frame_callback("RECOVERY", robot.get_observation(), post)
             recovery_values["observation_state"].append(_state(observation))
             recovery_values["predicted_action"].append(predicted)
             recovery_values["sent_action"].append(sent)

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "name": "openarm_wuji_staged_act_pickup_v1",
+  "status": "frozen_reproducible_milestone",
+  "control_hz": 30,
+  "inference_seed": 0,
+  "interface": {
+    "observation_state": "27D actual qpos: 7D OpenArm + 20D Wuji",
+    "images": [
+      "observation.images.front: uint8 RGB 240x320",
+      "observation.images.wrist: uint8 RGB 240x320"
+    ],
+    "action": "27D absolute MuJoCo position-controller target",
+    "execution_horizon": 1,
+    "telemetry_in_policy_observation": false
+  },
+  "assets": {
+    "mujoco_model": {
+      "path": "outputs/reach_grasp_lift/reach_grasp_lift.mjb",
+      "tracked_by_git": false,
+      "build_script": "scripts/build_reach_grasp_lift_model.py"
+    },
+    "task_config": "configs/reach_grasp_lift.json",
+    "hand_synergies": "configs/wuji_hand_left_synergies.json",
+    "grasp_stage_config": "configs/grasp_secure_stage.json"
+  },
+  "stages": {
+    "reach": {
+      "type": "ACT",
+      "checkpoint": "outputs/act_reach_only/act_train/checkpoints/002000/pretrained_model",
+      "checkpoint_step": 2000,
+      "gate": "pregrasp position error <= 12 mm for 5 consecutive frames"
+    },
+    "approach": {
+      "type": "ACT",
+      "checkpoint": "outputs/act_staged/approach_only/act_train/checkpoints/002000/pretrained_model",
+      "checkpoint_step": 2000,
+      "gate": "frozen ApproachPolicy terminal gate and cube-motion safety"
+    },
+    "recovery": {
+      "type": "ACT",
+      "checkpoint": "outputs/staged_act_with_recovery/recovery_act_train/checkpoints/001500/pretrained_model",
+      "checkpoint_step": 1500,
+      "router": "configs/recovery_router.json",
+      "router_name": "selective_hysteresis",
+      "maximum_attempts": 1
+    },
+    "grasp_secure": {
+      "type": "ACT",
+      "checkpoint": "outputs/grasp_preload_act/act_train/checkpoints/001500/pretrained_model",
+      "checkpoint_step": 1500,
+      "timeout_frames": 80,
+      "static_gate_semantics": "diagnostic_only_for_lift_admission",
+      "static_gate_reason": "forced-Lift evaluation found 42.9% precision and 27.0% success among gate failures",
+      "terminal_validity": "finite qpos, qvel, ctrl, and cube pose"
+    },
+    "lift": {
+      "type": "scripted",
+      "implementation": "openarm_wuji.tasks.scripted_lift_handoff.run_scripted_lift_from_handoff",
+      "config_source": "configs/reach_grasp_lift.json#lift",
+      "terminal_hold_s": 1.0,
+      "preserve_live_hand_target": true,
+      "trained": false
+    }
+  },
+  "lift_admission": {
+    "require_graspsecure_static_gate": false,
+    "require_finite_graspsecure_terminal": true,
+    "prelift_cube_motion_safety_m": 0.025,
+    "contact_topology_is_diagnostic_only": true,
+    "force_is_diagnostic_only": true,
+    "relative_drift_is_diagnostic_only": true
+  },
+  "benchmark": {
+    "seed_start": 9000,
+    "num_runs": 100,
+    "fresh_relative_to_policy_training_and_selection": true,
+    "representative_visualizations": true
+  },
+  "disabled_mechanisms": {
+    "retry_enabled": false,
+    "micro_lift_probe_enabled": false,
+    "lift_act_enabled": false,
+    "online_expert_action_enabled": false
+  },
+  "artifact_integrity": {
+    "algorithm": "sha256",
+    "files": [
+      {
+        "path": "outputs/act_reach_only/act_train/checkpoints/002000/pretrained_model/model.safetensors",
+        "bytes": 206544204,
+        "sha256": "d4363a86dc887ae70b4d6e0d25e83a3215ae6f3dc3bdefd68d675770147d89ac"
+      },
+      {
+        "path": "outputs/act_staged/approach_only/act_train/checkpoints/002000/pretrained_model/model.safetensors",
+        "bytes": 206544204,
+        "sha256": "fec2b22559b3c92f88cdebd78121a481531b2087e1c124c46dd2a7060e5278fd"
+      },
+      {
+        "path": "outputs/staged_act_with_recovery/recovery_act_train/checkpoints/001500/pretrained_model/model.safetensors",
+        "bytes": 206544204,
+        "sha256": "a66a9fddf0fe8dc42d622a267a1848feeee928be8f9f83550df4b8d8dac3988b"
+      },
+      {
+        "path": "outputs/grasp_preload_act/act_train/checkpoints/001500/pretrained_model/model.safetensors",
+        "bytes": 206544204,
+        "sha256": "9f5ea8fe764a9f6fa9757068a8519092b2da9295449284c17ef002dff6a8d3aa"
+      },
+      {
+        "path": "outputs/reach_grasp_lift/reach_grasp_lift.mjb",
+        "bytes": 89734132,
+        "sha256": "eca83574cc5d4942b643f22bf064c54413e453e344daf19c3217dfa67a99eed0"
+      }
+    ]
+  }
+}

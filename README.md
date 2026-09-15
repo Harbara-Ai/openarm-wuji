@@ -1,143 +1,186 @@
-# OpenArm + Wuji Learning
+# OpenArm + Wuji staged ACT pickup
 
-Pre-hardware integration project for OpenArm MuJoCo, Wuji retargeting, data collection,
-ACT, and a fail-safe asynchronous policy bridge.
+This repository is a simulation-first robot-learning project that coordinates a
+7-DoF OpenArm and a 20-DoF Wuji hand in MuJoCo. The current reproducible milestone
+executes:
 
-## Current status
+```text
+fresh reset
+→ Reach ACT
+→ Approach ACT
+→ selective_hysteresis router
+→ optional Recovery ACT
+→ GraspSecure ACT
+→ scripted Lift
+→ 1 s terminal hold
+→ success/failure report
+```
 
-The complete experiment history—including negative results, abandoned hypotheses,
-controlled ablations, frozen assets, and the current staged-ACT + scripted-Lift
-result—is maintained in [`docs/project_experiment_journal.md`](docs/project_experiment_journal.md).
+The learned interface is fixed at 30 Hz:
 
-- Project interfaces, mock backend, hand synergies, action validation, and tests: ready.
-- Official repositories are pinned in `docs/upstream_versions.md`.
-- OpenArm v2 headless smoke: passed on native Windows with MuJoCo 3.12.0; `outputs/openarm/` is generated locally.
-- Wuji Hand full prerecorded retargeting: passed under WSL2 Ubuntu 22.04; 2751 frames of 21×3 keypoints converted to finite 20-D trajectories.
-- Combined OpenArm v2 + left Wuji Hand model: compiled and stable; 20-DoF hand synergies are config-driven and safety limited.
-- Reach–Grasp–Lift scene: deterministic reset, fixed dual cameras, 6D palm-pose IK, contact-aware power grasp, and SE(3)-evaluated Lift are ready for diagnostics. Schema-v3 episodes add palm/object velocities, cube-frame contact faces/edges, opposition, and net wrench telemetry while preserving the LeRobot policy contract. The first five fixed seeds still contain zero strict stable grasps, so ACT training remains deferred.
-- Stage-1 grasp RL: expert-derived PCA5 absolute actions solve the original 20-D/manual5D exploration bottleneck and reach 3–4 simultaneous contacts. Reward V3 preserves multi-contact but does not improve edge margin/slip or 0.3 s hold. A no-training reachability audit then evaluates 2500 global, 720 local, and 50 full-hold PCA5 candidates: none reaches formal success or 0.3 s persistent low-slip contact. The evidence points first to fixed-palm geometry/rigid-domain mismatch and second to insufficient independent correction inside PCA5; the next controlled test is a small bounded palm SE(3) residual search, not longer RL.
-- Real robot protocol: intentionally unimplemented until the customized arm specification arrives.
+```text
+observation = front RGB 240×320 + wrist RGB 240×320 + 27D actual qpos
+action      = 27D absolute position-controller target
+              [7D OpenArm target + 20D Wuji target]
+H_exec      = 1
+```
 
-![OpenArm v2 left arm with Wuji Hand](outputs/combined/combined_smoke.png)
+The formal fresh-seed benchmark (seeds 9000–9099) completes the full task in
+**21/100 runs**. This is a reproducibility milestone, not a claim that grasping is
+solved. See [the final staged-ACT report](docs/FINAL_STAGED_ACT_REPORT.md) for the
+stage-wise results, limitations, and representative rollouts. The full experiment
+history, including negative results, is in
+[the experiment journal](docs/project_experiment_journal.md).
 
-## Upstream model setup
+## Frozen pipeline
 
-Local upstream checkouts are intentionally excluded from Git. Clone and pin them
-before building the combined model:
+[`configs/staged_pipeline.json`](configs/staged_pipeline.json) is the single source
+of truth. It fixes all policy checkpoints, the router, control rate, observation and
+action contract, scripted Lift configuration, safety semantics, and SHA-256 hashes
+for the large local artifacts.
+
+| Stage | Frozen implementation |
+|---|---|
+| Reach | ACT step 2000 |
+| Approach | ACT step 2000 |
+| Recovery | ACT step 1500, selected by `selective_hysteresis` |
+| GraspSecure | ACT step 1500 |
+| Lift | existing scripted trajectory, followed by a 1 s hold |
+
+The GraspSecure static gate is diagnostic only for Lift admission. A finite
+GraspSecure terminal state may continue to Lift if the original 25 mm pre-Lift cube
+motion safety guard passes. Contact topology, force, and relative drift remain
+telemetry. Retry, micro-lift probe, online expert actions, and Lift ACT are disabled.
+
+## Install on Windows
+
+Python 3.12 and Git are required. Clone the pinned upstream projects into `vendor/`
+(this directory is intentionally not committed):
 
 ```powershell
 git clone https://github.com/enactic/openarm_mujoco.git vendor/openarm_mujoco
 git -C vendor/openarm_mujoco checkout a8c979629f2591ad035d99d338ce114969e6cddc
+
 git clone --recursive https://github.com/wuji-technology/wuji-retargeting.git vendor/wuji-retargeting
 git -C vendor/wuji-retargeting checkout 531f6ed4250b475d2e9231f54e988fc9b1c5b4ea
+
+git clone https://github.com/huggingface/lerobot.git vendor/lerobot
+git -C vendor/lerobot checkout fa048804d05c1b965b0a5801cf205f97a9e8a3e8
+
+./scripts/setup_lerobot_policy.ps1 -Python C:\path\to\python.exe
 ```
 
-OpenArm MuJoCo is Apache-2.0 licensed. Wuji retargeting and its hand description
-are MIT licensed; their copyright and license files remain in the upstream checkouts.
+Pinned versions and upstream licenses are documented in
+[`docs/upstream_versions.md`](docs/upstream_versions.md).
 
-Run the dependency-free smoke test from PowerShell:
+## Prepare frozen artifacts
+
+The four ACT checkpoints total about 827 MB and the compiled MuJoCo model is about
+90 MB. They are deliberately excluded from GitHub. Restore the preserved checkpoint
+directories at the exact repo-relative paths recorded in the manifest:
+
+```text
+outputs/act_reach_only/act_train/checkpoints/002000/pretrained_model
+outputs/act_staged/approach_only/act_train/checkpoints/002000/pretrained_model
+outputs/staged_act_with_recovery/recovery_act_train/checkpoints/001500/pretrained_model
+outputs/grasp_preload_act/act_train/checkpoints/001500/pretrained_model
+```
+
+Each directory must contain the LeRobot `config.json`, preprocessors,
+postprocessors, `train_config.json`, and `model.safetensors`. The training procedure
+for each asset is documented in
+[`act_reach_only_diagnosis.md`](docs/act_reach_only_diagnosis.md),
+[`staged_act_pipeline.md`](docs/staged_act_pipeline.md),
+[`staged_act_with_recovery.md`](docs/staged_act_with_recovery.md), and
+[`grasp_preload_act.md`](docs/grasp_preload_act.md).
+
+Build the compiled scene from the pinned upstream MJCF assets:
 
 ```powershell
-./scripts/smoke_mock.ps1
-./scripts/run_openarm_headless.ps1
-./scripts/run_wuji_retarget_wsl.ps1 -WslPython /path/to/wuji-retarget/bin/python -WujiSource /path/to/wuji-retargeting
-./scripts/run_combined_smoke.ps1
-./scripts/run_combined_control_smoke.ps1
-./scripts/setup_lerobot_policy.ps1
-./scripts/run_lerobot_contract_smoke.ps1
-./scripts/run_reach_only_smoke.ps1
-./scripts/run_grasp_smoke.ps1
-./scripts/run_lift_smoke.ps1
-./scripts/run_episode_recording_smoke.ps1
-./scripts/run_grasp_settle_experiment.ps1
-# GUI (interactive; close the MuJoCo window to exit)
-./scripts/run_openarm_gui.ps1
+./.venvs/lerobot-policy/Scripts/python.exe scripts/build_reach_grasp_lift_model.py `
+  --project . `
+  --config configs/reach_grasp_lift.json `
+  --output outputs/reach_grasp_lift
 ```
 
-See `docs/environment_report.md`, `docs/setup_decisions.md`, and `docs/known_gaps.md`.
-The evidence-backed status audit and next seven days are in `docs/status_and_7_day_plan.md`.
-
-The combined-control smoke exposes one stable policy action vector: 7 left-arm joint
-targets followed by three hand synergies (`open_close`, `pinch`, `spread`). It drives
-both subsystems in the same MuJoCo step loop. Each observation contains front and wrist
-RGB (`uint8`, HWC), arm and hand positions/velocities, the 20-D bounded hand target, the
-3-D synergy command, the actual bounded 10-D policy action, contiguous frame index,
-high-resolution host timestamp, and simulation timestamp. The smoke writes a 90-frame
-episode to `outputs/combined/combined_control_recording.npz`, replays it from a clean
-reset, and rejects state error above `1e-4`.
-
-![OpenArm + Wuji front and wrist camera demo](outputs/combined/combined_control_demo.gif)
-
-## LeRobot plugin contract
-
-The installable package `lerobot_robot_openarm_wuji` registers
-`openarm_wuji_follower` without modifying LeRobot. The policy-visible contract is two
-same-size RGB cameras, 27-D measured position state, and a 10-D action consisting of
-seven arm targets plus three hand synergies. Backend timestamps and diagnostic fields
-are deliberately excluded from the first ACT input. See `docs/lerobot_integration.md`.
-
-## Reach–Grasp–Lift task
-
-`run_lift_smoke.ps1` rebuilds a task model from the pinned official assets, resets a
-free cube with an explicit seed, executes collision-free Reach, closes the power grasp,
-preloads with fixed arm targets, checks a fresh SE(3)/wrench window, and follows a
-bounded quintic Cartesian Lift reference at constant hand synergy. `task_success` requires
-80 mm cube elevation for 15 consecutive frames, while `grasp_stable` separately checks
-object-in-palm SE(3) drift against explicitly labeled CD-WM external baselines. The episode smoke records all six
-phases as `observation_t -> bounded action_t -> observation_t+1` and replays the saved
-actions from the same seeded reset. This intermediate NPZ is not yet an ACT training
-dataset. See `docs/reach_grasp_lift.md` and `docs/episode_recording.md`.
-
-![Complete Reach–Grasp–Lift expert](outputs/reach_grasp_lift/lift_demo.gif)
-
-The preload/S-curve experiment, actual trajectory tracking limits, and seed-7 slip diagnosis are documented in
-`docs/grasp_settle_experiment.md` and `docs/grasp_geometry_diagnostics.md`.
-
-Successful scripted episodes can now be collected as unified OpenArm + Wuji
-demonstrations. The demonstration contract uses 27-D measured joint state and the exact
-27-D position-actuator target (rather than next-frame qpos or the 3-D hand synergy), with
-synchronized front/wrist RGB and diagnostic cube/contact metadata. Failed attempts are
-retained separately. See `docs/coordinated_demonstrations.md`.
-
-## Stage-1 grasp RL
-
-This first RL baseline learns only static contact acquisition with the arm numerically
-fixed. It intentionally excludes RGB, ACT, Lift, torque control, domain randomization,
-and hard-coded face topology. Run the environment checker/random-policy smoke and a
-short SAC update with:
+Validate paths, file sizes, and SHA-256 hashes without loading a policy:
 
 ```powershell
-./.venvs/lerobot-policy/Scripts/python.exe scripts/rl_grasp_smoke.py
-./.venvs/lerobot-policy/Scripts/python.exe scripts/train_sac_grasp.py --timesteps 256
+./.venvs/lerobot-policy/Scripts/python.exe scripts/run_staged_pickup.py --check-only
 ```
 
-The environment contract, reward equation, reset, provisional success gate, and first
-short-run evidence are in `docs/rl_grasp_stage1.md`.
+## Run the frozen system
 
-The controlled Reward V2 action-space ablation is also complete. A 5-D per-finger
-structured action exactly reproduces the old scripted closing direction when all five
-commands are +1, and its sanity probe reaches five simultaneous contacts. A fresh 5K
-SAC run nevertheless remains at one maximum training contact, so it is not extended
-to 10K. See `docs/structured_action_ablation_5k.md`.
+Run one deterministic closed-loop rollout:
 
-Real Wuji cube teleoperation has now been downloaded from
-`yeeeiii111/wuji-pick-and-place` at a pinned revision and analyzed across all 60
-left/right cube episodes directly from the 54-D LeRobot state/action Parquet arrays.
-The hand-only export contains 20,769 bit-exact frames. Centered PCA needs 5 side-specific
-dimensions for about 95% of state/action closing-delta variance; finger onset is often
-staged and the thumb direction is strongly side-specific. See
-`docs/wuji_cube_teleop_analysis.md`.
+```powershell
+./.venvs/lerobot-policy/Scripts/python.exe scripts/run_staged_pickup.py `
+  --seed 9000 `
+  --output outputs/staged_pickup_single
+```
 
-The subsequent expert-PCA5 prior, contact-topology diagnosis, and Reward V3
-contact-quality 5K ablation are documented in
-`docs/expert_pca5_action_prior.md`, `docs/contact_topology_stability_diagnosis.md`,
-and `docs/reward_v3_contact_quality_5k.md`. The V3 experiment keeps the original
-policy contract, records quality only as telemetry, and follows its stop rule: no
-10K run after edge margin and tangential slip failed to improve. The subsequent
-no-training latent reachability search is in
-`docs/pca5_fixed_palm_reachability_analysis.md`.
+Run the formal 100-seed protocol and render three representative rollouts:
+
+```powershell
+./.venvs/lerobot-policy/Scripts/python.exe scripts/run_staged_pickup.py `
+  --seed-start 9000 `
+  --num-runs 100 `
+  --output outputs/staged_pickup_formal_seed9000_100 `
+  --compact-summary benchmarks/staged_pickup_fresh_seed9000_100.json `
+  --save-representatives
+```
+
+Use `--resume` to continue an interrupted output directory or `--overwrite` to
+replace one intentionally. Every episode records explicit phase outcomes plus
+`failure_stage` and `failure_reason`. The runner writes:
+
+```text
+outputs/<run>/progress.jsonl
+outputs/<run>/summary.json
+outputs/<run>/summary.compact.json
+outputs/<run>/pipeline_manifest.snapshot.json
+outputs/<run>/representative_rollouts/{success,...}/
+```
+
+Large output trajectories and media stay local. The small audited benchmark summary
+is committed at
+[`benchmarks/staged_pickup_fresh_seed9000_100.json`](benchmarks/staged_pickup_fresh_seed9000_100.json).
+
+## Tests
+
+```powershell
+$env:PYTHONPATH = 'src;.'
+./.venvs/lerobot-policy/Scripts/python.exe -B -m unittest discover `
+  -s tests -p 'test_*.py' -v
+```
+
+The suite covers policy/dataset contracts, state-action alignment, staged routing,
+GraspSecure/Lift handoff, reporting semantics, and the portable manifest. The formal
+release run passed **103/103 tests**; a separate one-episode formal-runner smoke also
+completed Reach → Recovery → GraspSecure → Lift → Hold successfully. The 100-run
+benchmark is the full end-to-end integration exercise.
+
+## Known limitations
+
+- Actual scripted-Lift success after admission is 21/44 (47.7%).
+- The GraspSecure static gate has limited load-bearing discrimination; preload alone
+  is not sufficient.
+- There is no deployed retry or micro-lift verification mechanism.
+- Lift remains scripted; no Lift ACT has been trained.
+- The four checkpoints are external artifacts, not Git objects.
+- Results are MuJoCo-only. Real-hardware communication, tool-to-palm calibration,
+  tactile calibration, and sim-to-real validation are not complete.
+
+## Historical components
+
+The repository also retains the scripted grasp, coordinated demonstration recorder,
+LeRobotDataset v3 exporter, monolithic ACT ablations, SAC/action-prior experiments,
+and rejected probe/retry experiments as documented evidence. They are not enabled by
+the formal manifest. Start with the
+[final report](docs/FINAL_STAGED_ACT_REPORT.md), then use the
+[journal](docs/project_experiment_journal.md) as the detailed index.
 
 ## License
 
 This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE).
-Third-party components retain their respective upstream licenses.
+Third-party components retain their upstream licenses.

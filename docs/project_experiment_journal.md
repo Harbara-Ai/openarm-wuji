@@ -1,8 +1,8 @@
 # OpenArm + Wuji 项目实验总账
 
-更新日期：2026-09-14（Asia/Singapore）  
+更新日期：2026-09-15（Asia/Singapore）
 覆盖范围：从环境搭建、OpenArm/Wuji 集成、scripted Reach–Grasp–Lift、抓取几何与 RL，到 coordinated demonstrations、ACT、staged policies 和最新 scripted Lift 验证。  
-当前仓库：`openarm-wuji-learning`；当前分支 `experiment/grasp-preload-act`；已推送的冻结 staged 基线为 `d29299e`（tag `staged-act-router-v1`）。GraspSecure 与 scripted Lift 的最新实现、报告和本总账在该提交之后，当前仍属于工作区版本。
+当前仓库：`openarm-wuji-learning`。`d29299e`（tag `staged-act-router-v1`）冻结了 Reach/Approach/Recovery/router；本次正式收口进一步冻结 GraspSecure step-1500 与 scripted Lift，并以 `configs/staged_pipeline.json` 作为唯一 manifest。
 
 > 这是一份可持续维护的实验账本，不是聊天记录摘要。文中区分“已验证事实”“当时假设”“负结果”“被后续结果推翻的结论”和“尚未执行的计划”。更细的配置、逐 seed 表格和机器可读结果保留在链接的专题报告与 `outputs/` 中。
 
@@ -31,23 +31,22 @@ reset
 - monolithic full-task ACT 在训练 loss 持续下降时仍无法完成 Reach；把任务拆为单阶段后，Reach-only ACT 在训练 seeds 上达到 `19/20`，证明主要问题之一是多阶段 phase/temporal ambiguity，而不是 27D 接口本身损坏。
 - frozen Reach→Approach 系统在早期 20-seed 链式评测中达到 `16/20`；经 selective Recovery router 的独立 200-seed 匹配评测，Approach-stage conditional success 达到 `129/155 = 83.2%`。
 - GraspSecure ACT 最佳 step-1500：standalone `14/20 = 70%`，接在真实 staged handoff 后 `9/12 = 75%` conditional success。
-- 但是 GraspSecure 的静态 gate 并不等价于 load-bearing grasp。最新条件测试中 scripted Lift 只成功 `14/30 = 46.7%`；fresh 100-run 全链路最终成功 `17/100 = 17%`。
-- fresh 100-run 的阶段概率为：
+- 但是 GraspSecure 的静态 gate 并不等价于 load-bearing grasp。条件测试中 scripted Lift 只成功 `14/30 = 46.7%`；早期 full staged fresh 100-run 为 `17/100 = 17%`。本次使用正式 runner 和新的 seeds `9000–9099` 得到最终 frozen benchmark：
 
 | 阶段 | 结果 |
 |---|---:|
-| `P(Reach)` | `74/100 = 74.0%` |
-| `P(Approach-stage success | Reach)` | `61/74 = 82.4%` |
-| `P(GraspSecure | Approach)` | `39/61 = 63.9%` |
-| `P(Lift | GraspSecure)`（含 safety reject） | `17/39 = 43.6%` |
-| `P(Lift | safe GraspSecure actually lifted)` | `17/34 = 50.0%` |
-| `P(full success)` | `17/100 = 17.0%` |
+| `P(Reach)` | `78/100 = 78.0%` |
+| `P(Approach-stage success | Reach)` | `60/78 = 76.9%` |
+| `P(finite GraspSecure terminal | Approach)` | `60/60 = 100.0%` |
+| `P(Lift | finite terminal)`（含 safety reject） | `21/60 = 35.0%` |
+| `P(Lift | actual Lift attempt)` | `21/44 = 47.7%` |
+| `P(full success)` | `21/100 = 21.0%` |
 
-当前最小条件成功率是 `Lift | GraspSecure`。因此现阶段结论不是“去训练 Lift ACT”，而是：
+当前最小条件成功率仍是 `Lift | GraspSecure terminal`。本里程碑不再继续 gate/retry/probe 优化，而是：
 
-> 保持 scripted Lift 不变，用已经保存的 GraspSecure terminal states 和真实 load outcomes 改进/校准 load-bearing grasp criterion。静态 contact/preload gate 只能过滤明显弱闭合，不能可靠预测卸载后是否会掉落。
+> 接受约 40–50% 的实际 Lift conditional success，冻结并完整记录当前系统。GraspSecure 静态 gate 仅作诊断；finite terminal 通过原 25 mm pre-Lift safety guard 后即可进入 scripted Lift。
 
-详见 [GraspSecure 接回 scripted Lift](staged_act_with_scripted_lift.md)。
+详见 [最终 staged ACT 报告](FINAL_STAGED_ACT_REPORT.md)。
 
 ## 2. 全程保持的接口与判据纪律
 
@@ -681,6 +680,48 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 
 本轮实现后的完整测试集为 `90` 项通过；另对 `64` 个实际 Lift NPZ 做了结构检查，所有成功轨迹都满足 30-frame（1 s）unsupported hold，且 state/action 均为 `[T,27]`。这证明最新失败率不是 recorder 或 handoff 文件损坏造成的。
 
+### E52 — GraspSecure gate confusion-matrix diagnostic（forced Lift）
+
+冻结 Reach/Approach/Recovery、`selective_hysteresis` router、GraspSecure step1500、27D absolute controller-target semantics 和原 scripted Lift。唯一诊断变化是：GraspSecure gate 与 25 mm pre-Lift safety reference 只保留为标签；只要 simulator finite 且 cube 未越出宽松 hard workspace guard，PASS 与 FAIL 均执行完全相同的 scripted Lift。本轮无训练、无 expert action、无 terminal-state reset，也没有修改正式 gate 或 Lift success definition。
+
+fresh seeds `6100–6261` 共运行 162 个完整 staged rollouts；131 Reach success，101 个到达 GraspSecure terminal，PASS/FAIL=`63/38`。其中 1 个状态因真正 workspace invalid 被硬保护排除，最终得到整 100 次实际 Lift：37 success、36 environment-support、21 drop、6 height-hold failure。43 次为 diagnostic forced Lift，23 个 terminal 被 formal 25 mm safety reference 拒绝。
+
+关键 confusion matrix：`TP=27, FP=36, FN=10, TN=27`。因此 `P(Lift success | PASS)=42.9%`、`P(Lift success | FAIL)=27.0%`、recall `73.0%`、specificity `42.9%`、accuracy `54.0%`。25 mm safety 标签也几乎不分离：`P(success|safety PASS)=37.2%`，`P(success|safety reject)=36.4%`。
+
+preload-only ROC AUC 仅 `0.621`。当前 `1.1775 rad` 的 preload-only precision/recall 为 `41.9%/70.3%`；同样本 best-F1 threshold `0.880 rad` 虽将 recall 提至 `94.6%`，precision 仍仅 `47.3%`，不能作为新 gate。FP 与 TP 的 preload median (`1.309/1.283 rad`)、五指 topology 和 terminal slip 高度重叠；10 个 FN 中 9 个仍是五指 topology，contact persistence median `2.30 s`，却因 preload/terminal-hold conjunction 被拒绝。
+
+只使用 pre-Lift features 的 class-balanced L2 logistic 在 stratified 5-fold OOF 上得到 AUC `0.714`、balanced accuracy `0.685`、precision `55.3%`、recall `70.3%`、specificity `66.7%`。这只说明 per-joint preload pattern、contact persistence/coverage、force distribution、cube-palm geometry 与 relative motion 比单一 L2 更有信息；51D feature、100 samples 下不能部署或宣称因果。
+
+强制结论 **Case B**：现有 gate 同时存在实质 false positives 与 false negatives，定义本身需要重做；但 preload scan 也呈现 Case D 的机制证据，因此下一步应在 held-out seeds 上预注册验证 geometry/persistence/小幅 physical load probe，而不是直接移动 `1.1775 rad`。报告见 [graspsecure_gate_confusion_matrix.md](graspsecure_gate_confusion_matrix.md)，机器可读结果和 100 条完整 Lift telemetry 位于 `outputs/graspsecure_gate_confusion/`。新增 evaluator 与测试后，全套 `93` tests 通过；Parquet 100 rows/60 columns、101 terminal snapshots、100 Lift NPZ、共 5600 Lift frames 均通过 shape/finite 检查。
+
+### E53 — Micro-lift verification + one frozen GraspSecure retry
+
+保持 Reach/Approach/Recovery/router/GraspSecure、27D absolute controller target、PD/rate limit 和原 scripted Lift 全部冻结。新增的 deployable 分支只做：GraspSecure terminal 后复用原 Lift 的 15 mm reference prefix，保留 live 20D hand target，等 rate-limited arm 实际进入至少 10 mm micro-lift 后 hold 0.3 s；若 probe FAIL，则沿相同 prefix 最小回落/settle，并仅重跑一次 frozen GraspSecure。为了测 `P(full Lift success | probe FAIL)`，conditional evaluator 另开了明确标注的 counterfactual snapshot branch；实际 retry branch 从未恢复原 grasp-start。
+
+正式评估复用 E52 保存的 60 个 exact terminal snapshots。首次 smoke 发现固定 9 帧并不是实际 hold：arm target 尚在 rate-limit 爬升，actual palm 只移动 1–3 mm；这是 evaluator 时序 bug，正式 60 条前修成“实际 palm 到位后才开始计 0.3 s”，控制曲线与阈值不因结果调优。
+
+正式结果：probe1 PASS/FAIL=`0/60`。虽然所有状态都被 probe 拒绝，FAIL 后继续原 Lift 仍有 `18/60=30.0%` 成功，2×2 为 `TP=0, FP=0, FN=18, TN=42`，所以 precision 无法定义、recall 为 0。criterion pass counts：finite 60、physical hold complete 55、palm maintained 46、cube followed 14、support released 6、contact retained 52、no-fast-escape 6。这说明 contact collapse 不是主因；在 15 mm reference 插入静态 micro-hold 改变了原连续上抬动力学，无法作为无损 load-bearing predictor。Post-hoc 仅移除 drift/speed 两项仍只有 1/60 满足核心条件（TP/FP/FN/TN=`1/0/17/42`），所以结论不依赖这两个阈值。
+
+60 条全部执行一次 regrasp；return 60/60 完成，57 条回落后物理有效，57 条形成可比较 attempt2 state，56 条可执行第二 probe，但 probe2 PASS 仍为 `0/56`，因此 rescue=`0`、absolute retry gain=`0`。Regrasp 确实不是数值重复：57/57 被 continuous-change diagnostic 标为不同，median target/actual 20D L2 change=`0.112/0.754 rad`，median cube-palm translation/rotation change=`24.51 mm/42.28°`，28/57 topology changed；然而这些变化过大且没有转化成更好的 load-bearing state。
+
+强制结论 **Case C**：当前 probe 自身不能分离好/坏 grasp，主要瓶颈是 probe precision/动力学设计，不能归咎于 regrasp quality。按预注册流程，conditional 未证明有效，因此没有启动 100–200 fresh-seed full staged comparison，也没有冻结/部署此机制。报告见 [grasp_probe_regrasp_retry.md](grasp_probe_regrasp_retry.md)，机器可读 summary、60 条 baseline/probe/forced-continuation/return/regrasp/probe2 轨迹位于 `outputs/grasp_probe_regrasp_retry/`。最终全套 `99` tests 通过；353 个新 NPZ 均通过 JSON、27D state/target、finite 和 probe hand-target-preservation 检查。
+
+### E54 — 正式 frozen staged ACT 项目收口与 fresh 100-seed benchmark
+
+停止 retry、micro-lift probe、GraspSecure gate 和 policy 优化。新增唯一正式 manifest `configs/staged_pipeline.json`，固定 Reach step2000、Approach step2000、Recovery step1500、`selective_hysteresis` router、GraspSecure step1500、30 Hz 27D absolute-target contract、原 scripted Lift 与 1 s hold。manifest 只使用 repo-relative paths，并保存四个约 206.5 MB policy weights 和约 89.7 MB MuJoCo model 的 size/SHA-256；大文件继续由 `.gitignore` 排除。
+
+正式入口 `scripts/run_staged_pickup.py` 支持单 seed、批量、断点续跑、manifest/artifact `--check-only`、每 episode 明确 phase timeline、`failure_stage`/`failure_reason`、compact/full JSON，以及成功、上游失败、Lift 失败各一条双相机 GIF 和 phase timeline。正式配置明确关闭 retry、probe、Lift ACT 和 online expert action。
+
+经过 E52/E53 的诊断，GraspSecure static gate 在正式 pipeline 中降为 telemetry：只要 GraspSecure terminal 的 qpos/qvel/ctrl/cube state finite，且原 25 mm pre-Lift cube-motion safety guard 通过，就从真实 closed-loop terminal state 进入原 scripted Lift；hand target 保留 controller target，绝不改为 actual qpos。正式 success 仍要求实际完成 Lift、无环境支撑并 hold 1 s。
+
+fresh seeds `9000–9099` 的 100-run 正式结果：Reach `78/100`；Approach-stage `60/78=76.9%`；finite GraspSecure terminal `60/60`；pre-Lift safety pass `44/60`；actual Lift success `21/44=47.7%`；按全部 finite terminal 计 `21/60=35.0%`；full success `21/100=21.0%`。Recovery trigger `34/78=43.6%`，trigger 后成功 `16/34=47.1%`。互斥 failure stages：Reach 22、Recovery/Approach 18、pre-Lift terminal safety 16、Lift drop 10、Lift hold 13。
+
+静态 gate 的 60-terminal 交叉表为：PASS success/fail=`17/21`，FAIL success/fail=`4/18`；seeds `9030,9032,9033,9097` 是 gate FAIL 但完整 Lift+hold success。它再次证明 static gate 不能硬阻止所有 Lift。代表性 deterministic replay 为：success seed9002、Reach failure seed9000、Lift drop seed9003，三者的 outcome/failure reason 与 benchmark 一致。
+
+机器可读摘要：[staged_pickup_fresh_seed9000_100.json](../benchmarks/staged_pickup_fresh_seed9000_100.json)。统一说明、复现命令、模块/判据和限制见 [FINAL_STAGED_ACT_REPORT.md](FINAL_STAGED_ACT_REPORT.md)。
+
+最终全套 `103/103` tests 通过；额外 formal-runner smoke（seed8999 作为独立 inference stream）完整完成 Reach→Recovery→GraspSecure→Lift→Hold。manifest 的 5 个大资产 size/SHA-256 全部匹配，三个 representative replay 的 benchmark outcome、failure stage 和 failure reason 全部一致。
+
 ## 4. 走过的弯路，以及为什么它们仍然有价值
 
 | 弯路/早期假设 | 为什么当时合理 | 后来看到的反证 | 保留下来的价值 |
@@ -701,6 +742,8 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 | 把 correction 混进 Approach BC | 可直接教 recovery | 30%/20% 都以更多 timeout 换更少 push，success 下降 | correction 数据改用于独立 Recovery ACT |
 | 第一个 near-failure trigger 就切 Recovery | 反应快 | rescued20、regressed43，显著负效应 | 促成 matched counterfactual router 与 hysteresis |
 | GraspSecure static gate 代表可承重 | contact/preload/hold 都看似合格 | conditional Lift 仅46.7%，full `Lift|Grasp=43.6%` | 生成带 load outcome 的 terminal-state 数据，下一步可校准 load-bearing gate |
+| preload threshold 可以校准 GraspSecure gate | preload 与历史 Lift success 有弱正相关 | forced-Lift confusion 中 PASS precision 42.9%、FAIL success 27.0%；preload AUC 0.621 | 证明要联合 geometry、persistence、force distribution 或 physical load probe |
+| 15 mm static micro-lift hold 可以验证承载 | 小幅 support release 物理直观，且可复用 Lift prefix | 0/60 PASS，但 FAIL 后 continuation 仍 18/60 success；probe2 0/56 | 发现 hold 会改变当前 rate-limited continuous-Lift 动力学，verification 必须做到无损或改用在线连续信号 |
 
 这些负结果不应删除。它们缩小了假设空间，也构成项目最有价值的工程/研究叙事：每次转向都有受控实验，而不是凭感觉换算法。
 
@@ -714,12 +757,17 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 - Router：`configs/recovery_router.json`，`selective_hysteresis`
 - Git checkpoint：`d29299e` / `staged-act-router-v1`
 
-### 5.2 当前工作区新增资产
+### 5.2 正式 frozen staged pickup 资产
 
 - GraspSecure config：`configs/grasp_secure_stage.json`
 - GraspSecure checkpoint：`outputs/grasp_preload_act/act_train/checkpoints/001500/pretrained_model`
 - Conditional/full Lift records：`outputs/staged_act_with_scripted_lift/`
-- 最新报告：[grasp_preload_act.md](grasp_preload_act.md)、[staged_act_with_scripted_lift.md](staged_act_with_scripted_lift.md)
+- Gate diagnostic：`outputs/graspsecure_gate_confusion/`
+- Probe/regrasp conditional diagnostic：`outputs/grasp_probe_regrasp_retry/`
+- Formal manifest：`configs/staged_pipeline.json`
+- Formal runner：`scripts/run_staged_pickup.py`
+- Fresh 100-seed compact result：`benchmarks/staged_pickup_fresh_seed9000_100.json`
+- 最新报告：[FINAL_STAGED_ACT_REPORT.md](FINAL_STAGED_ACT_REPORT.md)、[grasp_preload_act.md](grasp_preload_act.md)、[staged_act_with_scripted_lift.md](staged_act_with_scripted_lift.md)、[graspsecure_gate_confusion_matrix.md](graspsecure_gate_confusion_matrix.md)、[grasp_probe_regrasp_retry.md](grasp_probe_regrasp_retry.md)
 
 ### 5.3 历史 scripted baseline
 
@@ -738,9 +786,9 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 - ACT 的 training-seed 成功不能当成 unseen distribution 泛化；Reach-only 的 19/20 只证明 phase ambiguity 假设。
 - CD-WM 8 mm/6° 不是 Wuji 最终稳定性阈值。
 
-## 7. 下一步研究问题（仅记录，不自动执行）
+## 7. 未来研究问题（当前暂停，仅记录）
 
-当前最干净的问题是：
+如果未来恢复算法优化，当前最干净的问题是：
 
 > 在保持 frozen policies、scripted Lift、controller 和 safety reference 不变时，什么 pre-Lift measurement 能预测真正的 load-bearing outcome？
 
@@ -749,11 +797,12 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 - terminal preload 的完整 20D pattern，而不只是 L2；
 - per-finger normal-force distribution、force balance/HHI 与 thumb opposition；
 - short active load probe / very small support-release transient；
+- 不插入静态 hold 的 continuous-prefix online verification，或对 probe 后续 Lift 做 matched calibration；
 - palm-frame translation/rotation velocity、incipient slip；
 - contact topology persistence 与 zero-contact runs；
 - 预注册的 held-out seed split，避免在同一 64 条上同时挑 threshold 又报性能。
 
-只有当 GraspSecure→scripted Lift conditional success 变得可靠，才值得讨论冻结完整 staged pipeline 或训练 Lift policy。
+本次已经按现状冻结完整 staged pipeline；未来若训练 Lift policy 或部署 retry，应建立新版本 manifest，并始终与本 frozen benchmark 对照。
 
 ## 8. 专题报告索引
 
@@ -810,6 +859,7 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 
 ### Staged ACT
 
+- [FINAL_STAGED_ACT_REPORT.md](FINAL_STAGED_ACT_REPORT.md)
 - [staged_act_pipeline.md](staged_act_pipeline.md)
 - [approach_near_failure_mining.md](approach_near_failure_mining.md)
 - [approach_act_with_correction_demos.md](approach_act_with_correction_demos.md)
@@ -819,6 +869,8 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 - [frozen_staged_act_v1.md](frozen_staged_act_v1.md)
 - [grasp_preload_act.md](grasp_preload_act.md)
 - [staged_act_with_scripted_lift.md](staged_act_with_scripted_lift.md)
+- [graspsecure_gate_confusion_matrix.md](graspsecure_gate_confusion_matrix.md)
+- [grasp_probe_regrasp_retry.md](grasp_probe_regrasp_retry.md)
 
 ## 9. Git 里程碑
 
@@ -837,6 +889,7 @@ fresh success/failure 的 median max palm-frame translation drift 为 `42.8/54.2
 | 2026-09-10 | `49e9b65` | preserve grasp experiment outputs |
 | 2026-09-10 | `d2b8754` | coordinated OpenArm-Wuji demonstrations |
 | 2026-09-14 | `d29299e` | freeze Reach/Approach/Recovery/router on main |
+| 2026-09-15 | 本次 milestone commit | freeze and package full staged ACT + scripted Lift pipeline |
 
 ## 10. 维护规则
 
