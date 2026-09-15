@@ -91,6 +91,7 @@ MUJOCO_LOG.TXT
 
 # Final safeguard: later output allow-lists must not re-include bulky artifacts.
 *.gif
+!docs/media/staged_pickup_success_seed9002.gif
 *.parquet
 *.safetensors
 outputs/two_finger_pinch/top_candidates.json

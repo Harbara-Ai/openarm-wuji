@@ -32,6 +32,13 @@ stage-wise results, limitations, and representative rollouts. The full experimen
 history, including negative results, is in
 [the experiment journal](docs/project_experiment_journal.md).
 
+### Successful closed-loop example
+
+Seed 9002 completes Reach → Approach → GraspSecure → scripted Lift → 1 s Hold.
+The left panel is the fixed front camera and the right panel is the wrist camera.
+
+![Successful staged OpenArm-Wuji pickup, seed 9002](docs/media/staged_pickup_success_seed9002.gif)
+
 ## Frozen pipeline
 
 [`configs/staged_pipeline.json`](configs/staged_pipeline.json) is the single source

@@ -180,9 +180,15 @@ failure reason.
 | Grasp/Lift failure | 9003 | Drop during Lift | `outputs/staged_pickup_formal_seed9000_100/representative_rollouts/grasp_or_lift_failure/` |
 
 Each directory contains a dual-camera `rollout.gif`, `phase_timeline.png`, compact
-`summary.json`, and (where applicable) ignored raw 27D trajectory NPZ files. Media
-and raw trajectories remain outside Git; the committed compact benchmark records
-their paths and deterministic outcome match.
+`summary.json`, and (where applicable) ignored raw 27D trajectory NPZ files. Batch
+media and raw trajectories remain outside Git; the committed compact benchmark
+records their paths and deterministic outcome match.
+
+One curated success example is committed for direct GitHub viewing:
+
+![Successful seed-9002 staged pickup](media/staged_pickup_success_seed9002.gif)
+
+All other generated rollout media remain ignored.
 
 ## 7. Reproduction
 
