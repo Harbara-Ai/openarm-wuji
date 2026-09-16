@@ -1,8 +1,8 @@
 # OpenArm + Wuji 项目实验总账
 
-更新日期：2026-09-15（Asia/Singapore）
-覆盖范围：从环境搭建、OpenArm/Wuji 集成、scripted Reach–Grasp–Lift、抓取几何与 RL，到 coordinated demonstrations、ACT、staged policies 和最新 scripted Lift 验证。  
-当前仓库：`openarm-wuji-learning`。`d29299e`（tag `staged-act-router-v1`）冻结了 Reach/Approach/Recovery/router；本次正式收口进一步冻结 GraspSecure step-1500 与 scripted Lift，并以 `configs/staged_pipeline.json` 作为唯一 manifest。
+更新日期：2026-09-16（Asia/Singapore）
+覆盖范围：从环境搭建、OpenArm/Wuji 集成、scripted Reach–Grasp–Lift、抓取几何与 RL，到 coordinated demonstrations、ACT、staged policies、scripted Lift 和最终 fresh-seed benchmark。
+当前仓库：`openarm-wuji-learning`。GitHub `main` 已包含核心 staged pipeline milestone `1a6d78f` 和成功视频提交 `a733b8e`。`configs/staged_pipeline.json` 是当前正式配置的唯一 manifest。
 
 > 这是一份可持续维护的实验账本，不是聊天记录摘要。文中区分“已验证事实”“当时假设”“负结果”“被后续结果推翻的结论”和“尚未执行的计划”。更细的配置、逐 seed 表格和机器可读结果保留在链接的专题报告与 `outputs/` 中。
 
@@ -18,7 +18,7 @@ reset
 → selective_hysteresis router
 → 必要时 Recovery ACT
 → GraspSecure ACT
-→ Grasp/Preload gate
+→ finite terminal + 原 25 mm pre-Lift safety guard
 → scripted Lift
 → 1 s hold
 ```
@@ -42,11 +42,15 @@ reset
 | `P(Lift | actual Lift attempt)` | `21/44 = 47.7%` |
 | `P(full success)` | `21/100 = 21.0%` |
 
+补充诊断：Recovery 在 Reach 成功后触发 `34/78=43.6%`，其中 `16/34=47.1%` 成功；60 个 finite GraspSecure terminal 中，静态 gate PASS/FAIL=`38/22`，但 FAIL 中仍有 4 条完整 Lift+hold success，所以该 gate 不能作为正式 Lift hard gate。互斥 failure stages 为 Reach 22、Recovery/Approach 18、pre-Lift safety 16、Lift drop 10、Lift hold 13。
+
 当前最小条件成功率仍是 `Lift | GraspSecure terminal`。本里程碑不再继续 gate/retry/probe 优化，而是：
 
 > 接受约 40–50% 的实际 Lift conditional success，冻结并完整记录当前系统。GraspSecure 静态 gate 仅作诊断；finite terminal 通过原 25 mm pre-Lift safety guard 后即可进入 scripted Lift。
 
 详见 [最终 staged ACT 报告](FINAL_STAGED_ACT_REPORT.md)。
+
+代表性成功样例已提交到仓库：[seed 9002 双相机成功 GIF](media/staged_pickup_success_seed9002.gif)。该轨迹完整执行 Reach→Approach→GraspSecure→scripted Lift→1 s Hold。
 
 ## 2. 全程保持的接口与判据纪律
 
@@ -722,6 +726,8 @@ fresh seeds `9000–9099` 的 100-run 正式结果：Reach `78/100`；Approach-s
 
 最终全套 `103/103` tests 通过；额外 formal-runner smoke（seed8999 作为独立 inference stream）完整完成 Reach→Recovery→GraspSecure→Lift→Hold。manifest 的 5 个大资产 size/SHA-256 全部匹配，三个 representative replay 的 benchmark outcome、failure stage 和 failure reason 全部一致。
 
+代码、配置、测试、报告和 small benchmark JSON 已在 milestone commit `1a6d78f` 提交并快进到 GitHub `main`。随后 commit `a733b8e` 增加了唯一精选媒体 [seed 9002 成功 GIF](media/staged_pickup_success_seed9002.gif) 并更新 README；批量 GIF、NPZ、Parquet、训练输出和大 checkpoint 仍由 `.gitignore` 排除。该 milestone 与媒体提交均已同时进入 `main` 和 `experiment/staged-act-pickup`。
+
 ## 4. 走过的弯路，以及为什么它们仍然有价值
 
 | 弯路/早期假设 | 为什么当时合理 | 后来看到的反证 | 保留下来的价值 |
@@ -767,6 +773,7 @@ fresh seeds `9000–9099` 的 100-run 正式结果：Reach `78/100`；Approach-s
 - Formal manifest：`configs/staged_pipeline.json`
 - Formal runner：`scripts/run_staged_pickup.py`
 - Fresh 100-seed compact result：`benchmarks/staged_pickup_fresh_seed9000_100.json`
+- Curated successful rollout：`docs/media/staged_pickup_success_seed9002.gif`
 - 最新报告：[FINAL_STAGED_ACT_REPORT.md](FINAL_STAGED_ACT_REPORT.md)、[grasp_preload_act.md](grasp_preload_act.md)、[staged_act_with_scripted_lift.md](staged_act_with_scripted_lift.md)、[graspsecure_gate_confusion_matrix.md](graspsecure_gate_confusion_matrix.md)、[grasp_probe_regrasp_retry.md](grasp_probe_regrasp_retry.md)
 
 ### 5.3 历史 scripted baseline
@@ -889,7 +896,8 @@ fresh seeds `9000–9099` 的 100-run 正式结果：Reach `78/100`；Approach-s
 | 2026-09-10 | `49e9b65` | preserve grasp experiment outputs |
 | 2026-09-10 | `d2b8754` | coordinated OpenArm-Wuji demonstrations |
 | 2026-09-14 | `d29299e` | freeze Reach/Approach/Recovery/router on main |
-| 2026-09-15 | 本次 milestone commit | freeze and package full staged ACT + scripted Lift pipeline |
+| 2026-09-15 | `1a6d78f` | freeze and package full staged ACT + scripted Lift pipeline；fresh 100-seed full success 21% |
+| 2026-09-15 | `a733b8e` | add curated seed9002 successful dual-camera rollout；已进入 GitHub `main` |
 
 ## 10. 维护规则
 
